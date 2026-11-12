@@ -31,9 +31,11 @@ Si configurano in **Impostazioni progetto → Mappa degli input**: scrivi il nom
 |---|---|
 | `move_left` / `move_right` / `move_up` / `move_down` | Frecce, WASD |
 | `run` | Shift |
+| `interact` | E, Spazio, Invio |
 
 Le azioni `ui_left`, `ui_right`… esistono già, ma sono pensate per i menu.
 
 ## Vedi anche
 
-- [[CharacterBody2D]] · [[Subaru]]
+- [[Eventi di input]] (per le azioni "una volta per pressione", come `interact`)
+- [[CharacterBody2D]] · [[Subaru]] · [[Saggio]]
