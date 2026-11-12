@@ -1,4 +1,5 @@
-## Test automatico: parla con il Saggio, controlla la finestra di dialogo e la polvere della corsa.
+## Test automatico: parla con il Saggio e con il cartello, controlla la finestra di dialogo,
+## la polvere della corsa e i passi.
 ##
 ## Uso (dalla cartella let's-learn-godot):
 ##   <Godot.exe> --path . -s ../tools/test_dialogo.gd -- <cartella_screenshot>
@@ -10,6 +11,7 @@ var out_dir := "user://screenshots/"
 var main: Node
 var subaru: CharacterBody2D
 var npc: Node2D
+var sign_post: Area2D   # non "Interactable": negli script -s gli autoload non esistono ancora quando si compila
 var dialogue: CanvasLayer
 var errors := 0
 
@@ -24,6 +26,7 @@ func _initialize() -> void:
 	root.add_child(main)
 	subaru = main.get_node("World/Subaru")
 	npc = main.get_node("World/Npc")
+	sign_post = main.get_node("World/Sign")
 	dialogue = root.get_node("Dialogue")
 	_run.call_deferred()
 
@@ -56,13 +59,14 @@ func press(action: String) -> void:
 
 
 func _run() -> void:
+	var prompt: Sprite2D = npc.get_node("Interactable/Prompt")
 	await wait(0.3)
-	check(not npc.get_node("Prompt").visible, "lontano dal Saggio la nuvoletta è nascosta")
+	check(not prompt.visible, "lontano dal Saggio la nuvoletta è nascosta")
 
 	# Mettiamo Subaru accanto al Saggio.
 	subaru.position = npc.position + Vector2(-34, 8)
 	await wait(1.2)
-	check(npc.get_node("Prompt").visible, "vicino al Saggio compare la nuvoletta")
+	check(prompt.visible, "vicino al Saggio compare la nuvoletta")
 	await shot("01_vicino_al_saggio")
 
 	await press("interact")
@@ -97,14 +101,43 @@ func _run() -> void:
 	await wait(0.4)
 	check(not dialogue.is_active, "dopo l'ultima frase il dialogo si chiude")
 
-	# Corsa: la polvere deve comparire.
-	subaru.position = Vector2(560, 400)
+	# Seconda conversazione: il Saggio dice altre cose.
+	await press("interact")
+	await wait(0.1)
+	check(text.text.begins_with("Ancora qui?"), "la seconda volta il Saggio dice frasi diverse")
+	await press("interact")   # completa la frase
+	await press("interact")   # seconda frase
+	await press("interact")   # completa
+	await press("interact")   # chiude
+	await wait(0.4)
+	check(not dialogue.is_active, "anche il secondo dialogo si chiude")
+
+	# Il cartello.
+	subaru.position = sign_post.position + Vector2(24, 10)
+	await wait(1.0)
+	check(sign_post.get_node("Prompt").visible, "vicino al cartello compare la nuvoletta")
+	await press("interact")
+	await wait(1.2)
+	check(dialogue.is_active and dialogue.get_node("Box/NameTag/Name").text == "Cartello", "il cartello si può leggere")
+	check(subaru.facing == "left", "Subaru si gira verso il cartello")
+	await shot("05_cartello")
+	for i in 10:   # chiude il dialogo (al massimo 10 pressioni)
+		if not dialogue.is_active:
+			break
+		await press("interact")
+		await wait(0.2)
+
+	# Corsa: la polvere deve comparire e i passi devono suonare.
+	subaru.position = Vector2(560, 420)
 	await wait(0.8)
+	var steps_before: int = subaru.step_count
 	Input.action_press("run")
 	Input.action_press("move_left")
 	await wait(0.35)
 	check(subaru.get_node("Dust").emitting, "correndo compaiono le nuvolette di polvere")
 	await shot("04_polvere")
+	await wait(0.4)
+	check(subaru.step_count > steps_before, "camminando si sentono i passi")
 	Input.action_release("move_left")
 	Input.action_release("run")
 	await wait(0.2)
