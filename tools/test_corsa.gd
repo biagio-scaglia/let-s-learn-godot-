@@ -59,6 +59,6 @@ func _run() -> void:
 	Input.action_press("move_up")
 	await wait(4.0)
 	Input.action_release("move_up")
-	print("fermo a y=", round(subaru.position.y), " (gli alberi del bordo finiscono a y=128)")
+	print("fermo a y=", round(subaru.position.y), " (il muro del bordo finisce a y=64)")
 	await shot("04_contro_gli_alberi")
 	quit()
