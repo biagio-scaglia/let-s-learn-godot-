@@ -35,6 +35,8 @@ void fragment() {
 
 `effects/vignette.gdshader`: la **vignettatura**, che scurisce un po' gli angoli dello schermo. È su un `ColorRect` dentro un [[CanvasLayer]], così copre tutto lo schermo. Vedi [[Effetti visivi]].
 
+Un secondo shader, `effects/pause_blur.gdshader`, **sfoca lo schermo** dietro al [[Menu di pausa]] e alla [[Schermata iniziale]]. Usa `hint_screen_texture`, cioè l'immagine già disegnata sotto, e ne legge una versione rimpicciolita (`textureLod`): più è piccola, più è sfocata.
+
 ## Vedi anche
 
 - [[CanvasLayer]] · [[CanvasModulate]]

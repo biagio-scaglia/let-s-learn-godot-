@@ -24,6 +24,7 @@ Indice dei concetti di Godot incontrati finora. Ogni concetto ha la sua nota, co
 - [[Gruppi]]: etichette per riconoscere i nodi
 - [[Composizione]]: piccoli pezzi riutilizzabili messi insieme
 - [[Cambio di scena]]: passare da una scena all'altra, punti d'arrivo
+- [[Pausa]]: fermare il gioco, e chi continua a funzionare
 
 ## Codice
 
@@ -34,6 +35,7 @@ Indice dei concetti di Godot incontrati finora. Ogni concetto ha la sua nota, co
 - [[Classi globali]]: `class_name`, uno script diventa un tipo
 - [[Tween]]: animare una proprietà dal codice
 - [[Await]]: aspettare senza bloccare il gioco
+- [[ConfigFile]]: salvare le impostazioni su file
 - [[Input Map]]: azioni e tasti
 - [[Eventi di input]]: `_unhandled_input` e tasti "usati"
 
@@ -64,6 +66,8 @@ Indice dei concetti di Godot incontrati finora. Ogni concetto ha la sua nota, co
 - [[Interfaccia (Control)]]: Panel, Label, ancore
 - [[StyleBox]]: sfondi e bordi
 - [[Font]]: caratteri, anche pixel
+- [[Theme]]: l'aspetto di tutti i menu in un posto solo
+- [[Menu e focus]]: menu usabili con tastiera e mouse
 
 ## Fisica e movimento
 

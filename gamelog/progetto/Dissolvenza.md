@@ -24,4 +24,6 @@ await Fade.fade_in()
 
 `await` aspetta che la funzione finisca prima di andare avanti: così la scena cambia solo quando lo schermo è già nero.
 
+Funziona anche in [[Pausa]], così "Torna al titolo" dal [[Menu di pausa]] può sfumare al nero.
+
 Fa parte degli [[Effetti visivi]].

@@ -25,6 +25,10 @@ L'[[Autoload]] **`Game`** (`core/game.gd`): lo **stato del gioco** che deve sopr
 
 - `change_scene(path, spawn, facing)`: suono della porta, [[Dissolvenza]] al nero, [[Cambio di scena]], dissolvenza dal nero. Usa [[Await]].
 - `player_can_move()`: no durante un dialogo o un cambio di scena. La usa [[Subaru]].
+- `new_game()`: dimentica tutto e va al villaggio. La usa la [[Schermata iniziale]].
+- `ui_sound()`: i suoni dei menu (spostamento, conferma, indietro).
+- Le [[Opzioni]]: `volume` e `fullscreen`, salvate su file con [[ConfigFile]].
+- Funziona anche in [[Pausa]] (`process_mode = Always`).
 
 ## Perché serve
 

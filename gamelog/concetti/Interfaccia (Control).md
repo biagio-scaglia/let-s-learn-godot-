@@ -33,6 +33,8 @@ I nodi verdi di Godot sono i **Control**: servono per l'interfaccia (menu, fines
 
 La [[Finestra di dialogo]]: `Panel` in basso, `Label` per il testo, `PanelContainer` per il nome, `TextureRect` per la freccia. Il testo usa il [[Font]] KenPixel.
 
+L'aspetto di tutti questi nodi si decide in un [[Theme]].
+
 ## Vedi anche
 
 - [[CanvasLayer]] · [[StyleBox]] · [[Font]]
