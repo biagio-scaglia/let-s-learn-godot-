@@ -44,7 +44,7 @@ Npc (StaticBody2D)              + npc.gd: aspetto e comportamento
 
 ## Riutilizzabile
 
-`characters/npc/npc.tscn` è generica: per un nuovo personaggio si fa una nuova [[Istanza]] e si cambiano `npc_name`, `lines`, `repeat_lines` e l'immagine. La parte "interazione" sta nel componente [[Interactable]], vedi [[Composizione]].
+`characters/npc/npc.tscn` è generica (la usano anche [[Lina]] ed [[Emilia]]): per un nuovo personaggio si fa una nuova [[Istanza]] e si cambiano `npc_name`, `lines`, `repeat_lines` e l'immagine. La parte "interazione" sta nel componente [[Interactable]], vedi [[Composizione]].
 
 ## Da sapere
 

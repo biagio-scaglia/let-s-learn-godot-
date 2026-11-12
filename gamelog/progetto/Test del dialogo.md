@@ -16,7 +16,7 @@ Lo script `tools/test_dialogo.gd` controlla da solo il dialogo con il [[Saggio]]
 <Godot.exe> --path . -s ../tools/test_dialogo.gd -- <cartella_screenshot>
 ```
 
-## Cosa controlla (17 controlli)
+## Cosa controlla (20 controlli)
 
 1. Lontano dal Saggio la nuvoletta è nascosta, vicino compare.
 2. Premendo E il dialogo si apre e [[Subaru]] si gira verso il Saggio.
@@ -26,7 +26,8 @@ Lo script `tools/test_dialogo.gd` controlla da solo il dialogo con il [[Saggio]]
 6. Dopo l'ultima frase il dialogo si chiude.
 7. La seconda volta il Saggio dice frasi diverse.
 8. Il [[Cartello]] si può leggere e Subaru si gira verso di lui.
-9. Correndo compare la polvere e si sentono i passi; da fermo la polvere si spegne.
+9. [[Emilia]] si gira verso Subaru (da sopra e da sinistra) e ci si può parlare.
+10. Correndo compare la polvere e si sentono i passi; da fermo la polvere si spegne.
 
 Esce con il numero di errori, quindi 0 = tutto ok.
 

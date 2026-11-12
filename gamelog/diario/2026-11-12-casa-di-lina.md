@@ -78,6 +78,8 @@ Cambiando scena tutto viene distrutto e ricreato, quindi il [[Saggio]] si sarebb
 - [ ] Trovare la chiave del baule (inventario)
 - [ ] Una seconda mappa (il bosco a nord?)
 
+Passo successivo: [[2026-11-12-emilia]].
+
 ## Collegamenti
 
 - **Progetto:** [[Casa di Lina]] · [[Lina]] · [[Game]] · [[Porta]] · [[Saggio]] · [[Interactable]] · [[Mappa principale]] · [[Tiny Town]] · [[Tiny Dungeon]]

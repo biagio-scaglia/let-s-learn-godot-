@@ -41,6 +41,7 @@ Indice dei concetti di Godot incontrati finora. Ogni concetto ha la sua nota, co
 
 - [[Pixel art]]: cosa serve perché sia nitida
 - [[Spritesheet]]: tanti frame in un'immagine
+- [[Charset]]: il formato RPG Maker per i personaggi
 - [[AtlasTexture]]: un ritaglio di un'immagine
 - [[SpriteFrames]]: l'elenco delle animazioni
 - [[Sprite2D]]: un'immagine ferma

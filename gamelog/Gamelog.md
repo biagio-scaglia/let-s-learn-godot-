@@ -25,12 +25,13 @@ Diario del progetto: cosa è stato fatto, perché, e cosa ho imparato di Godot s
 | 2026-11-12 | [[2026-11-12-primo-dialogo\|Il primo dialogo, e un po' di atmosfera]] | Funzionante |
 | 2026-11-12 | [[2026-11-12-interazioni-e-rifiniture\|Interazioni riutilizzabili e rifiniture]] | Funzionante |
 | 2026-11-12 | [[2026-11-12-casa-di-lina\|Si entra in casa]] | Funzionante |
+| 2026-11-12 | [[2026-11-12-emilia\|Arriva Emilia]] | Funzionante |
 
 ## Il progetto
 
 | Cosa | Note |
 |---|---|
-| Personaggi | [[Subaru]] · [[Saggio]] · [[Lina]] |
+| Personaggi | [[Subaru]] · [[Emilia]] · [[Saggio]] · [[Lina]] |
 | Oggetti | [[Cartello]] · [[Interactable]] · [[Porta]] |
 | Mondo | [[Mappa principale]] · [[Casa di Lina]] · [[Effetti visivi]] |
 | Stato del gioco | [[Game]] |

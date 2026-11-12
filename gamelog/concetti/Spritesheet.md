@@ -25,6 +25,8 @@ La spritesheet di [[Subaru]] ha 6 colonne × 4 righe, celle da 42×58 px:
 
 Come l'abbiamo ottenuta dall'originale: [[2026-11-12-subaru]].
 
+Un formato molto diffuso per i personaggi è il [[Charset]] di RPG Maker, usato da [[Emilia]].
+
 ## Vedi anche
 
 - [[Pixel art]] · [[SpriteFrames]] · [[AtlasTexture]]

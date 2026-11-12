@@ -26,6 +26,7 @@ Main (Node2D)
 │   ├── Objects (TileMapLayer, Y-sort) ← alberi, staccionata, cartello, funghi
 │   ├── Bounds (StaticBody2D)          ← 4 muri invisibili ai bordi
 │   ├── Npc (istanza)                  ← il Saggio
+│   ├── Emilia (istanza di npc.tscn)   ← con il suo charset
 │   ├── Sign (Interactable)            ← il cartello leggibile
 │   ├── HouseDoor (Porta)              ← entra nella casa di Lina
 │   └── Subaru (istanza)

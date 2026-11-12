@@ -23,6 +23,7 @@ Il [[Nodo]] più semplice per **mostrare un'immagine** ferma. Per le animazioni 
 ## Nel progetto
 
 - Il [[Saggio]]: una `AtlasTexture` del tile 84 di [[Tiny Dungeon]], ingrandita ×3, con `offset = (0, -8)` così l'origine è ai piedi.
+- [[Emilia]]: un [[Charset]] diviso con `hframes = 4` e `vframes = 4`; `frame` sceglie la direzione.
 - Le **ombre** di Subaru e del Saggio e la **nuvoletta** sopra il Saggio. Vedi [[Effetti visivi]].
 
 ## Vedi anche
