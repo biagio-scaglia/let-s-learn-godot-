@@ -128,6 +128,20 @@ func _run() -> void:
 	await shot("05_cartello")
 	await finish_dialogue()
 
+	# Emilia: si gira verso Subaru in 4 direzioni e si può parlare.
+	var emilia: Node2D = main.get_node("World/Emilia")
+	subaru.position = emilia.position + Vector2(0, -30)
+	await wait(0.6)
+	check(emilia.facing == "up", "Emilia si gira in su se Subaru arriva da sopra")
+	subaru.position = emilia.position + Vector2(-30, 4)
+	await wait(0.6)
+	check(emilia.facing == "left", "Emilia si gira a sinistra se Subaru è a sinistra")
+	await press("interact")
+	await wait(1.2)
+	check(dialogue.is_active and dialogue.get_node("Box/NameTag/Name").text == "Emilia", "si può parlare con Emilia")
+	await shot("06_emilia")
+	await finish_dialogue()
+
 	# Corsa: la polvere deve comparire e i passi devono suonare.
 	subaru.position = Vector2(560, 420)
 	await wait(0.8)
