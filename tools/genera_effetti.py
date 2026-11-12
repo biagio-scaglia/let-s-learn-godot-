@@ -95,4 +95,19 @@ with wave.open(os.path.join(out, "step.wav"), "wb") as w:
     w.setnchannels(1); w.setsampwidth(2); w.setframerate(rate)
     w.writeframes(bytes(frames))
 
+# Suono della porta: un "tonf" basso (frequenza che scende) più un po' di legno che scricchiola.
+random.seed(5)
+rate, dur = 22050, 0.25
+frames = bytearray()
+smooth = 0.0
+for i in range(int(rate * dur)):
+    t = i / rate
+    thud = math.sin(2 * math.pi * (110 - 260 * t) * t) * (1 - t / dur) ** 4
+    smooth += (random.uniform(-1, 1) - smooth) * 0.08
+    creak = smooth * 0.5 * math.exp(-t * 18)
+    frames += struct.pack("<h", int(max(-1, min(1, (thud * 0.6 + creak))) * 0.8 * 32767))
+with wave.open(os.path.join(out, "door.wav"), "wb") as w:
+    w.setnchannels(1); w.setsampwidth(2); w.setframerate(rate)
+    w.writeframes(bytes(frames))
+
 print("effetti generati in", out)
