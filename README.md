@@ -30,7 +30,7 @@ Per ora c'è Subaru che cammina e corre in una piccola mappa con alberi, sentier
 | `let's-learn-godot/assets/` | Asset esterni (vedi [CREDITS.md](CREDITS.md)) |
 | `tools/` | Script di supporto: generazione di mappa ed effetti, test automatici |
 | `gamelog/` | Il diario del progetto, è un vault di [Obsidian](https://obsidian.md) |
-| `Sprite Sheet Subaru.png` | La spritesheet originale, prima della pulizia |
+| `Sprite Sheet Subaru (v1).png`, `(v2).jpg` | Le spritesheet originali di Subaru, prima della pulizia (in gioco c'è la v2) |
 
 ## Gamelog
 
