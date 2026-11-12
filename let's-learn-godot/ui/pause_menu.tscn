@@ -1,0 +1,101 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://ui/pause_menu.gd" id="1_script"]
+[ext_resource type="Shader" path="res://effects/pause_blur.gdshader" id="2_blur"]
+[ext_resource type="Script" path="res://ui/menu_item.gd" id="3_item"]
+[ext_resource type="PackedScene" path="res://ui/options_menu.tscn" id="4_options"]
+
+[sub_resource type="ShaderMaterial" id="blur_mat"]
+shader = ExtResource("2_blur")
+shader_parameter/amount = 0.0
+shader_parameter/max_blur = 2.5
+shader_parameter/tint = Color(0.06, 0.03, 0.1, 0.55)
+
+[node name="Pause" type="CanvasLayer"]
+process_mode = 3
+layer = 15
+script = ExtResource("1_script")
+
+[node name="Blur" type="ColorRect" parent="."]
+material = SubResource("blur_mat")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -170.0
+offset_top = -108.0
+offset_right = 170.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Header" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+theme_type_variation = &"HeaderLabel"
+text = "Pausa"
+horizontal_alignment = 1
+
+[node name="Separator" type="HSeparator" parent="Panel/VBox"]
+layout_mode = 2
+
+[node name="Items" type="MarginContainer" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 26
+
+[node name="List" type="VBoxContainer" parent="Panel/VBox/Items"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Resume" type="Button" parent="Panel/VBox/Items/List"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Riprendi"
+script = ExtResource("3_item")
+
+[node name="Options" type="Button" parent="Panel/VBox/Items/List"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Opzioni"
+script = ExtResource("3_item")
+
+[node name="ToTitle" type="Button" parent="Panel/VBox/Items/List"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Torna al titolo"
+script = ExtResource("3_item")
+
+[node name="Quit" type="Button" parent="Panel/VBox/Items/List"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Esci dal gioco"
+script = ExtResource("3_item")
+
+[node name="Hint" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -34.0
+offset_right = 200.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_type_variation = &"HintLabel"
+text = "Esc per riprendere"
+horizontal_alignment = 1
+
+[node name="OptionsMenu" parent="." instance=ExtResource("4_options")]
