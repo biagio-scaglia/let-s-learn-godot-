@@ -22,20 +22,28 @@ Diario del progetto: cosa è stato fatto, perché, e cosa ho imparato di Godot s
 |---|---|---|
 | 2026-11-12 | [[2026-11-12-subaru\|Sprite di Subaru: divisione, ottimizzazione, animazioni]] | Completato |
 | 2026-11-12 | [[2026-11-12-mappa-e-corsa\|Una mappa vera e Subaru che corre]] | Funzionante |
+| 2026-11-12 | [[2026-11-12-primo-dialogo\|Il primo dialogo, e un po' di atmosfera]] | Funzionante |
 
 ## Il progetto
 
 | Cosa | Note |
 |---|---|
-| Personaggi | [[Subaru]] |
-| Mondo | [[Mappa principale]] |
-| Asset | [[Tiny Town]] · [[Kenney]] · [[Licenza CC0]] · [[Dove trovare asset]] |
-| Strumenti | [[Generatore della mappa]] · [[Test automatico]] |
+| Personaggi | [[Subaru]] · [[Saggio]] |
+| Mondo | [[Mappa principale]] · [[Effetti visivi]] |
+| Interfaccia | [[Finestra di dialogo]] |
+| Asset | [[Tiny Town]] · [[Tiny Dungeon]] · [[KenPixel]] · [[Kenney]] · [[Licenza CC0]] · [[Dove trovare asset]] |
+| Strumenti | [[Generatore della mappa]] · [[Generatore degli effetti]] · [[Test automatico]] · [[Test del dialogo]] |
 | Organizzazione | [[Repository GitHub]] · [[Vault Obsidian]] |
 
 ## Come avviare il gioco
 
-Apri Godot 4.7, importa la cartella `let's-learn-godot` e premi **F5**. Frecce/WASD per muoversi, Shift per correre. Dettagli in [[Editor di Godot]].
+Apri Godot 4.7, importa la cartella `let's-learn-godot` e premi **F5**. Dettagli in [[Editor di Godot]].
+
+| Tasto | Azione |
+|---|---|
+| Frecce / WASD | Muoversi |
+| Shift | Correre |
+| E / Spazio / Invio | Parlare |
 
 ## Stato del progetto
 
@@ -46,6 +54,12 @@ Apri Godot 4.7, importa la cartella `let's-learn-godot` e premi **F5**. Frecce/W
 - [x] Creare il progetto Godot e provarci dentro Subaru
 - [x] Una prima mappa in cui muoversi (tileset Tiny Town di Kenney)
 - [x] Subaru corre (Shift)
+- [x] Un personaggio con cui parlare (dialoghi)
+- [x] Effetti: ombre, polvere, pollini, luce calda, vignettatura
 - [ ] Modificare la mappa a mano nell'editor
 - [ ] Una casa in cui entrare (cambio scena)
-- [ ] Un personaggio con cui parlare (dialoghi)
+- [ ] Raccogliere oggetti (inventario)
+- [ ] Combattimento a turni
+- [ ] Statistiche e livelli
+- [ ] Salvataggio
+- [ ] Una piccola storia dall'inizio alla fine
