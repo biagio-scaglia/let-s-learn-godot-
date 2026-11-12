@@ -197,9 +197,16 @@ def packed(strings):
     """Scrive una lista di frasi come PackedStringArray, con le virgolette protette."""
     return "PackedStringArray(" + ", ".join('"' + s.replace('"', '\\"') + '"' for s in strings) + ")"
 
+EMILIA_LINES = [
+    "Subaru! Eccoti, finalmente.",
+    "Questo villaggio è così tranquillo... Il Saggio dice che qui gli alberi crescono più felici.",
+    "Hai già conosciuto Lina? Abita nella casa col tetto rosso, a nord-ovest.",
+]
+EMILIA_REPEAT = ["Se ti stanchi, riposiamo un po' qui in piazza. Non c'è nessuna fretta, no?"]
+
 SX, SY = 14, 10   # cella del cartello
 DOOR_PX = (DOOR_X * T + T // 2, (DOOR_Y + 1) * T)   # il bordo basso della porta, in pixel
-main = f'''[gd_scene load_steps=12 format=3]
+main = f'''[gd_scene load_steps=13 format=3]
 
 [ext_resource type="TileSet" path="res://world/tileset.tres" id="1_tiles"]
 [ext_resource type="PackedScene" path="res://characters/subaru/subaru.tscn" id="2_subaru"]
@@ -208,6 +215,7 @@ main = f'''[gd_scene load_steps=12 format=3]
 [ext_resource type="PackedScene" path="res://interactables/interactable.tscn" id="5_interactable"]
 [ext_resource type="Script" path="res://world/level.gd" id="6_level"]
 [ext_resource type="PackedScene" path="res://interactables/door.tscn" id="7_door"]
+[ext_resource type="Texture2D" path="res://characters/emilia/emilia_charset.png" id="8_emilia"]
 
 [sub_resource type="ShaderMaterial" id="vignette_mat"]
 shader = ExtResource("4_vignette")
@@ -270,6 +278,13 @@ position = Vector2(752, 352)
 npc_name = "Saggio"
 lines = {packed(NPC_LINES)}
 repeat_lines = {packed(NPC_REPEAT)}
+
+[node name="Emilia" parent="World" instance=ExtResource("3_npc")]
+position = Vector2(560, 476)
+npc_name = "Emilia"
+lines = {packed(EMILIA_LINES)}
+repeat_lines = {packed(EMILIA_REPEAT)}
+charset = ExtResource("8_emilia")
 
 [node name="Sign" parent="World" instance=ExtResource("5_interactable")]
 position = Vector2({SX * T + T // 2}, {SY * T + T - 6})
