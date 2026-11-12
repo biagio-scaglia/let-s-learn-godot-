@@ -8,7 +8,22 @@ extends CharacterBody2D
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var dust: CPUParticles2D = $Dust
+@onready var steps: AudioStreamPlayer2D = $Steps
 var facing := "down"
+## Quanti passi ha fatto (utile nei test).
+var step_count := 0
+
+
+func _ready() -> void:
+	sprite.frame_changed.connect(_on_frame_changed)
+
+
+## I frame 0 e 2 della camminata sono quelli con il piede a terra: lì suona il passo.
+func _on_frame_changed() -> void:
+	if sprite.animation.begins_with("walk_") and sprite.frame in [0, 2]:
+		steps.pitch_scale = randf_range(0.85, 1.15)
+		steps.play()
+		step_count += 1
 
 
 func _physics_process(_delta: float) -> void:
