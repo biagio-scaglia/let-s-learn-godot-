@@ -20,16 +20,24 @@ La [[Scena]] principale del gioco (`world/main.tscn`): un prato 40×24 tile con 
 ```
 Main (Node2D)
 ├── Ground (TileMapLayer)              ← erba e sentiero
-└── World (Node2D, Y-sort)
-    ├── Objects (TileMapLayer, Y-sort) ← alberi, staccionata, cartello, funghi
-    ├── Bounds (StaticBody2D)          ← 4 muri invisibili ai bordi
-    └── Subaru (istanza)
-        └── Camera2D
+├── Shadows (TileMapLayer)             ← ombre sotto gli alberi
+├── Tint (CanvasModulate)              ← luce calda
+├── World (Node2D, Y-sort)
+│   ├── Objects (TileMapLayer, Y-sort) ← alberi, staccionata, cartello, funghi
+│   ├── Bounds (StaticBody2D)          ← 4 muri invisibili ai bordi
+│   ├── Npc (istanza)                  ← il Saggio
+│   └── Subaru (istanza)
+│       └── Camera2D
+│           └── Pollen (CPUParticles2D)
+└── Effects (CanvasLayer 5)
+    └── Vignette (ColorRect + shader)
 ```
 
 | Pezzo | Concetto |
 |---|---|
-| `Ground`, `Objects` | [[TileMapLayer]], [[TileSet]] |
+| `Ground`, `Shadows`, `Objects` | [[TileMapLayer]], [[TileSet]] |
+| `Npc` | [[Saggio]] |
+| `Tint`, `Pollen`, `Vignette` | [[Effetti visivi]]: [[CanvasModulate]], [[Particelle]], [[Shader]], [[CanvasLayer]] |
 | Ordine di disegno | [[Y-sort]] |
 | `Bounds` | [[StaticBody2D]], [[Collisioni]] |
 | [[Subaru]] dentro la mappa | [[Istanza]] |

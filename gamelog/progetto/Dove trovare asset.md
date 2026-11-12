@@ -22,7 +22,10 @@ aliases:
 ## Asset nel progetto
 
 - [[Tiny Town]] (tileset, [[Kenney]], CC0)
+- [[Tiny Dungeon]] (personaggi, [[Kenney]], CC0)
+- [[KenPixel]] (font, [[Kenney]], CC0)
 - La spritesheet di [[Subaru]], ripulita da noi
+- Ombre, icone e suoni: fatti da noi con il [[Generatore degli effetti]]
 
 ## Vedi anche
 

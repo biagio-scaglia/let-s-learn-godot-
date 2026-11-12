@@ -18,4 +18,6 @@ Autore olandese di migliaia di asset per videogiochi (2D, 3D, interfacce, suoni)
 
 ## Usati nel progetto
 
-- [[Tiny Town]]
+- [[Tiny Town]]: il tileset della mappa
+- [[Tiny Dungeon]]: il [[Saggio]]
+- [[KenPixel]]: il font dei dialoghi

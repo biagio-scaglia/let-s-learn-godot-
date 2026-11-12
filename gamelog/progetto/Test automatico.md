@@ -34,4 +34,4 @@ Lo script `tools/test_corsa.gd` avvia la [[Mappa principale]], **simula i tasti*
 
 ## Vedi anche
 
-- [[Generatore della mappa]]
+- [[Test del dialogo]] · [[Generatore della mappa]]

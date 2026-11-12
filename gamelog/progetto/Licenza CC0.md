@@ -29,3 +29,5 @@ aliases:
 ## Asset CC0 nel progetto
 
 - [[Tiny Town]] di [[Kenney]]
+- [[Tiny Dungeon]] di [[Kenney]]
+- [[KenPixel]] di [[Kenney]]
