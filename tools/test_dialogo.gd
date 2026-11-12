@@ -58,6 +58,15 @@ func press(action: String) -> void:
 		await process_frame
 
 
+## Va avanti nel dialogo finché non si chiude (qualunque sia il numero di frasi).
+func finish_dialogue() -> void:
+	for i in 20:
+		if not dialogue.is_active:
+			return
+		await press("interact")
+		await wait(0.2)
+
+
 func _run() -> void:
 	var prompt: Sprite2D = npc.get_node("Interactable/Prompt")
 	await wait(0.3)
@@ -105,11 +114,7 @@ func _run() -> void:
 	await press("interact")
 	await wait(0.1)
 	check(text.text.begins_with("Ancora qui?"), "la seconda volta il Saggio dice frasi diverse")
-	await press("interact")   # completa la frase
-	await press("interact")   # seconda frase
-	await press("interact")   # completa
-	await press("interact")   # chiude
-	await wait(0.4)
+	await finish_dialogue()
 	check(not dialogue.is_active, "anche il secondo dialogo si chiude")
 
 	# Il cartello.
@@ -121,11 +126,7 @@ func _run() -> void:
 	check(dialogue.is_active and dialogue.get_node("Box/NameTag/Name").text == "Cartello", "il cartello si può leggere")
 	check(subaru.facing == "left", "Subaru si gira verso il cartello")
 	await shot("05_cartello")
-	for i in 10:   # chiude il dialogo (al massimo 10 pressioni)
-		if not dialogue.is_active:
-			break
-		await press("interact")
-		await wait(0.2)
+	await finish_dialogue()
 
 	# Corsa: la polvere deve comparire e i passi devono suonare.
 	subaru.position = Vector2(560, 420)
