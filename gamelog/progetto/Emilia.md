@@ -23,7 +23,7 @@ Un personaggio con cui parlare, nella piazza della [[Mappa principale]], a sud-o
 | Si gira verso [[Subaru]] in 4 direzioni | Sceglie la riga del charset in base a dove si trova Subaru |
 | Respira | [[Tween]], come gli altri PNG |
 | Parla | [[Interactable]] e [[Finestra di dialogo]] |
-| Stessa scala di pixel di Subaru | Sprite a ×1, niente ingrandimenti |
+| Stessa scala di pixel di Subaru | Sprite a ×1, niente ingrandimenti; da [[2026-11-12-subaru-v2\|Subaru v2]] anche la stessa grandezza |
 
 ## Cosa dice
 

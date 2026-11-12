@@ -29,5 +29,5 @@ aliases:
 | Cartella | Contenuto |
 |---|---|
 | `let's-learn-godot/` | Il progetto Godot |
-| `tools/` | [[Generatore della mappa]], [[Generatore della casa]], [[Generatore degli effetti]], [[Test automatico]], [[Test del dialogo]], [[Test di casa]] |
+| `tools/` | [[Generatore della mappa]], [[Generatore della casa]], [[Generatore degli effetti]], [[Test automatico]], [[Test del dialogo]], [[Test di casa]], [[Convertitore di charset]], [[Generatore di Subaru]] |
 | `gamelog/` | Questo [[Vault Obsidian]] |

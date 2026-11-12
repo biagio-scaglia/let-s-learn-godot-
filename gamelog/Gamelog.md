@@ -26,6 +26,7 @@ Diario del progetto: cosa è stato fatto, perché, e cosa ho imparato di Godot s
 | 2026-11-12 | [[2026-11-12-interazioni-e-rifiniture\|Interazioni riutilizzabili e rifiniture]] | Funzionante |
 | 2026-11-12 | [[2026-11-12-casa-di-lina\|Si entra in casa]] | Funzionante |
 | 2026-11-12 | [[2026-11-12-emilia\|Arriva Emilia]] | Funzionante |
+| 2026-11-12 | [[2026-11-12-subaru-v2\|Subaru, versione 2]] | Funzionante |
 
 ## Il progetto
 
@@ -37,7 +38,7 @@ Diario del progetto: cosa è stato fatto, perché, e cosa ho imparato di Godot s
 | Stato del gioco | [[Game]] |
 | Interfaccia | [[Finestra di dialogo]] · [[Dissolvenza]] |
 | Asset | [[Tiny Town]] · [[Tiny Dungeon]] · [[KenPixel]] · [[Kenney]] · [[Licenza CC0]] · [[Dove trovare asset]] |
-| Strumenti | [[Generatore della mappa]] · [[Generatore della casa]] · [[Generatore degli effetti]] · [[Test automatico]] · [[Test del dialogo]] · [[Test di casa]] |
+| Strumenti | [[Generatore della mappa]] · [[Generatore della casa]] · [[Generatore degli effetti]] · [[Generatore di Subaru]] · [[Convertitore di charset]] · [[Test automatico]] · [[Test del dialogo]] · [[Test di casa]] |
 | Organizzazione | [[Repository GitHub]] · [[Vault Obsidian]] |
 
 ## Come avviare il gioco

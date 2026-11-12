@@ -37,7 +37,7 @@ Più semplice di uno [[SpriteFrames]] quando serve solo scegliere un frame alla 
 
 ## Nel progetto
 
-[[Emilia]] usa un charset con celle da 32×48 px. `npc.gd` sceglie la riga in base a dove si trova [[Subaru]], così lei si gira verso di lui.
+[[Emilia]] e [[Subaru]] (dalla versione 2) usano charset con celle da 32×48 px. `npc.gd` sceglie la riga in base a dove si trova [[Subaru]], così lei si gira verso di lui. Subaru invece, che è il giocatore, passa dal charset a uno [[SpriteFrames]] con il [[Generatore di Subaru]].
 
 ## Vedi anche
 
