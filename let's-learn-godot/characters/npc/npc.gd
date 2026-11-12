@@ -8,12 +8,21 @@ extends StaticBody2D
 @export_multiline var lines: PackedStringArray = []
 ## Le frasi dalla seconda volta in poi. Se vuoto, ripete "lines".
 @export_multiline var repeat_lines: PackedStringArray = []
+## Quale personaggio di Tiny Dungeon disegnare (numero del tile: 84 il mago, 99 la ragazza…).
+@export var sprite_tile := 84
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var interactable: Interactable = $Interactable
 
 
 func _ready() -> void:
+	# Ritaglia il personaggio scelto. Creiamo un'AtlasTexture nuova: se cambiassimo
+	# quella della scena, cambierebbe per tutti i PNG.
+	var tex := AtlasTexture.new()
+	tex.atlas = (sprite.texture as AtlasTexture).atlas
+	tex.region = Rect2((sprite_tile % 12) * 16, floori(sprite_tile / 12.0) * 16, 16, 16)
+	sprite.texture = tex
+
 	interactable.speaker = npc_name
 	interactable.lines = lines
 	interactable.repeat_lines = repeat_lines
