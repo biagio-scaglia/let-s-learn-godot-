@@ -27,8 +27,8 @@ func _on_frame_changed() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	# Durante un dialogo Subaru resta fermo.
-	if Dialogue.is_active:
+	# Durante un dialogo o un cambio di scena Subaru resta fermo.
+	if not Game.player_can_move():
 		velocity = Vector2.ZERO
 		dust.emitting = false
 		_play_idle()
@@ -54,7 +54,12 @@ func _physics_process(_delta: float) -> void:
 
 ## Gira Subaru verso un punto (per esempio chi gli sta parlando).
 func look_at_point(point: Vector2) -> void:
-	facing = _direction_name(point - global_position)
+	face(_direction_name(point - global_position))
+
+
+## Gira Subaru in una direzione: "down", "up", "left" o "right".
+func face(direction: String) -> void:
+	facing = direction
 	_play_idle()
 
 
