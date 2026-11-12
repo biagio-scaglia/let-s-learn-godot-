@@ -29,6 +29,8 @@ Tileset di [[Kenney]], licenza [[Licenza CC0|CC0]]. 132 tile da 16×16 px: erba,
 | 17, 29 | Germoglio, funghi |
 | 44–46 | Staccionata |
 | 83 | Cartello |
+| 52–55, 64–67 | Tetto rosso della [[Casa di Lina]] (55 abbaino, 67 timpano) |
+| 72, 75, 84, 87 | Muro di legno: bordi, finestra, porta |
 
 ## Da sapere
 

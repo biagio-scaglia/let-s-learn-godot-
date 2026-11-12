@@ -27,9 +27,11 @@ Main (Node2D)
 │   ├── Bounds (StaticBody2D)          ← 4 muri invisibili ai bordi
 │   ├── Npc (istanza)                  ← il Saggio
 │   ├── Sign (Interactable)            ← il cartello leggibile
+│   ├── HouseDoor (Porta)              ← entra nella casa di Lina
 │   └── Subaru (istanza)
 │       └── Camera2D
 │           └── Pollen (CPUParticles2D)
+├── Spawns/HouseDoor (Marker2D)      ← dove ricompari uscendo di casa
 └── Effects (CanvasLayer 5)
     └── Vignette (ColorRect + shader)
 ```
@@ -39,6 +41,7 @@ Main (Node2D)
 | `Ground`, `Shadows`, `Objects` | [[TileMapLayer]], [[TileSet]] |
 | `Npc` | [[Saggio]] |
 | `Sign` | [[Cartello]], [[Interactable]] |
+| La casa col tetto rosso, `HouseDoor`, `Spawns` | [[Casa di Lina]], [[Porta]], [[Cambio di scena]] |
 | `Tint`, `Pollen`, `Vignette` | [[Effetti visivi]]: [[CanvasModulate]], [[Particelle]], [[Shader]], [[CanvasLayer]] |
 | Ordine di disegno | [[Y-sort]] |
 | `Bounds` | [[StaticBody2D]], [[Collisioni]] |

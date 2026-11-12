@@ -29,6 +29,8 @@ Piccoli dettagli che rendono il gioco più "vivo". Nessuno è indispensabile, in
 | Finestra che entra sfumando | Trasparenza e posizione animate | [[Tween]] |
 | Passi di Subaru | Un suono a ogni piede a terra | [[Audio]], [[Segnali]] |
 | Il gioco compare dal nero | [[Dissolvenza]] | [[Autoload]], [[Tween]] |
+| Stanza buia, torcia che tremola, luce dalla finestra | [[Casa di Lina]] | [[Luci 2D]], [[CanvasModulate]] |
+| Suono della porta | Generato dal [[Generatore degli effetti]] | [[Audio]] |
 
 Ombre, icone, freccia e suono sono generati dal [[Generatore degli effetti]].
 

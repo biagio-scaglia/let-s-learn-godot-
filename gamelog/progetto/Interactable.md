@@ -36,11 +36,13 @@ Il segnale `interacted` avvisa quando il giocatore interagisce: servirà per mis
 
 1. Quando un corpo del [[Gruppi|gruppo]] `player` entra nell'[[Area2D]], se lo ricorda e mostra la nuvoletta.
 2. Alla pressione di `interact` ([[Eventi di input]]) segna il tasto come usato, gira il giocatore verso di sé e apre il dialogo con l'[[Autoload]] `Dialogue`.
-3. Conta le volte (`times`): dalla seconda usa `repeat_lines`.
+3. Conta le volte (`times`): dalla seconda usa `repeat_lines`. Il contatore sta in [[Game]] (`flags`), così sopravvive ai [[Cambio di scena|cambi di scena]].
 
 ## Usato da
 
 - [[Saggio]] (come figlio)
 - [[Cartello]] (da solo)
+- [[Lina]] (come figlio)
+- Baule e libreria della [[Casa di Lina]] (da soli)
 
 È una [[Classi globali|classe globale]]: `class_name Interactable`.

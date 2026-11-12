@@ -19,6 +19,9 @@ Tileset di [[Kenney]], licenza [[Licenza CC0|CC0]], dello stesso stile di [[Tiny
 | Tile | Cosa | Dove |
 |---|---|---|
 | 84 | Mago con la barba | Il [[Saggio]] |
+| 99 | Ragazza con il vestito viola | [[Lina]] |
+| 0, 18, 28, 29, 36–40 | Pavimento, muri, finestra, torcia | [[Casa di Lina]] |
+| 63, 72, 73, 75, 82, 89 | Libreria, tavolo, sgabello, barile, baule | [[Casa di Lina]] |
 
 Ci torneranno utili i personaggi (84–88, 96–100, 108–112) per altri PNG e nemici, e pozioni e armi (113–131) per l'inventario.
 

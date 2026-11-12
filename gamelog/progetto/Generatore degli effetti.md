@@ -22,6 +22,7 @@ python tools/genera_effetti.py
 | `shadow_tree.png` | Tile 16×16 con l'ombra di un albero, usato dal [[TileSet]] |
 | `interact_icon.png` | La nuvoletta "..." sopra il [[Saggio]] |
 | `next_arrow.png` | La freccia della [[Finestra di dialogo]] |
+| `door.wav` | Il "tonf" della [[Porta]]: frequenza che scende più un po' di legno |
 | `step.wav` | Il passo di [[Subaru]]: rumore filtrato di 60 ms, vedi [[Audio]] |
 | `blip.wav` | Il suono delle lettere: un'onda quadra di 45 ms che si spegne, vedi [[Audio]] |
 

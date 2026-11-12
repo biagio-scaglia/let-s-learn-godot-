@@ -40,7 +40,7 @@ Npc (StaticBody2D)              + npc.gd: aspetto e comportamento
 | Quando | Frasi |
 |---|---|
 | La prima volta | Benvenuto, si presenta, consiglia di correre con Shift |
-| Dalla seconda volta | "Ancora qui?…" e ti manda a leggere il [[Cartello]] |
+| Dalla seconda volta | "Ancora qui?…", ti manda a leggere il [[Cartello]] e a salutare sua nipote [[Lina]] |
 
 ## Riutilizzabile
 
