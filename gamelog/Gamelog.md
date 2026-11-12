@@ -27,5 +27,6 @@ Diario del progetto: cosa è stato fatto, perché, e cosa ho imparato di Godot s
 - [x] Spritesheet di Subaru pulita e ottimizzata
 - [x] Animazioni idle + camminata in 4 direzioni
 - [x] Scena del personaggio con movimento base
+- [x] Progetto su GitHub: [let-s-learn-godot-](https://github.com/biagio-scaglia/let-s-learn-godot-)
 - [ ] Creare il progetto Godot e provarci dentro Subaru
 - [ ] Una prima mappa/stanza in cui muoversi
