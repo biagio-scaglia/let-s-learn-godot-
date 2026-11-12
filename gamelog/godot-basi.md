@@ -20,13 +20,18 @@ Indice dei concetti di Godot incontrati finora. Ogni concetto ha la sua nota, co
 - [[Istanza]]: una scena usata dentro un'altra
 - [[Risorsa]]: un dato riutilizzabile (`.tres`)
 - [[Editor di Godot]]: come avviare il gioco, aree di lavoro, pannelli
+- [[Autoload]]: una scena sempre presente, raggiungibile da tutti
+- [[Gruppi]]: etichette per riconoscere i nodi
 
 ## Codice
 
 - [[GDScript]]: il linguaggio, simile a Python
 - [[Ciclo di gioco]]: `_ready`, `_process`, `_physics_process`
 - [[Export e Inspector]]: variabili modificabili senza codice
+- [[Segnali]]: avvisi tra nodi
+- [[Tween]]: animare una proprietà dal codice
 - [[Input Map]]: azioni e tasti
+- [[Eventi di input]]: `_unhandled_input` e tasti "usati"
 
 ## Grafica e animazione
 
@@ -34,15 +39,31 @@ Indice dei concetti di Godot incontrati finora. Ogni concetto ha la sua nota, co
 - [[Spritesheet]]: tanti frame in un'immagine
 - [[AtlasTexture]]: un ritaglio di un'immagine
 - [[SpriteFrames]]: l'elenco delle animazioni
+- [[Sprite2D]]: un'immagine ferma
 - [[AnimatedSprite2D]]: il nodo che le riproduce
 - [[Filtro Nearest]]: pixel nitidi
 - [[Viewport e stretch]]: risoluzione interna e finestra
 - [[Y-sort]]: chi sta davanti e chi dietro
 
+## Effetti
+
+- [[Particelle]]: polvere, pollini, scintille
+- [[Shader]]: programmi per ogni pixel
+- [[CanvasModulate]]: una tinta su tutto il mondo
+- [[CanvasLayer]]: livelli fermi rispetto allo schermo
+- [[Audio]]: riprodurre suoni
+
+## Interfaccia
+
+- [[Interfaccia (Control)]]: Panel, Label, ancore
+- [[StyleBox]]: sfondi e bordi
+- [[Font]]: caratteri, anche pixel
+
 ## Fisica e movimento
 
 - [[CharacterBody2D]]: il corpo dei personaggi
 - [[StaticBody2D]]: corpi fermi, muri
+- [[Area2D]]: zone che si accorgono di chi entra
 - [[Collisioni]]: forme, layer e mask
 
 ## Mappe
@@ -71,3 +92,7 @@ Indice dei concetti di Godot incontrati finora. Ogni concetto ha la sua nota, co
 | Tile | Un quadratino dell'immagine del [[TileSet]] |
 | [[Y-sort]] | Ordinamento di disegno in base alla y |
 | Viewport | La "tela" del gioco, vedi [[Viewport e stretch]] |
+| [[Autoload]] | Una scena caricata all'avvio e sempre disponibile |
+| [[Segnali\|Segnale]] | Un avviso che un nodo manda quando succede qualcosa |
+| [[Tween]] | Un'animazione di una proprietà, fatta dal codice |
+| PNG | Personaggio non giocante, come il [[Saggio]] |
