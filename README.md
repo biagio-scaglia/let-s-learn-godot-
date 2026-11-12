@@ -14,6 +14,9 @@ Per ora c'è Subaru che cammina e corre in una piccola mappa con alberi, sentier
 | Frecce o WASD | Muoversi |
 | Shift (tenuto premuto) | Correre |
 | E, Spazio o Invio | Parlare, andare avanti nel dialogo |
+| Esc | Menu di pausa (riprendi, opzioni, torna al titolo, esci) |
+
+Il gioco parte dalla schermata iniziale: frecce o mouse per scegliere, Invio per confermare. Nelle opzioni si regolano volume e schermo intero, che vengono ricordati.
 
 ## Struttura
 
@@ -23,8 +26,8 @@ Per ora c'è Subaru che cammina e corre in una piccola mappa con alberi, sentier
 | `let's-learn-godot/characters/subaru/` | Subaru: spritesheet, animazioni, scena e script |
 | `let's-learn-godot/characters/npc/` | Personaggio con cui parlare (riutilizzabile) |
 | `let's-learn-godot/interactables/` | Componente `Interactable`: tutto ciò con cui si interagisce |
-| `let's-learn-godot/ui/` | Finestra di dialogo (autoload `Dialogue`) e dissolvenza (autoload `Fade`) |
-| `let's-learn-godot/effects/` | Shader (vignettatura) |
+| `let's-learn-godot/ui/` | Schermata iniziale, menu di pausa (autoload `Pause`), opzioni, Theme, finestra di dialogo (autoload `Dialogue`) e dissolvenza (autoload `Fade`) |
+| `let's-learn-godot/effects/` | Shader (vignettatura, sfocatura dei menu) e luci che tremolano |
 | `let's-learn-godot/world/` | Il villaggio (`main.tscn`), la casa di Lina (`house.tscn`) e i loro TileSet |
 | `let's-learn-godot/core/` | Stato del gioco (autoload `Game`) |
 | `let's-learn-godot/assets/` | Asset esterni (vedi [CREDITS.md](CREDITS.md)) |
