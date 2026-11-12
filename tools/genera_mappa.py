@@ -159,14 +159,28 @@ NPC_LINES = [
     "Se hai fretta, tieni premuto Shift per correre... ma qui nessuno ha fretta.",
     "Torna a trovarmi quando vuoi. Avrò altre storie da raccontarti!",
 ]
-npc_lines = ", ".join('"' + line.replace('"', '\\"') + '"' for line in NPC_LINES)
+NPC_REPEAT = [
+    "Ancora qui? Gli alberi non crescono più in fretta se li guardiamo in due!",
+    "Hai letto il cartello vicino alla piazza? Lo ha scritto mio nonno.",
+]
+SIGN_LINES = [
+    "Villaggio di Erbalta.",
+    "A nord: il bosco. A est e a ovest: la strada maestra.",
+]
+SIGN_REPEAT = ['Sotto, piccolo piccolo: "Il Saggio sa tutto. Chiedete a lui."']
 
-main = f'''[gd_scene load_steps=9 format=3]
+def packed(strings):
+    """Scrive una lista di frasi come PackedStringArray, con le virgolette protette."""
+    return "PackedStringArray(" + ", ".join('"' + s.replace('"', '\\"') + '"' for s in strings) + ")"
+
+SX, SY = 14, 10   # cella del cartello
+main = f'''[gd_scene load_steps=10 format=3]
 
 [ext_resource type="TileSet" path="res://world/tileset.tres" id="1_tiles"]
 [ext_resource type="PackedScene" path="res://characters/subaru/subaru.tscn" id="2_subaru"]
 [ext_resource type="PackedScene" path="res://characters/npc/npc.tscn" id="3_npc"]
 [ext_resource type="Shader" path="res://effects/vignette.gdshader" id="4_vignette"]
+[ext_resource type="PackedScene" path="res://interactables/interactable.tscn" id="5_interactable"]
 
 [sub_resource type="ShaderMaterial" id="vignette_mat"]
 shader = ExtResource("4_vignette")
@@ -226,7 +240,15 @@ shape = SubResource("bounds_v")
 [node name="Npc" parent="World" instance=ExtResource("3_npc")]
 position = Vector2(752, 352)
 npc_name = "Saggio"
-lines = PackedStringArray({npc_lines})
+lines = {packed(NPC_LINES)}
+repeat_lines = {packed(NPC_REPEAT)}
+
+[node name="Sign" parent="World" instance=ExtResource("5_interactable")]
+position = Vector2({SX * T + T // 2}, {SY * T + T - 6})
+speaker = "Cartello"
+lines = {packed(SIGN_LINES)}
+repeat_lines = {packed(SIGN_REPEAT)}
+prompt_height = 42.0
 
 [node name="Subaru" parent="World" instance=ExtResource("2_subaru")]
 position = Vector2(656, 416)
