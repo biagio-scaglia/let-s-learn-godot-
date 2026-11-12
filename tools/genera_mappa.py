@@ -5,25 +5,43 @@ Uso (dalla cartella del repository):
 
 ATTENZIONE: sovrascrive world/main.tscn. Se hai già modificato la mappa
 nell'editor di Godot, quelle modifiche andranno perse.
+
+I numeri dei tile sono quelli di gamelog/assets/tiny_town_numerata.png
+(numero = riga * 12 + colonna).
 """
 import os, sys, struct, random
+
 proj = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "..", "let's-learn-godot")
 random.seed(7)
-W, H = 40, 24
+W, H = 40, 24          # dimensioni della mappa in tile
+T = 32                 # un tile da 16 px, ingrandito x2
 A = lambda n: (n % 12, n // 12)
 
-# ---------- TileSet ----------
-GROUND = [0, 1, 2, 12, 13, 14, 24, 25, 26, 36, 37, 38, 39, 40, 41, 42, 17, 29]
-TREES = [3, 4, 15, 16, 27, 28]
+# ---------- Tile usati ----------
+GRASS = [0, 1, 2]
+DIRT = [12, 13, 14, 24, 25, 26, 36, 37, 38, 39, 40, 41, 42]
+DECOR = [17, 29]                       # germoglio, funghi: si attraversano
+TALL_TREES = [(4, 16), (3, 15), (5, 16)]   # (chioma, tronco): alberi alti due tile
+SMALL_TREES = [27, 28]                 # alberelli da un tile
+FENCE = [44, 45, 46]
+SIGN = 83
+
 rect = lambda x0, y0, x1, y1: f"PackedVector2Array({x0}, {y0}, {x1}, {y0}, {x1}, {y1}, {x0}, {y1})"
-COLL = {t: rect(-6, 0, 6, 8) for t in TREES}
-COLL.update({5: rect(-7, -2, 7, 8), 44: rect(-6, -1, 8, 5), 45: rect(-8, -1, 8, 5), 46: rect(-8, -1, 6, 5), 83: rect(-4, 2, 4, 8)})
+COLL = {t: rect(-6, 0, 6, 8) for t in [15, 16] + SMALL_TREES}   # solo il tronco
+COLL.update({44: rect(-6, -1, 8, 5), 45: rect(-8, -1, 8, 5), 46: rect(-8, -1, 6, 5), SIGN: rect(-4, 2, 4, 8)})
+# Y-sort origin: il punto "dei piedi" di ogni oggetto. La chioma usa la base del
+# tronco, che sta nel tile sotto (16 px più in basso), così l'albero si ordina tutto insieme.
+YSORT = {t: 6 for t in list(COLL) + DECOR}
+YSORT.update({top: 16 + 6 for top, _ in TALL_TREES})
+
+# ---------- TileSet ----------
 lines = []
-for t in sorted(set(GROUND) | set(COLL)):
+for t in sorted(set(GRASS + DIRT + DECOR + FENCE + SMALL_TREES + [SIGN]) | {t for p in TALL_TREES for t in p}):
     x, y = A(t)
     lines.append(f"{x}:{y}/0 = 0")
+    if t in YSORT:
+        lines.append(f"{x}:{y}/0/y_sort_origin = {YSORT[t]}")
     if t in COLL:
-        lines.append(f"{x}:{y}/0/y_sort_origin = 6")
         lines.append(f"{x}:{y}/0/physics_layer_0/polygon_0/points = {COLL[t]}")
 tileset = f'''[gd_resource type="TileSet" load_steps=3 format=3]
 
@@ -39,22 +57,23 @@ sources/0 = SubResource("TileSetAtlasSource_town")
 '''
 open(f"{proj}/world/tileset.tres", "w", newline="\n").write(tileset)
 
-# ---------- Map ----------
+# ---------- Terreno: erba e sentieri ----------
 dirt = [[False] * W for _ in range(H)]
 def fill(x0, y0, x1, y1):
     for y in range(y0, y1 + 1):
         for x in range(x0, x1 + 1): dirt[y][x] = True
-fill(3, 11, 36, 13)    # horizontal path
-fill(19, 3, 21, 20)    # vertical path
-fill(15, 9, 25, 15)    # plaza
+fill(3, 11, 36, 13)    # sentiero orizzontale
+fill(19, 3, 21, 20)    # sentiero verticale
+fill(15, 9, 25, 15)    # piazza
 D = lambda x, y: 0 <= x < W and 0 <= y < H and dirt[y][x]
 
 ground = {}
 for y in range(H):
     for x in range(W):
         if not dirt[y][x]:
-            ground[(x, y)] = random.choices([0, 1, 2], [85, 10, 5])[0]
+            ground[(x, y)] = random.choices(GRASS, [85, 10, 5])[0]
             continue
+        # Sceglie il bordo giusto del sentiero guardando le celle vicine.
         n, s, w, e = D(x, y-1), D(x, y+1), D(x-1, y), D(x+1, y)
         if not n and not w: t = 12
         elif not n and not e: t = 14
@@ -71,34 +90,67 @@ for y in range(H):
         else: t = 25
         ground[(x, y)] = t
 
+# ---------- Oggetti ----------
 objects = {}
-for y in range(H):
-    for x in range(W):
-        if x < 2 or y < 2 or x >= W - 2 or y >= H - 2:
-            objects[(x, y)] = random.choice([16, 28, 16, 28, 3, 15, 27])
-near_dirt = lambda x, y: any(D(x+dx, y+dy) for dx in (-1, 0, 1) for dy in (-1, 0, 1))
-for y in range(2, H - 2):
-    for x in range(2, W - 2):
-        if (x, y) in objects or near_dirt(x, y): continue
-        r = random.random()
-        if r < 0.07: objects[(x, y)] = random.choice([16, 28, 27, 15, 5])
-        elif r < 0.10: objects[(x, y)] = random.choice([17, 29])  # decorations, walkable
-for x in range(4, 13):  # fence above the west path
+free = lambda x, y: 0 <= x < W and 0 <= y < H and (x, y) not in objects and not D(x, y)
+
+def tall_tree(x, y):
+    """Albero alto: chioma in (x, y-1), tronco in (x, y)."""
+    top, trunk = random.choice(TALL_TREES)
+    objects[(x, y - 1)] = top
+    objects[(x, y)] = trunk
+
+# Staccionata e cartello per primi, così gli alberi non ci finiscono sopra.
+for x in range(4, 13):
     objects[(x, 8)] = 44 if x == 4 else 46 if x == 12 else 45
-    for yy in (7, 9): objects.pop((x, yy), None)
-objects[(14, 10)] = 83  # sign by the plaza
+objects[(14, 10)] = SIGN
+
+# Bordo: due file di alberi alti tutto intorno (righe a coppie: chioma sopra, tronco sotto).
+for y in range(0, H, 2):
+    for x in range(W):
+        if x < 2 or x >= W - 2 or y < 2 or y >= H - 2:
+            tall_tree(x, y + 1)
+
+# Alberi e decorazioni sparsi, lontani dal sentiero.
+near_dirt = lambda x, y: any(D(x+dx, y+dy) for dx in (-1, 0, 1) for dy in (-1, 0, 1))
+for y in range(3, H - 2):
+    for x in range(2, W - 2):
+        if not free(x, y) or near_dirt(x, y):
+            continue
+        r = random.random()
+        if r < 0.05 and free(x, y - 1):
+            tall_tree(x, y)
+        elif r < 0.07:
+            objects[(x, y)] = random.choice(SMALL_TREES)
+        elif r < 0.10:
+            objects[(x, y)] = random.choice(DECOR)
+
+# Controllo: ogni chioma deve avere il suo tronco subito sotto.
+tops = {top: trunk for top, trunk in TALL_TREES}
+for (x, y), t in objects.items():
+    if t in tops and objects.get((x, y + 1)) not in tops.values():
+        sys.exit(f"Chioma senza tronco in {(x, y)}")
 
 def pack(cells):
+    """Formato di tile_map_data: 2 byte di versione, poi 12 byte per cella."""
     b = bytearray(struct.pack("<H", 0))
     for (x, y), t in sorted(cells.items(), key=lambda kv: (kv[0][1], kv[0][0])):
         ax, ay = A(t)
         b += struct.pack("<hhHHHH", x, y, 0, ax, ay, 0)
     return "PackedByteArray(" + ", ".join(map(str, b)) + ")"
 
-main = f'''[gd_scene load_steps=3 format=3]
+# ---------- Scena ----------
+BW = 2 * T   # spessore dei muri invisibili: le due file di alberi del bordo
+main = f'''[gd_scene load_steps=5 format=3]
 
 [ext_resource type="TileSet" path="res://world/tileset.tres" id="1_tiles"]
 [ext_resource type="PackedScene" path="res://characters/subaru/subaru.tscn" id="2_subaru"]
+
+[sub_resource type="RectangleShape2D" id="bounds_h"]
+size = Vector2({W * T}, {BW})
+
+[sub_resource type="RectangleShape2D" id="bounds_v"]
+size = Vector2({BW}, {H * T})
 
 [node name="Main" type="Node2D"]
 
@@ -116,15 +168,33 @@ scale = Vector2(2, 2)
 tile_map_data = {pack(objects)}
 tile_set = ExtResource("1_tiles")
 
+[node name="Bounds" type="StaticBody2D" parent="World"]
+
+[node name="Top" type="CollisionShape2D" parent="World/Bounds"]
+position = Vector2({W * T // 2}, {BW // 2})
+shape = SubResource("bounds_h")
+
+[node name="Bottom" type="CollisionShape2D" parent="World/Bounds"]
+position = Vector2({W * T // 2}, {H * T - BW // 2})
+shape = SubResource("bounds_h")
+
+[node name="Left" type="CollisionShape2D" parent="World/Bounds"]
+position = Vector2({BW // 2}, {H * T // 2})
+shape = SubResource("bounds_v")
+
+[node name="Right" type="CollisionShape2D" parent="World/Bounds"]
+position = Vector2({W * T - BW // 2}, {H * T // 2})
+shape = SubResource("bounds_v")
+
 [node name="Subaru" parent="World" instance=ExtResource("2_subaru")]
 position = Vector2(656, 416)
 
 [node name="Camera2D" type="Camera2D" parent="World/Subaru"]
 limit_left = 0
 limit_top = 0
-limit_right = {W * 32}
-limit_bottom = {H * 32}
+limit_right = {W * T}
+limit_bottom = {H * T}
 position_smoothing_enabled = true
 '''
 open(f"{proj}/world/main.tscn", "w", newline="\n").write(main)
-print("ground", len(ground), "objects", len(objects))
+print("terreno", len(ground), "oggetti", len(objects))
