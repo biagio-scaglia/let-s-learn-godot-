@@ -12,6 +12,13 @@ aliases:
 
 Appunti sui concetti incontrati finora, con esempi presi dal progetto. Si riferiscono a **Godot 4**.
 
+## Avviare il gioco dall'editor
+
+- **F5** oppure il **▶** in alto a destra (il primo dei pulsanti vicino a ⏸ e ⏹): avvia la scena principale (`world/main.tscn`).
+- **F6**: avvia solo la scena aperta in quel momento.
+- **F8** o ⏹: ferma il gioco.
+- Le schede in alto al centro (**2D**, **3D**, **Script**, **Gioco**, **Asset Store**) sono le "aree di lavoro". Per vedere e dipingere la mappa usa **2D**. **Gioco** mostra il gioco solo mentre è in esecuzione: da ferma dice "Premi riproduci per avviare il gioco".
+
 ## Nodi e scene
 
 - Tutto in Godot è un **nodo**. Ogni tipo di nodo sa fare una cosa: disegnare uno sprite, gestire una collisione, riprodurre un suono…
