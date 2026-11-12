@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3]
+[gd_scene load_steps=13 format=3]
 
 [ext_resource type="TileSet" path="res://world/tileset.tres" id="1_tiles"]
 [ext_resource type="PackedScene" path="res://characters/subaru/subaru.tscn" id="2_subaru"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" path="res://interactables/interactable.tscn" id="5_interactable"]
 [ext_resource type="Script" path="res://world/level.gd" id="6_level"]
 [ext_resource type="PackedScene" path="res://interactables/door.tscn" id="7_door"]
+[ext_resource type="Texture2D" path="res://characters/emilia/emilia_charset.png" id="8_emilia"]
 
 [sub_resource type="ShaderMaterial" id="vignette_mat"]
 shader = ExtResource("4_vignette")
@@ -69,6 +70,13 @@ position = Vector2(752, 352)
 npc_name = "Saggio"
 lines = PackedStringArray("Oh, un volto nuovo! Benvenuto in questo piccolo villaggio.", "Io sono il Saggio. Passo le giornate a guardare crescere gli alberi.", "Se hai fretta, tieni premuto Shift per correre... ma qui nessuno ha fretta.", "Torna a trovarmi quando vuoi. Avrò altre storie da raccontarti!")
 repeat_lines = PackedStringArray("Ancora qui? Gli alberi non crescono più in fretta se li guardiamo in due!", "Hai letto il cartello vicino alla piazza? Lo ha scritto mio nonno.", "E se passi dalla casa col tetto rosso, saluta mia nipote Lina.")
+
+[node name="Emilia" parent="World" instance=ExtResource("3_npc")]
+position = Vector2(560, 476)
+npc_name = "Emilia"
+lines = PackedStringArray("Subaru! Eccoti, finalmente.", "Questo villaggio è così tranquillo... Il Saggio dice che qui gli alberi crescono più felici.", "Hai già conosciuto Lina? Abita nella casa col tetto rosso, a nord-ovest.")
+repeat_lines = PackedStringArray("Se ti stanchi, riposiamo un po' qui in piazza. Non c'è nessuna fretta, no?")
+charset = ExtResource("8_emilia")
 
 [node name="Sign" parent="World" instance=ExtResource("5_interactable")]
 position = Vector2(464, 346)
