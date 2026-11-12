@@ -41,7 +41,7 @@ Il test automatico (`tools/test_corsa.gd`, vedi [[#7. Verifica automatica]]) ha 
 |---|---|
 | Camminata | ~80 px/s, animazione a velocità normale |
 | Corsa (Shift) | ~150 px/s, animazione 1,8 volte più veloce |
-| Contro gli alberi del bordo | Subaru si ferma (collisione) |
+| Contro alberi e bordi | Subaru si ferma (collisione) |
 | Dietro un albero | L'albero copre le gambe di Subaru (Y-sort) |
 
 ---
@@ -137,13 +137,16 @@ La mappa ha due livelli **TileMapLayer**, entrambi ingranditi ×2 (`scale = (2, 
 Main (Node2D)
 ├── Ground (TileMapLayer)          ← erba e sentiero, nessuna collisione
 └── World (Node2D, Y-sort attivo)
-    ├── Objects (TileMapLayer, Y-sort attivo)  ← alberi, cespugli, staccionata, cartello, funghi
+    ├── Objects (TileMapLayer, Y-sort attivo)  ← alberi, staccionata, cartello, funghi
+    ├── Bounds (StaticBody2D)      ← 4 muri invisibili sopra le file di alberi del bordo
     └── Subaru (istanza di subaru.tscn)
         └── Camera2D               ← segue Subaru, non esce dai bordi della mappa
 ```
 
-- **Collisioni:** solo alberi, cespugli, staccionata e cartello, e solo nella parte bassa (tronco/base). Subaru può passarci "dietro" con la testa.
-- **Y-sort:** chi ha i piedi più in basso sullo schermo viene disegnato davanti. Per i tile il punto di riferimento è lo `y_sort_origin` (impostato a 6 px, cioè vicino alla base dell'albero).
+- **Alberi alti due tile:** in Tiny Town molti alberi sono fatti da due tile uno sopra l'altro, la **chioma** sopra e il **tronco** sotto. Le coppie sono 4+16 (verde a punta), 3+15 (giallo) e 5+16 (verde tondo). I tile 27 e 28 invece sono alberelli da un tile solo.
+- **Collisioni:** solo tronchi, staccionata e cartello, e solo nella parte bassa. Subaru può passare "dietro" le chiome con la testa.
+- **Muri invisibili (`Bounds`):** tra un tronco e l'altro resta spazio, quindi senza muri Subaru potrebbe infilarsi nel bosco del bordo e uscire dalla mappa. Uno `StaticBody2D` con quattro `CollisionShape2D` rettangolari copre le due file di alberi su ogni lato.
+- **Y-sort:** chi ha i piedi più in basso sullo schermo viene disegnato davanti. Per i tile il punto di riferimento è lo `y_sort_origin`: 6 px per tronchi e oggetti (vicino alla base), **22 px per le chiome** (16 + 6, cioè la base del tronco nel tile sotto). Così chioma e tronco si ordinano insieme, come un unico albero.
 - **Camera2D:** è figlia di Subaru, quindi lo segue. I `limit_*` (0, 0, 1280, 768) le impediscono di mostrare il vuoto oltre la mappa. `position_smoothing` rende il movimento morbido.
 
 ![[mappa_dietro_albero.png|500]]
@@ -163,11 +166,13 @@ Lo script mette erba ovunque, disegna un incrocio di sentieri con una piazza, sc
 
 1. **Crea il TileSet:** aggiungi un nodo `TileMapLayer` → nell'Inspector, `Tile Set` → *Nuovo TileSet*.
 2. **Aggiungi l'immagine:** apri il pannello **TileSet** in basso e trascina `tilemap_packed.png` nella lista a sinistra. Alla domanda "creare i tile automaticamente?" rispondi sì. La dimensione dei tile è già 16×16.
-3. **Collisioni:** nell'Inspector del TileSet, *Physics Layers* → *Aggiungi elemento*. Poi nel pannello TileSet → scheda **Dipingi** → *Physics Layer 0* e disegna il rettangolo sui tile degli alberi.
-4. **Y-sort origin:** sempre in **Dipingi**, scegli *Y Sort Origin* e impostalo a 6 sui tile degli oggetti.
-5. **Disegna:** seleziona il `TileMapLayer`, apri il pannello **TileMap** in basso, scegli un tile e dipingi nella vista 2D. Con il secchiello riempi un'area intera.
-6. **Salva il TileSet come file** (`world/tileset.tres`) dal menu a tendina della proprietà `Tile Set`: così i due livelli possono usare lo stesso.
-7. **Y-sort:** sul nodo `World` e sul livello `Objects` attiva *Ordering → Y Sort Enabled*.
+3. **Collisioni:** nell'Inspector del TileSet, *Physics Layers* → *Aggiungi elemento*. Poi nel pannello TileSet → scheda **Dipingi** → *Physics Layer 0* e disegna il rettangolo sui tile dei tronchi.
+4. **Y-sort origin:** sempre in **Dipingi**, scegli *Y Sort Origin* e impostalo a 6 sui tronchi e sugli oggetti, a 22 sulle chiome.
+5. **Alberi alti:** quando dipingi un albero da due tile, metti la chioma e subito sotto il tronco. Puoi selezionare entrambi i tile nel pannello (trascinando) e dipingerli insieme.
+6. **Disegna:** seleziona il `TileMapLayer`, apri il pannello **TileMap** in basso, scegli un tile e dipingi nella vista 2D. Con il secchiello riempi un'area intera.
+7. **Salva il TileSet come file** (`world/tileset.tres`) dal menu a tendina della proprietà `Tile Set`: così i due livelli possono usare lo stesso.
+8. **Y-sort:** sul nodo `World` e sul livello `Objects` attiva *Ordering → Y Sort Enabled*.
+9. **Muri invisibili:** aggiungi a `World` un `StaticBody2D` e, come figli, dei `CollisionShape2D` con forma *RectangleShape2D*. Trascina i rettangoli sopra i bordi della mappa.
 
 ## 7. Verifica automatica
 
@@ -185,7 +190,12 @@ Si apre una finestra per qualche secondo, poi si chiude da sola. Alla chiusura G
 
 ## Problemi incontrati
 
-- **Alberi "vuoti":** un albero del tileset (tile 4) è verde chiaro esattamente come l'erba, quindi sul prato si vedeva solo il contorno. Tolto dalla mappa.
+![[alberi_due_tile.png|300]]
+
+*Le tre coppie chioma + tronco: 4+16, 3+15, 5+16.*
+
+- **Alberi tagliati:** nella prima versione ogni albero era un tile solo, quindi in mappa comparivano chiome senza tronco e tronchi senza cima. In realtà molti alberi di Tiny Town sono alti due tile. Per capire quali vanno insieme abbiamo controllato i bordi di ogni tile: un bordo con il contorno scuro è "chiuso", un bordo con il colore di riempimento che arriva fino al limite è "aperto" e continua nel tile vicino. Ora lo script piazza sempre la coppia chioma + tronco e controlla che nessuna chioma resti senza tronco.
+- **Alberi "vuoti":** nella prima versione la chioma verde (tile 4) era messa da sola: con il centro dello stesso colore dell'erba, si vedeva solo il contorno. Era lo stesso problema degli alberi tagliati.
 - **Funghi con lo sfondo grigio:** funghi e germogli hanno lo sfondo trasparente. Messi al posto dell'erba nel livello `Ground`, sotto non c'era niente e si vedeva il colore di sfondo. Spostati nel livello `Objects`, sopra l'erba.
 - **Download bloccato:** kenney.nl non permette download automatici. Risolto scaricando da OpenGameArt.
 - **Screenshot "in ritardo":** con `position_smoothing` la camera raggiunge Subaru con un piccolo ritardo, quindi uno screenshot fatto subito dopo uno spostamento istantaneo non è centrato. È normale.
