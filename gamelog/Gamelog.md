@@ -1,7 +1,7 @@
 ---
 tags:
   - gamelog
-  - indice
+  - moc
 aliases:
   - Home
   - Indice
@@ -11,21 +11,31 @@ aliases:
 
 Diario del progetto: cosa è stato fatto, perché, e cosa ho imparato di Godot strada facendo.
 
-> [!info] Come è organizzato
-> - **Voci del diario**: una nota per sessione di lavoro, con la data nel nome (`AAAA-MM-GG-argomento`). Per crearne una nuova usa il template [[Voce gamelog]].
-> - **[[godot-basi|Basi di Godot]]**: appunti sui concetti di Godot incontrati finora, spiegati con esempi presi dal progetto. Cresce man mano che si impara qualcosa di nuovo.
-> - **`assets/`**: immagini usate nelle note.
+## Da dove partire
 
-## Voci
+- 📚 **[[godot-basi|Basi di Godot]]**: l'indice di tutti i concetti di Godot imparati
+- 🗂️ **[[Vault Obsidian]]**: come è organizzato questo vault e cosa significano i colori del grafo
 
-| Data | Argomento | Stato |
+## Diario
+
+| Data | Voce | Stato |
 |---|---|---|
 | 2026-11-12 | [[2026-11-12-subaru\|Sprite di Subaru: divisione, ottimizzazione, animazioni]] | Completato |
 | 2026-11-12 | [[2026-11-12-mappa-e-corsa\|Una mappa vera e Subaru che corre]] | Funzionante |
 
+## Il progetto
+
+| Cosa | Note |
+|---|---|
+| Personaggi | [[Subaru]] |
+| Mondo | [[Mappa principale]] |
+| Asset | [[Tiny Town]] · [[Kenney]] · [[Licenza CC0]] · [[Dove trovare asset]] |
+| Strumenti | [[Generatore della mappa]] · [[Test automatico]] |
+| Organizzazione | [[Repository GitHub]] · [[Vault Obsidian]] |
+
 ## Come avviare il gioco
 
-Apri Godot 4.7, importa la cartella `let's-learn-godot` e premi **F5**. Frecce/WASD per muoversi, Shift per correre.
+Apri Godot 4.7, importa la cartella `let's-learn-godot` e premi **F5**. Frecce/WASD per muoversi, Shift per correre. Dettagli in [[Editor di Godot]].
 
 ## Stato del progetto
 
