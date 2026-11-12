@@ -18,7 +18,7 @@ Un'**etichetta** che si dà a un [[Nodo]]. Serve per riconoscerlo o trovarlo sen
 
 ## Nel progetto
 
-[[Subaru]] è nel gruppo **`player`**. L'[[Area2D]] del [[Saggio]] lo usa per capire che è entrato il giocatore e non, per esempio, un albero.
+[[Subaru]] è nel gruppo **`player`**. Il componente [[Interactable]] lo usa per capire che è entrato il giocatore e non, per esempio, un albero.
 
 ## Vedi anche
 

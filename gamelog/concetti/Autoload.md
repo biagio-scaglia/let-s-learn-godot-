@@ -26,6 +26,8 @@ Dialogue.start(npc_name, lines)
 
 e [[Subaru]] può chiedere `Dialogue.is_active` per sapere se deve stare fermo.
 
+C'è anche l'autoload **`Fade`**, la [[Dissolvenza]] dal nero.
+
 ## Vedi anche
 
 - [[Segnali]] · [[CanvasLayer]]

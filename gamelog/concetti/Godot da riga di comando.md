@@ -23,9 +23,13 @@ L'eseguibile di Godot accetta delle opzioni da terminale:
 
 Uscendo da uno script `-s`, Godot stampa messaggi come `ERROR: BUG: Unreferenced static string` o `leaked at exit`: sono normali e non indicano problemi del gioco.
 
+Attenzione: negli script `-s` gli [[Autoload]] vengono aggiunti dopo la compilazione dello script, vedi [[Classi globali]].
+
+`--quit-after 180` avvia il gioco normale e lo chiude dopo 180 frame: utile per controllare che parta senza errori.
+
 ## Nel progetto
 
-Il [[Test automatico]] si lancia così.
+Il [[Test automatico]] e il [[Test del dialogo]] si lanciano così.
 
 ## Vedi anche
 

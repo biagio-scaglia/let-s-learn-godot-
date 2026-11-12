@@ -35,7 +35,8 @@ t.set_loops()   # ripete all'infinito
 | Effetto | Dove |
 |---|---|
 | Il [[Saggio]] "respira" (si schiaccia e torna) | `npc.gd` |
-| La nuvoletta sopra la testa sale e scende | `npc.gd` |
+| La nuvoletta sopra la testa sale e scende | [[Interactable]] |
+| Lo schermo compare dal nero | [[Dissolvenza]] |
 | La finestra entra ed esce sfumando | [[Finestra di dialogo]] |
 | Il testo compare lettera per lettera (`tween_method`) | [[Finestra di dialogo]] |
 | La freccia "continua" saltella | [[Finestra di dialogo]] |

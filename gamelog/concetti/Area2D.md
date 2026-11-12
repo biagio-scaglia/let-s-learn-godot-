@@ -22,7 +22,7 @@ Un [[Nodo]] che **non blocca niente**, ma si accorge di chi ci entra e di chi es
 
 ## Nel progetto
 
-Il [[Saggio]] ha un'area circolare (raggio 30 px): quando [[Subaru]] ci entra compare la nuvoletta e si può parlare.
+Il componente [[Interactable]] è un'Area2D circolare (raggio 30 px): quando [[Subaru]] ci entra compare la nuvoletta e si può parlare. Lo usano il [[Saggio]] e il [[Cartello]].
 
 ## Vedi anche
 

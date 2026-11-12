@@ -31,7 +31,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 ## Il bug che abbiamo evitato
 
-Premendo E vicino al [[Saggio]], lui apre il dialogo. Se non segnasse il tasto come gestito, **lo stesso evento** arriverebbe subito dopo alla [[Finestra di dialogo]], che lo prenderebbe come "vai avanti" e salterebbe la prima frase.
+Premendo E vicino al [[Saggio]], il suo [[Interactable]] apre il dialogo. Se non segnasse il tasto come gestito, **lo stesso evento** arriverebbe subito dopo alla [[Finestra di dialogo]], che lo prenderebbe come "vai avanti" e salterebbe la prima frase.
 
 ## Nei test
 

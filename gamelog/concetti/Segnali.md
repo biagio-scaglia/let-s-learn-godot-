@@ -30,7 +30,9 @@ finished.emit()
 
 | Segnale | Chi lo manda | Chi ascolta |
 |---|---|---|
-| `body_entered` / `body_exited` | [[Area2D]] del [[Saggio]] | Il Saggio, per sapere se il giocatore è vicino |
+| `body_entered` / `body_exited` | [[Area2D]] | [[Interactable]], per sapere se il giocatore è vicino |
+| `interacted` | [[Interactable]] | Nessuno per ora: servirà per missioni e oggetti |
+| `frame_changed` | L'animazione di [[Subaru]] | Subaru, per far suonare i passi |
 | `finished` di un [[Tween]] | La scrittura del testo | La [[Finestra di dialogo]], per mostrare la freccia |
 | `finished` | La [[Finestra di dialogo]] | Nessuno per ora: servirà per le missioni |
 
