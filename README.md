@@ -2,7 +2,7 @@
 
 Progetto personale per imparare le basi di **Godot 4**, un passo alla volta.
 
-Per ora c'è Subaru che cammina e corre in una piccola mappa con alberi, sentieri e staccionate, e un Saggio con cui parlare. Ci sono già ombre, polvere, pollini e una finestra di dialogo animata.
+Per ora c'è Subaru che cammina e corre in una piccola mappa con alberi, sentieri e staccionate, un Saggio con cui parlare e un cartello da leggere. Ci sono già ombre, polvere, pollini, passi sonori e una finestra di dialogo animata.
 
 ## Come avviarlo
 
@@ -22,7 +22,8 @@ Per ora c'è Subaru che cammina e corre in una piccola mappa con alberi, sentier
 | `let's-learn-godot/` | Il progetto Godot |
 | `let's-learn-godot/characters/subaru/` | Subaru: spritesheet, animazioni, scena e script |
 | `let's-learn-godot/characters/npc/` | Personaggio con cui parlare (riutilizzabile) |
-| `let's-learn-godot/ui/` | Finestra di dialogo (autoload `Dialogue`) |
+| `let's-learn-godot/interactables/` | Componente `Interactable`: tutto ciò con cui si interagisce |
+| `let's-learn-godot/ui/` | Finestra di dialogo (autoload `Dialogue`) e dissolvenza (autoload `Fade`) |
 | `let's-learn-godot/effects/` | Shader (vignettatura) |
 | `let's-learn-godot/world/` | La mappa (`main.tscn`) e il TileSet |
 | `let's-learn-godot/assets/` | Asset esterni (vedi [CREDITS.md](CREDITS.md)) |
