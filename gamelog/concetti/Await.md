@@ -1,0 +1,40 @@
+---
+tags:
+  - concetto
+  - codice
+aliases:
+  - await
+  - Coroutine
+---
+
+# Await
+
+← [[godot-basi|Basi di Godot]]
+
+**`await`** mette in pausa una funzione finché qualcosa non è finito, **senza bloccare il gioco**: tutto il resto continua a muoversi e disegnarsi.
+
+```gdscript
+await Fade.fade_out()                      # aspetta che lo schermo sia nero
+get_tree().change_scene_to_file(path)
+await get_tree().process_frame             # aspetta il frame successivo
+await create_timer(0.5).timeout            # aspetta mezzo secondo
+await tween.finished                       # aspetta la fine di un Tween
+```
+
+Si può aspettare:
+
+- un **[[Segnali|segnale]]** (`tween.finished`, `timer.timeout`, `get_tree().process_frame`…);
+- un'altra funzione che a sua volta usa `await` (come `Fade.fade_out()`).
+
+## Nel progetto
+
+| Dove | Cosa aspetta |
+|---|---|
+| [[Game]] `change_scene()` | La dissolvenza, poi due frame perché la nuova scena sia pronta |
+| [[Dissolvenza]] | La fine del [[Tween]] |
+| [[Finestra di dialogo]] `_close()` | La fine dell'animazione di chiusura |
+| Tutti i test | Timer e frame, per dare tempo al gioco |
+
+## Vedi anche
+
+- [[Segnali]] · [[Tween]] · [[Cambio di scena]]
