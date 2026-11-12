@@ -26,17 +26,32 @@ SMALL_TREES = [27, 28]                 # alberelli da un tile
 FENCE = [44, 45, 46]
 SIGN = 83
 
+# La casa: 5 tile di larghezza, 3 di altezza (due di tetto rosso, uno di muro con porta).
+HOUSE_X, HOUSE_Y = 6, 3            # cella in alto a sinistra
+HOUSE = [
+    [52, 53, 55, 53, 54],          # tetto, parte alta (55 = abbaino)
+    [64, 65, 67, 65, 66],          # tetto, parte bassa (67 = timpano sopra la porta)
+    [72, 84, 87, 84, 75],          # muro: bordo, finestra, porta, finestra, bordo
+]
+DOOR_X, DOOR_Y = HOUSE_X + 2, HOUSE_Y + 2
+HOUSE_WALL = set(HOUSE[2])
+
 rect = lambda x0, y0, x1, y1: f"PackedVector2Array({x0}, {y0}, {x1}, {y0}, {x1}, {y1}, {x0}, {y1})"
 COLL = {t: rect(-6, 0, 6, 8) for t in [15, 16] + SMALL_TREES}   # solo il tronco
 COLL.update({44: rect(-6, -1, 8, 5), 45: rect(-8, -1, 8, 5), 46: rect(-8, -1, 6, 5), SIGN: rect(-4, 2, 4, 8)})
+COLL.update({t: rect(-8, 0, 8, 8) for t in HOUSE_WALL})        # il muro della casa blocca
 # Y-sort origin: il punto "dei piedi" di ogni oggetto. La chioma usa la base del
 # tronco, che sta nel tile sotto (16 px più in basso), così l'albero si ordina tutto insieme.
+# Lo stesso per il tetto: si ordina con la base del muro, uno o due tile più in basso.
 YSORT = {t: 6 for t in list(COLL) + DECOR}
 YSORT.update({top: 16 + 6 for top, _ in TALL_TREES})
+YSORT.update({t: 8 for t in HOUSE[2]})
+YSORT.update({t: 16 + 8 for t in HOUSE[1]})
+YSORT.update({t: 32 + 8 for t in HOUSE[0]})
 
 # ---------- TileSet ----------
 lines = []
-for t in sorted(set(GRASS + DIRT + DECOR + FENCE + SMALL_TREES + [SIGN]) | {t for p in TALL_TREES for t in p}):
+for t in sorted(set(GRASS + DIRT + DECOR + FENCE + SMALL_TREES + [SIGN]) | {t for p in TALL_TREES for t in p} | {t for row in HOUSE for t in row}):
     x, y = A(t)
     lines.append(f"{x}:{y}/0 = 0")
     if t in YSORT:
@@ -71,6 +86,7 @@ def fill(x0, y0, x1, y1):
 fill(3, 11, 36, 13)    # sentiero orizzontale
 fill(19, 3, 21, 20)    # sentiero verticale
 fill(15, 9, 25, 15)    # piazza
+fill(DOOR_X - 1, DOOR_Y + 1, DOOR_X + 1, 10)   # vialetto dalla porta di casa al sentiero
 D = lambda x, y: 0 <= x < W and 0 <= y < H and dirt[y][x]
 
 ground = {}
@@ -106,9 +122,16 @@ def tall_tree(x, y):
     objects[(x, y - 1)] = top
     objects[(x, y)] = trunk
 
-# Staccionata e cartello per primi, così gli alberi non ci finiscono sopra.
-for x in range(4, 13):
-    objects[(x, 8)] = 44 if x == 4 else 46 if x == 12 else 45
+# Casa, staccionata e cartello per primi, così gli alberi non ci finiscono sopra.
+for dy, row in enumerate(HOUSE):
+    for dx, t in enumerate(row):
+        objects[(HOUSE_X + dx, HOUSE_Y + dy)] = t
+# Intorno alla casa lasciamo un tile di prato libero.
+near_house = lambda x, y: HOUSE_X - 1 <= x <= HOUSE_X + 5 and HOUSE_Y - 1 <= y <= HOUSE_Y + 3
+# Staccionata in due pezzi, con il varco per il vialetto.
+for x0, x1 in [(4, DOOR_X - 2), (DOOR_X + 2, 12)]:
+    for x in range(x0, x1 + 1):
+        objects[(x, 8)] = 44 if x == x0 else 46 if x == x1 else 45
 objects[(14, 10)] = SIGN
 
 # Bordo: due file di alberi alti tutto intorno (righe a coppie: chioma sopra, tronco sotto).
@@ -121,7 +144,7 @@ for y in range(0, H, 2):
 near_dirt = lambda x, y: any(D(x+dx, y+dy) for dx in (-1, 0, 1) for dy in (-1, 0, 1))
 for y in range(3, H - 2):
     for x in range(2, W - 2):
-        if not free(x, y) or near_dirt(x, y):
+        if not free(x, y) or near_dirt(x, y) or near_house(x, y) or near_house(x, y - 1):
             continue
         r = random.random()
         if r < 0.05 and free(x, y - 1):
@@ -162,6 +185,7 @@ NPC_LINES = [
 NPC_REPEAT = [
     "Ancora qui? Gli alberi non crescono più in fretta se li guardiamo in due!",
     "Hai letto il cartello vicino alla piazza? Lo ha scritto mio nonno.",
+    "E se passi dalla casa col tetto rosso, saluta mia nipote Lina.",
 ]
 SIGN_LINES = [
     "Villaggio di Erbalta.",
@@ -174,13 +198,16 @@ def packed(strings):
     return "PackedStringArray(" + ", ".join('"' + s.replace('"', '\\"') + '"' for s in strings) + ")"
 
 SX, SY = 14, 10   # cella del cartello
-main = f'''[gd_scene load_steps=10 format=3]
+DOOR_PX = (DOOR_X * T + T // 2, (DOOR_Y + 1) * T)   # il bordo basso della porta, in pixel
+main = f'''[gd_scene load_steps=12 format=3]
 
 [ext_resource type="TileSet" path="res://world/tileset.tres" id="1_tiles"]
 [ext_resource type="PackedScene" path="res://characters/subaru/subaru.tscn" id="2_subaru"]
 [ext_resource type="PackedScene" path="res://characters/npc/npc.tscn" id="3_npc"]
 [ext_resource type="Shader" path="res://effects/vignette.gdshader" id="4_vignette"]
 [ext_resource type="PackedScene" path="res://interactables/interactable.tscn" id="5_interactable"]
+[ext_resource type="Script" path="res://world/level.gd" id="6_level"]
+[ext_resource type="PackedScene" path="res://interactables/door.tscn" id="7_door"]
 
 [sub_resource type="ShaderMaterial" id="vignette_mat"]
 shader = ExtResource("4_vignette")
@@ -196,6 +223,7 @@ size = Vector2({W * T}, {BW})
 size = Vector2({BW}, {H * T})
 
 [node name="Main" type="Node2D"]
+script = ExtResource("6_level")
 
 [node name="Ground" type="TileMapLayer" parent="."]
 scale = Vector2(2, 2)
@@ -249,6 +277,17 @@ speaker = "Cartello"
 lines = {packed(SIGN_LINES)}
 repeat_lines = {packed(SIGN_REPEAT)}
 prompt_height = 42.0
+
+[node name="HouseDoor" parent="World" instance=ExtResource("7_door")]
+position = Vector2({DOOR_PX[0]}, {DOOR_PX[1] + 5})
+target_scene = "res://world/house.tscn"
+target_spawn = "Entrance"
+arrive_facing = "up"
+
+[node name="Spawns" type="Node2D" parent="."]
+
+[node name="HouseDoor" type="Marker2D" parent="Spawns"]
+position = Vector2({DOOR_PX[0]}, {DOOR_PX[1] + 34})
 
 [node name="Subaru" parent="World" instance=ExtResource("2_subaru")]
 position = Vector2(656, 416)
