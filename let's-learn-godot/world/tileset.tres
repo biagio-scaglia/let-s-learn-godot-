@@ -1,6 +1,7 @@
-[gd_resource type="TileSet" load_steps=3 format=3]
+[gd_resource type="TileSet" load_steps=5 format=3]
 
 [ext_resource type="Texture2D" path="res://assets/kenney_tiny_town/tilemap_packed.png" id="1_atlas"]
+[ext_resource type="Texture2D" path="res://assets/effects/shadow_tree.png" id="2_shadow"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_town"]
 texture = ExtResource("1_atlas")
@@ -55,6 +56,11 @@ texture = ExtResource("1_atlas")
 11:6/0/y_sort_origin = 6
 11:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, 2, 4, 2, 4, 8, -4, 8)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_shadows"]
+texture = ExtResource("2_shadow")
+0:0/0 = 0
+
 [resource]
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_town")
+sources/1 = SubResource("TileSetAtlasSource_shadows")
