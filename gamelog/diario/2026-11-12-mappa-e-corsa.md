@@ -17,7 +17,7 @@ aliases:
 
 ## Obiettivo
 
-Mettere Subaru dentro il progetto Godot, dargli una mappa in cui muoversi con un tileset esterno e farlo **correre**.
+Mettere [[Subaru]] dentro il progetto Godot, dargli una [[Mappa principale|mappa]] in cui muoversi con un tileset esterno e farlo **correre**.
 
 ![[mappa_subaru_fermo.png]]
 
@@ -52,7 +52,7 @@ Il test automatico (`tools/test_corsa.gd`, vedi [[#7. Verifica automatica]]) ha 
 
 *Il tileset con il numero di ogni tile. I numeri sono quelli usati in `tools/genera_mappa.py`.*
 
-- **Cos'è:** [Tiny Town](https://kenney.nl/assets/tiny-town) di Kenney, 132 tile da 16×16 px: erba, sentieri, alberi, staccionate, case.
+- **Cos'è:** [[Tiny Town]] di [[Kenney]], 132 tile da 16×16 px: erba, sentieri, alberi, staccionate, case.
 - **Licenza:** CC0, cioè si può usare liberamente, anche in un gioco commerciale. Citare l'autore non è obbligatorio, ma l'abbiamo fatto in `CREDITS.md`.
 - **Perché questo:** è pixel art pulita, ha tutto per una prima mappa all'aperto e la licenza non crea problemi.
 - **Dove l'abbiamo preso:** da [OpenGameArt](https://opengameart.org/content/tiny-town). Il sito di Kenney blocca i download automatici, ma OpenGameArt ripubblica lo stesso pacchetto.
@@ -206,3 +206,10 @@ Si apre una finestra per qualche secondo, poi si chiude da sola. Alla chiusura G
 - [ ] Una casa con una porta in cui entrare (cambio scena)
 - [ ] Un personaggio con cui parlare (prima finestra di dialogo)
 - [ ] Animazioni di corsa dedicate, invece della camminata accelerata
+
+## Collegamenti
+
+- **Progetto:** [[Subaru]] · [[Mappa principale]] · [[Tiny Town]] · [[Kenney]] · [[Licenza CC0]] · [[Dove trovare asset]]
+- **Strumenti:** [[Generatore della mappa]] · [[Test automatico]] · [[Repository GitHub]]
+- **Concetti:** [[Viewport e stretch]] · [[Filtro Nearest]] · [[Input Map]] · [[Export e Inspector]] · [[TileSet]] · [[TileMapLayer]] · [[Y-sort]] · [[Camera2D]] · [[StaticBody2D]] · [[Collisioni]] · [[Istanza]] · [[Percorsi res]] · [[File import e uid]] · [[Godot da riga di comando]] · [[Editor di Godot]]
+- **Voce precedente:** [[2026-11-12-subaru]]
