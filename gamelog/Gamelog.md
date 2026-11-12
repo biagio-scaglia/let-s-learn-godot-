@@ -20,7 +20,12 @@ Diario del progetto: cosa è stato fatto, perché, e cosa ho imparato di Godot s
 
 | Data | Argomento | Stato |
 |---|---|---|
-| 2026-11-12 | [[2026-11-12-subaru\|Sprite di Subaru: divisione, ottimizzazione, animazioni]] | Pronto, da provare in Godot |
+| 2026-11-12 | [[2026-11-12-subaru\|Sprite di Subaru: divisione, ottimizzazione, animazioni]] | Completato |
+| 2026-11-12 | [[2026-11-12-mappa-e-corsa\|Una mappa vera e Subaru che corre]] | Funzionante |
+
+## Come avviare il gioco
+
+Apri Godot 4.7, importa la cartella `let's-learn-godot` e premi **F5**. Frecce/WASD per muoversi, Shift per correre.
 
 ## Stato del progetto
 
@@ -28,5 +33,9 @@ Diario del progetto: cosa è stato fatto, perché, e cosa ho imparato di Godot s
 - [x] Animazioni idle + camminata in 4 direzioni
 - [x] Scena del personaggio con movimento base
 - [x] Progetto su GitHub: [let-s-learn-godot-](https://github.com/biagio-scaglia/let-s-learn-godot-)
-- [ ] Creare il progetto Godot e provarci dentro Subaru
-- [ ] Una prima mappa/stanza in cui muoversi
+- [x] Creare il progetto Godot e provarci dentro Subaru
+- [x] Una prima mappa in cui muoversi (tileset Tiny Town di Kenney)
+- [x] Subaru corre (Shift)
+- [ ] Modificare la mappa a mano nell'editor
+- [ ] Una casa in cui entrare (cambio scena)
+- [ ] Un personaggio con cui parlare (dialoghi)
