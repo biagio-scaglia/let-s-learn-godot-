@@ -18,4 +18,4 @@ Subaru ed Emilia sono personaggi di *Re:Zero − Starting Life in Another World*
 
 ## Fatti da noi
 
-Ombre, icone e il suono del testo in `let's-learn-godot/assets/effects/` sono generati da `tools/genera_effetti.py`.
+Ombre, icone e il suono del testo in `let's-learn-godot/assets/effects/` sono stati generati da uno script Python (`tools/genera_effetti.py`, poi rimosso: resta nella cronologia di git).
