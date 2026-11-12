@@ -1,0 +1,23 @@
+# --- Godot 4 ---
+# Cache e file generati dall'editor (si ricreano da soli)
+.godot/
+# Build esportate
+/build/
+/export/
+*.tmp
+
+# --- Obsidian ---
+# Stato dell'interfaccia: cambia di continuo ed è personale
+gamelog/.obsidian/workspace.json
+gamelog/.obsidian/workspace-mobile.json
+gamelog/.obsidian/cache
+gamelog/.trash/
+
+# --- Sistema operativo ---
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# --- Editor ---
+.vscode/
+*.swp
