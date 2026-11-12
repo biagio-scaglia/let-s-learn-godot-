@@ -7,24 +7,49 @@ extends CharacterBody2D
 @export var run_anim_scale := 1.8
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var dust: CPUParticles2D = $Dust
 var facing := "down"
 
 
 func _physics_process(_delta: float) -> void:
+	# Durante un dialogo Subaru resta fermo.
+	if Dialogue.is_active:
+		velocity = Vector2.ZERO
+		dust.emitting = false
+		_play_idle()
+		return
+
 	var input := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var running := Input.is_action_pressed("run")
 
 	velocity = input * (run_speed if running else walk_speed)
 	move_and_slide()
 
-	if input != Vector2.ZERO:
-		# Prefer the dominant axis so diagonals pick a sensible facing.
-		if abs(input.x) > abs(input.y):
-			facing = "right" if input.x > 0 else "left"
-		else:
-			facing = "down" if input.y > 0 else "up"
+	var moving := input != Vector2.ZERO
+	# Nuvolette di polvere ai piedi solo quando corre.
+	dust.emitting = moving and running
+
+	if moving:
+		facing = _direction_name(input)
 		sprite.play("walk_" + facing)
 		sprite.speed_scale = run_anim_scale if running else 1.0
 	else:
-		sprite.play("idle_" + facing)
-		sprite.speed_scale = 1.0
+		_play_idle()
+
+
+## Gira Subaru verso un punto (per esempio chi gli sta parlando).
+func look_at_point(point: Vector2) -> void:
+	facing = _direction_name(point - global_position)
+	_play_idle()
+
+
+func _play_idle() -> void:
+	sprite.play("idle_" + facing)
+	sprite.speed_scale = 1.0
+
+
+func _direction_name(dir: Vector2) -> String:
+	# Prende l'asse dominante, così le diagonali scelgono una direzione sensata.
+	if abs(dir.x) > abs(dir.y):
+		return "right" if dir.x > 0 else "left"
+	return "down" if dir.y > 0 else "up"
