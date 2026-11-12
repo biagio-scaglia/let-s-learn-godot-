@@ -4,6 +4,8 @@ extends Node2D
 
 
 func _ready() -> void:
+	# Il menu di pausa si apre solo nelle scene di questo gruppo.
+	add_to_group("level")
 	if Game.spawn_point == "":
 		return   # prima scena del gioco: il giocatore resta dov'è nella scena
 	var marker := get_node_or_null("Spawns/" + Game.spawn_point) as Node2D
