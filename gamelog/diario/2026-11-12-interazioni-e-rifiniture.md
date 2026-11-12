@@ -53,6 +53,8 @@ aliases:
 - [[Test automatico]] della corsa: ok.
 - Avvio normale del gioco per 180 frame: nessun errore.
 
+Passo successivo: [[2026-11-12-casa-di-lina]].
+
 ## Collegamenti
 
 - **Progetto:** [[Interactable]] · [[Cartello]] · [[Saggio]] · [[Subaru]] · [[Dissolvenza]] · [[Effetti visivi]] · [[Mappa principale]]

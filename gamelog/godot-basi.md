@@ -23,6 +23,7 @@ Indice dei concetti di Godot incontrati finora. Ogni concetto ha la sua nota, co
 - [[Autoload]]: una scena sempre presente, raggiungibile da tutti
 - [[Gruppi]]: etichette per riconoscere i nodi
 - [[Composizione]]: piccoli pezzi riutilizzabili messi insieme
+- [[Cambio di scena]]: passare da una scena all'altra, punti d'arrivo
 
 ## Codice
 
@@ -32,6 +33,7 @@ Indice dei concetti di Godot incontrati finora. Ogni concetto ha la sua nota, co
 - [[Segnali]]: avvisi tra nodi
 - [[Classi globali]]: `class_name`, uno script diventa un tipo
 - [[Tween]]: animare una proprietà dal codice
+- [[Await]]: aspettare senza bloccare il gioco
 - [[Input Map]]: azioni e tasti
 - [[Eventi di input]]: `_unhandled_input` e tasti "usati"
 
@@ -52,6 +54,7 @@ Indice dei concetti di Godot incontrati finora. Ogni concetto ha la sua nota, co
 - [[Particelle]]: polvere, pollini, scintille
 - [[Shader]]: programmi per ogni pixel
 - [[CanvasModulate]]: una tinta su tutto il mondo
+- [[Luci 2D]]: luci, buio e fiamme che tremolano
 - [[CanvasLayer]]: livelli fermi rispetto allo schermo
 - [[Audio]]: riprodurre suoni
 

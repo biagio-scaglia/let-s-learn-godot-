@@ -24,17 +24,19 @@ Diario del progetto: cosa è stato fatto, perché, e cosa ho imparato di Godot s
 | 2026-11-12 | [[2026-11-12-mappa-e-corsa\|Una mappa vera e Subaru che corre]] | Funzionante |
 | 2026-11-12 | [[2026-11-12-primo-dialogo\|Il primo dialogo, e un po' di atmosfera]] | Funzionante |
 | 2026-11-12 | [[2026-11-12-interazioni-e-rifiniture\|Interazioni riutilizzabili e rifiniture]] | Funzionante |
+| 2026-11-12 | [[2026-11-12-casa-di-lina\|Si entra in casa]] | Funzionante |
 
 ## Il progetto
 
 | Cosa | Note |
 |---|---|
-| Personaggi | [[Subaru]] · [[Saggio]] |
-| Oggetti | [[Cartello]] · [[Interactable]] |
-| Mondo | [[Mappa principale]] · [[Effetti visivi]] |
+| Personaggi | [[Subaru]] · [[Saggio]] · [[Lina]] |
+| Oggetti | [[Cartello]] · [[Interactable]] · [[Porta]] |
+| Mondo | [[Mappa principale]] · [[Casa di Lina]] · [[Effetti visivi]] |
+| Stato del gioco | [[Game]] |
 | Interfaccia | [[Finestra di dialogo]] · [[Dissolvenza]] |
 | Asset | [[Tiny Town]] · [[Tiny Dungeon]] · [[KenPixel]] · [[Kenney]] · [[Licenza CC0]] · [[Dove trovare asset]] |
-| Strumenti | [[Generatore della mappa]] · [[Generatore degli effetti]] · [[Test automatico]] · [[Test del dialogo]] |
+| Strumenti | [[Generatore della mappa]] · [[Generatore della casa]] · [[Generatore degli effetti]] · [[Test automatico]] · [[Test del dialogo]] · [[Test di casa]] |
 | Organizzazione | [[Repository GitHub]] · [[Vault Obsidian]] |
 
 ## Come avviare il gioco
@@ -60,7 +62,7 @@ Apri Godot 4.7, importa la cartella `let's-learn-godot` e premi **F5**. Dettagli
 - [x] Effetti: ombre, polvere, pollini, luce calda, vignettatura
 - [x] Cartello leggibile, il Saggio si ricorda di te, passi, dissolvenza
 - [ ] Modificare la mappa a mano nell'editor
-- [ ] Una casa in cui entrare (cambio scena)
+- [x] Una casa in cui entrare (cambio scena)
 - [ ] Raccogliere oggetti (inventario)
 - [ ] Combattimento a turni
 - [ ] Statistiche e livelli
