@@ -12,6 +12,8 @@ extends CanvasLayer
 
 
 func _ready() -> void:
+	# Deve funzionare anche a gioco in pausa (es. "Torna al titolo" dal menu di pausa).
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	rect.color.a = 1.0
 	fade_in()
 
