@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://interactables/interactable.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/effects/interact_icon.png" id="2_icon"]
+
+[sub_resource type="CircleShape2D" id="talk_range"]
+radius = 30.0
+
+[node name="Interactable" type="Area2D"]
+script = ExtResource("1_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+shape = SubResource("talk_range")
+
+[node name="Prompt" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(0, -60)
+scale = Vector2(2, 2)
+texture = ExtResource("2_icon")
