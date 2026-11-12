@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Dialogue="*res://ui/dialogue_box.tscn"
 Fade="*res://ui/fade.tscn"
+Game="*res://core/game.gd"
 
 [display]
 
@@ -75,6 +76,6 @@ interact={
 
 [rendering]
 
-2d/snap/snap_2d_transforms_to_pixel=true
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
+2d/snap/snap_2d_transforms_to_pixel=true
