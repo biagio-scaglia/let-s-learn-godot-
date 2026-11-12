@@ -93,7 +93,7 @@ Il [[Test del dialogo]] fa 11 controlli automatici: tutti ok. Anche il [[Test au
 
 ## Prossimi passi
 
-- [ ] Un PNG che dice cose diverse la seconda volta (variabili e stato)
+- [x] Un PNG che dice cose diverse la seconda volta → [[2026-11-12-interazioni-e-rifiniture]]
 - [ ] Entrare in una casa (cambio scena)
 - [ ] Raccogliere oggetti (inventario)
 

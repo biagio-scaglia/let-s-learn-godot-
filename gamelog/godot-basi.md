@@ -22,6 +22,7 @@ Indice dei concetti di Godot incontrati finora. Ogni concetto ha la sua nota, co
 - [[Editor di Godot]]: come avviare il gioco, aree di lavoro, pannelli
 - [[Autoload]]: una scena sempre presente, raggiungibile da tutti
 - [[Gruppi]]: etichette per riconoscere i nodi
+- [[Composizione]]: piccoli pezzi riutilizzabili messi insieme
 
 ## Codice
 
@@ -29,6 +30,7 @@ Indice dei concetti di Godot incontrati finora. Ogni concetto ha la sua nota, co
 - [[Ciclo di gioco]]: `_ready`, `_process`, `_physics_process`
 - [[Export e Inspector]]: variabili modificabili senza codice
 - [[Segnali]]: avvisi tra nodi
+- [[Classi globali]]: `class_name`, uno script diventa un tipo
 - [[Tween]]: animare una proprietà dal codice
 - [[Input Map]]: azioni e tasti
 - [[Eventi di input]]: `_unhandled_input` e tasti "usati"

@@ -23,14 +23,16 @@ Diario del progetto: cosa è stato fatto, perché, e cosa ho imparato di Godot s
 | 2026-11-12 | [[2026-11-12-subaru\|Sprite di Subaru: divisione, ottimizzazione, animazioni]] | Completato |
 | 2026-11-12 | [[2026-11-12-mappa-e-corsa\|Una mappa vera e Subaru che corre]] | Funzionante |
 | 2026-11-12 | [[2026-11-12-primo-dialogo\|Il primo dialogo, e un po' di atmosfera]] | Funzionante |
+| 2026-11-12 | [[2026-11-12-interazioni-e-rifiniture\|Interazioni riutilizzabili e rifiniture]] | Funzionante |
 
 ## Il progetto
 
 | Cosa | Note |
 |---|---|
 | Personaggi | [[Subaru]] · [[Saggio]] |
+| Oggetti | [[Cartello]] · [[Interactable]] |
 | Mondo | [[Mappa principale]] · [[Effetti visivi]] |
-| Interfaccia | [[Finestra di dialogo]] |
+| Interfaccia | [[Finestra di dialogo]] · [[Dissolvenza]] |
 | Asset | [[Tiny Town]] · [[Tiny Dungeon]] · [[KenPixel]] · [[Kenney]] · [[Licenza CC0]] · [[Dove trovare asset]] |
 | Strumenti | [[Generatore della mappa]] · [[Generatore degli effetti]] · [[Test automatico]] · [[Test del dialogo]] |
 | Organizzazione | [[Repository GitHub]] · [[Vault Obsidian]] |
@@ -43,7 +45,7 @@ Apri Godot 4.7, importa la cartella `let's-learn-godot` e premi **F5**. Dettagli
 |---|---|
 | Frecce / WASD | Muoversi |
 | Shift | Correre |
-| E / Spazio / Invio | Parlare |
+| E / Spazio / Invio | Parlare, leggere |
 
 ## Stato del progetto
 
@@ -56,6 +58,7 @@ Apri Godot 4.7, importa la cartella `let's-learn-godot` e premi **F5**. Dettagli
 - [x] Subaru corre (Shift)
 - [x] Un personaggio con cui parlare (dialoghi)
 - [x] Effetti: ombre, polvere, pollini, luce calda, vignettatura
+- [x] Cartello leggibile, il Saggio si ricorda di te, passi, dissolvenza
 - [ ] Modificare la mappa a mano nell'editor
 - [ ] Una casa in cui entrare (cambio scena)
 - [ ] Raccogliere oggetti (inventario)
