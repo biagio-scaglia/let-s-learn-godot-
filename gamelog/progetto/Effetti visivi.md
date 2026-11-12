@@ -27,6 +27,8 @@ Piccoli dettagli che rendono il gioco più "vivo". Nessuno è indispensabile, in
 | Il Saggio respira, la nuvoletta saltella | Animazioni da codice | [[Tween]] |
 | Testo a macchina da scrivere con "blip" | Lettere una alla volta, suono ogni due | [[Tween]], [[Audio]] |
 | Finestra che entra sfumando | Trasparenza e posizione animate | [[Tween]] |
+| Passi di Subaru | Un suono a ogni piede a terra | [[Audio]], [[Segnali]] |
+| Il gioco compare dal nero | [[Dissolvenza]] | [[Autoload]], [[Tween]] |
 
 Ombre, icone, freccia e suono sono generati dal [[Generatore degli effetti]].
 

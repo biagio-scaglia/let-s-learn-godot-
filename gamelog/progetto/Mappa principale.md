@@ -26,6 +26,7 @@ Main (Node2D)
 │   ├── Objects (TileMapLayer, Y-sort) ← alberi, staccionata, cartello, funghi
 │   ├── Bounds (StaticBody2D)          ← 4 muri invisibili ai bordi
 │   ├── Npc (istanza)                  ← il Saggio
+│   ├── Sign (Interactable)            ← il cartello leggibile
 │   └── Subaru (istanza)
 │       └── Camera2D
 │           └── Pollen (CPUParticles2D)
@@ -37,6 +38,7 @@ Main (Node2D)
 |---|---|
 | `Ground`, `Shadows`, `Objects` | [[TileMapLayer]], [[TileSet]] |
 | `Npc` | [[Saggio]] |
+| `Sign` | [[Cartello]], [[Interactable]] |
 | `Tint`, `Pollen`, `Vignette` | [[Effetti visivi]]: [[CanvasModulate]], [[Particelle]], [[Shader]], [[CanvasLayer]] |
 | Ordine di disegno | [[Y-sort]] |
 | `Bounds` | [[StaticBody2D]], [[Collisioni]] |

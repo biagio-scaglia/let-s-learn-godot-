@@ -37,7 +37,8 @@ Subaru (CharacterBody2D, gruppo "player")   + subaru.gd
 | Ombra e polvere | [[Sprite2D]], [[Particelle]], [[Effetti visivi]] |
 | Il [[Saggio]] lo riconosce | [[Gruppi]] (`player`) |
 | Fermo durante i dialoghi | [[Autoload]] (`Dialogue.is_active`) |
-| Si gira verso chi parla | `look_at_point()`, chiamata dal [[Saggio]] |
+| Si gira verso chi parla | `look_at_point()`, chiamata da [[Interactable]] |
+| Passi sonori | [[Audio]], [[Segnali]] (`frame_changed`) |
 
 ## Numeri
 
@@ -52,5 +53,6 @@ Subaru (CharacterBody2D, gruppo "player")   + subaru.gd
 - [[2026-11-12-subaru]]: dalla spritesheet originale alla pixel art, animazioni rifatte.
 - [[2026-11-12-mappa-e-corsa]]: dentro il progetto Godot, nella [[Mappa principale]], con la corsa.
 - [[2026-11-12-primo-dialogo]]: ombra, polvere, e il primo dialogo con il [[Saggio]].
+- [[2026-11-12-interazioni-e-rifiniture]]: i passi, e via la vecchia spritesheet HD.
 
 File: `let's-learn-godot/characters/subaru/`
