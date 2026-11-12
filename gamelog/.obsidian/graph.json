@@ -1,12 +1,48 @@
 {
   "collapse-filter": true,
-  "search": "",
+  "search": "-path:templates",
   "showTags": false,
   "showAttachments": false,
-  "hideUnresolved": false,
+  "hideUnresolved": true,
   "showOrphans": true,
-  "collapse-color-groups": true,
-  "colorGroups": [],
+  "collapse-color-groups": false,
+  "colorGroups": [
+    {
+      "query": "tag:#moc",
+      "color": {
+        "a": 1,
+        "rgb": 15911244
+      }
+    },
+    {
+      "query": "path:diario",
+      "color": {
+        "a": 1,
+        "rgb": 4886754
+      }
+    },
+    {
+      "query": "tag:#nodo",
+      "color": {
+        "a": 1,
+        "rgb": 2600544
+      }
+    },
+    {
+      "query": "path:concetti",
+      "color": {
+        "a": 1,
+        "rgb": 10179040
+      }
+    },
+    {
+      "query": "path:progetto",
+      "color": {
+        "a": 1,
+        "rgb": 15898954
+      }
+    }
+  ],
   "collapse-display": true,
   "showArrow": false,
   "textFadeMultiplier": 0,
@@ -17,6 +53,6 @@
   "repelStrength": 10,
   "linkStrength": 1,
   "linkDistance": 250,
-  "scale": 1,
+  "scale": 0.5091730152459838,
   "close": false
 }
