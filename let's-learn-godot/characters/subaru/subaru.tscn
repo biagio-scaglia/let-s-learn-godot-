@@ -44,7 +44,7 @@ color_ramp = SubResource("dust_fade")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-offset = Vector2(0, -29)
+offset = Vector2(0, -24)
 sprite_frames = ExtResource("2_frames")
 animation = &"idle_down"
 autoplay = "idle_down"
