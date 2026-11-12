@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3]
 
-[ext_resource type="Script" path="res://subaru/subaru.gd" id="1_script"]
-[ext_resource type="SpriteFrames" path="res://subaru/subaru_frames.tres" id="2_frames"]
+[ext_resource type="Script" path="res://characters/subaru/subaru.gd" id="1_script"]
+[ext_resource type="SpriteFrames" path="res://characters/subaru/subaru_frames.tres" id="2_frames"]
 
 [sub_resource type="RectangleShape2D" id="feet"]
 size = Vector2(16, 8)
