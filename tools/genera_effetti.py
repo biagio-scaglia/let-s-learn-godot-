@@ -5,7 +5,7 @@ Uso (dalla cartella del repository):
 
 Tutto è disegnato dal codice: niente asset esterni, niente licenze da citare.
 """
-import math, os, struct, sys, wave
+import math, os, random, struct, sys, wave
 from PIL import Image
 
 proj = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "..", "let's-learn-godot")
@@ -78,6 +78,20 @@ for i in range(int(rate * dur)):
     sample = (1.0 if math.sin(2 * math.pi * freq * t) >= 0 else -1.0) * 0.22 * env
     frames += struct.pack("<h", int(sample * 32767))
 with wave.open(os.path.join(out, "blip.wav"), "wb") as w:
+    w.setnchannels(1); w.setsampwidth(2); w.setframerate(rate)
+    w.writeframes(bytes(frames))
+
+# Suono del passo: un breve "tump" di rumore che si spegne, filtrato per essere morbido.
+random.seed(3)
+rate, dur = 22050, 0.06
+frames = bytearray()
+smooth = 0.0
+for i in range(int(rate * dur)):
+    t = i / rate
+    env = (1 - t / dur) ** 3
+    smooth += (random.uniform(-1, 1) - smooth) * 0.18   # filtro passa-basso: toglie gli acuti
+    frames += struct.pack("<h", int(smooth * 0.9 * env * 32767))
+with wave.open(os.path.join(out, "step.wav"), "wb") as w:
     w.setnchannels(1); w.setsampwidth(2); w.setframerate(rate)
     w.writeframes(bytes(frames))
 
