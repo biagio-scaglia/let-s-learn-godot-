@@ -36,7 +36,7 @@ func _physics_process(_delta: float) -> void:
 ## Nel progetto
 
 - `characters/subaru/subaru.gd` → movimento e corsa di [[Subaru]]
-- `tools/test_corsa.gd` → [[Test automatico]]
+- `tools/test_corsa.gd` → [[Test automatico]] (rimosso, vedi [[Strumenti archiviati]])
 
 ## Vedi anche
 

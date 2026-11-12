@@ -21,7 +21,7 @@ Godot crea da solo alcuni file accanto ai tuoi:
 | `*.uid` | Identificativo unico di uno script, così i riferimenti restano validi anche se il file si sposta | Sì |
 
 - **Importare** vuol dire trasformare un file (immagine, suono) nel formato che Godot usa davvero. Succede da solo quando metti un file nel progetto.
-- Un file vuoto chiamato **`.gdignore`** in una cartella dice a Godot di ignorarla.
+- Un file vuoto chiamato **`.gdignore`** in una cartella dice a Godot di ignorarla. Il vault ne aveva uno, poi tolto perché sta fuori dal progetto Godot e Godot non lo vede comunque.
 
 ## Nel progetto
 
