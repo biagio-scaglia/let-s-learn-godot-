@@ -19,6 +19,8 @@ Un [[Nodo]] che **moltiplica il colore** di tutto il mondo 2D del suo livello pe
 
 ## Nel progetto
 
+Nella [[Casa di Lina]] il nodo `Darkness` scurisce la stanza, così si vedono le [[Luci 2D]].
+
 Nella [[Mappa principale]] il nodo `Tint` ha `Color(1, 0.97, 0.92)`: una tinta calda appena percettibile. Vedi [[Effetti visivi]].
 
 ## Vedi anche
