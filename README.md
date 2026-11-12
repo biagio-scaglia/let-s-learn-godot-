@@ -2,7 +2,7 @@
 
 Progetto personale per imparare le basi di **Godot 4**, un passo alla volta.
 
-Per ora c'è Subaru che cammina e corre in una piccola mappa con alberi, sentieri e staccionate, un Saggio con cui parlare e un cartello da leggere. Ci sono già ombre, polvere, pollini, passi sonori e una finestra di dialogo animata.
+Per ora c'è Subaru che cammina e corre in una piccola mappa con alberi, sentieri e staccionate, un Saggio con cui parlare, un cartello da leggere e una casa in cui entrare, dove abita Lina. Ci sono già ombre, polvere, pollini, passi sonori e una finestra di dialogo animata.
 
 ## Come avviarlo
 
@@ -25,7 +25,8 @@ Per ora c'è Subaru che cammina e corre in una piccola mappa con alberi, sentier
 | `let's-learn-godot/interactables/` | Componente `Interactable`: tutto ciò con cui si interagisce |
 | `let's-learn-godot/ui/` | Finestra di dialogo (autoload `Dialogue`) e dissolvenza (autoload `Fade`) |
 | `let's-learn-godot/effects/` | Shader (vignettatura) |
-| `let's-learn-godot/world/` | La mappa (`main.tscn`) e il TileSet |
+| `let's-learn-godot/world/` | Il villaggio (`main.tscn`), la casa di Lina (`house.tscn`) e i loro TileSet |
+| `let's-learn-godot/core/` | Stato del gioco (autoload `Game`) |
 | `let's-learn-godot/assets/` | Asset esterni (vedi [CREDITS.md](CREDITS.md)) |
 | `tools/` | Script di supporto: generazione di mappa ed effetti, test automatici |
 | `gamelog/` | Il diario del progetto, è un vault di [Obsidian](https://obsidian.md) |
