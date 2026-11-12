@@ -26,8 +26,10 @@ aliases:
 
 ## Struttura
 
+Fino al [[2026-11-12-pulizia]] c'era anche `tools/`, con gli script di supporto: ora sono nella cronologia di git, vedi [[Strumenti archiviati]].
+
 | Cartella | Contenuto |
 |---|---|
 | `let's-learn-godot/` | Il progetto Godot |
-| `tools/` | [[Generatore della mappa]], [[Generatore della casa]], [[Generatore degli effetti]], [[Test automatico]], [[Test del dialogo]], [[Test di casa]], [[Convertitore di charset]], [[Generatore di Subaru]] |
+| `sorgenti/` | I file di partenza, prima della pulizia (la spritesheet originale di [[Subaru]]) |
 | `gamelog/` | Questo [[Vault Obsidian]] |

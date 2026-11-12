@@ -8,7 +8,10 @@ aliases:
 
 # Test del dialogo
 
-← [[Gamelog]]
+← [[Gamelog]] · [[Strumenti archiviati]]
+
+> [!note] Script rimosso
+> Lo script è stato tolto dal repository durante la [[2026-11-12-pulizia|pulizia]]: resta nella cronologia di git. Questa nota spiega come funzionava. Vedi [[Strumenti archiviati]].
 
 Lo script `tools/test_dialogo.gd` controlla da solo il dialogo con il [[Saggio]] e la polvere della corsa. Dalla cartella `let's-learn-godot`:
 

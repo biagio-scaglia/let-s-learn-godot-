@@ -8,7 +8,10 @@ aliases:
 
 # Generatore di Subaru
 
-← [[Gamelog]]
+← [[Gamelog]] · [[Strumenti archiviati]]
+
+> [!note] Script rimosso
+> Lo script è stato tolto dal repository durante la [[2026-11-12-pulizia|pulizia]]: resta nella cronologia di git. Questa nota spiega come funzionava. Vedi [[Strumenti archiviati]].
 
 Lo script `tools/genera_subaru.py` prepara [[Subaru]] per Godot partendo dal suo [[Charset]] (`characters/subaru/subaru_charset.png`).
 

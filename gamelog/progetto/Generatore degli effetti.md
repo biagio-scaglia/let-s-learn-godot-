@@ -8,7 +8,10 @@ aliases:
 
 # Generatore degli effetti
 
-← [[Gamelog]]
+← [[Gamelog]] · [[Strumenti archiviati]]
+
+> [!note] Script rimosso
+> Lo script è stato tolto dal repository durante la [[2026-11-12-pulizia|pulizia]]: resta nella cronologia di git. Questa nota spiega come funzionava. Vedi [[Strumenti archiviati]].
 
 Lo script Python `tools/genera_effetti.py` **disegna dal codice** le piccole immagini e i suoni degli [[Effetti visivi]], in `assets/effects/`.
 

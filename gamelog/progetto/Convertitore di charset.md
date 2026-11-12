@@ -8,7 +8,10 @@ aliases:
 
 # Convertitore di charset
 
-← [[Gamelog]]
+← [[Gamelog]] · [[Strumenti archiviati]]
+
+> [!note] Script rimosso
+> Lo script è stato tolto dal repository durante la [[2026-11-12-pulizia|pulizia]]: resta nella cronologia di git. Questa nota spiega come funzionava. Vedi [[Strumenti archiviati]].
 
 Lo script `tools/charset_da_immagine.py` riporta a pixel art vera un [[Charset]] "finto": un'immagine ingrandita, con lo sfondo bianco e i colori sporcati dalla compressione JPEG (tipico delle immagini generate da un'IA).
 

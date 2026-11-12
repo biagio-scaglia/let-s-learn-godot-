@@ -12,7 +12,7 @@ aliases:
 
 ← [[Gamelog]]
 
-La prima scena **interna**: la casa col tetto rosso a nord-ovest del villaggio. File: `world/house.tscn`, generata dal [[Generatore della casa]].
+La prima scena **interna**: la casa col tetto rosso a nord-ovest del villaggio. File: `world/house.tscn`, generata dal [[Generatore della casa]] (script poi rimosso: ora si modifica a mano nell'editor).
 
 ![[casa_interno.png|500]]
 

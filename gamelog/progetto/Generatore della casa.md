@@ -8,7 +8,10 @@ aliases:
 
 # Generatore della casa
 
-← [[Gamelog]]
+← [[Gamelog]] · [[Strumenti archiviati]]
+
+> [!note] Script rimosso
+> Lo script è stato tolto dal repository durante la [[2026-11-12-pulizia|pulizia]]: resta nella cronologia di git. Questa nota spiega come funzionava. Vedi [[Strumenti archiviati]].
 
 Lo script Python `tools/genera_casa.py` crea l'interno della [[Casa di Lina]]: il suo [[TileSet]] (`world/house_tileset.tres`, da [[Tiny Dungeon]]) e la scena (`world/house.tscn`).
 

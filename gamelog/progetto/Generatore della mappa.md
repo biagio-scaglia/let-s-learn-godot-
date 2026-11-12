@@ -9,7 +9,10 @@ aliases:
 
 # Generatore della mappa
 
-← [[Gamelog]]
+← [[Gamelog]] · [[Strumenti archiviati]]
+
+> [!note] Script rimosso
+> Lo script è stato tolto dal repository durante la [[2026-11-12-pulizia|pulizia]]: resta nella cronologia di git. Questa nota spiega come funzionava. Vedi [[Strumenti archiviati]].
 
 Lo script Python `tools/genera_mappa.py` crea il [[TileSet]] (`world/tileset.tres`) e la [[Mappa principale]] (`world/main.tscn`).
 

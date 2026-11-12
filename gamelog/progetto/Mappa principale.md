@@ -52,6 +52,10 @@ Main (Node2D)
 
 ## Come è stata creata
 
+> [!info] Da ora si modifica nell'editor
+> Lo script che la generava è stato rimosso ([[2026-11-12-pulizia]]): `main.tscn` è ora una scena normale, da modificare a mano in Godot.
+
+
 Con il [[Generatore della mappa]], uno script Python. D'ora in poi conviene modificarla a mano nell'editor: [[2026-11-12-mappa-e-corsa#Come farlo a mano nell'editor]].
 
 Verificata con il [[Test automatico]].

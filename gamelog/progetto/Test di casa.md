@@ -8,7 +8,10 @@ aliases:
 
 # Test di casa
 
-← [[Gamelog]]
+← [[Gamelog]] · [[Strumenti archiviati]]
+
+> [!note] Script rimosso
+> Lo script è stato tolto dal repository durante la [[2026-11-12-pulizia|pulizia]]: resta nella cronologia di git. Questa nota spiega come funzionava. Vedi [[Strumenti archiviati]].
 
 Lo script `tools/test_casa.gd` verifica il [[Cambio di scena]] dall'inizio alla fine. Dalla cartella `let's-learn-godot`:
 
