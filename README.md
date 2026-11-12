@@ -2,7 +2,7 @@
 
 Progetto personale per imparare le basi di **Godot 4**, un passo alla volta.
 
-Per ora c'è Subaru che cammina e corre in una piccola mappa con alberi, sentieri e staccionate.
+Per ora c'è Subaru che cammina e corre in una piccola mappa con alberi, sentieri e staccionate, e un Saggio con cui parlare. Ci sono già ombre, polvere, pollini e una finestra di dialogo animata.
 
 ## Come avviarlo
 
@@ -13,6 +13,7 @@ Per ora c'è Subaru che cammina e corre in una piccola mappa con alberi, sentier
 |---|---|
 | Frecce o WASD | Muoversi |
 | Shift (tenuto premuto) | Correre |
+| E, Spazio o Invio | Parlare, andare avanti nel dialogo |
 
 ## Struttura
 
@@ -20,9 +21,12 @@ Per ora c'è Subaru che cammina e corre in una piccola mappa con alberi, sentier
 |---|---|
 | `let's-learn-godot/` | Il progetto Godot |
 | `let's-learn-godot/characters/subaru/` | Subaru: spritesheet, animazioni, scena e script |
+| `let's-learn-godot/characters/npc/` | Personaggio con cui parlare (riutilizzabile) |
+| `let's-learn-godot/ui/` | Finestra di dialogo (autoload `Dialogue`) |
+| `let's-learn-godot/effects/` | Shader (vignettatura) |
 | `let's-learn-godot/world/` | La mappa (`main.tscn`) e il TileSet |
 | `let's-learn-godot/assets/` | Asset esterni (vedi [CREDITS.md](CREDITS.md)) |
-| `tools/` | Script di supporto: generazione della mappa e test automatico |
+| `tools/` | Script di supporto: generazione di mappa ed effetti, test automatici |
 | `gamelog/` | Il diario del progetto, è un vault di [Obsidian](https://obsidian.md) |
 | `Sprite Sheet Subaru.png` | La spritesheet originale, prima della pulizia |
 
