@@ -1,0 +1,146 @@
+[gd_scene load_steps=16 format=3]
+
+[ext_resource type="Script" path="res://world/level.gd" id="1_level"]
+[ext_resource type="TileSet" path="res://world/house_tileset.tres" id="2_tiles"]
+[ext_resource type="PackedScene" path="res://characters/subaru/subaru.tscn" id="3_subaru"]
+[ext_resource type="PackedScene" path="res://characters/npc/npc.tscn" id="4_npc"]
+[ext_resource type="PackedScene" path="res://interactables/interactable.tscn" id="5_interactable"]
+[ext_resource type="PackedScene" path="res://interactables/door.tscn" id="6_door"]
+[ext_resource type="Script" path="res://effects/flicker.gd" id="7_flicker"]
+[ext_resource type="Shader" path="res://effects/vignette.gdshader" id="8_vignette"]
+
+[sub_resource type="Gradient" id="light_falloff"]
+offsets = PackedFloat32Array(0, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="light_tex"]
+gradient = SubResource("light_falloff")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="RectangleShape2D" id="wall_h"]
+size = Vector2(384, 64)
+
+[sub_resource type="RectangleShape2D" id="wall_v"]
+size = Vector2(32, 288)
+
+[sub_resource type="RectangleShape2D" id="wall_bottom"]
+size = Vector2(160, 32)
+
+[sub_resource type="ShaderMaterial" id="vignette_mat"]
+shader = ExtResource("8_vignette")
+
+[node name="House" type="Node2D"]
+script = ExtResource("1_level")
+
+[node name="Floor" type="TileMapLayer" parent="."]
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+tile_set = ExtResource("2_tiles")
+
+[node name="Walls" type="TileMapLayer" parent="."]
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 4, 0, 3, 0, 0, 0, 2, 0, 0, 0, 0, 0, 4, 0, 3, 0, 0, 0, 3, 0, 0, 0, 0, 0, 4, 0, 3, 0, 0, 0, 4, 0, 0, 0, 0, 0, 4, 0, 3, 0, 0, 0, 5, 0, 0, 0, 0, 0, 4, 0, 3, 0, 0, 0, 6, 0, 0, 0, 0, 0, 4, 0, 3, 0, 0, 0, 7, 0, 0, 0, 0, 0, 4, 0, 3, 0, 0, 0, 8, 0, 0, 0, 0, 0, 4, 0, 3, 0, 0, 0, 9, 0, 0, 0, 0, 0, 4, 0, 3, 0, 0, 0, 10, 0, 0, 0, 0, 0, 4, 0, 3, 0, 0, 0, 11, 0, 0, 0, 0, 0, 6, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 6, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 4, 0, 3, 0, 0, 0, 2, 0, 1, 0, 0, 0, 4, 0, 3, 0, 0, 0, 3, 0, 1, 0, 0, 0, 4, 0, 2, 0, 0, 0, 4, 0, 1, 0, 0, 0, 4, 0, 3, 0, 0, 0, 5, 0, 1, 0, 0, 0, 4, 0, 3, 0, 0, 0, 6, 0, 1, 0, 0, 0, 4, 0, 3, 0, 0, 0, 7, 0, 1, 0, 0, 0, 4, 0, 3, 0, 0, 0, 8, 0, 1, 0, 0, 0, 5, 0, 2, 0, 0, 0, 9, 0, 1, 0, 0, 0, 4, 0, 3, 0, 0, 0, 10, 0, 1, 0, 0, 0, 4, 0, 3, 0, 0, 0, 11, 0, 1, 0, 0, 0, 6, 0, 1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 6, 0, 1, 0, 0, 0, 11, 0, 2, 0, 0, 0, 6, 0, 1, 0, 0, 0, 0, 0, 3, 0, 0, 0, 6, 0, 1, 0, 0, 0, 11, 0, 3, 0, 0, 0, 6, 0, 1, 0, 0, 0, 0, 0, 4, 0, 0, 0, 6, 0, 1, 0, 0, 0, 11, 0, 4, 0, 0, 0, 6, 0, 1, 0, 0, 0, 0, 0, 5, 0, 0, 0, 6, 0, 1, 0, 0, 0, 11, 0, 5, 0, 0, 0, 6, 0, 1, 0, 0, 0, 0, 0, 6, 0, 0, 0, 6, 0, 1, 0, 0, 0, 11, 0, 6, 0, 0, 0, 6, 0, 1, 0, 0, 0, 0, 0, 7, 0, 0, 0, 6, 0, 1, 0, 0, 0, 11, 0, 7, 0, 0, 0, 6, 0, 1, 0, 0, 0, 0, 0, 8, 0, 0, 0, 6, 0, 1, 0, 0, 0, 1, 0, 8, 0, 0, 0, 0, 0, 3, 0, 0, 0, 2, 0, 8, 0, 0, 0, 1, 0, 3, 0, 0, 0, 3, 0, 8, 0, 0, 0, 2, 0, 3, 0, 0, 0, 4, 0, 8, 0, 0, 0, 3, 0, 3, 0, 0, 0, 7, 0, 8, 0, 0, 0, 0, 0, 3, 0, 0, 0, 8, 0, 8, 0, 0, 0, 1, 0, 3, 0, 0, 0, 9, 0, 8, 0, 0, 0, 2, 0, 3, 0, 0, 0, 10, 0, 8, 0, 0, 0, 3, 0, 3, 0, 0, 0, 11, 0, 8, 0, 0, 0, 6, 0, 1, 0, 0, 0)
+tile_set = ExtResource("2_tiles")
+
+[node name="Darkness" type="CanvasModulate" parent="."]
+color = Color(0.5, 0.46, 0.58, 1)
+
+[node name="TorchLight" type="PointLight2D" parent="."]
+position = Vector2(272, 48)
+color = Color(1, 0.72, 0.42, 1)
+energy = 1.3
+texture = SubResource("light_tex")
+texture_scale = 3.2
+script = ExtResource("7_flicker")
+
+[node name="WindowLight" type="PointLight2D" parent="."]
+position = Vector2(112, 80)
+color = Color(0.62, 0.78, 1, 1)
+energy = 0.7
+texture = SubResource("light_tex")
+texture_scale = 2.4
+
+[node name="World" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Objects" type="TileMapLayer" parent="World"]
+y_sort_enabled = true
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray(0, 0, 2, 0, 2, 0, 0, 0, 3, 0, 5, 0, 0, 0, 3, 0, 2, 0, 0, 0, 3, 0, 6, 0, 0, 0, 9, 0, 2, 0, 0, 0, 5, 0, 7, 0, 0, 0, 10, 0, 2, 0, 0, 0, 10, 0, 6, 0, 0, 0, 10, 0, 3, 0, 0, 0, 10, 0, 6, 0, 0, 0, 4, 0, 4, 0, 0, 0, 1, 0, 6, 0, 0, 0, 5, 0, 4, 0, 0, 0, 0, 0, 6, 0, 0, 0, 6, 0, 4, 0, 0, 0, 1, 0, 6, 0, 0, 0)
+tile_set = ExtResource("2_tiles")
+
+[node name="Bounds" type="StaticBody2D" parent="World"]
+
+[node name="Top" type="CollisionShape2D" parent="World/Bounds"]
+position = Vector2(192, 32)
+shape = SubResource("wall_h")
+
+[node name="Left" type="CollisionShape2D" parent="World/Bounds"]
+position = Vector2(16, 144)
+shape = SubResource("wall_v")
+
+[node name="Right" type="CollisionShape2D" parent="World/Bounds"]
+position = Vector2(368, 144)
+shape = SubResource("wall_v")
+
+[node name="BottomLeft" type="CollisionShape2D" parent="World/Bounds"]
+position = Vector2(80, 272)
+shape = SubResource("wall_bottom")
+
+[node name="BottomRight" type="CollisionShape2D" parent="World/Bounds"]
+position = Vector2(304, 272)
+shape = SubResource("wall_bottom")
+
+[node name="Lina" parent="World" instance=ExtResource("4_npc")]
+position = Vector2(272, 160)
+npc_name = "Lina"
+lines = PackedStringArray("Oh! Ciao! Non ti avevo sentito entrare.", "Io sono Lina. Il Saggio è mio nonno... sì, quello che guarda crescere gli alberi.", "Il baule in fondo è chiuso a chiave. Chissà dove l'ho messa...")
+repeat_lines = PackedStringArray("Se trovi la chiave del baule, dimmelo!")
+sprite_tile = 99
+
+[node name="Chest" parent="World" instance=ExtResource("5_interactable")]
+position = Vector2(304, 100)
+speaker = "Baule"
+lines = PackedStringArray("È chiuso a chiave.")
+repeat_lines = PackedStringArray("Ancora chiuso. Da qualche parte ci sarà una chiave...")
+prompt_height = 40.0
+
+[node name="Bookshelf" parent="World" instance=ExtResource("5_interactable")]
+position = Vector2(96, 100)
+speaker = "Libreria"
+lines = PackedStringArray("Tanti libri polverosi.", "Uno si intitola: \"Godot per principianti, volume 1\".")
+repeat_lines = PackedStringArray("Il volume 2 non c'è. Forse non l'hanno ancora scritto.")
+prompt_height = 40.0
+
+[node name="Exit" parent="World" instance=ExtResource("6_door")]
+position = Vector2(192, 290)
+target_scene = "res://world/main.tscn"
+target_spawn = "HouseDoor"
+size = Vector2(64, 12)
+
+[node name="Subaru" parent="World" instance=ExtResource("3_subaru")]
+position = Vector2(192, 236)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(192, 144)
+
+[node name="Spawns" type="Node2D" parent="."]
+
+[node name="Entrance" type="Marker2D" parent="Spawns"]
+position = Vector2(192, 236)
+
+[node name="Effects" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="Vignette" type="ColorRect" parent="Effects"]
+material = SubResource("vignette_mat")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
