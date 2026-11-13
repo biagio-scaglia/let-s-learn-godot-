@@ -12,6 +12,8 @@ extends CharacterBody2D
 var facing := "down"
 ## Quanti passi ha fatto (utile nei test).
 var step_count := 0
+## True mentre cammina da solo (in una cutscene): i tasti non contano.
+var _auto_walking := false
 
 
 func _ready() -> void:
@@ -27,6 +29,8 @@ func _on_frame_changed() -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	if _auto_walking:
+		return   # lo muove walk_to(), non i tasti
 	# Durante un dialogo o un cambio di scena Subaru resta fermo.
 	if not Game.player_can_move():
 		velocity = Vector2.ZERO
@@ -50,6 +54,20 @@ func _physics_process(_delta: float) -> void:
 		sprite.speed_scale = run_anim_scale if running else 1.0
 	else:
 		_play_idle()
+
+
+## Fa camminare Subaru da solo fino a "point", in linea retta (per le cutscene).
+## Si può aspettare: await subaru.walk_to(...). Attraversa i muri: serve solo per le scene scritte.
+func walk_to(point: Vector2, speed := walk_speed) -> void:
+	_auto_walking = true
+	facing = _direction_name(point - global_position)
+	sprite.play("walk_" + facing)
+	sprite.speed_scale = 1.0
+	var t := create_tween()
+	t.tween_property(self, "global_position", point, global_position.distance_to(point) / speed)
+	await t.finished
+	_auto_walking = false
+	_play_idle()
 
 
 ## Gira Subaru verso un punto (per esempio chi gli sta parlando).
