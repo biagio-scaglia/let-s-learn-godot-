@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3]
+[gd_scene load_steps=19 format=3]
 
 [ext_resource type="TileSet" path="res://world/tileset.tres" id="1_tiles"]
 [ext_resource type="PackedScene" path="res://characters/subaru/subaru.tscn" id="2_subaru"]
@@ -10,9 +10,18 @@
 [ext_resource type="Texture2D" path="res://characters/emilia/emilia_charset.png" id="8_emilia"]
 [ext_resource type="PackedScene" path="res://interactables/pickup.tscn" id="9_pickup"]
 [ext_resource type="PackedScene" path="res://cutscenes/intro.tscn" id="10_intro"]
+[ext_resource type="Shader" path="res://effects/sun_rays.gdshader" id="11_sun"]
+[ext_resource type="Shader" path="res://effects/cloud_shadows.gdshader" id="12_clouds"]
 
 [sub_resource type="ShaderMaterial" id="vignette_mat"]
 shader = ExtResource("4_vignette")
+
+[sub_resource type="ShaderMaterial" id="sun_mat"]
+shader = ExtResource("11_sun")
+shader_parameter/intensity = 0.3
+
+[sub_resource type="ShaderMaterial" id="clouds_mat"]
+shader = ExtResource("12_clouds")
 
 [sub_resource type="Gradient" id="pollen_fade"]
 offsets = PackedFloat32Array(0, 0.2, 0.8, 1)
@@ -129,8 +138,23 @@ scale_amount_min = 1.0
 scale_amount_max = 2.0
 color_ramp = SubResource("pollen_fade")
 
+[node name="CloudShadows" type="ColorRect" parent="."]
+material = SubResource("clouds_mat")
+offset_right = 1280.0
+offset_bottom = 768.0
+mouse_filter = 2
+
 [node name="Effects" type="CanvasLayer" parent="."]
 layer = 5
+
+[node name="SunRays" type="ColorRect" parent="Effects"]
+material = SubResource("sun_mat")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="Vignette" type="ColorRect" parent="Effects"]
 material = SubResource("vignette_mat")
