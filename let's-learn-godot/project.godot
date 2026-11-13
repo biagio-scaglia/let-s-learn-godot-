@@ -17,6 +17,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+Settings="*res://core/settings.gd"
+Sfx="*res://core/sfx.gd"
+Inventory="*res://core/inventory.gd"
+SaveSystem="*res://core/save_system.gd"
 Dialogue="*res://ui/dialogue_box.tscn"
 Fade="*res://ui/fade.tscn"
 Game="*res://core/game.gd"
