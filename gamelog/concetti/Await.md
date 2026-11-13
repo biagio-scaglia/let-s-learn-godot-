@@ -33,6 +33,7 @@ Si può aspettare:
 | [[Game]] `change_scene()` | La dissolvenza, poi due frame perché la nuova scena sia pronta |
 | [[Dissolvenza]] | La fine del [[Tween]] |
 | [[Finestra di dialogo]] `_close()` | La fine dell'animazione di chiusura |
+| [[Intro]] | Subaru che arriva in piazza, le pause, il dialogo: una [[Cutscene]] |
 | Tutti i test | Timer e frame, per dare tempo al gioco |
 
 ## Vedi anche

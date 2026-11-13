@@ -20,11 +20,12 @@ L'[[Autoload]] **`Game`** (`core/game.gd`): lo **stato del gioco** che deve sopr
 | `flags` | Un dizionario di ricordi. Per ora: quante volte hai interagito con ogni [[Interactable]] (chiave `"talked:<percorso>"`) |
 | `spawn_point`, `spawn_facing` | Dove far comparire il giocatore nella prossima scena, e verso dove guarda |
 | `changing_scene` | Vero durante un cambio di scena |
+| `in_cutscene` | Vero durante una [[Cutscene]] (es. l'[[Intro]]): niente comandi né menu |
 
 ## Cosa fa
 
 - `change_scene(path, spawn, facing)`: suono della porta, [[Dissolvenza]] al nero, [[Cambio di scena]], dissolvenza dal nero. Usa [[Await]].
-- `player_can_move()`: no durante un dialogo o un cambio di scena. La usa [[Subaru]].
+- `player_can_move()`: no durante un dialogo, un cambio di scena o una [[Cutscene]]. La usano [[Subaru]] e gli [[Interactable]].
 - `new_game()`: dimentica tutto e va al villaggio. La usa la [[Schermata iniziale]].
 - **Inventario:** `inventory`, `add_item()`, `remove_item()`, `has_item()`, il segnale `inventory_changed`. Vedi [[Zaino]] e [[Oggetti]].
 - **Salvataggio:** `save_game()`, `continue_game()`, `has_save()`, `save_info()`. Vedi [[Salvataggio]].

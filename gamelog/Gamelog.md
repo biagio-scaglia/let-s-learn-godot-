@@ -30,6 +30,7 @@ Diario del progetto: cosa è stato fatto, perché, e cosa ho imparato di Godot s
 | 2026-11-12 | [[2026-11-12-pulizia\|Pulizia]] | Completato |
 | 2026-11-12 | [[2026-11-12-menu\|Schermata iniziale e menu di pausa]] | Funzionante |
 | 2026-11-13 | [[2026-11-13-chiave-e-salvataggio\|La chiave del baule, lo zaino e il salvataggio]] | Funzionante |
+| 2026-11-13 | [[2026-11-13-cutscene\|La prima cutscene: Subaru arriva al villaggio]] | Funzionante |
 
 ## Il progetto
 
@@ -37,7 +38,7 @@ Diario del progetto: cosa è stato fatto, perché, e cosa ho imparato di Godot s
 |---|---|
 | Personaggi | [[Subaru]] · [[Emilia]] · [[Saggio]] · [[Lina]] |
 | Oggetti | [[Oggetti]] · [[Oggetto da raccogliere]] · [[Cartello]] · [[Interactable]] · [[Porta]] |
-| Missioni | [[Missione della chiave]] |
+| Storia e missioni | [[Intro]] · [[Missione della chiave]] |
 | Mondo | [[Mappa principale]] · [[Casa di Lina]] · [[Effetti visivi]] |
 | Stato del gioco | [[Game]] |
 | Interfaccia | [[Zaino]] · [[Avvisi]] · [[Salvataggio]] · [[Schermata iniziale]] · [[Menu di pausa]] · [[Opzioni]] · [[MenuItem]] · [[Finestra di dialogo]] · [[Dissolvenza]] |

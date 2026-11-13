@@ -38,6 +38,7 @@ Indice dei concetti di Godot incontrati finora. Ogni concetto ha la sua nota, co
 - [[Classi globali]]: `class_name`, uno script diventa un tipo
 - [[Tween]]: animare una proprietà dal codice
 - [[Await]]: aspettare senza bloccare il gioco
+- [[Cutscene]]: una regia scritta in codice, il giocatore guarda
 - [[ConfigFile]]: salvare le impostazioni su file
 - [[Input Map]]: azioni e tasti
 - [[Eventi di input]]: `_unhandled_input` e tasti "usati"

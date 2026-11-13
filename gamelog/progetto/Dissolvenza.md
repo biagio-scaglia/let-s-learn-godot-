@@ -14,6 +14,7 @@ aliases:
 Un [[Autoload]] chiamato **`Fade`** (`ui/fade.tscn`): un rettangolo nero sopra a tutto ([[CanvasLayer]] 20) che compare e scompare con un [[Tween]].
 
 - All'avvio il gioco **compare dal nero** in 0,4 secondi.
+- `fade_in(secondi)` accetta una durata diversa: l'[[Intro]] esce dal nero più piano, in 1,8 secondi.
 - È pronto per il **cambio di scena** (il prossimo passo dell'RPG):
 
 ```gdscript
