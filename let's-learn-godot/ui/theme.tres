@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=15 format=3]
+[gd_resource type="Theme" load_steps=18 format=3]
 
 [ext_resource type="FontFile" path="res://assets/fonts/kenpixel_high_square.ttf" id="1_font"]
 [ext_resource type="Texture2D" path="res://assets/ui/checkbox_on.png" id="2_check_on"]
@@ -57,6 +57,52 @@ content_margin_bottom = 1.0
 bg_color = Color(0.96, 0.9, 0.77, 0.35)
 anti_aliasing = false
 
+[sub_resource type="StyleBoxFlat" id="slot"]
+bg_color = Color(0.05, 0.03, 0.07, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.96, 0.9, 0.77, 0.35)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="slot_focus"]
+bg_color = Color(0.2, 0.14, 0.12, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.8, 0.35, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="toast"]
+content_margin_left = 12.0
+content_margin_top = 4.0
+content_margin_right = 14.0
+content_margin_bottom = 4.0
+bg_color = Color(0.11, 0.08, 0.13, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.8, 0.35, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_color = Color(0, 0, 0, 0.45)
+shadow_size = 1
+shadow_offset = Vector2(0, 3)
+anti_aliasing = false
+
 [resource]
 default_font = ExtResource("1_font")
 default_font_size = 16
@@ -107,11 +153,19 @@ HintLabel/font_sizes/font_size = 16
 Label/colors/font_color = Color(0.96, 0.9, 0.77, 1)
 Panel/styles/panel = SubResource("panel")
 PanelContainer/styles/panel = SubResource("panel")
+SlotButton/base_type = &"Button"
+SlotButton/font_sizes/font_size = 16
+SlotButton/styles/focus = SubResource("slot_focus")
+SlotButton/styles/hover = SubResource("slot_focus")
+SlotButton/styles/normal = SubResource("slot")
+SlotButton/styles/pressed = SubResource("slot_focus")
 SubtitleLabel/base_type = &"Label"
 SubtitleLabel/colors/font_color = Color(1, 0.8, 0.35, 1)
 SubtitleLabel/colors/font_outline_color = Color(0.1, 0.05, 0.12, 1)
 SubtitleLabel/constants/outline_size = 6
 SubtitleLabel/font_sizes/font_size = 16
+ToastPanel/base_type = &"PanelContainer"
+ToastPanel/styles/panel = SubResource("toast")
 TitleLabel/base_type = &"Label"
 TitleLabel/colors/font_color = Color(0.98, 0.94, 0.82, 1)
 TitleLabel/colors/font_outline_color = Color(0.12, 0.06, 0.15, 1)
