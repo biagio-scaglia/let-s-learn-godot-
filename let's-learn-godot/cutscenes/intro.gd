@@ -1,6 +1,6 @@
 extends CanvasLayer
 ## La cutscene d'apertura, solo alla prima partita: schermo nero, si sentono dei passi,
-## poi l'immagine compare e Subaru arriva a piedi nel villaggio dal sentiero a sud.
+## poi sorge il sole e Subaru arriva a piedi nel villaggio dal sentiero a sud.
 ##
 ## È una "regia" scritta in codice: una riga dopo l'altra, con await per aspettare
 ## che ogni azione finisca prima di passare alla successiva.
@@ -10,9 +10,16 @@ const START := Vector2(656, 820)
 const STOP := Vector2(656, 416)
 ## Altezza delle bande nere "da film", in pixel.
 const BAR_HEIGHT := 36.0
+## I colori dell'alba: prima il blu della notte che finisce, poi l'arancio del sole basso.
+const NIGHT_TINT := Color(0.5, 0.52, 0.8)
+const DAWN_TINT := Color(1.0, 0.76, 0.62)
+## Quanto sono forti i raggi di sole nel momento più bello dell'alba.
+const DAWN_RAYS := 0.9
 
 @onready var top_bar: ColorRect = $TopBar
 @onready var bottom_bar: ColorRect = $BottomBar
+@onready var place_card: Control = $PlaceCard
+@onready var place_line: ColorRect = $PlaceCard/Line
 
 
 func _ready() -> void:
@@ -40,20 +47,22 @@ func _play(player: Node2D) -> void:
 	var camera := player.get_node("Camera2D") as Camera2D
 	camera.reset_smoothing.call_deferred()
 
-	# 1. Buio: si sentono solo i passi.
-	await get_tree().create_timer(0.5).timeout
+	# 1. Buio: si sentono solo i passi. Intanto prepariamo l'alba.
+	_sunrise()
+	await _wait(0.5)
 	_fade_in_later(1.6, 1.8)
 	# 2. Subaru cammina fino alla piazza (await: aspetta che sia arrivato).
 	await player.walk_to(STOP)
 
-	# 3. Si guarda intorno.
-	await _wait(0.5)
+	# 3. Compare il nome del luogo, e intanto Subaru si guarda intorno.
+	_show_place_card()
+	await _wait(0.6)
 	player.face("left")
-	await _wait(0.6)
+	await _wait(0.8)
 	player.face("right")
-	await _wait(0.6)
+	await _wait(0.8)
 	player.face("down")
-	await _wait(0.3)
+	await _wait(0.9)
 
 	# 4. Via le bande, poi un pensiero ad alta voce.
 	await _hide_bars()
@@ -67,6 +76,49 @@ func _play(player: Node2D) -> void:
 	Game.flags["intro_vista"] = true
 	Game.in_cutscene = false
 	queue_free()
+
+
+## L'alba: la luce del mondo (Tint) passa dal blu all'arancio al colore normale,
+## e i raggi di sole si accendono forti per poi calmarsi.
+func _sunrise() -> void:
+	var tint := get_parent().get_node_or_null("Tint") as CanvasModulate
+	var rays := get_parent().get_node_or_null("Effects/SunRays") as ColorRect
+	if tint == null or rays == null:
+		return
+	var day_tint := tint.color
+	var rays_mat := rays.material as ShaderMaterial
+	var day_rays: float = rays_mat.get_shader_parameter("intensity")
+
+	tint.color = NIGHT_TINT
+	rays_mat.set_shader_parameter("intensity", 0.0)
+
+	var t := create_tween()
+	t.tween_interval(2.0)   # nel buio non si vede: aspettiamo che lo schermo si schiarisca
+	t.tween_property(tint, "color", DAWN_TINT, 2.2).set_trans(Tween.TRANS_SINE)
+	t.tween_property(tint, "color", day_tint, 2.8).set_trans(Tween.TRANS_SINE)
+	# I raggi vanno in parallelo: un Tween separato con i suoi tempi.
+	var r := create_tween()
+	r.tween_interval(2.4)
+	r.tween_method(_set_rays.bind(rays_mat), 0.0, DAWN_RAYS, 2.4).set_trans(Tween.TRANS_SINE)
+	r.tween_method(_set_rays.bind(rays_mat), DAWN_RAYS, day_rays, 3.0).set_trans(Tween.TRANS_SINE)
+
+
+func _set_rays(value: float, mat: ShaderMaterial) -> void:
+	mat.set_shader_parameter("intensity", value)
+
+
+## "Villaggio di Erbalta": la scritta scende un poco e compare, la linea dorata si allarga
+## dal centro, poi tutto sparisce.
+func _show_place_card() -> void:
+	var y := place_card.position.y
+	place_card.position.y = y - 8.0
+	place_line.scale.x = 0.0
+	var t := create_tween()
+	t.tween_property(place_card, "modulate:a", 1.0, 0.6)
+	t.parallel().tween_property(place_card, "position:y", y, 0.8).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	t.parallel().tween_property(place_line, "scale:x", 1.0, 0.9).set_delay(0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	t.tween_interval(1.4)
+	t.tween_property(place_card, "modulate:a", 0.0, 0.7)
 
 
 ## Toglie il nero dopo "delay" secondi, in "seconds" secondi, senza fermare la cutscene.
