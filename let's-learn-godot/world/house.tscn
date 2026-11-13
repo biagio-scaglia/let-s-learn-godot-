@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3]
+[gd_scene load_steps=17 format=3]
 
 [ext_resource type="Script" path="res://world/level.gd" id="1_level"]
 [ext_resource type="TileSet" path="res://world/house_tileset.tres" id="2_tiles"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" path="res://interactables/door.tscn" id="6_door"]
 [ext_resource type="Script" path="res://effects/flicker.gd" id="7_flicker"]
 [ext_resource type="Shader" path="res://effects/vignette.gdshader" id="8_vignette"]
+[ext_resource type="Script" path="res://quests/key_quest.gd" id="9_quest"]
 
 [sub_resource type="Gradient" id="light_falloff"]
 offsets = PackedFloat32Array(0, 1)
@@ -98,8 +99,8 @@ shape = SubResource("wall_bottom")
 [node name="Lina" parent="World" instance=ExtResource("4_npc")]
 position = Vector2(272, 160)
 npc_name = "Lina"
-lines = PackedStringArray("Oh! Ciao! Non ti avevo sentito entrare.", "Io sono Lina. Il Saggio è mio nonno... sì, quello che guarda crescere gli alberi.", "Il baule in fondo è chiuso a chiave. Chissà dove l'ho messa...")
-repeat_lines = PackedStringArray("Se trovi la chiave del baule, dimmelo!")
+lines = PackedStringArray("Oh! Ciao! Non ti avevo sentito entrare.", "Io sono Lina. Il Saggio è mio nonno... sì, quello che guarda crescere gli alberi.", "Il baule in fondo è chiuso a chiave, e la chiave l'ho persa...", "Forse mi è caduta vicino alla staccionata, a ovest della piazza. Se la trovi, portamela!")
+repeat_lines = PackedStringArray("Hai trovato la mia chiave? Credo di averla persa vicino alla staccionata, a ovest della piazza.")
 sprite_tile = 99
 
 [node name="Chest" parent="World" instance=ExtResource("5_interactable")]
@@ -124,6 +125,12 @@ size = Vector2(64, 12)
 
 [node name="Subaru" parent="World" instance=ExtResource("3_subaru")]
 position = Vector2(192, 236)
+
+[node name="KeyQuest" type="Node" parent="." node_paths=PackedStringArray("lina", "chest", "objects")]
+script = ExtResource("9_quest")
+lina = NodePath("../World/Lina/Interactable")
+chest = NodePath("../World/Chest")
+objects = NodePath("../World/Objects")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(192, 144)
