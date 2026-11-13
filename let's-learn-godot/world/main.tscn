@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3]
+[gd_scene load_steps=14 format=3]
 
 [ext_resource type="TileSet" path="res://world/tileset.tres" id="1_tiles"]
 [ext_resource type="PackedScene" path="res://characters/subaru/subaru.tscn" id="2_subaru"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://world/level.gd" id="6_level"]
 [ext_resource type="PackedScene" path="res://interactables/door.tscn" id="7_door"]
 [ext_resource type="Texture2D" path="res://characters/emilia/emilia_charset.png" id="8_emilia"]
+[ext_resource type="PackedScene" path="res://interactables/pickup.tscn" id="9_pickup"]
 
 [sub_resource type="ShaderMaterial" id="vignette_mat"]
 shader = ExtResource("4_vignette")
@@ -84,6 +85,10 @@ speaker = "Cartello"
 lines = PackedStringArray("Villaggio di Erbalta.", "A nord: il bosco. A est e a ovest: la strada maestra.")
 repeat_lines = PackedStringArray("Sotto, piccolo piccolo: \"Il Saggio sa tutto. Chiedete a lui.\"")
 prompt_height = 42.0
+
+[node name="Key" parent="World" instance=ExtResource("9_pickup")]
+position = Vector2(176, 344)
+item_id = "chiave"
 
 [node name="HouseDoor" parent="World" instance=ExtResource("7_door")]
 position = Vector2(272, 197)
