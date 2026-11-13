@@ -35,7 +35,7 @@ if config.load("user://impostazioni.cfg") == OK:
 
 ## Nel progetto
 
-[[Game]] salva così le [[Opzioni]] (volume e schermo intero) ogni volta che cambiano, e le rilegge all'avvio. Più avanti lo stesso modo servirà per il salvataggio della partita.
+[[Game]] salva così le [[Opzioni]] (volume e schermo intero) ogni volta che cambiano, e le rilegge all'avvio. Allo stesso modo salva anche la partita: vedi [[Salvare la partita]].
 
 ## Vedi anche
 

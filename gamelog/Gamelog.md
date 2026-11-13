@@ -29,16 +29,18 @@ Diario del progetto: cosa è stato fatto, perché, e cosa ho imparato di Godot s
 | 2026-11-12 | [[2026-11-12-subaru-v2\|Subaru, versione 2]] | Funzionante |
 | 2026-11-12 | [[2026-11-12-pulizia\|Pulizia]] | Completato |
 | 2026-11-12 | [[2026-11-12-menu\|Schermata iniziale e menu di pausa]] | Funzionante |
+| 2026-11-13 | [[2026-11-13-chiave-e-salvataggio\|La chiave del baule, lo zaino e il salvataggio]] | Funzionante |
 
 ## Il progetto
 
 | Cosa | Note |
 |---|---|
 | Personaggi | [[Subaru]] · [[Emilia]] · [[Saggio]] · [[Lina]] |
-| Oggetti | [[Cartello]] · [[Interactable]] · [[Porta]] |
+| Oggetti | [[Oggetti]] · [[Oggetto da raccogliere]] · [[Cartello]] · [[Interactable]] · [[Porta]] |
+| Missioni | [[Missione della chiave]] |
 | Mondo | [[Mappa principale]] · [[Casa di Lina]] · [[Effetti visivi]] |
 | Stato del gioco | [[Game]] |
-| Interfaccia | [[Schermata iniziale]] · [[Menu di pausa]] · [[Opzioni]] · [[MenuItem]] · [[Finestra di dialogo]] · [[Dissolvenza]] |
+| Interfaccia | [[Zaino]] · [[Avvisi]] · [[Salvataggio]] · [[Schermata iniziale]] · [[Menu di pausa]] · [[Opzioni]] · [[MenuItem]] · [[Finestra di dialogo]] · [[Dissolvenza]] |
 | Asset | [[Tiny Town]] · [[Tiny Dungeon]] · [[KenPixel]] · [[Kenney]] · [[Licenza CC0]] · [[Dove trovare asset]] |
 | Strumenti (archiviati) | [[Strumenti archiviati]]: [[Generatore della mappa]] · [[Generatore della casa]] · [[Generatore degli effetti]] · [[Generatore di Subaru]] · [[Convertitore di charset]] · [[Test automatico]] · [[Test del dialogo]] · [[Test di casa]] |
 | Organizzazione | [[Repository GitHub]] · [[Vault Obsidian]] |
@@ -52,7 +54,8 @@ Apri Godot 4.7, importa la cartella `let's-learn-godot` e premi **F5**. Dettagli
 | Frecce / WASD | Muoversi |
 | Shift | Correre |
 | E / Spazio / Invio | Parlare, leggere |
-| Esc | Pausa |
+| Esc | Pausa (anche per salvare) |
+| Tab / I | Zaino |
 
 ## Stato del progetto
 
@@ -69,8 +72,8 @@ Apri Godot 4.7, importa la cartella `let's-learn-godot` e premi **F5**. Dettagli
 - [ ] Modificare la mappa a mano nell'editor
 - [x] Una casa in cui entrare (cambio scena)
 - [x] Schermata iniziale e menu di pausa, con le opzioni
-- [ ] Raccogliere oggetti (inventario)
+- [x] Raccogliere oggetti (inventario) e la prima missione
+- [x] Salvataggio e Continua
 - [ ] Combattimento a turni
 - [ ] Statistiche e livelli
-- [ ] Salvataggio
 - [ ] Una piccola storia dall'inizio alla fine

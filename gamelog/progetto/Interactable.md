@@ -30,7 +30,7 @@ Interactable (Area2D)        + interactable.gd (class_name Interactable)
 | `repeat_lines` | Le frasi dalla seconda volta (se vuoto, ripete `lines`) |
 | `prompt_height` | A che altezza sta la nuvoletta |
 
-Il segnale `interacted` avvisa quando il giocatore interagisce: servirà per missioni e oggetti.
+Il segnale `interacted` avvisa quando il giocatore interagisce. Chi lo ascolta può impostare **`override_lines`**: le frasi da dire solo questa volta (lo fa la [[Missione della chiave]]). Senza nessuna frase non si apre il dialogo: basta il segnale (lo usa l'[[Oggetto da raccogliere]]).
 
 ## Come funziona
 

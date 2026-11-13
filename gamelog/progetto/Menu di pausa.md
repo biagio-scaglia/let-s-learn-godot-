@@ -27,6 +27,7 @@ Si apre con **Esc** in qualsiasi livello. È un [[Autoload]] chiamato `Pause` (`
 | Voce | Cosa fa |
 |---|---|
 | Riprendi (o Esc) | Chiude il menu e toglie la pausa |
+| Salva | Salva la partita, vedi [[Salvataggio]] |
 | Opzioni | Apre le [[Opzioni]]; Esc torna qui |
 | Torna al titolo | Sfuma al nero e torna alla [[Schermata iniziale]] |
 | Esci dal gioco | Chiude il gioco |

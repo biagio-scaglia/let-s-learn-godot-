@@ -58,4 +58,4 @@ La stanza (384×288 px) è più piccola dello schermo (640×360): intorno si ved
 | Baule | "È chiuso a chiave." | "Ancora chiuso. Da qualche parte ci sarà una chiave..." |
 | Libreria | Un libro: "Godot per principianti, volume 1" | Il volume 2 non c'è ancora |
 
-Il baule chiuso è un aggancio per il prossimo passo: l'**inventario** (trovare la chiave).
+Il baule è al centro della [[Missione della chiave]]: con la chiave si apre e si disegna aperto (tile 91).

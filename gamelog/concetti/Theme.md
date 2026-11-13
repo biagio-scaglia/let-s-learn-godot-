@@ -30,6 +30,8 @@ Una **variazione** è uno stile in più per un tipo esistente. Nel nostro Theme 
 | `SubtitleLabel` | Il sottotitolo: dorato, 16 px |
 | `HintLabel` | Le scritte di aiuto: 16 px, semitrasparenti |
 
+E due variazioni per altri tipi: `SlotButton` (le caselle dello [[Zaino]]) e `ToastPanel` (gli [[Avvisi]]).
+
 Nel nodo si sceglie con *Theme Type Variation*.
 
 ## Nel progetto

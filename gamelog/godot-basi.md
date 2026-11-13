@@ -29,6 +29,9 @@ Indice dei concetti di Godot incontrati finora. Ogni concetto ha la sua nota, co
 ## Codice
 
 - [[GDScript]]: il linguaggio, simile a Python
+- [[Dizionari]]: chiavi e valori
+- [[Risorse personalizzate]]: i propri tipi di dati, come Item
+- [[Salvare la partita]]: cosa salvare e come ricaricarlo
 - [[Ciclo di gioco]]: `_ready`, `_process`, `_physics_process`
 - [[Export e Inspector]]: variabili modificabili senza codice
 - [[Segnali]]: avvisi tra nodi
