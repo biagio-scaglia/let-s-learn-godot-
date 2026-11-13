@@ -14,7 +14,9 @@ const PAN_SECONDS := 16.0
 @onready var footer: Control = %Footer
 @onready var version: Control = %Version
 @onready var options: Control = %OptionsMenu
+@onready var continue_button: MenuItem = %Continue
 @onready var new_game_button: MenuItem = %NewGame
+@onready var save_info: Label = %SaveInfo
 @onready var options_button: MenuItem = %Options
 @onready var quit_button: MenuItem = %Quit
 
@@ -25,6 +27,11 @@ func _ready() -> void:
 	camera.make_current()
 	_pan_camera()
 
+	# "Continua" c'è solo se esiste un salvataggio; sotto, luogo e data.
+	var info := Game.save_info()
+	continue_button.visible = not info.is_empty()
+	save_info.text = "" if info.is_empty() else "Salvataggio: %s - %s" % [info.luogo, _pretty_date(info.data)]
+	continue_button.pressed.connect(_on_continue)
 	new_game_button.pressed.connect(_on_new_game)
 	options_button.pressed.connect(_on_options)
 	quit_button.pressed.connect(get_tree().quit)
@@ -53,9 +60,9 @@ func _pan_camera() -> void:
 func _intro() -> void:
 	var title_y := title.position.y
 	title.position.y = title_y - 28
-	for node in [title, subtitle, footer, version]:
+	for node in [title, subtitle, footer, version, save_info]:
 		node.modulate.a = 0.0
-	var items := menu.get_children()
+	var items := menu.get_children().filter(func(n): return n.visible)
 	for item in items:
 		item.modulate.a = 0.0
 
@@ -68,7 +75,8 @@ func _intro() -> void:
 		t.tween_property(item, "modulate:a", 1.0, 0.18)
 	t.tween_property(footer, "modulate:a", 1.0, 0.3)
 	t.parallel().tween_property(version, "modulate:a", 1.0, 0.3)
-	t.tween_callback(new_game_button.focus_silently)
+	t.parallel().tween_property(save_info, "modulate:a", 1.0, 0.3)
+	t.tween_callback((continue_button if continue_button.visible else new_game_button).focus_silently)
 	t.tween_callback(_float_title.bind(title_y))
 
 
@@ -77,6 +85,21 @@ func _float_title(base_y: float) -> void:
 	var t := create_tween().set_loops()
 	t.tween_property(title, "position:y", base_y - 3.0, 1.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	t.tween_property(title, "position:y", base_y, 1.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+
+func _on_continue() -> void:
+	for item in menu.get_children():
+		item.disabled = true
+	Game.continue_game()
+
+
+## "2026-11-13 10:42:05" → "13/11/2026 10:42"
+func _pretty_date(date: String) -> String:
+	var parts := date.split(" ")
+	if parts.size() < 2:
+		return date
+	var d := parts[0].split("-")
+	return "%s/%s/%s %s" % [d[2], d[1], d[0], parts[1].left(5)]
 
 
 func _on_new_game() -> void:
@@ -100,5 +123,5 @@ func _on_options_closed() -> void:
 func _show_title_texts(on: bool) -> void:
 	menu.visible = on
 	var t := create_tween().set_parallel()
-	for node in [title, subtitle, footer, version]:
+	for node in [title, subtitle, footer, version, save_info]:
 		t.tween_property(node, "modulate:a", 1.0 if on else 0.0, 0.15)
