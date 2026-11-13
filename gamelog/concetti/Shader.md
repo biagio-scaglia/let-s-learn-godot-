@@ -37,6 +37,16 @@ void fragment() {
 
 Un secondo shader, `effects/pause_blur.gdshader`, **sfoca lo schermo** dietro al [[Menu di pausa]] e alla [[Schermata iniziale]]. Usa `hint_screen_texture`, cioè l'immagine già disegnata sotto, e ne legge una versione rimpicciolita (`textureLod`): più è piccola, più è sfocata.
 
+### Raggi di sole e ombre delle nuvole
+
+- `effects/sun_rays.gdshader`: fasci di luce dall'alto a sinistra. Ha **`render_mode blend_add`**: il suo colore si somma a quello sotto, come fa la luce.
+- `effects/cloud_shadows.gdshader`: ombre che scorrono sul villaggio. Nel **`vertex()`** calcola la posizione nel mondo con `MODEL_MATRIX` e la passa al `fragment()` con una **`varying`**: così le ombre stanno attaccate al terreno e non allo schermo.
+
+Entrambi usano il [[Rumore]] e `TIME` (i secondi da quando il gioco è partito) per muoversi.
+
+> [!warning] Parametri non salvati
+> `material.get_shader_parameter("x")` restituisce `null` se nel materiale `x` non è mai stato cambiato: il valore predefinito sta solo nello shader. Se il codice deve leggerlo, scrivilo nel materiale.
+
 ## Vedi anche
 
-- [[CanvasLayer]] · [[CanvasModulate]]
+- [[CanvasLayer]] · [[CanvasModulate]] · [[Rumore]]

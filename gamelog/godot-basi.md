@@ -59,6 +59,7 @@ Indice dei concetti di Godot incontrati finora. Ogni concetto ha la sua nota, co
 ## Effetti
 
 - [[Particelle]]: polvere, pollini, scintille
+- [[Rumore]]: nuvole e fasci di luce fatti solo di matematica
 - [[Shader]]: programmi per ogni pixel
 - [[CanvasModulate]]: una tinta su tutto il mondo
 - [[Luci 2D]]: luci, buio e fiamme che tremolano

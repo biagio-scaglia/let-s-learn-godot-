@@ -31,6 +31,7 @@ Diario del progetto: cosa è stato fatto, perché, e cosa ho imparato di Godot s
 | 2026-11-12 | [[2026-11-12-menu\|Schermata iniziale e menu di pausa]] | Funzionante |
 | 2026-11-13 | [[2026-11-13-chiave-e-salvataggio\|La chiave del baule, lo zaino e il salvataggio]] | Funzionante |
 | 2026-11-13 | [[2026-11-13-cutscene\|La prima cutscene: Subaru arriva al villaggio]] | Funzionante |
+| 2026-11-13 | [[2026-11-13-sole-e-nuvole\|Raggi di sole, ombre delle nuvole e un'alba]] | Funzionante |
 
 ## Il progetto
 
