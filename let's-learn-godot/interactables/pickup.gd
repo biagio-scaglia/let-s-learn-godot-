@@ -2,7 +2,7 @@ extends Node2D
 ## Un oggetto per terra: fluttua, luccica e si raccoglie con "interact".
 ## Una volta raccolto non ricompare più (lo ricorda Game.flags, anche nei salvataggi).
 
-## L'id dell'oggetto (vedi Game.ITEMS).
+## L'id dell'oggetto (vedi Inventory.ITEMS).
 @export var item_id := "chiave"
 ## Quanti se ne raccolgono.
 @export var amount := 1
@@ -14,10 +14,10 @@ extends Node2D
 
 
 func _ready() -> void:
-	if Game.flags.get(_flag(), false):
+	if Game.has_flag(FlagKeys.picked(self)):
 		queue_free()   # già raccolto
 		return
-	icon.texture = Game.item(item_id).icon
+	icon.texture = Inventory.item(item_id).icon
 	interactable.interacted.connect(_pick_up)
 
 	# Fluttua su e giù, e l'ombra si stringe quando l'oggetto è più in alto.
@@ -28,15 +28,10 @@ func _ready() -> void:
 	t.parallel().tween_property(shadow, "scale", shadow.scale, 0.8).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 
-## La chiave del ricordo: "preso:<percorso>", unica per ogni oggetto in ogni scena.
-func _flag() -> String:
-	return "preso:" + str(get_path())
-
-
 func _pick_up() -> void:
-	Game.flags[_flag()] = true
-	Game.ui_sound("pickup")
-	Game.add_item(item_id, amount)
+	Game.set_flag(FlagKeys.picked(self))
+	Sfx.play(Sfx.PICKUP)
+	Inventory.add(item_id, amount)
 	interactable.queue_free()   # niente più nuvoletta né interazioni
 
 	# L'oggetto sale, si ingrandisce e svanisce; una pioggia di scintille.

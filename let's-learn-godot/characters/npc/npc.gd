@@ -19,13 +19,13 @@ extends StaticBody2D
 @export var sprite_tile := 84
 
 ## Riga del charset per ogni direzione.
-const CHARSET_ROWS := {"down": 0, "left": 1, "right": 2, "up": 3}
+const CHARSET_ROWS := {Facing.DOWN: 0, Facing.LEFT: 1, Facing.RIGHT: 2, Facing.UP: 3}
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var shadow: Sprite2D = $Shadow
 @onready var interactable: Interactable = $Interactable
 
-var facing := "down"
+var facing := Facing.DOWN
 
 
 func _ready() -> void:
@@ -74,11 +74,7 @@ func _process(_delta: float) -> void:
 	var to_player := player.global_position - global_position
 	if charset:
 		# Si gira verso il giocatore in 4 direzioni.
-		var dir := ""
-		if abs(to_player.x) > abs(to_player.y):
-			dir = "right" if to_player.x > 0 else "left"
-		else:
-			dir = "down" if to_player.y > 0 else "up"
+		var dir := Facing.from_vector(to_player)
 		if dir != facing:
 			facing = dir
 			_show_facing()

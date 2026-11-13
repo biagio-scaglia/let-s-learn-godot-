@@ -9,7 +9,7 @@ extends CharacterBody2D
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var dust: CPUParticles2D = $Dust
 @onready var steps: AudioStreamPlayer2D = $Steps
-var facing := "down"
+var facing := Facing.DOWN
 ## Quanti passi ha fatto (utile nei test).
 var step_count := 0
 ## True mentre cammina da solo (in una cutscene): i tasti non contano.
@@ -49,7 +49,7 @@ func _physics_process(_delta: float) -> void:
 	dust.emitting = moving and running
 
 	if moving:
-		facing = _direction_name(input)
+		facing = Facing.from_vector(input)
 		sprite.play("walk_" + facing)
 		sprite.speed_scale = run_anim_scale if running else 1.0
 	else:
@@ -60,7 +60,7 @@ func _physics_process(_delta: float) -> void:
 ## Si può aspettare: await subaru.walk_to(...). Attraversa i muri: serve solo per le scene scritte.
 func walk_to(point: Vector2, speed := walk_speed) -> void:
 	_auto_walking = true
-	facing = _direction_name(point - global_position)
+	facing = Facing.from_vector(point - global_position)
 	sprite.play("walk_" + facing)
 	sprite.speed_scale = 1.0
 	var t := create_tween()
@@ -72,10 +72,10 @@ func walk_to(point: Vector2, speed := walk_speed) -> void:
 
 ## Gira Subaru verso un punto (per esempio chi gli sta parlando).
 func look_at_point(point: Vector2) -> void:
-	face(_direction_name(point - global_position))
+	face(Facing.from_vector(point - global_position))
 
 
-## Gira Subaru in una direzione: "down", "up", "left" o "right".
+## Gira Subaru in una direzione: Facing.DOWN, UP, LEFT o RIGHT.
 func face(direction: String) -> void:
 	facing = direction
 	_play_idle()
@@ -85,9 +85,3 @@ func _play_idle() -> void:
 	sprite.play("idle_" + facing)
 	sprite.speed_scale = 1.0
 
-
-func _direction_name(dir: Vector2) -> String:
-	# Prende l'asse dominante, così le diagonali scelgono una direzione sensata.
-	if abs(dir.x) > abs(dir.y):
-		return "right" if dir.x > 0 else "left"
-	return "down" if dir.y > 0 else "up"

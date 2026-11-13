@@ -6,7 +6,7 @@ extends Node
 ## 3. Il baule, con la chiave, si apre: dentro pozioni e monete.
 ##
 ## Lo script non sta dentro Lina o il baule: li "ascolta" (segnale interacted) e
-## decide cosa dicono, in base a zaino e ricordi (Game.inventory, Game.flags).
+## decide cosa dicono, in base a zaino e ricordi (Inventory, Game.flags).
 
 const CHEST_CELL := Vector2i(9, 2)        # dove sta il baule nel livello Objects
 const OPEN_CHEST_TILE := Vector2i(7, 7)   # tile 91 di Tiny Dungeon: baule aperto
@@ -19,16 +19,16 @@ const OPEN_CHEST_TILE := Vector2i(7, 7)   # tile 91 di Tiny Dungeon: baule apert
 func _ready() -> void:
 	lina.interacted.connect(_on_lina)
 	chest.interacted.connect(_on_chest)
-	if Game.flags.get("baule_aperto", false):
+	if Game.has_flag(FlagKeys.CHEST_OPEN):
 		objects.set_cell(CHEST_CELL, 0, OPEN_CHEST_TILE)
 
 
 func _on_lina() -> void:
-	if Game.flags.get("baule_aperto", false):
+	if Game.has_flag(FlagKeys.CHEST_OPEN):
 		lina.override_lines = [
 			"Ti sono piaciute le pozioni? Erano del nonno: dice che fanno miracoli.",
 		]
-	elif Game.has_item("chiave"):
+	elif Inventory.has(Inventory.KEY):
 		lina.override_lines = [
 			"La mia chiave! L'hai trovata tu?",
 			"Grazie, Subaru! Apri pure il baule: quello che c'è dentro è tuo.",
@@ -36,9 +36,9 @@ func _on_lina() -> void:
 
 
 func _on_chest() -> void:
-	if Game.flags.get("baule_aperto", false):
+	if Game.has_flag(FlagKeys.CHEST_OPEN):
 		chest.override_lines = ["Il baule è vuoto."]
-	elif Game.has_item("chiave"):
+	elif Inventory.has(Inventory.KEY):
 		chest.override_lines = [
 			"La chiave gira nella serratura... clic!",
 			"Dentro ci sono due pozioni rosse e qualche moneta d'oro.",
@@ -48,9 +48,9 @@ func _on_chest() -> void:
 
 
 func _open_chest() -> void:
-	Game.flags["baule_aperto"] = true
-	Game.remove_item("chiave")
+	Game.set_flag(FlagKeys.CHEST_OPEN)
+	Inventory.remove(Inventory.KEY)
 	objects.set_cell(CHEST_CELL, 0, OPEN_CHEST_TILE)
-	Game.ui_sound("chest_open")
-	Game.add_item("pozione", 2)
-	Game.add_item("moneta", 5)
+	Sfx.play(Sfx.CHEST_OPEN)
+	Inventory.add(Inventory.POTION, 2)
+	Inventory.add(Inventory.COIN, 5)

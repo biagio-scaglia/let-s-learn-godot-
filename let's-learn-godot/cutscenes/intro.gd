@@ -26,7 +26,7 @@ func _ready() -> void:
 	var player := get_tree().get_first_node_in_group("player")
 	# Niente cutscene se: siamo nello sfondo del titolo (lì Subaru non c'è), l'abbiamo
 	# già vista, o arriviamo da una porta / da un salvataggio.
-	if player == null or Game.flags.get("intro_vista", false) \
+	if player == null or Game.has_flag(FlagKeys.INTRO_SEEN) \
 			or Game.spawn_point != "" or Game.spawn_position != null:
 		queue_free()
 		return
@@ -42,7 +42,7 @@ func _play(player: Node2D) -> void:
 	bottom_bar.offset_top = -BAR_HEIGHT
 
 	player.global_position = START
-	player.face("up")
+	player.face(Facing.UP)
 	# La camera deve partire già su Subaru, senza scivolare dal centro della mappa.
 	var camera := player.get_node("Camera2D") as Camera2D
 	camera.reset_smoothing.call_deferred()
@@ -57,11 +57,11 @@ func _play(player: Node2D) -> void:
 	# 3. Compare il nome del luogo, e intanto Subaru si guarda intorno.
 	_show_place_card()
 	await _wait(0.6)
-	player.face("left")
+	player.face(Facing.LEFT)
 	await _wait(0.8)
-	player.face("right")
+	player.face(Facing.RIGHT)
 	await _wait(0.8)
-	player.face("down")
+	player.face(Facing.DOWN)
 	await _wait(0.9)
 
 	# 4. Via le bande, poi un pensiero ad alta voce.
@@ -72,8 +72,8 @@ func _play(player: Node2D) -> void:
 	])
 	await Dialogue.finished
 
-	# 5. Fine: il giocatore riprende i comandi. "intro_vista" finisce nel salvataggio.
-	Game.flags["intro_vista"] = true
+	# 5. Fine: il giocatore riprende i comandi. il ricordo finisce nel salvataggio.
+	Game.set_flag(FlagKeys.INTRO_SEEN)
 	Game.in_cutscene = false
 	queue_free()
 

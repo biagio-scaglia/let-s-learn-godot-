@@ -27,15 +27,9 @@ var override_lines: PackedStringArray = []
 ## sopravvive ai cambi di scena (entri in casa, esci, e il Saggio si ricorda di te).
 var times: int:
 	get:
-		return Game.flags.get(_memory_key(), 0)
+		return Game.flags.get(FlagKeys.talked(self), 0)
 	set(value):
-		Game.flags[_memory_key()] = value
-
-
-## Una chiave unica per ogni oggetto: il suo percorso nell'albero, es.
-## "talked:/root/Main/World/Npc/Interactable".
-func _memory_key() -> String:
-	return "talked:" + str(get_path())
+		Game.set_flag(FlagKeys.talked(self), value)
 
 
 func _ready() -> void:
