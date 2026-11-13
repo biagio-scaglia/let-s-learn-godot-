@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://ui/hud.gd" id="1_script"]
+
+[node name="Hud" type="CanvasLayer"]
+process_mode = 3
+layer = 16
+script = ExtResource("1_script")
+
+[node name="Toast" type="PanelContainer" parent="."]
+offset_left = 200.0
+offset_top = 8.0
+offset_right = 440.0
+offset_bottom = 48.0
+mouse_filter = 2
+theme_type_variation = &"ToastPanel"
+
+[node name="Row" type="HBoxContainer" parent="Toast"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="Toast/Row"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 4
+expand_mode = 1
+
+[node name="Text" type="Label" parent="Toast/Row"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+text = "Hai trovato: Chiave"

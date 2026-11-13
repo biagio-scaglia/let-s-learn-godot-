@@ -21,6 +21,7 @@ Dialogue="*res://ui/dialogue_box.tscn"
 Fade="*res://ui/fade.tscn"
 Game="*res://core/game.gd"
 Pause="*res://ui/pause_menu.tscn"
+Hud="*res://ui/hud.tscn"
 
 [display]
 
