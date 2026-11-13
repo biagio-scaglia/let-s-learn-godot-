@@ -1,7 +1,8 @@
 extends Node
 ## Le opzioni del gioco, salvate su file. È un autoload chiamato "Settings".
 
-const PATH := "user://impostazioni.cfg"
+## Dove sta il file. Una variabile, così i test possono usarne un altro.
+var path := "user://impostazioni.cfg"
 
 ## Volume da 0 a 1.
 var volume := 0.8
@@ -10,7 +11,7 @@ var fullscreen := false
 
 func _ready() -> void:
 	var config := ConfigFile.new()
-	if config.load(PATH) == OK:
+	if config.load(path) == OK:
 		volume = config.get_value("audio", "volume", volume)
 		fullscreen = config.get_value("video", "fullscreen", fullscreen)
 	_apply()
@@ -32,7 +33,7 @@ func _save() -> void:
 	var config := ConfigFile.new()
 	config.set_value("audio", "volume", volume)
 	config.set_value("video", "fullscreen", fullscreen)
-	config.save(PATH)
+	config.save(path)
 
 
 func _apply() -> void:

@@ -4,7 +4,9 @@ extends Node
 ## Il formato del file non è cambiato da quando tutto stava in Game:
 ## i vecchi salvataggi si caricano ancora.
 
-const PATH := "user://salvataggio.cfg"
+## Dove sta il file. È una variabile (non una costante) così i test possono usare
+## un file loro e non toccare mai il salvataggio vero.
+var path := "user://salvataggio.cfg"
 
 ## Il nome dei luoghi, da mostrare nel titolo accanto a "Continua".
 const PLACE_NAMES := {
@@ -14,7 +16,7 @@ const PLACE_NAMES := {
 
 
 func has_save() -> bool:
-	return FileAccess.file_exists(PATH)
+	return FileAccess.file_exists(path)
 
 
 ## Salva la partita: scena, posizione, direzione, ricordi e zaino.
@@ -30,13 +32,13 @@ func save_game() -> bool:
 	config.set_value("partita", "data", Time.get_datetime_string_from_system(false, true))
 	config.set_value("partita", "ricordi", Game.flags)
 	config.set_value("partita", "zaino", Inventory.items)
-	return config.save(PATH) == OK
+	return config.save(path) == OK
 
 
 ## Luogo e data dell'ultimo salvataggio, per il titolo. Vuoto se non c'è.
 func save_info() -> Dictionary:
 	var config := ConfigFile.new()
-	if config.load(PATH) != OK:
+	if config.load(path) != OK:
 		return {}
 	var scene: String = config.get_value("partita", "scena", "")
 	return {
@@ -48,7 +50,7 @@ func save_info() -> Dictionary:
 ## Riprende la partita salvata.
 func continue_game() -> void:
 	var config := ConfigFile.new()
-	if config.load(PATH) != OK:
+	if config.load(path) != OK:
 		return
 	Game.flags = config.get_value("partita", "ricordi", {}).duplicate(true)
 	Inventory.reset(config.get_value("partita", "zaino", {}))
