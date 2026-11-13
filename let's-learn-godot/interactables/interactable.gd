@@ -19,6 +19,10 @@ signal interacted
 
 ## Il giocatore, quando è abbastanza vicino. Altrimenti null.
 var player: Node2D = null
+## Frasi "speciali" da dire solo questa volta, al posto di lines/repeat_lines.
+## Chi ascolta il segnale "interacted" può impostarle (es. una missione:
+## "se hai la chiave, Lina dice altro").
+var override_lines: PackedStringArray = []
 ## Quante volte il giocatore ha già interagito. Sta in Game.flags, così
 ## sopravvive ai cambi di scena (entri in casa, esci, e il Saggio si ricorda di te).
 var times: int:
@@ -59,10 +63,15 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if player.has_method("look_at_point"):
 		player.look_at_point(global_position)
-	interacted.emit()
+	override_lines = []
+	interacted.emit()   # chi ascolta può riempire override_lines
 	var text := repeat_lines if times > 0 and not repeat_lines.is_empty() else lines
+	if not override_lines.is_empty():
+		text = override_lines
 	times += 1
-	Dialogue.start(speaker, text)
+	# Senza frasi niente dialogo: basta il segnale (es. un oggetto da raccogliere).
+	if not text.is_empty():
+		Dialogue.start(speaker, text)
 
 
 func _on_body_entered(body: Node2D) -> void:
