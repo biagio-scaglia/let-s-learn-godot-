@@ -19,6 +19,8 @@ Per ora c'è Subaru che cammina e corre in una piccola mappa con alberi, sentier
 
 Il gioco parte dalla schermata iniziale: frecce o mouse per scegliere, Invio per confermare. Nelle opzioni si regolano volume e schermo intero, che vengono ricordati. Dal menu di pausa si salva, e nel titolo compare *Continua*.
 
+Alla prima partita una breve cutscene mostra Subaru che arriva al villaggio.
+
 **La prima missione:** Lina ha perso la chiave del suo baule. Trovala nel villaggio e portagliela.
 
 ## Struttura
@@ -32,6 +34,7 @@ Il gioco parte dalla schermata iniziale: frecce o mouse per scegliere, Invio per
 | `let's-learn-godot/ui/` | Schermata iniziale, menu di pausa (autoload `Pause`), opzioni, Theme, finestra di dialogo (autoload `Dialogue`) e dissolvenza (autoload `Fade`) |
 | `let's-learn-godot/effects/` | Shader (vignettatura, sfocatura dei menu) e luci che tremolano |
 | `let's-learn-godot/world/` | Il villaggio (`main.tscn`), la casa di Lina (`house.tscn`) e i loro TileSet |
+| `let's-learn-godot/cutscenes/` | Le scene d'intermezzo (per ora l'arrivo al villaggio) |
 | `let's-learn-godot/core/` | Stato del gioco (autoload `Game`) |
 | `let's-learn-godot/assets/` | Asset esterni (vedi [CREDITS.md](CREDITS.md)) |
 | `gamelog/` | Il diario del progetto, è un vault di [Obsidian](https://obsidian.md) |
