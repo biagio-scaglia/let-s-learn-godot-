@@ -26,7 +26,26 @@ Dialogue.start(npc_name, lines)
 
 e [[Subaru]] può chiedere `Dialogue.is_active` per sapere se deve stare fermo.
 
-C'è anche l'autoload **`Fade`**, la [[Dissolvenza]] dal nero, e **`Game`**, lo stato del gioco che sopravvive ai cambi di scena: vedi [[Game]].
+Tutti gli autoload del progetto:
+
+| Nome | Compito |
+|---|---|
+| `Settings` | [[Opzioni]] su file |
+| `Sfx` | [[Sfx\|Suoni]] dei menu e degli eventi |
+| `Inventory` | [[Inventory\|Lo zaino]] |
+| `SaveSystem` | [[Salvataggio]] |
+| `Dialogue` | [[Finestra di dialogo]] |
+| `Fade` | [[Dissolvenza]] |
+| `Game` | [[Game\|Stato della partita]] e cambi di scena |
+| `Pause` | [[Menu di pausa]] |
+| `Hud` | [[Avvisi]] |
+| `InventoryMenu` | [[Zaino\|Il menu dello zaino]] |
+
+> [!warning] L'ordine conta
+> Gli autoload partono **nell'ordine della lista**. Se `Hud`, nel suo `_ready()`, si collega a un segnale di `Inventory`, allora `Inventory` deve stare **prima** nella lista. Per questo i servizi "di base" (opzioni, suoni, zaino, salvataggio) sono in cima.
+
+> [!tip] Un compito per autoload
+> È comodo mettere tutto in un autoload solo, ma diventa presto un groviglio. Vedi [[Responsabilità]].
 
 ## Vedi anche
 

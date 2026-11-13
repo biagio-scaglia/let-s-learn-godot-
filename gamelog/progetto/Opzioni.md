@@ -22,5 +22,5 @@ Il pannello delle opzioni (`ui/options_menu.tscn`), **lo stesso** per la [[Scher
 | Indietro (o Esc) | [[MenuItem]] | Chiude il pannello e manda il segnale `closed` |
 
 - Muovendo lo slider si sente subito un "tic" al nuovo volume.
-- Le opzioni stanno in [[Game]] e vengono **salvate su file** a ogni cambiamento ([[ConfigFile]]): al prossimo avvio sono come le avevi lasciate.
+- Le opzioni stanno nell'[[Autoload]] **`Settings`** (`core/settings.gd`: `volume`, `fullscreen`, `set_volume()`, `set_fullscreen()`) e vengono **salvate su file** a ogni cambiamento ([[ConfigFile]]): al prossimo avvio sono come le avevi lasciate.
 - Con la tastiera: su e giù per scegliere, sinistra e destra per lo slider, Invio per la casella.

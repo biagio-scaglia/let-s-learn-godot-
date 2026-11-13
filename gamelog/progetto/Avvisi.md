@@ -22,7 +22,9 @@ I messaggi a comparsa in alto: "Hai trovato: Chiave", "Partita salvata". È un [
 - Funzionano anche in [[Pausa]], per "Partita salvata" dal [[Menu di pausa]].
 - Lo stile è la variazione `ToastPanel` del [[Theme]]: compatta, con il bordo dorato.
 
+Gli oggetti trovati non li annuncia nessuno a mano: l'avviso **ascolta** il segnale `item_added` di [[Inventory]].
+
 ```gdscript
-Hud.show_item(Game.item("chiave"))       # "Hai trovato: Chiave"
+Hud.show_item(Inventory.item("chiave"))  # "Hai trovato: Chiave"
 Hud.show_message("Partita salvata")
 ```

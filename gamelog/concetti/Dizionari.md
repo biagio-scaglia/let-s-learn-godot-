@@ -29,9 +29,9 @@ for id in zaino:                 # scorre le chiavi
 
 | Dizionario | Chiavi → valori |
 |---|---|
-| `Game.inventory` | id dell'oggetto → quantità (`"pozione": 2`) |
+| `Inventory.items` | id dell'oggetto → quantità (`"pozione": 2`) |
 | `Game.flags` | ricordo → valore (`"baule_aperto": true`, `"talked:…": 3`) |
-| `Game.ITEMS` | id → risorsa [[Risorse personalizzate\|Item]] |
+| `Inventory.ITEMS` | id → risorsa [[Risorse personalizzate\|Item]] |
 
 Tutti e due finiscono nel [[Salvare la partita|salvataggio]] così come sono.
 

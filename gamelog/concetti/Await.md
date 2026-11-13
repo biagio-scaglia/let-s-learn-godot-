@@ -19,6 +19,7 @@ get_tree().change_scene_to_file(path)
 await get_tree().process_frame             # aspetta il frame successivo
 await create_timer(0.5).timeout            # aspetta mezzo secondo
 await tween.finished                       # aspetta la fine di un Tween
+await get_tree().scene_changed             # aspetta che la nuova scena sia pronta
 ```
 
 Si può aspettare:

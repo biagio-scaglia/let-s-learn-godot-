@@ -24,7 +24,7 @@ Gli oggetti del gioco sono [[Risorse personalizzate|risorse]] `Item` in `items/`
 Per aggiungere un oggetto:
 
 1. Crea un `.tres` di tipo **Item** in `items/` e compilalo.
-2. Aggiungilo a `Game.ITEMS` con il suo id.
-3. Mettilo nel mondo con un [[Oggetto da raccogliere]], o dallo con `Game.add_item("id")`.
+2. Aggiungilo a `Inventory.ITEMS` con il suo id (e, se lo usi nel codice, una costante come `Inventory.KEY`).
+3. Mettilo nel mondo con un [[Oggetto da raccogliere]], o dallo con `Inventory.add("id")`.
 
 Si vedono nello [[Zaino]].

@@ -32,6 +32,7 @@ Diario del progetto: cosa è stato fatto, perché, e cosa ho imparato di Godot s
 | 2026-11-13 | [[2026-11-13-chiave-e-salvataggio\|La chiave del baule, lo zaino e il salvataggio]] | Funzionante |
 | 2026-11-13 | [[2026-11-13-cutscene\|La prima cutscene: Subaru arriva al villaggio]] | Funzionante |
 | 2026-11-13 | [[2026-11-13-sole-e-nuvole\|Raggi di sole, ombre delle nuvole e un'alba]] | Funzionante |
+| 2026-11-13 | [[2026-11-13-riordino-del-codice\|Riordino del codice]] | Completato |
 
 ## Il progetto
 
@@ -41,7 +42,7 @@ Diario del progetto: cosa è stato fatto, perché, e cosa ho imparato di Godot s
 | Oggetti | [[Oggetti]] · [[Oggetto da raccogliere]] · [[Cartello]] · [[Interactable]] · [[Porta]] |
 | Storia e missioni | [[Intro]] · [[Missione della chiave]] |
 | Mondo | [[Mappa principale]] · [[Casa di Lina]] · [[Effetti visivi]] |
-| Stato del gioco | [[Game]] |
+| Stato del gioco | [[Game]] · [[Inventory]] · [[Salvataggio]] · [[Opzioni]] · [[Sfx]] |
 | Interfaccia | [[Zaino]] · [[Avvisi]] · [[Salvataggio]] · [[Schermata iniziale]] · [[Menu di pausa]] · [[Opzioni]] · [[MenuItem]] · [[Finestra di dialogo]] · [[Dissolvenza]] |
 | Asset | [[Tiny Town]] · [[Tiny Dungeon]] · [[KenPixel]] · [[Kenney]] · [[Licenza CC0]] · [[Dove trovare asset]] |
 | Strumenti (archiviati) | [[Strumenti archiviati]]: [[Generatore della mappa]] · [[Generatore della casa]] · [[Generatore degli effetti]] · [[Generatore di Subaru]] · [[Convertitore di charset]] · [[Test automatico]] · [[Test del dialogo]] · [[Test di casa]] |

@@ -27,4 +27,6 @@ L'inventario: si apre con **Tab** o **I** in qualsiasi livello. È un [[Autoload
 
 ## Da dove prende i dati
 
-Da `Game.inventory` (un [[Dizionari|dizionario]] id → quantità). Quando cambia, [[Game]] manda il [[Segnali|segnale]] `inventory_changed` e lo zaino si aggiorna.
+Da [[Inventory]] (`Inventory.items`, un [[Dizionari|dizionario]] id → quantità). Quando cambia, `Inventory` manda il [[Segnali|segnale]] `changed` e lo zaino si aggiorna.
+
+Si apre solo se `Game.can_open_menu()` lo permette: la stessa regola del [[Menu di pausa]].

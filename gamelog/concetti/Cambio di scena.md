@@ -19,6 +19,16 @@ get_tree().change_scene_to_file("res://world/house.tscn")
 
 Godot **distrugge** la scena attuale, con tutti i suoi nodi e le loro variabili, e carica la nuova. Il cambio avviene alla fine del frame, non subito.
 
+Per sapere quando la nuova scena è davvero pronta (dentro l'albero, dopo tutti i suoi `_ready`) c'è il segnale **`scene_changed`** dello SceneTree:
+
+```gdscript
+get_tree().change_scene_to_file(path)
+await get_tree().scene_changed
+```
+
+> [!note] Prima si aspettavano "due frame"
+> Funzionava, ma per caso: il numero di frame non è una promessa di Godot. Il segnale sì. Vedi [[2026-11-13-riordino-del-codice]].
+
 ## I tre problemi da risolvere
 
 | Problema | Soluzione nel progetto |

@@ -11,30 +11,41 @@ aliases:
 
 ← [[Gamelog]]
 
-L'[[Autoload]] **`Game`** (`core/game.gd`): lo **stato del gioco** che deve sopravvivere ai cambi di scena.
+L'[[Autoload]] **`Game`** (`core/game.gd`): lo **stato della partita** che deve sopravvivere ai cambi di scena. Ha un solo compito: ricordare *dove sei* e *cosa è successo*, e decidere *cosa puoi fare adesso*.
+
+> [!info] Diviso il 2026-11-13
+> Prima `Game` faceva tutto: zaino, salvataggio, opzioni, suoni. Ora ognuna di queste cose ha il suo autoload. Vedi [[2026-11-13-riordino-del-codice]] e [[Responsabilità]].
 
 ## Cosa ricorda
 
 | Variabile | Cosa contiene |
 |---|---|
-| `flags` | Un dizionario di ricordi. Per ora: quante volte hai interagito con ogni [[Interactable]] (chiave `"talked:<percorso>"`) |
-| `spawn_point`, `spawn_facing` | Dove far comparire il giocatore nella prossima scena, e verso dove guarda |
+| `flags` | I ricordi: con chi hai parlato, oggetti raccolti, baule aperto, cutscene vista. Le chiavi sono in `FlagKeys` (vedi [[Costanti]]) |
+| `spawn_point`, `spawn_position`, `spawn_facing` | Dove far comparire il giocatore nella prossima scena, e verso dove guarda |
 | `changing_scene` | Vero durante un cambio di scena |
 | `in_cutscene` | Vero durante una [[Cutscene]] (es. l'[[Intro]]): niente comandi né menu |
 
 ## Cosa fa
 
-- `change_scene(path, spawn, facing)`: suono della porta, [[Dissolvenza]] al nero, [[Cambio di scena]], dissolvenza dal nero. Usa [[Await]].
+- `has_flag(chiave)`, `set_flag(chiave)`: leggere e scrivere un ricordo.
 - `player_can_move()`: no durante un dialogo, un cambio di scena o una [[Cutscene]]. La usano [[Subaru]] e gli [[Interactable]].
-- `new_game()`: dimentica tutto e va al villaggio. La usa la [[Schermata iniziale]].
-- **Inventario:** `inventory`, `add_item()`, `remove_item()`, `has_item()`, il segnale `inventory_changed`. Vedi [[Zaino]] e [[Oggetti]].
-- **Salvataggio:** `save_game()`, `continue_game()`, `has_save()`, `save_info()`. Vedi [[Salvataggio]].
-- `ui_sound()`: i suoni dei menu (spostamento, conferma, indietro).
-- Le [[Opzioni]]: `volume` e `fullscreen`, salvate su file con [[ConfigFile]].
-- Funziona anche in [[Pausa]] (`process_mode = Always`).
+- `can_open_menu()`: la **sola** regola per aprire il [[Menu di pausa]] e lo [[Zaino]]. Solo in un livello, quando il giocatore potrebbe muoversi e il gioco non è già in [[Pausa]].
+- `new_game()`: dimentica tutto (ricordi e zaino) e va al villaggio.
+- `change_scene(path, spawn, facing)`: suono della porta, [[Dissolvenza]] al nero, [[Cambio di scena]], dissolvenza dal nero. Aspetta il segnale `scene_changed` per sapere quando la nuova scena è pronta.
+
+## Gli altri autoload
+
+| Autoload | File | Cosa fa | Nota |
+|---|---|---|---|
+| `Inventory` | `core/inventory.gd` | Lo zaino: oggetti e quantità | [[Inventory]] |
+| `SaveSystem` | `core/save_system.gd` | Salvare e riprendere la partita | [[Salvataggio]] |
+| `Settings` | `core/settings.gd` | Volume e schermo intero, su file | [[Opzioni]] |
+| `Sfx` | `core/sfx.gd` | I suoni dei menu e degli eventi | [[Sfx]] |
 
 ## Perché serve
 
 Quando entri nella [[Casa di Lina]], il villaggio viene distrutto, e con lui il [[Saggio]] e la sua memoria. Uscendo viene ricreato da zero. Senza `Game`, il Saggio ti accoglierebbe ogni volta come uno sconosciuto.
 
-Più avanti qui finiranno anche l'inventario e il salvataggio.
+## Vedi anche
+
+- [[Autoload]] · [[Responsabilità]] · [[Costanti]]

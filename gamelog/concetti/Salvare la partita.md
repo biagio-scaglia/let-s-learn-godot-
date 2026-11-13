@@ -22,7 +22,7 @@ La regola: **lo stato, non le scene**. Le scene (il villaggio, la casa) sono gi√
 |---|---|
 | In quale scena sei | `current_scene.scene_file_path` |
 | Posizione e direzione | Il giocatore |
-| Zaino | `Game.inventory` |
+| Zaino | `Inventory.items` |
 | Ricordi (conversazioni, oggetti raccolti, bauli aperti) | `Game.flags` |
 
 Tenere tutto lo stato in un unico posto ([[Game]]) rende il salvataggio facile: si scrivono due [[Dizionari]].

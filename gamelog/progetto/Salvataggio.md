@@ -17,6 +17,8 @@ aliases:
 
 ## Cosa c'è nel file
 
+Se ne occupa l'[[Autoload]] **`SaveSystem`** (`core/save_system.gd`): `save_game()`, `continue_game()`, `has_save()`, `save_info()`.
+
 `user://salvataggio.cfg` ([[ConfigFile]]), sezione `[partita]`:
 
 | Chiave | Contenuto |
@@ -24,7 +26,7 @@ aliases:
 | `scena` | Es. `res://world/house.tscn` |
 | `posizione`, `direzione` | Dove sta e verso dove guarda [[Subaru]] |
 | `data` | Data e ora, mostrate nel titolo |
-| `zaino` | `Game.inventory` |
+| `zaino` | `Inventory.items` |
 | `ricordi` | `Game.flags` |
 
 Come funziona, spiegato in generale: [[Salvare la partita]].

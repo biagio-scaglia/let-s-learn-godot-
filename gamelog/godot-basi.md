@@ -35,6 +35,8 @@ Indice dei concetti di Godot incontrati finora. Ogni concetto ha la sua nota, co
 - [[Ciclo di gioco]]: `_ready`, `_process`, `_physics_process`
 - [[Export e Inspector]]: variabili modificabili senza codice
 - [[Segnali]]: avvisi tra nodi
+- [[Costanti]]: nomi al posto delle stringhe scritte a mano
+- [[Responsabilità]]: un compito per script, e chi conosce chi
 - [[Classi globali]]: `class_name`, uno script diventa un tipo
 - [[Tween]]: animare una proprietà dal codice
 - [[Await]]: aspettare senza bloccare il gioco
