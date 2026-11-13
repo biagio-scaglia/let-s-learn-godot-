@@ -51,11 +51,11 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	prompt.visible = player != null and not Dialogue.is_active
+	prompt.visible = player != null and Game.player_can_move()
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if player == null or Dialogue.is_active or not event.is_action_pressed("interact"):
+	if player == null or not Game.player_can_move() or not event.is_action_pressed("interact"):
 		return
 	# Segna il tasto come "usato", così la finestra di dialogo non lo riceve
 	# subito anche lei e non salta la prima frase.

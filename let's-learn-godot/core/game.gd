@@ -37,6 +37,8 @@ var flags := {}
 var inventory := {}
 ## True durante un cambio di scena.
 var changing_scene := false
+## True durante una scena d'intermezzo (cutscene): il giocatore non comanda, niente menu.
+var in_cutscene := false
 
 ## Opzioni (salvate su file): volume da 0 a 1, schermo intero.
 var volume := 0.8
@@ -67,7 +69,7 @@ func _make_player(path: String, volume_db: float) -> AudioStreamPlayer:
 
 ## Il giocatore può muoversi? No durante un dialogo o un cambio di scena.
 func player_can_move() -> bool:
-	return not changing_scene and not Dialogue.is_active
+	return not changing_scene and not in_cutscene and not Dialogue.is_active
 
 
 ## Suono dei menu e degli eventi: "move", "confirm", "back", "pickup", "chest_open", "save".
@@ -165,12 +167,15 @@ func change_scene(path: String, spawn: String, facing := "", door_sound := true)
 		_door_sound.play()
 	await Fade.fade_out()
 	get_tree().paused = false
+	in_cutscene = false   # la nuova scena, se vuole, ne fa partire un'altra
 	get_tree().change_scene_to_file(path)
 	# La nuova scena viene aggiunta alla fine del frame: aspettiamo che sia pronta.
 	await get_tree().process_frame
 	await get_tree().process_frame
 	changing_scene = false
-	await Fade.fade_in()
+	# Se la nuova scena è partita con una cutscene, è lei a decidere quando togliere il nero.
+	if not in_cutscene:
+		await Fade.fade_in()
 
 
 # ---------- Opzioni ----------

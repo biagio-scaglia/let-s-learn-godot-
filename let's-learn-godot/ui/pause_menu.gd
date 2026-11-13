@@ -46,7 +46,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _can_open() -> bool:
 	var scene := get_tree().current_scene
 	return scene != null and scene.is_in_group("level") \
-		and not Dialogue.is_active and not Game.changing_scene and not InventoryMenu.is_open
+		and not Dialogue.is_active and not Game.changing_scene and not Game.in_cutscene and not InventoryMenu.is_open
 
 
 func open() -> void:
