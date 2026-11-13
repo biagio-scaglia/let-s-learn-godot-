@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://items/item.gd" id="1_item"]
+[ext_resource type="Texture2D" path="res://assets/kenney_tiny_town/tilemap_packed.png" id="2_town"]
+
+[sub_resource type="AtlasTexture" id="icon"]
+atlas = ExtResource("2_town")
+region = Rect2(144, 112, 16, 16)
+
+[resource]
+script = ExtResource("1_item")
+id = "moneta"
+name = "Moneta d'oro"
+description = "Brilla ancora. Chissà cosa si potrà comprare a Erbalta..."
+icon = SubResource("icon")
