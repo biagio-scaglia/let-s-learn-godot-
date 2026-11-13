@@ -8,13 +8,33 @@ extends Node
 const TITLE_SCENE := "res://ui/title_screen.tscn"
 const FIRST_LEVEL := "res://world/main.tscn"
 const SETTINGS_PATH := "user://impostazioni.cfg"
+const SAVE_PATH := "user://salvataggio.cfg"
+
+## Tutti gli oggetti del gioco, per id. Nei salvataggi e nell'inventario si usa l'id.
+const ITEMS := {
+	"chiave": preload("res://items/chiave.tres"),
+	"pozione": preload("res://items/pozione.tres"),
+	"moneta": preload("res://items/moneta.tres"),
+}
+## Il nome dei luoghi, da mostrare nel titolo accanto a "Continua".
+const PLACE_NAMES := {
+	"res://world/main.tscn": "Villaggio di Erbalta",
+	"res://world/house.tscn": "Casa di Lina",
+}
+
+## Emesso quando l'inventario cambia (lo ascolta lo zaino).
+signal inventory_changed
 
 ## In quale Marker2D (figlio di "Spawns") far comparire il giocatore nella prossima scena.
 var spawn_point := ""
+## Oppure una posizione esatta (quando si carica un salvataggio). null = non usata.
+var spawn_position: Variant = null
 ## Verso dove deve guardare il giocatore all'arrivo ("down", "up", "left", "right").
 var spawn_facing := ""
-## I ricordi del gioco: quante volte hai parlato con qualcuno, e in futuro porte, oggetti…
+## I ricordi del gioco: con chi hai parlato, oggetti raccolti, bauli aperti…
 var flags := {}
+## Lo zaino: id dell'oggetto → quantità.
+var inventory := {}
 ## True durante un cambio di scena.
 var changing_scene := false
 
@@ -32,6 +52,8 @@ func _ready() -> void:
 	_door_sound = _make_player("res://assets/effects/door.wav", -4.0)
 	for sound in ["move", "confirm", "back"]:
 		_ui_sounds[sound] = _make_player("res://assets/ui/menu_%s.wav" % sound, -6.0)
+	for sound in ["pickup", "chest_open", "save"]:
+		_ui_sounds[sound] = _make_player("res://assets/effects/%s.wav" % sound, -4.0)
 	load_settings()
 
 
@@ -48,7 +70,7 @@ func player_can_move() -> bool:
 	return not changing_scene and not Dialogue.is_active
 
 
-## Suono dei menu: "move", "confirm" o "back".
+## Suono dei menu e degli eventi: "move", "confirm", "back", "pickup", "chest_open", "save".
 func ui_sound(sound: String) -> void:
 	_ui_sounds[sound].play()
 
@@ -56,7 +78,80 @@ func ui_sound(sound: String) -> void:
 ## Comincia una partita nuova: dimentica tutto e va al primo livello.
 func new_game() -> void:
 	flags.clear()
+	inventory.clear()
+	spawn_position = null
 	change_scene(FIRST_LEVEL, "", "", false)
+
+
+# ---------- Inventario ----------
+
+func item(id: String) -> Item:
+	return ITEMS[id]
+
+
+func has_item(id: String) -> bool:
+	return inventory.get(id, 0) > 0
+
+
+## Aggiunge un oggetto allo zaino e mostra l'avviso "Hai trovato…".
+func add_item(id: String, amount := 1) -> void:
+	inventory[id] = inventory.get(id, 0) + amount
+	inventory_changed.emit()
+	Hud.show_item(item(id), amount)
+
+
+func remove_item(id: String, amount := 1) -> void:
+	inventory[id] = inventory.get(id, 0) - amount
+	if inventory[id] <= 0:
+		inventory.erase(id)
+	inventory_changed.emit()
+
+
+# ---------- Salvataggio ----------
+
+func has_save() -> bool:
+	return FileAccess.file_exists(SAVE_PATH)
+
+
+## Salva la partita: scena, posizione, direzione, ricordi e zaino.
+func save_game() -> bool:
+	var scene := get_tree().current_scene
+	var player := get_tree().get_first_node_in_group("player")
+	if scene == null or player == null:
+		return false
+	var config := ConfigFile.new()
+	config.set_value("partita", "scena", scene.scene_file_path)
+	config.set_value("partita", "posizione", player.global_position)
+	config.set_value("partita", "direzione", player.facing)
+	config.set_value("partita", "data", Time.get_datetime_string_from_system(false, true))
+	config.set_value("partita", "ricordi", flags)
+	config.set_value("partita", "zaino", inventory)
+	return config.save(SAVE_PATH) == OK
+
+
+## Luogo e data dell'ultimo salvataggio, per il titolo. Vuoto se non c'è.
+func save_info() -> Dictionary:
+	var config := ConfigFile.new()
+	if config.load(SAVE_PATH) != OK:
+		return {}
+	var scene: String = config.get_value("partita", "scena", "")
+	return {
+		"luogo": PLACE_NAMES.get(scene, "?"),
+		"data": config.get_value("partita", "data", ""),
+	}
+
+
+## Riprende la partita salvata.
+func continue_game() -> void:
+	var config := ConfigFile.new()
+	if config.load(SAVE_PATH) != OK:
+		return
+	# duplicate(): copie nuove, così modificarle non tocca i dati appena letti.
+	flags = config.get_value("partita", "ricordi", {}).duplicate(true)
+	inventory = config.get_value("partita", "zaino", {}).duplicate(true)
+	spawn_position = config.get_value("partita", "posizione", null)
+	var scene: String = config.get_value("partita", "scena", FIRST_LEVEL)
+	change_scene(scene, "", config.get_value("partita", "direzione", "down"), false)
 
 
 ## Passa a un'altra scena con la dissolvenza, e fa comparire il giocatore in "spawn".
