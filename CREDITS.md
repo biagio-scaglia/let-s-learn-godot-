@@ -12,6 +12,12 @@ Con la licenza CC0 gli asset si possono usare liberamente, anche in progetti com
 
 I pacchetti sono stati scaricati da OpenGameArt ([Tiny Town](https://opengameart.org/content/tiny-town), [Tiny Dungeon](https://opengameart.org/content/tiny-dungeon), [Kenney Fonts](https://opengameart.org/content/kenney-fonts)), che ripubblica gli stessi file del sito di Kenney.
 
+## Strumenti
+
+| Strumento | Autore | Licenza | Dove si trova nel progetto |
+|---|---|---|---|
+| [gdUnit4](https://github.com/godot-gdunit-labs/gdUnit4) (v6.2.3) | Mike Schulze e contributori | [MIT](https://github.com/godot-gdunit-labs/gdUnit4/blob/master/LICENSE) | `let's-learn-godot/addons/gdUnit4/` (la licenza è nel file `LICENSE` della cartella) |
+
 ## Personaggi di Re:Zero
 
 Subaru ed Emilia sono personaggi di *Re:Zero − Starting Life in Another World* (© Tappei Nagatsuki, Kadokawa). Le loro spritesheet (`characters/subaru/`, `characters/emilia/`) sono state fornite dall'autore del progetto e non sono nostre: le usiamo solo per imparare, in un progetto personale e non commerciale.

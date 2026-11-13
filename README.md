@@ -23,6 +23,19 @@ Alla prima partita una breve cutscene mostra Subaru che arriva al villaggio.
 
 **La prima missione:** Lina ha perso la chiave del suo baule. Trovala nel villaggio e portagliela.
 
+## Test
+
+I test automatici sono in `let's-learn-godot/test/` e usano [gdUnit4](https://github.com/godot-gdunit-labs/gdUnit4).
+
+- **Nell'editor:** pannello *GdUnit* → ▶.
+- **Da terminale**, nella cartella `let's-learn-godot`:
+
+```
+test.cmd --godot_binary C:\percorso\Godot_v4.7.2-stable_win64.exe
+```
+
+(oppure imposta la variabile d'ambiente `GODOT_BIN` e lancia solo `test.cmd`). I report vanno in `reports/`.
+
 ## Struttura
 
 | Cartella | Contenuto |
@@ -36,6 +49,8 @@ Alla prima partita una breve cutscene mostra Subaru che arriva al villaggio.
 | `let's-learn-godot/world/` | Il villaggio (`main.tscn`), la casa di Lina (`house.tscn`) e i loro TileSet |
 | `let's-learn-godot/cutscenes/` | Le scene d'intermezzo (per ora l'arrivo al villaggio) |
 | `let's-learn-godot/core/` | Gli autoload di base: stato della partita (`Game`), zaino (`Inventory`), salvataggio (`SaveSystem`), opzioni (`Settings`), suoni (`Sfx`); e le costanti `Facing` e `FlagKeys` |
+| `let's-learn-godot/test/` | I test di gdUnit4: `core/` (unitari) e `world/` (di scena) |
+| `let's-learn-godot/addons/gdUnit4/` | Il plugin gdUnit4 (MIT, vedi [CREDITS.md](CREDITS.md)) |
 | `let's-learn-godot/assets/` | Asset esterni (vedi [CREDITS.md](CREDITS.md)) |
 | `gamelog/` | Il diario del progetto, è un vault di [Obsidian](https://obsidian.md) |
 | `sorgenti/` | I file di partenza, prima della pulizia (per ora la spritesheet originale di Subaru) |
