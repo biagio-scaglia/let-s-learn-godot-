@@ -14,9 +14,12 @@ Per ora c'è Subaru che cammina e corre in una piccola mappa con alberi, sentier
 | Frecce o WASD | Muoversi |
 | Shift (tenuto premuto) | Correre |
 | E, Spazio o Invio | Parlare, andare avanti nel dialogo |
-| Esc | Menu di pausa (riprendi, opzioni, torna al titolo, esci) |
+| Esc | Menu di pausa (riprendi, salva, opzioni, torna al titolo, esci) |
+| Tab o I | Zaino |
 
-Il gioco parte dalla schermata iniziale: frecce o mouse per scegliere, Invio per confermare. Nelle opzioni si regolano volume e schermo intero, che vengono ricordati.
+Il gioco parte dalla schermata iniziale: frecce o mouse per scegliere, Invio per confermare. Nelle opzioni si regolano volume e schermo intero, che vengono ricordati. Dal menu di pausa si salva, e nel titolo compare *Continua*.
+
+**La prima missione:** Lina ha perso la chiave del suo baule. Trovala nel villaggio e portagliela.
 
 ## Struttura
 
