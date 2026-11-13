@@ -6,14 +6,23 @@ extends Node2D
 func _ready() -> void:
 	# Il menu di pausa si apre solo nelle scene di questo gruppo.
 	add_to_group("level")
-	if Game.spawn_point == "":
-		return   # prima scena del gioco: il giocatore resta dov'è nella scena
-	var marker := get_node_or_null("Spawns/" + Game.spawn_point) as Node2D
 	var player := get_tree().get_first_node_in_group("player") as Node2D
-	if marker == null or player == null:
-		push_warning("Punto d'arrivo non trovato: " + Game.spawn_point)
-		return
-	player.global_position = marker.global_position
+	if player == null:
+		return   # es. il villaggio usato come sfondo nella schermata iniziale
+
+	if Game.spawn_position != null:
+		# Caricamento di un salvataggio: la posizione esatta.
+		player.global_position = Game.spawn_position
+		Game.spawn_position = null
+	elif Game.spawn_point != "":
+		var marker := get_node_or_null("Spawns/" + Game.spawn_point) as Node2D
+		if marker == null:
+			push_warning("Punto d'arrivo non trovato: " + Game.spawn_point)
+			return
+		player.global_position = marker.global_position
+	else:
+		return   # partita nuova: il giocatore resta dov'è nella scena
+
 	if Game.spawn_facing != "" and player.has_method("face"):
 		player.face(Game.spawn_facing)
 	# La camera deve "saltare" subito sul giocatore, non scivolare dalla vecchia posizione.
