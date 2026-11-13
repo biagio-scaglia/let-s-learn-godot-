@@ -16,6 +16,8 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_shown_y = toast.position.y
 	toast.visible = false
+	# Lo zaino non sa che esiste l'avviso: è l'avviso che ascolta lo zaino.
+	Inventory.item_added.connect(show_item)
 
 
 ## "Hai trovato: Pozione rossa x2"

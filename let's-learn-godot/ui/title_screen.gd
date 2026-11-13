@@ -28,7 +28,7 @@ func _ready() -> void:
 	_pan_camera()
 
 	# "Continua" c'è solo se esiste un salvataggio; sotto, luogo e data.
-	var info := Game.save_info()
+	var info := SaveSystem.save_info()
 	continue_button.visible = not info.is_empty()
 	save_info.text = "" if info.is_empty() else "Salvataggio: %s - %s" % [info.luogo, _pretty_date(info.data)]
 	continue_button.pressed.connect(_on_continue)
@@ -43,9 +43,12 @@ func _ready() -> void:
 ## ma senza Subaru: lo togliamo prima di aggiungerlo alla scena.
 func _add_village_background() -> void:
 	var village: Node = load(Game.FIRST_LEVEL).instantiate()
-	var player := village.get_node("World/Subaru")
-	player.get_parent().remove_child(player)
-	player.free()
+	# Cerchiamo Subaru per gruppo, non per percorso: se un giorno lo spostiamo
+	# in un altro nodo della mappa, funziona lo stesso.
+	for node in village.find_children("*", "CharacterBody2D"):
+		if node.is_in_group("player"):
+			node.get_parent().remove_child(node)
+			node.free()
 	add_child(village)
 	move_child(village, 0)
 
@@ -90,7 +93,7 @@ func _float_title(base_y: float) -> void:
 func _on_continue() -> void:
 	for item in menu.get_children():
 		item.disabled = true
-	Game.continue_game()
+	SaveSystem.continue_game()
 
 
 ## "2026-11-13 10:42:05" → "13/11/2026 10:42"

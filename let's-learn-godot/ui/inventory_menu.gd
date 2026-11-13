@@ -1,6 +1,6 @@
 extends CanvasLayer
 ## Lo zaino. È un autoload chiamato "InventoryMenu": si apre con Tab o I nei livelli.
-## Mostra gli oggetti di Game.inventory in una griglia di caselle; la casella
+## Mostra gli oggetti di Inventory.items in una griglia di caselle; la casella
 ## selezionata mostra nome e descrizione sotto.
 
 const SLOTS := 12   # 6 colonne x 2 righe
@@ -21,7 +21,7 @@ func _ready() -> void:
 	visible = false
 	for i in SLOTS:
 		_slots.append(_make_slot(i))
-	Game.inventory_changed.connect(_refresh)
+	Inventory.changed.connect(_refresh)
 
 
 ## Una casella: un bottone con l'icona al centro e la quantità in basso a destra.
@@ -57,28 +57,28 @@ func _make_slot(index: int) -> Button:
 
 func _refresh() -> void:
 	_ids.clear()
-	for id in Game.inventory:
+	for id in Inventory.items:
 		_ids.append(id)
 	for i in SLOTS:
 		var slot := _slots[i]
 		var id := _ids[i] if i < _ids.size() else ""
 		var icon: TextureRect = slot.get_node("Icon")
 		var count: Label = slot.get_node("Count")
-		icon.texture = Game.item(id).icon if id != "" else null
-		var amount: int = Game.inventory.get(id, 0)
+		icon.texture = Inventory.item(id).icon if id != "" else null
+		var amount: int = Inventory.items.get(id, 0)
 		count.text = str(amount) if amount > 1 else ""
 
 
 func _on_slot_focused(index: int) -> void:
 	if is_open:
-		Game.ui_sound("move")
+		Sfx.play(Sfx.MOVE)
 	var id := _ids[index] if index < _ids.size() else ""
 	if id == "":
 		item_name.text = ""
 		item_description.text = "Lo zaino è vuoto." if _ids.is_empty() else ""
 	else:
-		item_name.text = Game.item(id).name
-		item_description.text = Game.item(id).description
+		item_name.text = Inventory.item(id).name
+		item_description.text = Inventory.item(id).description
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -86,15 +86,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.is_action_pressed("inventory") or event.is_action_pressed("pause") or event.is_action_pressed("ui_cancel"):
 			get_viewport().set_input_as_handled()
 			close()
-	elif event.is_action_pressed("inventory") and _can_open():
+	elif event.is_action_pressed("inventory") and Game.can_open_menu():
 		get_viewport().set_input_as_handled()
 		open()
-
-
-func _can_open() -> bool:
-	var scene := get_tree().current_scene
-	return scene != null and scene.is_in_group("level") and not get_tree().paused \
-		and not Dialogue.is_active and not Game.changing_scene and not Game.in_cutscene
 
 
 func open() -> void:
@@ -102,7 +96,7 @@ func open() -> void:
 	get_tree().paused = true
 	_refresh()
 	visible = true
-	Game.ui_sound("confirm")
+	Sfx.play(Sfx.CONFIRM)
 	panel.pivot_offset = panel.size / 2.0
 	panel.scale = Vector2(0.92, 0.92)
 	panel.modulate.a = 0.0
@@ -115,7 +109,7 @@ func open() -> void:
 
 
 func close() -> void:
-	Game.ui_sound("back")
+	Sfx.play(Sfx.BACK)
 	var t := create_tween().set_parallel()
 	t.tween_method(_set_blur, 1.0, 0.0, 0.15)
 	t.tween_property(panel, "modulate:a", 0.0, 0.15)

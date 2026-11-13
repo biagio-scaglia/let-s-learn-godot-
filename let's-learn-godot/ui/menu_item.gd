@@ -27,7 +27,7 @@ func _ready() -> void:
 	focus_entered.connect(_on_focus_entered)
 	focus_exited.connect(_on_focus_exited)
 	mouse_entered.connect(grab_focus)
-	pressed.connect(Game.ui_sound.bind("confirm"))
+	pressed.connect(Sfx.play.bind(Sfx.CONFIRM))
 
 
 ## Seleziona questa voce senza il "tic" (per esempio quando un menu si apre).
@@ -39,7 +39,7 @@ func focus_silently() -> void:
 
 func _on_focus_entered() -> void:
 	if not _silent:
-		Game.ui_sound("move")
+		Sfx.play(Sfx.MOVE)
 	var x := -_cursor.size.x - 10.0
 	_cursor.position = Vector2(x, (size.y - _cursor.size.y) / 2.0)
 	_cursor.visible = true

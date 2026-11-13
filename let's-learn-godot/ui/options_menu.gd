@@ -1,6 +1,6 @@
 extends Control
 ## Il pannello delle opzioni, usato sia dalla schermata iniziale sia dal menu di pausa.
-## Le opzioni vere stanno in Game, che le salva su file.
+## Le opzioni vere stanno in Settings, che le salva su file.
 
 ## Emesso quando il giocatore torna indietro.
 signal closed
@@ -15,9 +15,9 @@ signal closed
 func _ready() -> void:
 	hide()
 	volume_slider.value_changed.connect(_on_volume_changed)
-	volume_slider.focus_entered.connect(Game.ui_sound.bind("move"))
+	volume_slider.focus_entered.connect(Sfx.play.bind(Sfx.MOVE))
 	fullscreen_box.toggled.connect(_on_fullscreen_toggled)
-	fullscreen_box.focus_entered.connect(Game.ui_sound.bind("move"))
+	fullscreen_box.focus_entered.connect(Sfx.play.bind(Sfx.MOVE))
 	fullscreen_box.mouse_entered.connect(fullscreen_box.grab_focus)
 	volume_slider.mouse_entered.connect(volume_slider.grab_focus)
 	back_button.pressed.connect(close)
@@ -25,8 +25,8 @@ func _ready() -> void:
 
 func open() -> void:
 	# Mostra i valori attuali senza far partire i segnali (non è un cambiamento).
-	volume_slider.set_value_no_signal(Game.volume * 100.0)
-	fullscreen_box.set_pressed_no_signal(Game.fullscreen)
+	volume_slider.set_value_no_signal(Settings.volume * 100.0)
+	fullscreen_box.set_pressed_no_signal(Settings.fullscreen)
 	_update_volume_label()
 	show()
 	panel.pivot_offset = panel.size / 2.0
@@ -39,7 +39,7 @@ func open() -> void:
 
 
 func close() -> void:
-	Game.ui_sound("back")
+	Sfx.play(Sfx.BACK)
 	hide()
 	closed.emit()
 
@@ -51,14 +51,14 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _on_volume_changed(value: float) -> void:
-	Game.set_volume(value / 100.0)
+	Settings.set_volume(value / 100.0)
 	_update_volume_label()
-	Game.ui_sound("move")   # si sente subito quanto è forte
+	Sfx.play(Sfx.MOVE)   # si sente subito quanto è forte
 
 
 func _on_fullscreen_toggled(on: bool) -> void:
-	Game.set_fullscreen(on)
-	Game.ui_sound("confirm")
+	Settings.set_fullscreen(on)
+	Sfx.play(Sfx.CONFIRM)
 
 
 func _update_volume_label() -> void:

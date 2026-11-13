@@ -36,17 +36,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			return   # Esc nelle opzioni lo gestiscono le opzioni: tornano qui
 		get_viewport().set_input_as_handled()
 		close()
-	elif _can_open():
+	elif Game.can_open_menu():
 		get_viewport().set_input_as_handled()
 		open()
-
-
-## Si può aprire solo in un livello (non nella schermata iniziale), e non durante
-## un dialogo o un cambio di scena.
-func _can_open() -> bool:
-	var scene := get_tree().current_scene
-	return scene != null and scene.is_in_group("level") \
-		and not Dialogue.is_active and not Game.changing_scene and not Game.in_cutscene and not InventoryMenu.is_open
 
 
 func open() -> void:
@@ -56,7 +48,7 @@ func open() -> void:
 	panel.visible = true
 	hint.visible = true
 	options.hide()
-	Game.ui_sound("confirm")
+	Sfx.play(Sfx.CONFIRM)
 
 	panel.pivot_offset = panel.size / 2.0
 	panel.scale = Vector2(0.92, 0.92)
@@ -65,7 +57,7 @@ func open() -> void:
 
 
 func close() -> void:
-	Game.ui_sound("back")
+	Sfx.play(Sfx.BACK)
 	await _animate(0.0, 0.15)
 	visible = false
 	is_open = false
@@ -91,8 +83,8 @@ func _set_blur(value: float) -> void:
 
 
 func _save() -> void:
-	if Game.save_game():
-		Game.ui_sound("save")
+	if SaveSystem.save_game():
+		Sfx.play(Sfx.SAVE)
 		Hud.show_message("Partita salvata")
 	else:
 		Hud.show_message("Non è stato possibile salvare")
