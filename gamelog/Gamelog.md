@@ -33,6 +33,7 @@ Diario del progetto: cosa è stato fatto, perché, e cosa ho imparato di Godot s
 | 2026-11-13 | [[2026-11-13-cutscene\|La prima cutscene: Subaru arriva al villaggio]] | Funzionante |
 | 2026-11-13 | [[2026-11-13-sole-e-nuvole\|Raggi di sole, ombre delle nuvole e un'alba]] | Funzionante |
 | 2026-11-13 | [[2026-11-13-riordino-del-codice\|Riordino del codice]] | Completato |
+| 2026-11-13 | [[2026-11-13-test-con-gdunit\|I test entrano nel progetto, con gdUnit4]] | Funzionante |
 
 ## Il progetto
 

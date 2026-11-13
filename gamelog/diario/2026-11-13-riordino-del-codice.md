@@ -39,7 +39,7 @@ Una revisione del codice gli aveva dato **7/10**. Questa sessione sistema i punt
 
 - **Costanti stringa e non `enum`:** i valori finiscono nei salvataggi e nell'Inspector delle porte. Con le stringhe di prima, i **vecchi salvataggi si caricano ancora** (provato con quello vero di stamattina).
 - **I nuovi autoload stanno in cima alla lista** in `project.godot`: gli autoload partono in ordine, e l'avviso (`Hud`) si collega a `Inventory` già nel suo `_ready()`. Vedi [[Autoload]].
-- **Niente test nel repository:** come deciso in [[Strumenti archiviati]], il test resta fuori.
+- **Niente test nel repository:** come deciso in [[Strumenti archiviati]], il test resta fuori. *(Cambiato subito dopo: vedi [[2026-11-13-test-con-gdunit]].)*
 - **La cutscene resta scritta in codice:** con una sola scena un sistema più grande sarebbe esagerato. Se ne arriveranno altre, si valuterà l'AnimationPlayer ([[Cutscene]]).
 
 ## Problemi incontrati

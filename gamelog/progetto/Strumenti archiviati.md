@@ -25,6 +25,9 @@ Fino al [[2026-11-12-pulizia]] il repository aveva una cartella `tools/` con scr
 | `test_dialogo.gd` | Test di dialoghi, cartello, Emilia, polvere e passi | [[Test del dialogo]] |
 | `test_casa.gd` | Test di entrata, uscita e memoria | [[Test di casa]] |
 
+> [!info] I test sono tornati
+> Dal [[2026-11-13-test-con-gdunit]] i test stanno di nuovo nel repository, in `test/`, scritti con [[Test con gdUnit4|gdUnit4]]. I vecchi `test_*.gd` restano archiviati.
+
 ## Cosa cambia
 
 - **Mappe:** `main.tscn` e `house.tscn` sono ora scene normali, da modificare a mano nell'editor. Non c'è più il rischio di sovrascriverle rigenerandole.
