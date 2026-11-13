@@ -7,6 +7,7 @@ extends CanvasLayer
 @onready var hint: Control = $Hint
 @onready var options: Control = $OptionsMenu
 @onready var resume_button: MenuItem = %Resume
+@onready var save_button: MenuItem = %Save
 @onready var options_button: MenuItem = %Options
 @onready var title_button: MenuItem = %ToTitle
 @onready var quit_button: MenuItem = %Quit
@@ -20,6 +21,7 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	visible = false
 	resume_button.pressed.connect(close)
+	save_button.pressed.connect(_save)
 	options_button.pressed.connect(_open_options)
 	title_button.pressed.connect(_back_to_title)
 	quit_button.pressed.connect(get_tree().quit)
@@ -44,7 +46,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _can_open() -> bool:
 	var scene := get_tree().current_scene
 	return scene != null and scene.is_in_group("level") \
-		and not Dialogue.is_active and not Game.changing_scene
+		and not Dialogue.is_active and not Game.changing_scene and not InventoryMenu.is_open
 
 
 func open() -> void:
@@ -86,6 +88,14 @@ func _animate(target: float, duration: float) -> void:
 
 func _set_blur(value: float) -> void:
 	blur.material.set_shader_parameter("amount", value)
+
+
+func _save() -> void:
+	if Game.save_game():
+		Game.ui_sound("save")
+		Hud.show_message("Partita salvata")
+	else:
+		Hud.show_message("Non è stato possibile salvare")
 
 
 func _open_options() -> void:
