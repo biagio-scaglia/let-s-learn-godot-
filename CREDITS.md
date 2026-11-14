@@ -7,6 +7,10 @@
 | [Tiny Town](https://kenney.nl/assets/tiny-town) (v1.1) | [Kenney](https://www.kenney.nl) | [CC0 1.0](http://creativecommons.org/publicdomain/zero/1.0/) | `let's-learn-godot/assets/kenney_tiny_town/` |
 | [Tiny Dungeon](https://kenney.nl/assets/tiny-dungeon) | [Kenney](https://www.kenney.nl) | [CC0 1.0](http://creativecommons.org/publicdomain/zero/1.0/) | `let's-learn-godot/assets/kenney_tiny_dungeon/` |
 | [Kenney Fonts](https://kenney.nl/assets/kenney-fonts) (KenPixel High Square) | [Kenney](https://www.kenney.nl) | [CC0 1.0](http://creativecommons.org/publicdomain/zero/1.0/) | `let's-learn-godot/assets/fonts/` |
+| [Particle Pack](https://opengameart.org/content/particle-pack-80-sprites) (smoke_04, twirl_02, rimpiccioliti a 64 px) | [Kenney](https://www.kenney.nl) | [CC0 1.0](http://creativecommons.org/publicdomain/zero/1.0/) | `let's-learn-godot/assets/kenney_particle_pack/` |
+| [Sci-fi Sounds](https://opengameart.org/content/sci-fi-sounds) (3 suoni) | [Kenney](https://www.kenney.nl) | [CC0 1.0](http://creativecommons.org/publicdomain/zero/1.0/) | `let's-learn-godot/assets/kenney_sci_fi_sounds/` |
+| [Interface Sounds](https://opengameart.org/content/interface-sounds) (glitch_002) | [Kenney](https://www.kenney.nl) | [CC0 1.0](http://creativecommons.org/publicdomain/zero/1.0/) | `let's-learn-godot/assets/kenney_interface_sounds/` |
+| [Heartbeat sounds](https://opengameart.org/content/heartbeat-sounds) (convertiti a WAV 16 bit) | bart (OpenGameArt) | [CC0 1.0](http://creativecommons.org/publicdomain/zero/1.0/) | `let's-learn-godot/assets/heartbeat_bart/` |
 
 Con la licenza CC0 gli asset si possono usare liberamente, anche in progetti commerciali, e citare l'autore non è obbligatorio. Lo citiamo lo stesso.
 

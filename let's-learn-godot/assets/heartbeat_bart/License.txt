@@ -1,0 +1,7 @@
+Heartbeat sounds, by bart (OpenGameArt.org)
+https://opengameart.org/content/heartbeat-sounds
+
+License: Creative Commons Zero (CC0 1.0)
+http://creativecommons.org/publicdomain/zero/1.0/
+
+Changes: renamed, converted from 32-bit float to 16-bit PCM WAV.
