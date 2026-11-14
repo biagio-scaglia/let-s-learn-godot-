@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3]
+[gd_scene load_steps=22 format=3]
 
 [ext_resource type="TileSet" path="res://world/tileset.tres" id="1_tiles"]
 [ext_resource type="PackedScene" path="res://characters/subaru/subaru.tscn" id="2_subaru"]
@@ -12,9 +12,13 @@
 [ext_resource type="PackedScene" path="res://cutscenes/intro.tscn" id="10_intro"]
 [ext_resource type="Shader" path="res://effects/sun_rays.gdshader" id="11_sun"]
 [ext_resource type="Shader" path="res://effects/cloud_shadows.gdshader" id="12_clouds"]
+[ext_resource type="Script" path="res://world/village_edge.gd" id="13_edge"]
+[ext_resource type="AudioStream" path="res://assets/heartbeat_bart/heartbeat_slow.wav" id="14_slow"]
+[ext_resource type="AudioStream" path="res://assets/heartbeat_bart/heartbeat_fast.wav" id="15_fast"]
 
 [sub_resource type="ShaderMaterial" id="vignette_mat"]
 shader = ExtResource("4_vignette")
+shader_parameter/strength = 0.4
 
 [sub_resource type="ShaderMaterial" id="sun_mat"]
 shader = ExtResource("11_sun")
@@ -166,3 +170,13 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Intro" parent="." instance=ExtResource("10_intro")]
+
+[node name="VillageEdge" type="Node" parent="." node_paths=PackedStringArray("vignette")]
+script = ExtResource("13_edge")
+vignette = NodePath("../Effects/Vignette")
+
+[node name="HeartbeatSlow" type="AudioStreamPlayer" parent="VillageEdge"]
+stream = ExtResource("14_slow")
+
+[node name="HeartbeatFast" type="AudioStreamPlayer" parent="VillageEdge"]
+stream = ExtResource("15_fast")
