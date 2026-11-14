@@ -28,6 +28,9 @@ Se ne occupa l'[[Autoload]] **`SaveSystem`** (`core/save_system.gd`): `save_game
 | `data` | Data e ora, mostrate nel titolo |
 | `zaino` | `Inventory.items` |
 | `ricordi` | `Game.flags` |
+| `morti` | `Game.deaths` (manca nei vecchi salvataggi: si parte da 0) |
+
+Salvare e *Continua* fissano anche il punto di ritorno del [[Ritorno dalla Morte]].
 
 Come funziona, spiegato in generale: [[Salvare la partita]].
 

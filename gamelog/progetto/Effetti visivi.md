@@ -31,6 +31,8 @@ Piccoli dettagli che rendono il gioco più "vivo". Nessuno è indispensabile, in
 | Il gioco compare dal nero | [[Dissolvenza]] | [[Autoload]], [[Tween]] |
 | Raggi di sole dall'alto a sinistra | `Effects/SunRays`, luce sommata (`blend_add`) | [[Shader]], [[Rumore]] |
 | Ombre delle nuvole che scorrono | `CloudShadows`, sopra il mondo, ferme sul terreno | [[Shader]], [[Rumore]] |
+| Battito e vignettatura che si stringe vicino ai bordi | `VillageEdge` | [[Ritorno dalla Morte]], [[Audio]] |
+| Nebbia nera e viola, vortice del ritorno | `miasma.gdshader`, `rewind.gdshader`, sprite del Particle Pack | [[Ritorno dalla Morte]], [[Shader]], [[Rumore]] |
 | Alba nella cutscene d'apertura | Colore di `Tint` e forza dei raggi animati | [[Intro]], [[Tween]] |
 | Stanza buia, torcia che tremola, luce dalla finestra | [[Casa di Lina]] | [[Luci 2D]], [[CanvasModulate]] |
 | Suono della porta | Generato dal [[Generatore degli effetti]] | [[Audio]] |

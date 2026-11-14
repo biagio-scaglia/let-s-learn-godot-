@@ -35,6 +35,17 @@ float fbm(vec2 p) {
 
 4. **Tagliare con `smoothstep`.** Il rumore va da 0 a 1 ovunque; con `smoothstep(0.55, 0.67, n)` resta solo la parte "alta": macchie separate con bordi morbidi.
 
+## Domain warping: rumore che deforma il rumore
+
+Per avere qualcosa che si **arriccia** come fumo, si usa il rumore per *spostare* il punto in cui si legge altro rumore:
+
+```glsl
+vec2 warp = vec2(fbm(p + vec2(t, -t)), fbm(p + vec2(-t, t) + 5.2));
+float fog = fbm(p + warp * 1.8);
+```
+
+Le forme si stirano e si attorcigliano, e cambiano piano perché `warp` cambia con il tempo. È la nebbia del [[Ritorno dalla Morte]].
+
 ## Farlo muovere
 
 Basta spostare il punto in cui si legge il rumore con il tempo: `p -= wind * TIME`. Le nuvole scivolano senza che nessun nodo si muova.
@@ -44,6 +55,7 @@ Basta spostare il punto in cui si legge il rumore con il tempo: `p -= wind * TIM
 | Dove | Rumore |
 |---|---|
 | Ombre delle nuvole (`effects/cloud_shadows.gdshader`) | Rumore 2D con fbm, spinto dal vento |
+| Nebbia del Ritorno dalla Morte (`effects/miasma.gdshader`) | fbm con *domain warping*, che avanza dai bordi verso il centro |
 | Raggi di sole (`effects/sun_rays.gdshader`) | Rumore 1D sull'**angolo**: ogni direzione ha la sua luminosità, e così nascono i fasci |
 
 Vedi [[Effetti visivi]].

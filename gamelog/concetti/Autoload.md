@@ -38,6 +38,7 @@ Tutti gli autoload del progetto:
 | `Fade` | [[Dissolvenza]] |
 | `Game` | [[Game\|Stato della partita]] e cambi di scena |
 | `Pause` | [[Menu di pausa]] |
+| `ReturnByDeath` | [[Ritorno dalla Morte]]: morte e game over |
 | `Hud` | [[Avvisi]] |
 | `InventoryMenu` | [[Zaino\|Il menu dello zaino]] |
 

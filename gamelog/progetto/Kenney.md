@@ -21,3 +21,4 @@ Autore olandese di migliaia di asset per videogiochi (2D, 3D, interfacce, suoni)
 - [[Tiny Town]]: il tileset della mappa
 - [[Tiny Dungeon]]: il [[Saggio]]
 - [[KenPixel]]: il font dei dialoghi
+- Particle Pack, Sci-fi Sounds, Interface Sounds: fumo, vortice e suoni del [[Ritorno dalla Morte]]

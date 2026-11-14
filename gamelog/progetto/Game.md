@@ -24,14 +24,17 @@ L'[[Autoload]] **`Game`** (`core/game.gd`): lo **stato della partita** che deve 
 | `spawn_point`, `spawn_position`, `spawn_facing` | Dove far comparire il giocatore nella prossima scena, e verso dove guarda |
 | `changing_scene` | Vero durante un cambio di scena |
 | `in_cutscene` | Vero durante una [[Cutscene]] (es. l'[[Intro]]): niente comandi né menu |
+| `checkpoint` | Il punto di ritorno del [[Ritorno dalla Morte]]: scena, posizione, direzione, ricordi e zaino |
+| `deaths` | Quante volte Subaru è morto. Il ritorno non lo azzera |
 
 ## Cosa fa
 
 - `has_flag(chiave)`, `set_flag(chiave)`: leggere e scrivere un ricordo.
 - `player_can_move()`: no durante un dialogo, un cambio di scena o una [[Cutscene]]. La usano [[Subaru]] e gli [[Interactable]].
 - `can_open_menu()`: la **sola** regola per aprire il [[Menu di pausa]] e lo [[Zaino]]. Solo in un livello, quando il giocatore potrebbe muoversi e il gioco non è già in [[Pausa]].
-- `new_game()`: dimentica tutto (ricordi e zaino) e va al villaggio.
-- `change_scene(path, spawn, facing)`: suono della porta, [[Dissolvenza]] al nero, [[Cambio di scena]], dissolvenza dal nero. Aspetta il segnale `scene_changed` per sapere quando la nuova scena è pronta.
+- `new_game()`: dimentica tutto (ricordi, zaino, punto di ritorno, morti) e va al villaggio.
+- `set_checkpoint()`, `return_to_checkpoint()`: fissare il punto di ritorno e tornarci. Vedi [[Ritorno dalla Morte]].
+- `change_scene(path, spawn, facing)`: suono della porta, [[Dissolvenza]] al nero, [[Cambio di scena]], dissolvenza dal nero. Aspetta il segnale `scene_changed` per sapere quando la nuova scena è pronta. Il giocatore resta fermo (`changing_scene`) finché lo schermo non si è schiarito.
 
 ## Gli altri autoload
 

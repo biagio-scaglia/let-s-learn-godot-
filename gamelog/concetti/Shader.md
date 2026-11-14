@@ -44,6 +44,13 @@ Un secondo shader, `effects/pause_blur.gdshader`, **sfoca lo schermo** dietro al
 
 Entrambi usano il [[Rumore]] e `TIME` (i secondi da quando il gioco è partito) per muoversi.
 
+### Nebbia e riavvolgimento
+
+Per il [[Ritorno dalla Morte]]:
+
+- `effects/miasma.gdshader`: nebbia di [[Rumore]] che avanza dai bordi. Usa `FRAGCOORD` (la posizione in pixel sullo schermo) arrotondata a blocchi di 3 pixel, per restare pixel art.
+- `effects/rewind.gdshader`: legge lo schermo (`hint_screen_texture`) da un punto **ruotato** attorno al centro, di più al centro che ai bordi: il vortice. Legge rosso, verde e blu da punti un po' diversi (separazione dei colori) e alla fine mescola con il negativo (`1.0 - col`).
+
 > [!warning] Parametri non salvati
 > `material.get_shader_parameter("x")` restituisce `null` se nel materiale `x` non è mai stato cambiato: il valore predefinito sta solo nello shader. Se il codice deve leggerlo, scrivilo nel materiale.
 

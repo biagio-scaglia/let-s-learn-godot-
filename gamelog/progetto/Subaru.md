@@ -42,6 +42,7 @@ Subaru (CharacterBody2D, gruppo "player")   + subaru.gd
 | Fermo durante i dialoghi | [[Autoload]] (`Dialogue.is_active`) |
 | Si gira verso chi parla | `look_at_point()`, chiamata da [[Interactable]] |
 | Cammina da solo nelle cutscene | `walk_to()`, un [[Tween]] sulla posizione: vedi [[Intro]] |
+| Crolla quando muore | `collapse()`: lo sprite ruota attorno ai piedi e si scurisce. Vedi [[Ritorno dalla Morte]] |
 | Passi sonori | [[Audio]], [[Segnali]] (`frame_changed`) |
 
 ## Numeri

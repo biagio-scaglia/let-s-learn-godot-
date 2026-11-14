@@ -21,6 +21,8 @@ Il gioco parte dalla schermata iniziale: frecce o mouse per scegliere, Invio per
 
 Alla prima partita una breve cutscene mostra Subaru che arriva al villaggio.
 
+**Attenzione:** non provare a uscire dal villaggio. Se muori, puoi sempre *ritornare*…
+
 **La prima missione:** Lina ha perso la chiave del suo baule. Trovala nel villaggio e portagliela.
 
 ## Test

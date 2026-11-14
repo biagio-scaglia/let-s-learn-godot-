@@ -34,6 +34,7 @@ Diario del progetto: cosa è stato fatto, perché, e cosa ho imparato di Godot s
 | 2026-11-13 | [[2026-11-13-sole-e-nuvole\|Raggi di sole, ombre delle nuvole e un'alba]] | Funzionante |
 | 2026-11-13 | [[2026-11-13-riordino-del-codice\|Riordino del codice]] | Completato |
 | 2026-11-13 | [[2026-11-13-test-con-gdunit\|I test entrano nel progetto, con gdUnit4]] | Funzionante |
+| 2026-11-14 | [[2026-11-14-ritorno-dalla-morte\|Il Ritorno dalla Morte]] | Funzionante |
 
 ## Il progetto
 
@@ -41,7 +42,7 @@ Diario del progetto: cosa è stato fatto, perché, e cosa ho imparato di Godot s
 |---|---|
 | Personaggi | [[Subaru]] · [[Emilia]] · [[Saggio]] · [[Lina]] |
 | Oggetti | [[Oggetti]] · [[Oggetto da raccogliere]] · [[Cartello]] · [[Interactable]] · [[Porta]] |
-| Storia e missioni | [[Intro]] · [[Missione della chiave]] |
+| Storia e missioni | [[Intro]] · [[Missione della chiave]] · [[Ritorno dalla Morte]] |
 | Mondo | [[Mappa principale]] · [[Casa di Lina]] · [[Effetti visivi]] |
 | Stato del gioco | [[Game]] · [[Inventory]] · [[Salvataggio]] · [[Opzioni]] · [[Sfx]] |
 | Interfaccia | [[Zaino]] · [[Avvisi]] · [[Salvataggio]] · [[Schermata iniziale]] · [[Menu di pausa]] · [[Opzioni]] · [[MenuItem]] · [[Finestra di dialogo]] · [[Dissolvenza]] |
