@@ -33,6 +33,12 @@ Nel gioco, per ora, si muore in un modo solo: **provando a uscire dal villaggio*
 
 ![[ritorno.png|500]]
 
+## Il mondo dimentica, Subaru no
+
+Dopo un ritorno, il [[Saggio]] ed [[Emilia]] notano che Subaru ha qualcosa che non va e aggiungono due frasi alle loro solite (dalla terza morte il Saggio ne dice altre). Lo fa `quests/death_memory.gd`, con `extra_lines` di [[Interactable]]. Il ricordo "l'ha già notato" torna indietro con il ritorno: dopo ogni morte lo notano di nuovo.
+
+Il [[Cartello]] avverte già prima: *"Non lasciate il villaggio."*
+
 ## I pezzi
 
 | Pezzo | File | Cosa fa |

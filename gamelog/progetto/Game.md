@@ -29,7 +29,8 @@ L'[[Autoload]] **`Game`** (`core/game.gd`): lo **stato della partita** che deve 
 
 ## Cosa fa
 
-- `has_flag(chiave)`, `set_flag(chiave)`: leggere e scrivere un ricordo.
+- `has_flag(chiave)`, `set_flag(chiave)`, `load_flags(dizionario)`: leggere, scrivere e sostituire i ricordi.
+- Il segnale **`state_changed`**: avvisa quando cambia un ricordo o comincia/finisce una cutscene. Lo ascolta l'[[Obiettivo]].
 - `player_can_move()`: no durante un dialogo, un cambio di scena o una [[Cutscene]]. La usano [[Subaru]] e gli [[Interactable]].
 - `can_open_menu()`: la **sola** regola per aprire il [[Menu di pausa]] e lo [[Zaino]]. Solo in un livello, quando il giocatore potrebbe muoversi e il gioco non è già in [[Pausa]].
 - `new_game()`: dimentica tutto (ricordi, zaino, punto di ritorno, morti) e va al villaggio.

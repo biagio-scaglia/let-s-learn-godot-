@@ -38,6 +38,7 @@ Indice dei concetti di Godot incontrati finora. Ogni concetto ha la sua nota, co
 - [[Costanti]]: nomi al posto delle stringhe scritte a mano
 - [[Responsabilità]]: un compito per script, e chi conosce chi
 - [[Test con gdUnit4]]: script che provano il gioco al posto tuo
+- [[Ottimizzazione]]: misurare, e non far lavorare il gioco per niente
 - [[Classi globali]]: `class_name`, uno script diventa un tipo
 - [[Tween]]: animare una proprietà dal codice
 - [[Await]]: aspettare senza bloccare il gioco
