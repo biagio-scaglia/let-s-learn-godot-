@@ -12,8 +12,8 @@ extends CharacterBody2D
 var facing := Facing.DOWN
 ## Quanti passi ha fatto (utile nei test).
 var step_count := 0
-## True mentre cammina da solo (in una cutscene): i tasti non contano.
-var _auto_walking := false
+## True quando lo muove uno script (cutscene, morte): i tasti non contano.
+var _scripted := false
 
 
 func _ready() -> void:
@@ -29,7 +29,7 @@ func _on_frame_changed() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if _auto_walking:
+	if _scripted:
 		return   # lo muove walk_to(), non i tasti
 	# Durante un dialogo o un cambio di scena Subaru resta fermo.
 	if not Game.player_can_move():
@@ -59,15 +59,31 @@ func _physics_process(_delta: float) -> void:
 ## Fa camminare Subaru da solo fino a "point", in linea retta (per le cutscene).
 ## Si può aspettare: await subaru.walk_to(...). Attraversa i muri: serve solo per le scene scritte.
 func walk_to(point: Vector2, speed := walk_speed) -> void:
-	_auto_walking = true
+	_scripted = true
 	facing = Facing.from_vector(point - global_position)
 	sprite.play("walk_" + facing)
 	sprite.speed_scale = 1.0
 	var t := create_tween()
 	t.tween_property(self, "global_position", point, global_position.distance_to(point) / speed)
 	await t.finished
-	_auto_walking = false
+	_scripted = false
 	_play_idle()
+
+
+## Subaru crolla a terra: cade di lato e si scurisce. Per il Ritorno dalla Morte.
+## Si rialza da solo quando la scena viene ricaricata.
+func collapse() -> void:
+	_scripted = true
+	velocity = Vector2.ZERO
+	dust.emitting = false
+	_play_idle()
+	sprite.stop()
+	var side := -1.0 if facing == Facing.LEFT else 1.0
+	var t := create_tween().set_parallel()
+	# Lo sprite ruota attorno ai piedi (la sua origine), quindi "cade" di lato.
+	t.tween_property(sprite, "rotation", side * PI / 2.0, 0.35).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	t.tween_property(sprite, "modulate", Color(0.45, 0.35, 0.55), 0.8)
+	await t.finished
 
 
 ## Gira Subaru verso un punto (per esempio chi gli sta parlando).
