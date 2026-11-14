@@ -5,7 +5,7 @@ extends Node
 ## variabili. Quello che va ricordato (con chi hai parlato, dove comparire…) sta qui.
 ##
 ## Il resto ha il suo autoload: lo zaino è Inventory, il salvataggio SaveSystem,
-## le opzioni Settings, i suoni Sfx.
+## le opzioni Settings, i suoni Sfx, le statistiche di Subaru Stats.
 
 const TITLE_SCENE := "res://ui/title_screen.tscn"
 const FIRST_LEVEL := "res://world/main.tscn"
@@ -33,7 +33,7 @@ var in_cutscene := false:
 			in_cutscene = value
 			state_changed.emit()
 ## Il punto di ritorno del Ritorno dalla Morte: com'era il mondo in quel momento
-## (scena, posizione, direzione, ricordi, zaino). Vuoto = nessuno.
+## (scena, posizione, direzione, ricordi, zaino, statistiche). Vuoto = nessuno.
 var checkpoint := {}
 ## Quante volte Subaru è morto. Il Ritorno NON lo riporta indietro: lui se lo ricorda.
 var deaths := 0
@@ -84,6 +84,7 @@ func can_open_menu() -> bool:
 func new_game() -> void:
 	load_flags()
 	Inventory.reset()
+	Stats.reset()
 	spawn_position = null
 	checkpoint = {}
 	deaths = 0
@@ -106,6 +107,7 @@ func set_checkpoint() -> void:
 		# Copie: quello che succede dopo non deve cambiare il punto di ritorno.
 		"flags": flags.duplicate(true),
 		"inventory": Inventory.items.duplicate(true),
+		"stats": Stats.to_dict(),
 	}
 
 
@@ -115,11 +117,16 @@ func return_to_checkpoint() -> void:
 		# Nessun punto di ritorno: si ricomincia dal villaggio, ma la morte resta.
 		load_flags({FlagKeys.INTRO_SEEN: true})
 		Inventory.reset()
+		Stats.heal_fully()
 		spawn_position = null
 		await change_scene(FIRST_LEVEL, "", "", false)
 		return
 	load_flags(checkpoint.flags)
 	Inventory.reset(checkpoint.inventory)
+	# Livello ed esperienza tornano com'erano; ma ci si risveglia in piena salute,
+	# altrimenti chi è morto in un combattimento ci ricadrebbe subito.
+	Stats.reset(checkpoint.get("stats", Stats.to_dict()))
+	Stats.heal_fully()
 	spawn_position = checkpoint.position
 	await change_scene(checkpoint.scene, "", checkpoint.facing, false)
 
