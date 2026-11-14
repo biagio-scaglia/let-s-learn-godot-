@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://ui/pause_menu.gd" id="1_script"]
 [ext_resource type="Shader" path="res://effects/pause_blur.gdshader" id="2_blur"]
 [ext_resource type="Script" path="res://ui/menu_item.gd" id="3_item"]
 [ext_resource type="PackedScene" path="res://ui/options_menu.tscn" id="4_options"]
+[ext_resource type="PackedScene" path="res://ui/status_card.tscn" id="5_status"]
 
 [sub_resource type="ShaderMaterial" id="blur_mat"]
 shader = ExtResource("2_blur")
@@ -87,6 +88,19 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Esci dal gioco"
 script = ExtResource("3_item")
+
+[node name="Status" parent="." instance=ExtResource("5_status")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -310.0
+offset_top = -126.0
+offset_right = -176.0
+offset_bottom = 114.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Hint" type="Label" parent="."]
 anchors_preset = 7

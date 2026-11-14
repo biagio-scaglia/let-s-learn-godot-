@@ -1,10 +1,12 @@
 extends CanvasLayer
 ## Il menu di pausa. È un autoload chiamato "Pause": con Esc si apre in qualsiasi livello.
 ## Mette in pausa tutto il gioco (get_tree().paused), tranne sé stesso.
+## A sinistra delle voci c'è la scheda del personaggio (status_card.tscn).
 
 @onready var blur: ColorRect = $Blur
 @onready var panel: Control = $Panel
 @onready var hint: Control = $Hint
+@onready var status: Control = $Status
 @onready var options: Control = $OptionsMenu
 @onready var resume_button: MenuItem = %Resume
 @onready var save_button: MenuItem = %Save
@@ -47,6 +49,7 @@ func open() -> void:
 	visible = true
 	panel.visible = true
 	hint.visible = true
+	status.visible = true
 	options.hide()
 	Sfx.play(Sfx.CONFIRM)
 
@@ -73,6 +76,7 @@ func _animate(target: float, duration: float) -> void:
 	_tween.tween_method(_set_blur, start, target, duration)
 	_tween.tween_property(panel, "modulate:a", target, duration)
 	_tween.tween_property(hint, "modulate:a", target, duration)
+	_tween.tween_property(status, "modulate:a", target, duration)
 	_tween.tween_property(panel, "scale", Vector2.ONE if target > 0.5 else Vector2(0.92, 0.92), duration) \
 		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	await _tween.finished
@@ -93,12 +97,14 @@ func _save() -> void:
 func _open_options() -> void:
 	panel.visible = false
 	hint.visible = false
+	status.visible = false
 	options.open()
 
 
 func _on_options_closed() -> void:
 	panel.visible = true
 	hint.visible = true
+	status.visible = true
 	options_button.focus_silently()
 
 
