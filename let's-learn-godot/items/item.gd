@@ -9,5 +9,7 @@ extends Resource
 @export var name := ""
 ## La descrizione nello zaino.
 @export_multiline var description := ""
+## Quanti punti salute rimette, se usato. 0 = non è una cura.
+@export var heal := 0
 ## L'icona (16x16).
 @export var icon: Texture2D

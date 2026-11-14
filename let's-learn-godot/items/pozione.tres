@@ -11,5 +11,6 @@ region = Rect2(112, 144, 16, 16)
 script = ExtResource("1_item")
 id = "pozione"
 name = "Pozione rossa"
-description = "La ricetta segreta del nonno di Lina. Rimette in forze."
+description = "La ricetta segreta del nonno di Lina. Rimette 12 punti salute."
+heal = 12
 icon = SubResource("icon")

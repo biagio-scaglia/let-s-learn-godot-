@@ -48,6 +48,17 @@ func remove(id: String, amount := 1) -> void:
 	changed.emit()
 
 
+## Usa un oggetto che cura. Restituisce quanti punti salute ha rimesso: 0 se non
+## serviva (non è una cura, non ce l'hai, sei già in piena forma), e allora resta nello zaino.
+func use(id: String) -> int:
+	var heal: int = item(id).heal
+	if not has(id) or heal <= 0 or Stats.hp >= Stats.max_hp:
+		return 0
+	var healed := Stats.heal(heal)
+	remove(id)
+	return healed
+
+
 ## Svuota lo zaino, oppure lo riempie con quello letto da un salvataggio.
 func reset(data := {}) -> void:
 	# duplicate(): una copia nuova, così modificarla non tocca i dati di partenza.
