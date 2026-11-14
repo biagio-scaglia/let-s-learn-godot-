@@ -66,3 +66,10 @@ func test_durante_una_cutscene_il_bordo_non_uccide() -> void:
 	player.global_position = Vector2(656, 760)
 	await runner.simulate_frames(5)
 	assert_bool(ReturnByDeath.is_active).is_false()
+
+
+func test_morendo_subaru_cade_a_terra() -> void:
+	player.global_position = Vector2(1210, 400)
+	await runner.simulate_frames(3)
+	var sprite := player.get_node("AnimatedSprite2D") as AnimatedSprite2D
+	assert_str(sprite.animation).is_equal("collapse")
