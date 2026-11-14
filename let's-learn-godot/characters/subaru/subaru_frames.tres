@@ -365,4 +365,12 @@ animations = [{
 "loop": false,
 "name": &"hurt",
 "speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("act_kneel")
+}],
+"loop": false,
+"name": &"weak",
+"speed": 1.0
 }]
