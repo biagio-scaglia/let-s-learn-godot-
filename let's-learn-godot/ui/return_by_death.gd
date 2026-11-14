@@ -42,6 +42,10 @@ func _ready() -> void:
 func _reset() -> void:
 	darkness.modulate.a = 0.0
 	_set_fog(0.0)
+	# Nascosti, non solo trasparenti: un nodo invisibile non costa niente, mentre uno
+	# trasparente fa girare lo stesso il suo shader su tutto lo schermo, a ogni frame.
+	darkness.visible = false
+	fog.visible = false
 	miasma.emitting = false
 	vortex.visible = false
 	panel.visible = false
@@ -72,6 +76,8 @@ func die() -> void:
 			player.collapse()
 
 	# 2. La nebbia sale e il buio si chiude.
+	darkness.visible = true
+	fog.visible = true
 	miasma.emitting = true
 	drone.volume_db = -40.0
 	drone.play()

@@ -18,26 +18,36 @@ extends Node
 ## Da 0 (al sicuro) a 1 (sul bordo).
 var danger := 0.0
 var _vignette_strength := 0.4
+var _vignette_material: ShaderMaterial
+## Il giocatore, cercato una volta sola (non a ogni frame).
+var _player: Node2D
 
 
 func _ready() -> void:
+	_player = get_tree().get_first_node_in_group("player") as Node2D
+	if _player == null:
+		# Il villaggio fa da sfondo al titolo: niente Subaru, niente da controllare.
+		set_process(false)
+		return
 	if vignette:
-		_vignette_strength = (vignette.material as ShaderMaterial).get_shader_parameter("strength")
+		_vignette_material = vignette.material as ShaderMaterial
+		_vignette_strength = _vignette_material.get_shader_parameter("strength")
 	# Il battito ricomincia da solo finché c'è pericolo.
 	heartbeat_slow.finished.connect(_beat)
 	heartbeat_fast.finished.connect(_beat)
 
 
 func _process(delta: float) -> void:
-	var player := get_tree().get_first_node_in_group("player") as Node2D
 	var target := 0.0
-	if player and Game.player_can_move():
-		var p := player.global_position
+	if Game.player_can_move():
+		var p := _player.global_position
 		var distance := minf(minf(p.x - walkable.position.x, walkable.end.x - p.x),
 				minf(p.y - walkable.position.y, walkable.end.y - p.y))
 		if distance <= death_distance:
 			ReturnByDeath.die()
 		target = clampf(1.0 - (distance - death_distance) / (warn_distance - death_distance), 0.0, 1.0)
+	if target == danger:
+		return   # niente è cambiato (quasi sempre: Subaru è lontano dai bordi)
 	# Il pericolo sale e scende piano, così non ci sono scatti.
 	danger = move_toward(danger, target, delta * 1.5)
 
@@ -46,8 +56,8 @@ func _process(delta: float) -> void:
 	heartbeat_fast.volume_db = linear_to_db(maxf(danger, 0.001))
 	if danger > 0.05 and not was_beating:
 		_beat()
-	if vignette:
-		(vignette.material as ShaderMaterial).set_shader_parameter("strength", _vignette_strength + danger * 0.5)
+	if _vignette_material:
+		_vignette_material.set_shader_parameter("strength", _vignette_strength + danger * 0.5)
 
 
 ## Un battito: lento da lontano, veloce vicino al bordo.
