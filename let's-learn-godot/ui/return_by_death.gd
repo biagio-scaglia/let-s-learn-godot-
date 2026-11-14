@@ -140,16 +140,28 @@ func _on_return() -> void:
 	# Game.return_to_checkpoint fa la dissolvenza al nero: quando lo schermo è nero
 	# togliamo i nostri effetti, così al risveglio non si vedono.
 	_cleanup_when_black()
+	# Appena la scena è ricaricata (e lo schermo è ancora nero) Subaru va steso a terra:
+	# quando il nero si toglie lo si trova così.
+	get_tree().scene_changed.connect(_lay_player_down, CONNECT_ONE_SHOT)
 	await Game.return_to_checkpoint()
 
 	is_active = false
 	# Subaru si ricorda di essere morto.
 	var lines: Array = RETURN_LINES[mini(Game.deaths, RETURN_LINES.size()) - 1]
 	Game.in_cutscene = true
-	await get_tree().create_timer(0.4).timeout
+	await get_tree().create_timer(0.6).timeout
+	var player := get_tree().get_first_node_in_group("player")
+	if player and player.has_method("wake_up"):
+		await player.wake_up()
 	Dialogue.start("Subaru", PackedStringArray(lines))
 	await Dialogue.finished
 	Game.in_cutscene = false
+
+
+func _lay_player_down() -> void:
+	var player := get_tree().get_first_node_in_group("player")
+	if player and player.has_method("lie_down"):
+		player.lie_down()
 
 
 func _cleanup_when_black() -> void:
