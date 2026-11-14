@@ -52,3 +52,29 @@ func test_ogni_oggetto_ha_id_nome_e_icona() -> void:
 		assert_str(item.id).is_equal(id)
 		assert_str(item.name).is_not_empty()
 		assert_object(item.icon).is_not_null()
+
+
+func test_usare_una_pozione_cura_e_la_consuma() -> void:
+	Stats.reset()
+	Stats.take_damage(15)
+	inventory.add(Inventory.POTION, 2)
+	assert_int(inventory.use(Inventory.POTION)).is_equal(12)
+	assert_int(Stats.hp).is_equal(17)
+	assert_int(inventory.items[Inventory.POTION]).is_equal(1)
+	Stats.reset()
+
+
+func test_in_piena_forma_la_pozione_resta_nello_zaino() -> void:
+	Stats.reset()
+	inventory.add(Inventory.POTION)
+	assert_int(inventory.use(Inventory.POTION)).is_equal(0)
+	assert_bool(inventory.has(Inventory.POTION)).is_true()
+
+
+func test_la_chiave_non_si_usa() -> void:
+	Stats.reset()
+	Stats.take_damage(5)
+	inventory.add(Inventory.KEY)
+	assert_int(inventory.use(Inventory.KEY)).is_equal(0)
+	assert_bool(inventory.has(Inventory.KEY)).is_true()
+	Stats.reset()
