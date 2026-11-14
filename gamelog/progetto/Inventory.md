@@ -41,6 +41,10 @@ Inventory.item("chiave").name       # "Chiave"
 
 `Inventory` **non sa** che esistono gli avvisi. Prima era `Game` a chiamare `Hud.show_item()`: ora è l'avviso che si mette in ascolto. Così lo zaino si può usare (e provare) anche senza avvisi. Vedi [[Segnali]] e [[Responsabilità]].
 
+## Usare un oggetto
+
+`use(id)` cura Subaru di `item(id).heal` punti e toglie l'oggetto dallo zaino. Restituisce quanti PS sono tornati; **0** se non è servito (non è una cura, non ce l'hai, sei già in piena forma), e in quel caso l'oggetto resta. Lo usano sia lo [[Zaino]] sia il [[Combattimento]]: la regola è scritta una volta sola. Vedi [[Statistiche]].
+
 ## Vedi anche
 
 - [[Zaino]] · [[Oggetti]] · [[Salvataggio]] · [[Game]]

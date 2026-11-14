@@ -15,7 +15,7 @@ Per ora c'è Subaru che cammina e corre in una piccola mappa con alberi, sentier
 | Shift (tenuto premuto) | Correre |
 | E, Spazio o Invio | Parlare, andare avanti nel dialogo |
 | Esc | Menu di pausa (riprendi, salva, opzioni, torna al titolo, esci) |
-| Tab o I | Zaino |
+| Tab o I | Zaino (Invio usa l'oggetto selezionato) |
 
 In alto a sinistra c'è sempre l'**obiettivo** del momento.
 
@@ -24,6 +24,8 @@ Il gioco parte dalla schermata iniziale: frecce o mouse per scegliere, Invio per
 Alla prima partita una breve cutscene mostra Subaru che arriva al villaggio.
 
 **Attenzione:** non provare a uscire dal villaggio. Se muori, puoi sempre *ritornare*…
+
+**Combattere:** nel villaggio ci sono una melma e uno spettro. Avvicinati e premi E: è un combattimento a turni (Attacca, Oggetti, Fuggi). Vincendo si sale di livello; la scheda di Subaru è nel menu di pausa.
 
 **La prima missione:** Lina ha perso la chiave del suo baule. Trovala nel villaggio e portagliela.
 

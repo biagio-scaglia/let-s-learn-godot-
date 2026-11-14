@@ -36,6 +36,8 @@ Come funziona, spiegato in generale: [[Salvare la partita]].
 
 ## Da sapere
 
+- Dal [[2026-11-14-primo-combattimento|14 novembre]] si salvano anche le [[Statistiche]] (`statistiche`). Un salvataggio più vecchio si carica lo stesso: Subaru riparte dal livello 1.
+
 - C'è **un solo** salvataggio: salvare di nuovo lo sovrascrive.
 - *Nuova partita* non cancella il salvataggio: lo sostituisce solo quando salvi di nuovo.
 - Il file sta in `%APPDATA%\Godot\app_userdata\let's learn godot\`.

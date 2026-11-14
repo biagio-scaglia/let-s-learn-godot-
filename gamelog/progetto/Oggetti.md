@@ -28,3 +28,7 @@ Per aggiungere un oggetto:
 3. Mettilo nel mondo con un [[Oggetto da raccogliere]], o dallo con `Inventory.add("id")`.
 
 Si vedono nello [[Zaino]].
+
+## Oggetti che curano
+
+`Item` ha il campo `heal`: quanti punti salute rimette. La pozione ne rimette 12; chiave e moneta 0 (non si usano). Si usano dallo [[Zaino]] o nel [[Combattimento]] (Oggetti), con `Inventory.use(id)`.

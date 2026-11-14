@@ -38,6 +38,10 @@ Nel nodo si sceglie con *Theme Type Variation*.
 
 `ui/theme.tres`, applicato a tutto il progetto. Usa il [[Font]] [[KenPixel]] e i colori della [[Finestra di dialogo]] (crema e viola scuro), con l'oro per la voce selezionata.
 
+## Una cornice disegnata: `BattleWindow`
+
+Per le finestre blu del [[Combattimento]] il Theme ha la variazione `BattleWindow` (base `PanelContainer`) con uno `StyleBoxTexture`: un'immagine di 32×32 (`assets/ui/window_battle.png`) divisa in nove pezzi. Vedi [[StyleBox#StyleBoxTexture]].
+
 ## Vedi anche
 
 - [[Interfaccia (Control)]] · [[StyleBox]] · [[Font]] · [[Menu e focus]]

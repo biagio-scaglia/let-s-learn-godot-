@@ -33,3 +33,7 @@ Si apre con **Esc** in qualsiasi livello. È un [[Autoload]] chiamato `Pause` (`
 | Esci dal gioco | Chiude il gioco |
 
 Le voci sono [[MenuItem]]: frecce per scegliere, Invio per confermare, oppure il mouse.
+
+A sinistra c'è la [[Scheda del personaggio]]: livello, salute, attacco, difesa, esperienza, morti.
+
+![[scheda_personaggio.png|400]]

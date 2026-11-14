@@ -30,3 +30,7 @@ L'inventario: si apre con **Tab** o **I** in qualsiasi livello. È un [[Autoload
 Da [[Inventory]] (`Inventory.items`, un [[Dizionari|dizionario]] id → quantità). Quando cambia, `Inventory` manda il [[Segnali|segnale]] `changed` e lo zaino si aggiorna.
 
 Si apre solo se `Game.can_open_menu()` lo permette: la stessa regola del [[Menu di pausa]].
+
+## Usare gli oggetti
+
+Con **Invio** (o un clic) sulla casella selezionata l'oggetto si usa: per ora solo le cure, come la pozione. Le regole stanno in `Inventory.use()`; lo zaino decide solo cosa scrivere ("Hai recuperato 12 punti salute", "Sei già in piena forma", "Non si può usare qui"). In basso si vedono sempre i PS di Subaru, presi da [[Statistiche|Stats]].

@@ -37,6 +37,16 @@ Si può aspettare:
 | [[Intro]] | Subaru che arriva in piazza, le pause, il dialogo: una [[Cutscene]] |
 | Tutti i test | Timer e frame, per dare tempo al gioco |
 
+## Aspettare un valore
+
+`await` restituisce quello che porta il segnale. `Battle.start()` finisce con `return await finished`, e `finished` porta il risultato: così chi chiama scrive
+
+```gdscript
+var result: String = await Battle.start(data)
+```
+
+e riceve `"win"`, `"lose"` o `"fled"` quando il combattimento è davvero finito. Vedi [[Combattimento]].
+
 ## Vedi anche
 
 - [[Segnali]] · [[Tween]] · [[Cambio di scena]]

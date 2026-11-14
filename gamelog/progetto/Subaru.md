@@ -31,7 +31,7 @@ Subaru (CharacterBody2D, gruppo "player")   + subaru.gd
 |---|---|
 | `subaru_sheet.png`, 6×4 celle da 32×48 px, generato dal suo [[Charset]] (ora solo nella cronologia di git) | [[Spritesheet]], [[Pixel art]], [[Generatore di Subaru]] |
 | `subaru_actions.png`, 4×4 celle da 64×48 px | [[#Le azioni]] |
-| `subaru_frames.tres`, 12 animazioni | [[SpriteFrames]], [[AtlasTexture]] |
+| `subaru_frames.tres`, 16 animazioni | [[SpriteFrames]], [[AtlasTexture]] |
 | Sprite con origine ai piedi | [[AnimatedSprite2D]], [[Y-sort]] |
 | Movimento | [[CharacterBody2D]], [[Ciclo di gioco]] |
 | Tasti | [[Input Map]] |
@@ -59,7 +59,11 @@ Subaru (CharacterBody2D, gruppo "player")   + subaru.gd
 | `collapse` | Colpito (3,1), sviene (4,1), steso (4,3) | Muore |
 | `lying` | Steso a occhi aperti (4,4) | Appena tornato dalla morte |
 | `wake_up` | Steso (4,4), in ginocchio (3,3), occhi chiusi (4,2), in piedi (1,1) | Si rialza dopo il Ritorno |
-| *nessuna, per ora* | Guardia e pugni (riga 2), volo all'indietro (3,2), camminata triste (3,4) | Pronte per quando ci sarà un nemico |
+| `guard` | In guardia (2,1) | Nel [[Combattimento]], in attesa |
+| `punch` | Guardia, pugno, pugno a segno (2,1 → 2,3) | Attacca |
+| `hurt` | Colpito (3,1) | Il nemico lo colpisce |
+| `weak` | In ginocchio (3,3) | Combattimento, con meno di un quarto della salute |
+| *nessuna, per ora* | Guardia di spalle (2,4), volo all'indietro (3,2), camminata triste (3,4) | Pronte per dopo |
 
 Nessuna si ripete (*loop* spento): finiscono, e lo script aspetta `animation_finished`. Mentre un'azione è in corso i tasti non contano (`_scripted`). Se ne parte un'altra a metà (muore mentre esulta), la prima se ne accorge da `_action_id` e non rimette Subaru in piedi.
 

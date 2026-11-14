@@ -31,6 +31,10 @@ All'avvio crea un `AudioStreamPlayer` per ogni suono, leggendo la tabella `SOUND
 
 Funziona anche in [[Pausa]] (`process_mode = Always`): il [[Menu di pausa]] e lo [[Zaino]] suonano mentre il gioco è fermo.
 
+## Suoni del combattimento
+
+`HIT` (il colpo), `HEAL` (la cura) e `LEVEL_UP` (tre note in salita): fatti da noi con uno script Python usa e getta, come gli altri di `assets/effects/`. Li usa il [[Combattimento]].
+
 ## Vedi anche
 
 - [[Audio]] · [[Costanti]] · [[Game]]

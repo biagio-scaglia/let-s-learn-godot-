@@ -24,6 +24,7 @@ Altri dettagli:
 
 - Il mouse sopra la voce le dà il focus, così mouse e tastiera non litigano.
 - `focus_silently()` dà il focus **senza** il "tic": si usa quando un menu si apre, per non sovrapporre i suoni.
-- La freccia è grande in proporzione al testo (6×9 px ogni 16 px di font).
+- Il cursore è grande in proporzione al testo (le sue misure ogni 16 px di font).
+- `cursor_texture` cambia il cursore: vuoto è la freccia, il [[Combattimento]] usa una **manina** (`assets/ui/cursor_hand.png`).
 
-Usata da [[Schermata iniziale]], [[Menu di pausa]] e [[Opzioni]].
+Usata da [[Schermata iniziale]], [[Menu di pausa]], [[Opzioni]] e [[Combattimento]].

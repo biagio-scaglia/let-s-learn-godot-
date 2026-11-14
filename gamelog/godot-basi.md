@@ -41,6 +41,7 @@ Indice dei concetti di Godot incontrati finora. Ogni concetto ha la sua nota, co
 - [[Ottimizzazione]]: misurare, e non far lavorare il gioco per niente
 - [[Classi globali]]: `class_name`, uno script diventa un tipo
 - [[Tween]]: animare una proprietà dal codice
+- [[Numeri casuali]]: dadi, probabilità e il seme
 - [[Await]]: aspettare senza bloccare il gioco
 - [[Cutscene]]: una regia scritta in codice, il giocatore guarda
 - [[ConfigFile]]: salvare le impostazioni su file
@@ -77,6 +78,7 @@ Indice dei concetti di Godot incontrati finora. Ogni concetto ha la sua nota, co
 - [[Font]]: caratteri, anche pixel
 - [[Theme]]: l'aspetto di tutti i menu in un posto solo
 - [[Menu e focus]]: menu usabili con tastiera e mouse
+- [[ProgressBar]]: barre della salute
 
 ## Fisica e movimento
 
