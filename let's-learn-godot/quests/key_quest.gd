@@ -33,6 +33,10 @@ func _on_lina() -> void:
 			"La mia chiave! L'hai trovata tu?",
 			"Grazie, Subaru! Apri pure il baule: quello che c'è dentro è tuo.",
 		]
+		Game.set_flag(FlagKeys.KEY_SHOWN)
+	else:
+		# Le sue frasi normali: è qui che chiede di trovare la chiave.
+		Game.set_flag(FlagKeys.KEY_QUEST_STARTED)
 
 
 func _on_chest() -> void:

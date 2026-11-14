@@ -32,3 +32,27 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 4
 text = "Hai trovato: Chiave"
+
+[node name="Objective" type="PanelContainer" parent="."]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 172.0
+offset_bottom = 48.0
+mouse_filter = 2
+theme_type_variation = &"ToastPanel"
+
+[node name="Box" type="VBoxContainer" parent="Objective"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="Label" parent="Objective/Box"]
+layout_mode = 2
+theme_type_variation = &"HintLabel"
+text = "Obiettivo"
+
+[node name="ObjectiveText" type="Label" parent="Objective/Box"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Esplora il villaggio"
+autowrap_mode = 3
