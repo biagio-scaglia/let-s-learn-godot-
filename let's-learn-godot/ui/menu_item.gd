@@ -5,6 +5,9 @@ extends Button
 
 const CURSOR := preload("res://assets/ui/cursor_arrow.png")
 
+## Il cursore accanto alla voce. Vuoto = la freccia dei menu. Il combattimento usa la manina.
+@export var cursor_texture: Texture2D
+
 var _cursor: TextureRect
 var _bob: Tween
 var _silent := false
@@ -16,10 +19,11 @@ func _ready() -> void:
 
 	# La freccia è un figlio del bottone, a sinistra del testo.
 	_cursor = TextureRect.new()
-	_cursor.texture = CURSOR
+	_cursor.texture = cursor_texture if cursor_texture else CURSOR
 	_cursor.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	# La freccia è grande in proporzione al testo: 6x9 pixel ogni 16 di font.
-	_cursor.size = Vector2(6, 9) * (get_theme_font_size("font_size") / 16.0)
+	# Il cursore è grande in proporzione al testo: le sue misure ogni 16 di font
+	# (la freccia è 6x9 pixel).
+	_cursor.size = _cursor.texture.get_size() * (get_theme_font_size("font_size") / 16.0)
 	_cursor.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_cursor.visible = false
 	add_child(_cursor)
