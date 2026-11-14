@@ -25,6 +25,7 @@ Dialogue="*res://ui/dialogue_box.tscn"
 Fade="*res://ui/fade.tscn"
 Game="*res://core/game.gd"
 Pause="*res://ui/pause_menu.tscn"
+ReturnByDeath="*res://ui/return_by_death.tscn"
 Hud="*res://ui/hud.tscn"
 InventoryMenu="*res://ui/inventory_menu.tscn"
 
