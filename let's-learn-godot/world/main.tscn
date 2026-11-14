@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3]
+[gd_scene load_steps=26 format=3]
 
 [ext_resource type="TileSet" path="res://world/tileset.tres" id="1_tiles"]
 [ext_resource type="PackedScene" path="res://characters/subaru/subaru.tscn" id="2_subaru"]
@@ -16,6 +16,9 @@
 [ext_resource type="AudioStream" path="res://assets/heartbeat_bart/heartbeat_slow.wav" id="14_slow"]
 [ext_resource type="AudioStream" path="res://assets/heartbeat_bart/heartbeat_fast.wav" id="15_fast"]
 [ext_resource type="Script" path="res://quests/death_memory.gd" id="16_memory"]
+[ext_resource type="PackedScene" path="res://characters/enemy/enemy.tscn" id="20_enemy"]
+[ext_resource type="Resource" path="res://enemies/melma.tres" id="21_melma"]
+[ext_resource type="Resource" path="res://enemies/spettro.tres" id="22_spettro"]
 
 [sub_resource type="ShaderMaterial" id="vignette_mat"]
 shader = ExtResource("4_vignette")
@@ -104,6 +107,14 @@ prompt_height = 42.0
 [node name="Key" parent="World" instance=ExtResource("9_pickup")]
 position = Vector2(176, 344)
 item_id = "chiave"
+
+[node name="Melma" parent="World" instance=ExtResource("20_enemy")]
+position = Vector2(928, 448)
+data = ExtResource("21_melma")
+
+[node name="Spettro" parent="World" instance=ExtResource("20_enemy")]
+position = Vector2(1040, 352)
+data = ExtResource("22_spettro")
 
 [node name="HouseDoor" parent="World" instance=ExtResource("7_door")]
 position = Vector2(272, 197)
