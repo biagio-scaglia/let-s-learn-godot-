@@ -33,6 +33,9 @@ func _pick_up() -> void:
 	Sfx.play(Sfx.PICKUP)
 	Inventory.add(item_id, amount)
 	interactable.queue_free()   # niente più nuvoletta né interazioni
+	var player := get_tree().get_first_node_in_group("player")
+	if player and player.has_method("cheer"):
+		player.cheer()   # non lo aspettiamo: l'oggetto sale mentre lui esulta
 
 	# L'oggetto sale, si ingrandisce e svanisce; una pioggia di scintille.
 	sparkles.amount = 16
