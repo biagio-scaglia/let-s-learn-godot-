@@ -32,6 +32,9 @@ func save_game() -> bool:
 	config.set_value("partita", "data", Time.get_datetime_string_from_system(false, true))
 	config.set_value("partita", "ricordi", Game.flags)
 	config.set_value("partita", "zaino", Inventory.items)
+	config.set_value("partita", "morti", Game.deaths)
+	# Salvare fissa anche il punto di ritorno.
+	Game.set_checkpoint()
 	return config.save(path) == OK
 
 
@@ -55,5 +58,8 @@ func continue_game() -> void:
 	Game.flags = config.get_value("partita", "ricordi", {}).duplicate(true)
 	Inventory.reset(config.get_value("partita", "zaino", {}))
 	Game.spawn_position = config.get_value("partita", "posizione", null)
+	Game.deaths = config.get_value("partita", "morti", 0)   # i vecchi salvataggi non ce l'hanno
 	var scene: String = config.get_value("partita", "scena", Game.FIRST_LEVEL)
-	Game.change_scene(scene, "", config.get_value("partita", "direzione", Facing.DOWN), false)
+	await Game.change_scene(scene, "", config.get_value("partita", "direzione", Facing.DOWN), false)
+	# Si riparte da qui: è il nuovo punto di ritorno.
+	Game.set_checkpoint()

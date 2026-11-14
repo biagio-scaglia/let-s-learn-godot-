@@ -23,6 +23,11 @@ var flags := {}
 var changing_scene := false
 ## True durante una scena d'intermezzo (cutscene): il giocatore non comanda, niente menu.
 var in_cutscene := false
+## Il punto di ritorno del Ritorno dalla Morte: com'era il mondo in quel momento
+## (scena, posizione, direzione, ricordi, zaino). Vuoto = nessuno.
+var checkpoint := {}
+## Quante volte Subaru è morto. Il Ritorno NON lo riporta indietro: lui se lo ricorda.
+var deaths := 0
 
 
 func _ready() -> void:
@@ -63,7 +68,44 @@ func new_game() -> void:
 	flags.clear()
 	Inventory.reset()
 	spawn_position = null
+	checkpoint = {}
+	deaths = 0
 	change_scene(FIRST_LEVEL, "", "", false)
+
+
+# ---------- Ritorno dalla Morte ----------
+
+## Fissa il punto di ritorno qui e adesso. Lo chiamano la fine dell'intro,
+## il salvataggio e "Continua".
+func set_checkpoint() -> void:
+	var scene := get_tree().current_scene
+	var player := get_tree().get_first_node_in_group("player")
+	if scene == null or player == null:
+		return
+	checkpoint = {
+		"scene": scene.scene_file_path,
+		"position": player.global_position,
+		"facing": player.facing,
+		# Copie: quello che succede dopo non deve cambiare il punto di ritorno.
+		"flags": flags.duplicate(true),
+		"inventory": Inventory.items.duplicate(true),
+	}
+
+
+## Riporta il mondo al punto di ritorno. Si può aspettare (await).
+func return_to_checkpoint() -> void:
+	if checkpoint.is_empty():
+		# Nessun punto di ritorno: si ricomincia dal villaggio, ma la morte resta.
+		flags.clear()
+		Inventory.reset()
+		spawn_position = null
+		set_flag(FlagKeys.INTRO_SEEN)
+		await change_scene(FIRST_LEVEL, "", "", false)
+		return
+	flags = checkpoint.flags.duplicate(true)
+	Inventory.reset(checkpoint.inventory)
+	spawn_position = checkpoint.position
+	await change_scene(checkpoint.scene, "", checkpoint.facing, false)
 
 
 ## Passa a un'altra scena con la dissolvenza, e fa comparire il giocatore in "spawn".
@@ -82,7 +124,8 @@ func change_scene(path: String, spawn: String, facing := "", door_sound := true)
 	# La nuova scena viene aggiunta alla fine del frame: aspettiamo il segnale
 	# che arriva quando è nell'albero e pronta (dopo tutti i suoi _ready).
 	await get_tree().scene_changed
-	changing_scene = false
 	# Se la nuova scena è partita con una cutscene, è lei a decidere quando togliere il nero.
 	if not in_cutscene:
 		await Fade.fade_in()
+	# Solo ora: mentre lo schermo si schiarisce il giocatore resta fermo.
+	changing_scene = false

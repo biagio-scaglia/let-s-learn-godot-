@@ -75,6 +75,8 @@ func _play(player: Node2D) -> void:
 	# 5. Fine: il giocatore riprende i comandi. il ricordo finisce nel salvataggio.
 	Game.set_flag(FlagKeys.INTRO_SEEN)
 	Game.in_cutscene = false
+	# Il primo punto di ritorno del Ritorno dalla Morte: Subaru in piazza, appena arrivato.
+	Game.set_checkpoint()
 	queue_free()
 
 
