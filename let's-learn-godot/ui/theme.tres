@@ -1,10 +1,11 @@
-[gd_resource type="Theme" load_steps=18 format=3]
+[gd_resource type="Theme" load_steps=20 format=3]
 
 [ext_resource type="FontFile" path="res://assets/fonts/kenpixel_high_square.ttf" id="1_font"]
 [ext_resource type="Texture2D" path="res://assets/ui/checkbox_on.png" id="2_check_on"]
 [ext_resource type="Texture2D" path="res://assets/ui/checkbox_off.png" id="3_check_off"]
 [ext_resource type="Texture2D" path="res://assets/ui/slider_grabber.png" id="4_grabber"]
 [ext_resource type="Texture2D" path="res://assets/ui/slider_grabber_focus.png" id="5_grabber_focus"]
+[ext_resource type="Texture2D" path="res://assets/ui/window_battle.png" id="6_window"]
 
 [sub_resource type="StyleBoxEmpty" id="empty"]
 
@@ -103,6 +104,17 @@ shadow_size = 1
 shadow_offset = Vector2(0, 3)
 anti_aliasing = false
 
+[sub_resource type="StyleBoxTexture" id="battle_window"]
+content_margin_left = 9.0
+content_margin_top = 6.0
+content_margin_right = 9.0
+content_margin_bottom = 7.0
+texture = ExtResource("6_window")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+
 [resource]
 default_font = ExtResource("1_font")
 default_font_size = 16
@@ -120,6 +132,8 @@ Button/styles/focus = SubResource("empty")
 Button/styles/hover = SubResource("empty")
 Button/styles/normal = SubResource("empty")
 Button/styles/pressed = SubResource("empty")
+BattleWindow/base_type = &"PanelContainer"
+BattleWindow/styles/panel = SubResource("battle_window")
 CheckBox/colors/font_color = Color(0.96, 0.9, 0.77, 1)
 CheckBox/colors/font_focus_color = Color(1, 0.8, 0.35, 1)
 CheckBox/colors/font_hover_color = Color(1, 0.8, 0.35, 1)
