@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://enemies/enemy_data.gd" id="1_data"]
+[ext_resource type="Texture2D" path="res://assets/kenney_tiny_dungeon/tilemap_packed.png" id="2_dungeon"]
+
+[sub_resource type="AtlasTexture" id="look"]
+atlas = ExtResource("2_dungeon")
+region = Rect2(16, 160, 16, 16)
+
+[resource]
+script = ExtResource("1_data")
+name = "Spettro"
+max_hp = 26
+attack = 8
+defense = 3
+xp = 25
+texture = SubResource("look")

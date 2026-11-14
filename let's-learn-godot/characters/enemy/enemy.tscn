@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://characters/enemy/enemy.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/effects/shadow_character.png" id="2_shadow"]
+[ext_resource type="PackedScene" path="res://interactables/interactable.tscn" id="3_interactable"]
+
+[sub_resource type="RectangleShape2D" id="feet"]
+size = Vector2(20, 10)
+
+[node name="Enemy" type="StaticBody2D"]
+script = ExtResource("1_script")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+scale = Vector2(1.6, 1.4)
+texture = ExtResource("2_shadow")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+offset = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("feet")
+
+[node name="Interactable" parent="." instance=ExtResource("3_interactable")]
+prompt_height = 46.0

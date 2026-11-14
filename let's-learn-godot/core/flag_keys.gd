@@ -24,6 +24,11 @@ static func death_noticed(who: String) -> String:
 	return "morte_notata:" + who
 
 
+## Un nemico già sconfitto.
+static func defeated(node: Node) -> String:
+	return "sconfitto:" + str(node.get_path())
+
+
 ## Un oggetto per terra già raccolto.
 static func picked(node: Node) -> String:
 	return "preso:" + str(node.get_path())
