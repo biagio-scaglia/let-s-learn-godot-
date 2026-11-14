@@ -10,6 +10,9 @@ const PICKUP := "pickup"
 const CHEST_OPEN := "chest_open"
 const SAVE := "save"
 const DOOR := "door"
+const HIT := "hit"
+const HEAL := "heal"
+const LEVEL_UP := "level_up"
 
 ## Nome del suono → [file, volume in decibel].
 const SOUNDS := {
@@ -20,6 +23,9 @@ const SOUNDS := {
 	CHEST_OPEN: ["res://assets/effects/chest_open.wav", -4.0],
 	SAVE: ["res://assets/effects/save.wav", -4.0],
 	DOOR: ["res://assets/effects/door.wav", -4.0],
+	HIT: ["res://assets/effects/hit.wav", -3.0],
+	HEAL: ["res://assets/effects/heal.wav", -6.0],
+	LEVEL_UP: ["res://assets/effects/level_up.wav", -6.0],
 }
 
 var _players := {}

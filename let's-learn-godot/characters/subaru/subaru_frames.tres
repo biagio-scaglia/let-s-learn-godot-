@@ -335,4 +335,34 @@ animations = [{
 "loop": false,
 "name": &"wake_up",
 "speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("act_stance")
+}],
+"loop": false,
+"name": &"guard",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("act_stance")
+}, {
+"duration": 1.0,
+"texture": SubResource("act_punch")
+}, {
+"duration": 2.0,
+"texture": SubResource("act_punch_hit")
+}],
+"loop": false,
+"name": &"punch",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("act_hurt")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 1.0
 }]
