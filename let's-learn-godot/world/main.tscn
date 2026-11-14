@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3]
+[gd_scene load_steps=23 format=3]
 
 [ext_resource type="TileSet" path="res://world/tileset.tres" id="1_tiles"]
 [ext_resource type="PackedScene" path="res://characters/subaru/subaru.tscn" id="2_subaru"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://world/village_edge.gd" id="13_edge"]
 [ext_resource type="AudioStream" path="res://assets/heartbeat_bart/heartbeat_slow.wav" id="14_slow"]
 [ext_resource type="AudioStream" path="res://assets/heartbeat_bart/heartbeat_fast.wav" id="15_fast"]
+[ext_resource type="Script" path="res://quests/death_memory.gd" id="16_memory"]
 
 [sub_resource type="ShaderMaterial" id="vignette_mat"]
 shader = ExtResource("4_vignette")
@@ -96,7 +97,7 @@ charset = ExtResource("8_emilia")
 [node name="Sign" parent="World" instance=ExtResource("5_interactable")]
 position = Vector2(464, 346)
 speaker = "Cartello"
-lines = PackedStringArray("Villaggio di Erbalta.", "A nord: il bosco. A est e a ovest: la strada maestra.")
+lines = PackedStringArray("Villaggio di Erbalta.", "A nord: il bosco. A est e a ovest: la strada maestra.", "Più in basso qualcuno ha inciso, con mano tremante: \"Non lasciate il villaggio.\"")
 repeat_lines = PackedStringArray("Sotto, piccolo piccolo: \"Il Saggio sa tutto. Chiedete a lui.\"")
 prompt_height = 42.0
 
@@ -180,3 +181,8 @@ stream = ExtResource("14_slow")
 
 [node name="HeartbeatFast" type="AudioStreamPlayer" parent="VillageEdge"]
 stream = ExtResource("15_fast")
+
+[node name="DeathMemory" type="Node" parent="." node_paths=PackedStringArray("saggio", "emilia")]
+script = ExtResource("16_memory")
+saggio = NodePath("../World/Npc/Interactable")
+emilia = NodePath("../World/Emilia/Interactable")
