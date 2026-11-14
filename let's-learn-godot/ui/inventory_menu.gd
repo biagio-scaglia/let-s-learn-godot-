@@ -1,7 +1,8 @@
 extends CanvasLayer
 ## Lo zaino. È un autoload chiamato "InventoryMenu": si apre con Tab o I nei livelli.
 ## Mostra gli oggetti di Inventory.items in una griglia di caselle; la casella
-## selezionata mostra nome e descrizione sotto.
+## selezionata mostra nome e descrizione sotto. Con Invio l'oggetto selezionato si usa
+## (per ora solo le cure, come la pozione).
 
 const SLOTS := 12   # 6 colonne x 2 righe
 
@@ -10,6 +11,7 @@ const SLOTS := 12   # 6 colonne x 2 righe
 @onready var grid: GridContainer = %Grid
 @onready var item_name: Label = %ItemName
 @onready var item_description: Label = %ItemDescription
+@onready var hint: Label = %Hint
 
 var is_open := false
 var _slots: Array[Button] = []
@@ -22,6 +24,7 @@ func _ready() -> void:
 	for i in SLOTS:
 		_slots.append(_make_slot(i))
 	Inventory.changed.connect(_refresh)
+	Stats.changed.connect(_refresh_hint)
 
 
 ## Una casella: un bottone con l'icona al centro e la quantità in basso a destra.
@@ -50,6 +53,7 @@ func _make_slot(index: int) -> Button:
 	slot.add_child(count)
 
 	slot.focus_entered.connect(_on_slot_focused.bind(index))
+	slot.pressed.connect(_use.bind(index))
 	slot.mouse_entered.connect(slot.grab_focus)
 	grid.add_child(slot)
 	return slot
@@ -81,6 +85,28 @@ func _on_slot_focused(index: int) -> void:
 		item_description.text = Inventory.item(id).description
 
 
+## Usa l'oggetto di una casella. Le regole stanno in Inventory.use(): qui si decide
+## solo cosa dire al giocatore.
+func _use(index: int) -> void:
+	var id := _ids[index] if index < _ids.size() else ""
+	if id == "":
+		return
+	var healed := Inventory.use(id)
+	if healed > 0:
+		Sfx.play(Sfx.HEAL)
+		# Lo zaino è cambiato: la casella ora può contenere un altro oggetto, o niente.
+		_on_slot_focused(index)
+		item_description.text = "Hai recuperato %d punti salute." % healed
+	elif Inventory.item(id).heal > 0:
+		item_description.text = "Sei già in piena forma."
+	else:
+		item_description.text = "Non si può usare qui."
+
+
+func _refresh_hint() -> void:
+	hint.text = "PS %d/%d  ·  Invio per usare  ·  Tab per chiudere" % [Stats.hp, Stats.max_hp]
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if is_open:
 		if event.is_action_pressed("inventory") or event.is_action_pressed("pause") or event.is_action_pressed("ui_cancel"):
@@ -95,6 +121,7 @@ func open() -> void:
 	is_open = true
 	get_tree().paused = true
 	_refresh()
+	_refresh_hint()
 	visible = true
 	Sfx.play(Sfx.CONFIRM)
 	panel.pivot_offset = panel.size / 2.0
