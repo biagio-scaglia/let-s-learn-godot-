@@ -55,7 +55,7 @@ func continue_game() -> void:
 	var config := ConfigFile.new()
 	if config.load(path) != OK:
 		return
-	Game.flags = config.get_value("partita", "ricordi", {}).duplicate(true)
+	Game.load_flags(config.get_value("partita", "ricordi", {}))
 	Inventory.reset(config.get_value("partita", "zaino", {}))
 	Game.spawn_position = config.get_value("partita", "posizione", null)
 	Game.deaths = config.get_value("partita", "morti", 0)   # i vecchi salvataggi non ce l'hanno

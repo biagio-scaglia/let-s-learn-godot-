@@ -10,6 +10,11 @@ extends Node
 const TITLE_SCENE := "res://ui/title_screen.tscn"
 const FIRST_LEVEL := "res://world/main.tscn"
 
+## Emesso quando cambia qualcosa che l'interfaccia deve sapere: un ricordo,
+## una cutscene che comincia o finisce, una partita nuova o ripresa.
+## Lo ascolta l'obiettivo in alto a sinistra (Hud).
+signal state_changed
+
 ## In quale Marker2D (figlio di "Spawns") far comparire il giocatore nella prossima scena.
 var spawn_point := ""
 ## Oppure una posizione esatta (quando si carica un salvataggio). null = non usata.
@@ -22,7 +27,11 @@ var flags := {}
 ## True durante un cambio di scena.
 var changing_scene := false
 ## True durante una scena d'intermezzo (cutscene): il giocatore non comanda, niente menu.
-var in_cutscene := false
+var in_cutscene := false:
+	set(value):
+		if in_cutscene != value:
+			in_cutscene = value
+			state_changed.emit()
 ## Il punto di ritorno del Ritorno dalla Morte: com'era il mondo in quel momento
 ## (scena, posizione, direzione, ricordi, zaino). Vuoto = nessuno.
 var checkpoint := {}
@@ -43,6 +52,14 @@ func has_flag(key: String) -> bool:
 
 func set_flag(key: String, value: Variant = true) -> void:
 	flags[key] = value
+	state_changed.emit()
+
+
+## Sostituisce tutti i ricordi (partita nuova, salvataggio, ritorno dalla morte).
+func load_flags(data := {}) -> void:
+	# duplicate(): una copia, così modificarla non tocca i dati di partenza.
+	flags = data.duplicate(true)
+	state_changed.emit()
 
 
 # ---------- Chi può fare cosa ----------
@@ -65,7 +82,7 @@ func can_open_menu() -> bool:
 
 ## Comincia una partita nuova: dimentica tutto e va al primo livello.
 func new_game() -> void:
-	flags.clear()
+	load_flags()
 	Inventory.reset()
 	spawn_position = null
 	checkpoint = {}
@@ -96,13 +113,12 @@ func set_checkpoint() -> void:
 func return_to_checkpoint() -> void:
 	if checkpoint.is_empty():
 		# Nessun punto di ritorno: si ricomincia dal villaggio, ma la morte resta.
-		flags.clear()
+		load_flags({FlagKeys.INTRO_SEEN: true})
 		Inventory.reset()
 		spawn_position = null
-		set_flag(FlagKeys.INTRO_SEEN)
 		await change_scene(FIRST_LEVEL, "", "", false)
 		return
-	flags = checkpoint.flags.duplicate(true)
+	load_flags(checkpoint.flags)
 	Inventory.reset(checkpoint.inventory)
 	spawn_position = checkpoint.position
 	await change_scene(checkpoint.scene, "", checkpoint.facing, false)
