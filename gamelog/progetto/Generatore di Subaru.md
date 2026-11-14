@@ -13,7 +13,7 @@ aliases:
 > [!note] Script rimosso
 > Lo script è stato tolto dal repository durante la [[2026-11-12-pulizia|pulizia]]: resta nella cronologia di git. Questa nota spiega come funzionava. Vedi [[Strumenti archiviati]].
 
-Lo script `tools/genera_subaru.py` prepara [[Subaru]] per Godot partendo dal suo [[Charset]] (`characters/subaru/subaru_charset.png`).
+Lo script `tools/genera_subaru.py` prepara [[Subaru]] per Godot partendo dal suo [[Charset]] (`characters/subaru/subaru_charset.png`, tolto dal progetto il [[2026-11-14-azioni-di-subaru|14 novembre]] perché il gioco non lo usava: è nella cronologia di git).
 
 ```
 python tools/genera_subaru.py

@@ -36,6 +36,7 @@ Diario del progetto: cosa è stato fatto, perché, e cosa ho imparato di Godot s
 | 2026-11-13 | [[2026-11-13-test-con-gdunit\|I test entrano nel progetto, con gdUnit4]] | Funzionante |
 | 2026-11-14 | [[2026-11-14-ritorno-dalla-morte\|Il Ritorno dalla Morte]] | Funzionante |
 | 2026-11-14 | [[2026-11-14-ottimizzazioni-e-obiettivo\|Più veloce, un obiettivo, e un mondo che nota]] | Funzionante |
+| 2026-11-14 | [[2026-11-14-azioni-di-subaru\|Subaru cade, si rialza ed esulta]] | Funzionante |
 
 ## Il progetto
 

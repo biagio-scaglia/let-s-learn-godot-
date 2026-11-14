@@ -62,7 +62,7 @@ assert_bool(Game.has_flag(FlagKeys.CHEST_OPEN)).is_true()
 | Tipo | Cosa prova | Esempi nel progetto |
 |---|---|---|
 | **Unitario** | Un pezzo da solo, veloce | `facing_test`, `inventory_test`, `game_test`, `save_system_test`, `settings_test`, `objective_test` |
-| **Di scena** (integrazione) | Più pezzi insieme, con i tasti | `key_quest_test` (la missione), `intro_test` (la cutscene), `return_by_death_test` (i confini e la morte), `death_memory_test` (chi nota le morti) |
+| **Di scena** (integrazione) | Più pezzi insieme, con i tasti | `key_quest_test` (la missione), `intro_test` (la cutscene), `return_by_death_test` (i confini e la morte), `death_memory_test` (chi nota le morti), `subaru_actions_test` (esultanza, caduta, risveglio) |
 
 ## Non toccare i dati veri
 

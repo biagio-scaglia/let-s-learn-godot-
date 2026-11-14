@@ -31,5 +31,5 @@ Fino al [[2026-11-12-pulizia]] c'era anche `tools/`, con gli script di supporto:
 | Cartella | Contenuto |
 |---|---|
 | `let's-learn-godot/` | Il progetto Godot |
-| `sorgenti/` | I file di partenza, prima della pulizia (la spritesheet originale di [[Subaru]]) |
+| `sorgenti/` | I file di partenza, prima della pulizia (le due spritesheet originali di [[Subaru]]: camminata e azioni) |
 | `gamelog/` | Questo [[Vault Obsidian]] |

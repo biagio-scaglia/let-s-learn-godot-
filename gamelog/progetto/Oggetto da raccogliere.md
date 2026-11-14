@@ -21,6 +21,7 @@ Il componente `interactables/pickup.tscn`: un [[Oggetti|oggetto]] per terra.
 | Luccica | Poche [[Particelle]] dorate |
 | Nuvoletta quando sei vicino, E per raccoglierlo | Un [[Interactable]] **senza frasi**: niente dialogo, solo il segnale `interacted` |
 | Raccolto: sale, si ingrandisce, svanisce, scintille | [[Tween]] e un'esplosione di particelle |
+| [[Subaru]] esulta | `cheer()` sul nodo del gruppo `player` ([[Gruppi]]); non la si aspetta, così l'oggetto sale mentre lui festeggia |
 | Suono e avviso "Hai trovato…" | [[Game]] e [[Avvisi]] |
 
 ## Non ricompare

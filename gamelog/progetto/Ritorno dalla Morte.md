@@ -23,7 +23,7 @@ Nel gioco, per ora, si muore in un modo solo: **provando a uscire dal villaggio*
 ## Cosa succede
 
 1. **Avvicinandosi al bordo** della mappa si sente un battito del cuore, lento e poi veloce, e la vignettatura stringe lo schermo.
-2. **Sul bordo** si sente un tonfo basso, la camera trema e Subaru crolla di lato e si scurisce.
+2. **Sul bordo** si sente un tonfo basso, la camera trema e Subaru barcolla, cade a terra e si scurisce.
 3. **La nebbia** nera e viola striscia dai bordi verso il centro, con sbuffi di fumo e un rombo cupo.
 4. **Game over:** "Sei morto." compare lettera per lettera, con sotto *Morte n. X*.
 5. **"Ritorna":** lo schermo si avvita in un vortice viola, i colori si separano e virano al negativo.
@@ -47,7 +47,7 @@ Il [[Cartello]] avverte già prima: *"Non lasciate il villaggio."*
 | La morte e il game over | `ui/return_by_death.tscn` + `.gd`, [[Autoload]] **`ReturnByDeath`** | `die()`, la nebbia, il pannello, il ritorno |
 | La nebbia | `effects/miasma.gdshader` | Foschia fatta di [[Rumore]] che avanza dai bordi |
 | Il riavvolgimento | `effects/rewind.gdshader` | Vortice, colori separati, negativo ([[Shader]]) |
-| Il crollo | `collapse()` in `subaru.gd` | Lo sprite ruota attorno ai piedi e si scurisce |
+| Il crollo | `collapse()` in `subaru.gd` | L'animazione `collapse` (colpito, sviene, steso) mentre un [[Tween]] lo scurisce. Al ritorno: `lie_down()` a schermo nero, poi `wake_up()` prima di parlare. Vedi [[Subaru#Le azioni]] |
 | Punto di ritorno e morti | [[Game]]: `checkpoint`, `set_checkpoint()`, `return_to_checkpoint()`, `deaths` | Vedi sotto |
 
 ```

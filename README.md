@@ -53,11 +53,11 @@ test.cmd --godot_binary C:\percorso\Godot_v4.7.2-stable_win64.exe
 | `let's-learn-godot/world/` | Il villaggio (`main.tscn`), la casa di Lina (`house.tscn`) e i loro TileSet |
 | `let's-learn-godot/cutscenes/` | Le scene d'intermezzo (per ora l'arrivo al villaggio) |
 | `let's-learn-godot/core/` | Gli autoload di base: stato della partita (`Game`), zaino (`Inventory`), salvataggio (`SaveSystem`), opzioni (`Settings`), suoni (`Sfx`); e le costanti `Facing` e `FlagKeys` |
-| `let's-learn-godot/test/` | I test di gdUnit4: `core/` (unitari) e `world/` (di scena) |
+| `let's-learn-godot/test/` | I test di gdUnit4: `core/` e `quests/` (unitari), `world/` e `characters/` (di scena) |
 | `let's-learn-godot/addons/gdUnit4/` | Il plugin gdUnit4 (MIT, vedi [CREDITS.md](CREDITS.md)) |
 | `let's-learn-godot/assets/` | Asset esterni (vedi [CREDITS.md](CREDITS.md)) |
 | `gamelog/` | Il diario del progetto, è un vault di [Obsidian](https://obsidian.md) |
-| `sorgenti/` | I file di partenza, prima della pulizia (per ora la spritesheet originale di Subaru) |
+| `sorgenti/` | I file di partenza, prima della pulizia (le due spritesheet originali di Subaru: camminata e azioni) |
 
 ## Gamelog
 
