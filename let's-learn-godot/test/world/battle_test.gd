@@ -4,12 +4,15 @@ extends GdUnitTestSuite
 
 var result := ""
 var _message_time := 0.0
+var _gauge_time := 0.0
 
 
 func before_test() -> void:
 	_clean_state()
 	_message_time = Battle.message_time
 	Battle.message_time = 0.02
+	_gauge_time = Battle.gauge_time
+	Battle.gauge_time = 0.02
 	Battle.rng.seed = 1234   # stessi tiri a ogni esecuzione
 	result = ""
 	Battle.finished.connect(_on_finished)
@@ -18,6 +21,7 @@ func before_test() -> void:
 func after_test() -> void:
 	Battle.finished.disconnect(_on_finished)
 	Battle.message_time = _message_time
+	Battle.gauge_time = _gauge_time
 	Battle.flee_chance = 0.5
 	_clean_state()
 
@@ -193,3 +197,31 @@ func test_la_melma_sulla_mappa_si_affronta_e_sparisce() -> void:
 	assert_bool(Game.has_flag(memory)).is_true()
 	await await_millis(700)   # il tempo di svanire
 	assert_bool(is_instance_valid(melma)).is_false()
+
+
+func test_oggetti_apre_il_sottomenu_ed_esc_torna_indietro() -> void:
+	Inventory.add(Inventory.POTION, 2)
+	Battle.start(_enemy(50, 4))
+	await _wait_turn()
+	Battle.items_button.pressed.emit()
+	assert_bool(Battle.item_window.visible).is_true()
+	assert_str(Battle.potion_button.text).contains("x2")
+	var cancel := InputEventAction.new()
+	cancel.action = "ui_cancel"
+	cancel.pressed = true
+	Battle._unhandled_input(cancel)
+	assert_bool(Battle.item_window.visible).is_false()
+	assert_bool(Battle.menu.visible).is_true()   # il turno è ancora tuo
+	Battle.flee_chance = 1.0
+	Battle.flee_button.pressed.emit()
+	await _wait_turn()
+
+
+func test_con_poca_salute_subaru_e_in_ginocchio() -> void:
+	Stats.take_damage(16)   # 4 PS su 20
+	Battle.start(_enemy(50, 1))
+	await _wait_turn()
+	assert_str(Battle.hero.animation).is_equal("weak")
+	Battle.flee_chance = 1.0
+	Battle.flee_button.pressed.emit()
+	await _wait_turn()
