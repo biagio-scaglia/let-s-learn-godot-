@@ -13,5 +13,7 @@ name = "Melma verde"
 max_hp = 14
 attack = 5
 defense = 1
+shield = 2
+weaknesses = Array[String](["pugno", "calcio"])
 xp = 10
 texture = SubResource("look")

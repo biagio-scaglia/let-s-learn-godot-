@@ -13,5 +13,7 @@ name = "Spettro"
 max_hp = 26
 attack = 8
 defense = 3
+shield = 3
+weaknesses = Array[String](["calcio", "ombra"])
 xp = 25
 texture = SubResource("look")
