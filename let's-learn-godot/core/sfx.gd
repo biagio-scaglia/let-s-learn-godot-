@@ -13,6 +13,14 @@ const DOOR := "door"
 const HIT := "hit"
 const HEAL := "heal"
 const LEVEL_UP := "level_up"
+const SWING := "swing"
+const KICK := "kick"
+const WEAK := "weak"
+const BREAK := "break"
+const GUARD := "guard"
+const CHARGE := "charge"
+const SHAMAC := "shamac"
+const BATTLE_START := "battle_start"
 
 ## Nome del suono → [file, volume in decibel].
 const SOUNDS := {
@@ -26,6 +34,14 @@ const SOUNDS := {
 	HIT: ["res://assets/effects/hit.wav", -3.0],
 	HEAL: ["res://assets/effects/heal.wav", -6.0],
 	LEVEL_UP: ["res://assets/effects/level_up.wav", -6.0],
+	SWING: ["res://assets/effects/swing.wav", -8.0],
+	KICK: ["res://assets/effects/kick.wav", -3.0],
+	WEAK: ["res://assets/effects/weak.wav", -6.0],
+	BREAK: ["res://assets/effects/break.wav", -3.0],
+	GUARD: ["res://assets/effects/guard.wav", -8.0],
+	CHARGE: ["res://assets/kenney_sci_fi_sounds/forceField_001.ogg", -6.0],
+	BATTLE_START: ["res://assets/effects/battle_start.wav", -4.0],
+	SHAMAC: ["res://assets/kenney_interface_sounds/glitch_002.ogg", -4.0],
 }
 
 var _players := {}
