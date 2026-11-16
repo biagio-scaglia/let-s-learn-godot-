@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3]
+[gd_scene load_steps=30 format=3]
 
 [ext_resource type="Script" path="res://ui/battle.gd" id="1_script"]
 [ext_resource type="Shader" path="res://effects/pause_blur.gdshader" id="2_blur"]
@@ -6,16 +6,34 @@
 [ext_resource type="SpriteFrames" path="res://characters/subaru/subaru_frames.tres" id="4_frames"]
 [ext_resource type="Texture2D" path="res://assets/effects/shadow_character.png" id="5_shadow"]
 [ext_resource type="Texture2D" path="res://assets/ui/cursor_hand.png" id="6_hand"]
+[ext_resource type="Shader" path="res://effects/vignette.gdshader" id="7_vignette"]
+[ext_resource type="Texture2D" path="res://characters/subaru/subaru_sheet.png" id="8_sheet"]
+[ext_resource type="Texture2D" path="res://assets/ui/battle_icons.png" id="9_icons"]
+[ext_resource type="Texture2D" path="res://assets/kenney_particle_pack/smoke_04.png" id="10_smoke"]
+[ext_resource type="Shader" path="res://effects/battle_transition.gdshader" id="11_transition"]
 
 [sub_resource type="ShaderMaterial" id="blur_mat"]
 shader = ExtResource("2_blur")
 shader_parameter/amount = 0.0
-shader_parameter/max_blur = 3.0
-shader_parameter/tint = Color(0.04, 0.03, 0.12, 0.68)
+shader_parameter/max_blur = 3.5
+shader_parameter/tint = Color(0.02, 0.03, 0.08, 0.78)
+
+[sub_resource type="ShaderMaterial" id="transition_mat"]
+shader = ExtResource("11_transition")
+shader_parameter/progress = 0.0
+shader_parameter/swirl = 1.0
+shader_parameter/bands = 9.0
+shader_parameter/band_color = Color(0.01, 0.01, 0.04, 1)
+
+[sub_resource type="ShaderMaterial" id="vignette_mat"]
+shader = ExtResource("7_vignette")
+shader_parameter/strength = 0.75
+shader_parameter/radius = 1.0
+shader_parameter/softness = 0.75
 
 [sub_resource type="Gradient" id="floor_gradient"]
-offsets = PackedFloat32Array(0, 0.45, 1)
-colors = PackedColorArray(0.02, 0.02, 0.08, 0, 0.02, 0.02, 0.08, 0.35, 0.02, 0.02, 0.08, 0.75)
+offsets = PackedFloat32Array(0, 0.35, 1)
+colors = PackedColorArray(0.3, 0.38, 0.6, 0, 0.3, 0.38, 0.6, 0.12, 0.02, 0.02, 0.06, 0.7)
 
 [sub_resource type="GradientTexture2D" id="floor_texture"]
 gradient = SubResource("floor_gradient")
@@ -23,45 +41,93 @@ width = 4
 height = 64
 fill_to = Vector2(0, 1)
 
-[sub_resource type="StyleBoxFlat" id="bar_back"]
-bg_color = Color(0.03, 0.03, 0.1, 1)
-border_width_left = 1
+[sub_resource type="Gradient" id="motes_fade"]
+offsets = PackedFloat32Array(0, 0.25, 0.75, 1)
+colors = PackedColorArray(0.85, 0.9, 1, 0, 0.85, 0.9, 1, 0.55, 1, 0.9, 0.7, 0.4, 1, 0.9, 0.7, 0)
+
+[sub_resource type="AtlasTexture" id="hero_face"]
+atlas = ExtResource("8_sheet")
+region = Rect2(3, 0, 26, 26)
+
+[sub_resource type="AtlasTexture" id="shield_icon"]
+atlas = ExtResource("9_icons")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="StyleBoxFlat" id="slanted"]
+content_margin_left = 16.0
+content_margin_top = 3.0
+content_margin_right = 16.0
+content_margin_bottom = 4.0
+bg_color = Color(0.02, 0.03, 0.08, 0.82)
 border_width_top = 1
-border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.7, 0.72, 0.85, 1)
+border_color = Color(0.92, 0.84, 0.62, 0.6)
+skew = Vector2(0.3, 0)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="commands"]
+content_margin_left = 26.0
+content_margin_top = 4.0
+content_margin_right = 14.0
+content_margin_bottom = 5.0
+bg_color = Color(0.02, 0.03, 0.08, 0.86)
+border_width_left = 2
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color(0.92, 0.84, 0.62, 0.7)
+skew = Vector2(0.15, 0)
+anti_aliasing = false
+
+[sub_resource type="Gradient" id="party_gradient"]
+offsets = PackedFloat32Array(0, 0.3, 1)
+colors = PackedColorArray(0.02, 0.03, 0.08, 0, 0.02, 0.03, 0.08, 0.85, 0.02, 0.03, 0.08, 0.92)
+
+[sub_resource type="GradientTexture2D" id="party_texture"]
+gradient = SubResource("party_gradient")
+width = 64
+height = 4
+
+[sub_resource type="StyleBoxTexture" id="party"]
+content_margin_left = 34.0
+content_margin_top = 4.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+texture = SubResource("party_texture")
+
+[sub_resource type="Gradient" id="turn_gradient"]
+offsets = PackedFloat32Array(0, 0.8, 1)
+colors = PackedColorArray(0.02, 0.03, 0.08, 0.85, 0.02, 0.03, 0.08, 0.6, 0.02, 0.03, 0.08, 0)
+
+[sub_resource type="GradientTexture2D" id="turn_texture"]
+gradient = SubResource("turn_gradient")
+width = 64
+height = 4
+
+[sub_resource type="StyleBoxTexture" id="turns"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 40.0
+content_margin_bottom = 4.0
+texture = SubResource("turn_texture")
+
+[sub_resource type="StyleBoxFlat" id="bar_back"]
+bg_color = Color(0, 0, 0, 0.65)
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="bar_hp"]
-bg_color = Color(0.45, 0.88, 0.45, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.03, 0.03, 0.1, 1)
+bg_color = Color(0.5, 0.86, 0.45, 1)
 anti_aliasing = false
 
-[sub_resource type="StyleBoxFlat" id="bar_enemy"]
-bg_color = Color(0.92, 0.36, 0.32, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.03, 0.03, 0.1, 1)
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="bar_gauge"]
-bg_color = Color(1, 0.82, 0.3, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.03, 0.03, 0.1, 1)
+[sub_resource type="StyleBoxFlat" id="bar_sp"]
+bg_color = Color(0.45, 0.72, 1, 1)
 anti_aliasing = false
 
 [node name="Battle" type="CanvasLayer"]
 layer = 12
 script = ExtResource("1_script")
+hero_portrait = SubResource("hero_face")
+icons = ExtResource("9_icons")
+smoke = ExtResource("10_smoke")
 
 [node name="Backdrop" type="ColorRect" parent="."]
 material = SubResource("blur_mat")
@@ -86,206 +152,225 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 120.0
+offset_top = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("floor_texture")
 expand_mode = 1
 
+[node name="Vignette" type="ColorRect" parent="Screen"]
+material = SubResource("vignette_mat")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [node name="Stage" type="Control" parent="Screen"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -10.0
-offset_bottom = -10.0
+offset_top = 6.0
+offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="Motes" type="CPUParticles2D" parent="Screen/Stage"]
+position = Vector2(0, -40)
+amount = 26
+lifetime = 6.0
+preprocess = 6.0
+emission_shape = 3
+emission_rect_extents = Vector2(320, 120)
+direction = Vector2(0.3, -1)
+spread = 40.0
+gravity = Vector2(0, -2)
+initial_velocity_min = 3.0
+initial_velocity_max = 9.0
+scale_amount_min = 1.0
+scale_amount_max = 2.0
+color_ramp = SubResource("motes_fade")
+
 [node name="EnemyShadow" type="Sprite2D" parent="Screen/Stage"]
 unique_name_in_owner = true
-position = Vector2(-150, 54)
+position = Vector2(-150, 50)
 scale = Vector2(3, 2.6)
 texture = ExtResource("5_shadow")
 
 [node name="HeroShadow" type="Sprite2D" parent="Screen/Stage"]
 unique_name_in_owner = true
-position = Vector2(150, 54)
+position = Vector2(150, 50)
 scale = Vector2(3.4, 3)
 texture = ExtResource("5_shadow")
 
 [node name="Enemy" type="Sprite2D" parent="Screen/Stage"]
 unique_name_in_owner = true
-position = Vector2(-150, 56)
+position = Vector2(-150, 52)
 scale = Vector2(5, 5)
 offset = Vector2(0, -8)
 
 [node name="Hero" type="AnimatedSprite2D" parent="Screen/Stage"]
 unique_name_in_owner = true
-position = Vector2(150, 56)
+position = Vector2(150, 52)
 scale = Vector2(3, 3)
 sprite_frames = ExtResource("4_frames")
-animation = &"guard"
+animation = &"fight_idle"
 offset = Vector2(0, -24)
 flip_h = true
 
-[node name="Help" type="PanelContainer" parent="Screen"]
+[node name="EnemyInfo" type="VBoxContainer" parent="Screen/Stage"]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -140.0
-offset_top = 8.0
-offset_right = 140.0
-offset_bottom = 38.0
-grow_horizontal = 2
-theme_type_variation = &"BattleWindow"
+layout_mode = 0
+offset_left = -230.0
+offset_top = 60.0
+offset_right = -70.0
+offset_bottom = 100.0
+mouse_filter = 2
+theme_override_constants/separation = 0
 
-[node name="Message" type="Label" parent="Screen/Help"]
-unique_name_in_owner = true
+[node name="ShieldRow" type="HBoxContainer" parent="Screen/Stage/EnemyInfo"]
 layout_mode = 2
-text = "Pugno"
+mouse_filter = 2
+theme_override_constants/separation = 3
+alignment = 1
+
+[node name="Shield" type="TextureRect" parent="Screen/Stage/EnemyInfo/ShieldRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("shield_icon")
+
+[node name="ShieldNumber" type="Label" parent="Screen/Stage/EnemyInfo/ShieldRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.02, 0.03, 0.1, 1)
+theme_override_constants/outline_size = 4
+text = "2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Bottom" type="HBoxContainer" parent="Screen"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = -78.0
-offset_right = -8.0
-offset_bottom = -8.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/separation = 4
-
-[node name="EnemyWindow" type="PanelContainer" parent="Screen/Bottom"]
-custom_minimum_size = Vector2(160, 0)
-layout_mode = 2
-theme_type_variation = &"BattleWindow"
-
-[node name="Box" type="VBoxContainer" parent="Screen/Bottom/EnemyWindow"]
-layout_mode = 2
-theme_override_constants/separation = 4
-
-[node name="EnemyName" type="Label" parent="Screen/Bottom/EnemyWindow/Box"]
+[node name="Weaknesses" type="HBoxContainer" parent="Screen/Stage/EnemyInfo/ShieldRow"]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 1
+
+[node name="EnemyName" type="Label" parent="Screen/Stage/EnemyInfo"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"HintLabel"
 text = "Melma verde"
+horizontal_alignment = 1
 
-[node name="EnemyBar" type="ProgressBar" parent="Screen/Bottom/EnemyWindow/Box"]
+[node name="BreakLabel" type="Label" parent="Screen/Stage"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 5)
-layout_mode = 2
-theme_override_styles/background = SubResource("bar_back")
-theme_override_styles/fill = SubResource("bar_enemy")
-max_value = 10.0
-value = 10.0
-show_percentage = false
+visible = false
+layout_mode = 0
+offset_left = -250.0
+offset_top = -130.0
+offset_right = -50.0
+offset_bottom = -90.0
+pivot_offset = Vector2(100, 20)
+theme_override_colors/font_color = Color(1, 0.86, 0.4, 1)
+theme_override_colors/font_outline_color = Color(0.2, 0.05, 0.02, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
+text = "ROTTO!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="CommandWindow" type="PanelContainer" parent="Screen/Bottom"]
-custom_minimum_size = Vector2(104, 0)
-layout_mode = 2
-theme_type_variation = &"BattleWindow"
+[node name="TurnBar" type="PanelContainer" parent="Screen"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 6.0
+offset_right = 300.0
+offset_bottom = 36.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("turns")
 
-[node name="Margin" type="MarginContainer" parent="Screen/Bottom/CommandWindow"]
+[node name="Row" type="HBoxContainer" parent="Screen/TurnBar"]
 layout_mode = 2
-theme_override_constants/margin_left = 18
+mouse_filter = 2
+theme_override_constants/separation = 4
 
-[node name="Menu" type="VBoxContainer" parent="Screen/Bottom/CommandWindow/Margin"]
+[node name="Title" type="Label" parent="Screen/TurnBar/Row"]
+layout_mode = 2
+theme_type_variation = &"HintLabel"
+text = "TURNO"
+
+[node name="TurnIcons" type="HBoxContainer" parent="Screen/TurnBar/Row"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 0
+mouse_filter = 2
+theme_override_constants/separation = 3
 alignment = 1
 
-[node name="Attack" type="Button" parent="Screen/Bottom/CommandWindow/Margin/Menu"]
+[node name="Party" type="PanelContainer" parent="Screen"]
 unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 16
-text = "Attacca"
-script = ExtResource("3_item")
-cursor_texture = ExtResource("6_hand")
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -170.0
+offset_top = 6.0
+grow_horizontal = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("party")
 
-[node name="Items" type="Button" parent="Screen/Bottom/CommandWindow/Margin/Menu"]
+[node name="Box" type="VBoxContainer" parent="Screen/Party"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="HBoxContainer" parent="Screen/Party/Box"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HeroName" type="Label" parent="Screen/Party/Box/Header"]
 unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 16
-text = "Oggetti"
-script = ExtResource("3_item")
-cursor_texture = ExtResource("6_hand")
-
-[node name="Flee" type="Button" parent="Screen/Bottom/CommandWindow/Margin/Menu"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 16
-text = "Fuggi"
-script = ExtResource("3_item")
-cursor_texture = ExtResource("6_hand")
-
-[node name="PartyWindow" type="PanelContainer" parent="Screen/Bottom"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_type_variation = &"BattleWindow"
+theme_type_variation = &"SubtitleLabel"
+text = "Subaru"
 
-[node name="Box" type="VBoxContainer" parent="Screen/Bottom/PartyWindow"]
+[node name="HeroLevel" type="Label" parent="Screen/Party/Box/Header"]
+unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 2
-
-[node name="Header" type="HBoxContainer" parent="Screen/Bottom/PartyWindow/Box"]
-layout_mode = 2
-theme_override_constants/separation = 12
-
-[node name="Name" type="Label" parent="Screen/Bottom/PartyWindow/Box/Header"]
-layout_mode = 2
-size_flags_horizontal = 3
 theme_type_variation = &"HintLabel"
-text = "Nome"
+text = "Lv 1"
 
-[node name="Hp" type="Label" parent="Screen/Bottom/PartyWindow/Box/Header"]
-custom_minimum_size = Vector2(90, 0)
+[node name="HpRow" type="HBoxContainer" parent="Screen/Party/Box"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Screen/Party/Box/HpRow"]
+custom_minimum_size = Vector2(22, 0)
 layout_mode = 2
 theme_type_variation = &"HintLabel"
 text = "PS"
 
-[node name="Wait" type="Label" parent="Screen/Bottom/PartyWindow/Box/Header"]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-theme_type_variation = &"HintLabel"
-text = "Attesa"
-
-[node name="Row" type="HBoxContainer" parent="Screen/Bottom/PartyWindow/Box"]
-layout_mode = 2
-theme_override_constants/separation = 12
-
-[node name="HeroName" type="Label" parent="Screen/Bottom/PartyWindow/Box/Row"]
+[node name="HeroHp" type="Label" parent="Screen/Party/Box/HpRow"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 0
-text = "Subaru  Lv 1"
-
-[node name="HpBox" type="VBoxContainer" parent="Screen/Bottom/PartyWindow/Box/Row"]
-custom_minimum_size = Vector2(90, 0)
-layout_mode = 2
-theme_override_constants/separation = 2
-
-[node name="HeroHp" type="Label" parent="Screen/Bottom/PartyWindow/Box/Row/HpBox"]
-unique_name_in_owner = true
-layout_mode = 2
 text = "20/20"
 horizontal_alignment = 2
 
-[node name="HeroBar" type="ProgressBar" parent="Screen/Bottom/PartyWindow/Box/Row/HpBox"]
+[node name="HeroBar" type="ProgressBar" parent="Screen/Party/Box"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 5)
+custom_minimum_size = Vector2(0, 3)
 layout_mode = 2
 theme_override_styles/background = SubResource("bar_back")
 theme_override_styles/fill = SubResource("bar_hp")
@@ -293,46 +378,161 @@ max_value = 20.0
 value = 20.0
 show_percentage = false
 
-[node name="GaugeBox" type="VBoxContainer" parent="Screen/Bottom/PartyWindow/Box/Row"]
-custom_minimum_size = Vector2(80, 0)
+[node name="SpRow" type="HBoxContainer" parent="Screen/Party/Box"]
 layout_mode = 2
-alignment = 2
+mouse_filter = 2
 
-[node name="Gauge" type="ProgressBar" parent="Screen/Bottom/PartyWindow/Box/Row/GaugeBox"]
+[node name="Label" type="Label" parent="Screen/Party/Box/SpRow"]
+custom_minimum_size = Vector2(22, 0)
+layout_mode = 2
+theme_type_variation = &"HintLabel"
+text = "PT"
+
+[node name="HeroSp" type="Label" parent="Screen/Party/Box/SpRow"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 7)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "10/10"
+horizontal_alignment = 2
+
+[node name="SpBar" type="ProgressBar" parent="Screen/Party/Box"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 3)
 layout_mode = 2
 theme_override_styles/background = SubResource("bar_back")
-theme_override_styles/fill = SubResource("bar_gauge")
+theme_override_styles/fill = SubResource("bar_sp")
+max_value = 10.0
+value = 10.0
 show_percentage = false
+
+[node name="HeroStatus" type="Label" parent="Screen/Party/Box"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.8, 1, 1)
+text = "In guardia"
+horizontal_alignment = 2
+
+[node name="Commands" type="PanelContainer" parent="Screen"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
+offset_top = 34.0
+offset_right = -180.0
+offset_bottom = 34.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("commands")
+
+[node name="Menu" type="VBoxContainer" parent="Screen/Commands"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Attack" type="Button" parent="Screen/Commands/Menu"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Attacca"
+script = ExtResource("3_item")
+cursor_texture = ExtResource("6_hand")
+
+[node name="Skills" type="Button" parent="Screen/Commands/Menu"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Abilità"
+script = ExtResource("3_item")
+cursor_texture = ExtResource("6_hand")
+
+[node name="Items" type="Button" parent="Screen/Commands/Menu"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Oggetti"
+script = ExtResource("3_item")
+cursor_texture = ExtResource("6_hand")
+
+[node name="Defend" type="Button" parent="Screen/Commands/Menu"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Difendi"
+script = ExtResource("3_item")
+cursor_texture = ExtResource("6_hand")
+
+[node name="Flee" type="Button" parent="Screen/Commands/Menu"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Fuggi"
+script = ExtResource("3_item")
+cursor_texture = ExtResource("6_hand")
+
+[node name="SkillWindow" type="PanelContainer" parent="Screen"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(190, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -498.0
+offset_top = 34.0
+offset_right = -308.0
+offset_bottom = 34.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("commands")
+
+[node name="Box" type="VBoxContainer" parent="Screen/SkillWindow"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Kick" type="Button" parent="Screen/SkillWindow/Box"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Calcio"
+script = ExtResource("3_item")
+cursor_texture = ExtResource("6_hand")
+
+[node name="Shamac" type="Button" parent="Screen/SkillWindow/Box"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Shamac"
+script = ExtResource("3_item")
+cursor_texture = ExtResource("6_hand")
+
+[node name="PowerPunch" type="Button" parent="Screen/SkillWindow/Box"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Pugno caricato"
+script = ExtResource("3_item")
+cursor_texture = ExtResource("6_hand")
 
 [node name="ItemWindow" type="PanelContainer" parent="Screen"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 172.0
-offset_top = -152.0
-offset_right = 372.0
-offset_bottom = -82.0
-grow_vertical = 0
-theme_type_variation = &"BattleWindow"
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -458.0
+offset_top = 34.0
+offset_right = -308.0
+offset_bottom = 34.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("commands")
 
 [node name="Box" type="VBoxContainer" parent="Screen/ItemWindow"]
 layout_mode = 2
-theme_override_constants/separation = 2
+theme_override_constants/separation = 0
 
-[node name="Header" type="Label" parent="Screen/ItemWindow/Box"]
-layout_mode = 2
-theme_type_variation = &"HintLabel"
-text = "Oggetti   (Esc per tornare)"
-
-[node name="Margin" type="MarginContainer" parent="Screen/ItemWindow/Box"]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-
-[node name="Potion" type="Button" parent="Screen/ItemWindow/Box/Margin"]
+[node name="Potion" type="Button" parent="Screen/ItemWindow/Box"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
@@ -340,11 +540,50 @@ text = "Pozione   x2"
 script = ExtResource("3_item")
 cursor_texture = ExtResource("6_hand")
 
-[node name="ItemInfo" type="Label" parent="Screen/ItemWindow/Box"]
+[node name="Announce" type="PanelContainer" parent="Screen"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -110.0
+offset_top = 44.0
+offset_right = 110.0
+offset_bottom = 66.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("slanted")
+
+[node name="Message" type="Label" parent="Screen/Announce"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_type_variation = &"HintLabel"
-text = "Rimette 12 PS."
+text = "Pugno"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Help" type="PanelContainer" parent="Screen"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -230.0
+offset_top = -30.0
+offset_right = 230.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("slanted")
+
+[node name="HelpText" type="Label" parent="Screen/Help"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Un pugno. Colpo di tipo pugno."
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Results" type="PanelContainer" parent="Screen"]
 unique_name_in_owner = true
@@ -352,12 +591,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -160.0
-offset_top = 8.0
-offset_right = 160.0
-offset_bottom = 92.0
+offset_left = -170.0
+offset_top = 44.0
+offset_right = 170.0
+offset_bottom = 110.0
 grow_horizontal = 2
-theme_type_variation = &"BattleWindow"
+theme_override_styles/panel = SubResource("slanted")
 
 [node name="Box" type="VBoxContainer" parent="Screen/Results"]
 layout_mode = 2
@@ -366,7 +605,7 @@ theme_override_constants/separation = 2
 [node name="Title" type="Label" parent="Screen/Results/Box"]
 layout_mode = 2
 theme_type_variation = &"SubtitleLabel"
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 text = "Vittoria!"
 horizontal_alignment = 1
 
@@ -376,6 +615,16 @@ layout_mode = 2
 text = "Esperienza  +10"
 horizontal_alignment = 1
 autowrap_mode = 3
+
+[node name="Transition" type="ColorRect" parent="."]
+visible = false
+material = SubResource("transition_mat")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="Flash" type="ColorRect" parent="."]
 anchors_preset = 15
