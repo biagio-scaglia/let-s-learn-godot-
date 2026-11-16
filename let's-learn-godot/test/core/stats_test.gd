@@ -54,6 +54,8 @@ func test_salire_di_livello_migliora_tutto_e_cura() -> void:
 	assert_int(stats.hp).is_equal(25)
 	assert_int(stats.attack).is_equal(6)
 	assert_int(stats.defense).is_equal(3)
+	assert_int(stats.max_sp).is_equal(12)
+	assert_int(stats.sp).is_equal(12)
 	assert_int(stats.xp_to_next()).is_equal(20)  # il prossimo livello costa di più
 
 
@@ -85,3 +87,24 @@ func test_un_vecchio_salvataggio_senza_statistiche() -> void:
 	stats.gain_xp(10)
 	stats.reset({})   # come un salvataggio di prima che esistessero
 	assert_dict(stats.to_dict()).is_equal(StatsScript.BASE)
+
+
+func test_i_punti_tecnica_si_spendono_solo_se_bastano() -> void:
+	assert_bool(stats.spend_sp(4)).is_true()
+	assert_int(stats.sp).is_equal(6)
+	assert_bool(stats.spend_sp(7)).is_false()   # ne restano 6: non si spende niente
+	assert_int(stats.sp).is_equal(6)
+
+
+func test_i_punti_tecnica_tornano_senza_superare_il_massimo() -> void:
+	stats.spend_sp(3)
+	assert_int(stats.restore_sp(5)).is_equal(3)
+	assert_int(stats.sp).is_equal(10)
+
+
+func test_heal_fully_rimette_anche_i_punti_tecnica() -> void:
+	stats.take_damage(5)
+	stats.spend_sp(8)
+	stats.heal_fully()
+	assert_int(stats.hp).is_equal(20)
+	assert_int(stats.sp).is_equal(10)

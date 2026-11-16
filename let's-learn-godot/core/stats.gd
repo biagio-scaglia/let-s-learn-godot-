@@ -10,9 +10,10 @@ signal changed
 signal leveled_up(new_level: int)
 
 ## Come si parte a livello 1.
-const BASE := {"level": 1, "xp": 0, "max_hp": 20, "hp": 20, "attack": 5, "defense": 2}
+const BASE := {"level": 1, "xp": 0, "max_hp": 20, "hp": 20, "max_sp": 10, "sp": 10, "attack": 5, "defense": 2}
 ## Cosa si guadagna a ogni livello.
 const HP_PER_LEVEL := 5
+const SP_PER_LEVEL := 2
 const ATTACK_PER_LEVEL := 1
 const DEFENSE_PER_LEVEL := 1
 
@@ -22,6 +23,9 @@ var xp := 0
 ## Punti salute (PS): a zero si muore.
 var max_hp := 20
 var hp := 20
+## Punti tecnica (PT): si spendono per le abilità del combattimento (Calcio, Shamac...).
+var max_sp := 10
+var sp := 10
 ## Quanto fa male un colpo di Subaru.
 var attack := 5
 ## Quanto toglie ai colpi che riceve.
@@ -53,8 +57,27 @@ func heal(amount: int) -> int:
 	return healed
 
 
+## Rimette sia la salute sia i punti tecnica.
 func heal_fully() -> void:
+	sp = max_sp
 	heal(max_hp)
+
+
+## Spende punti tecnica. Se non bastano non spende niente e restituisce false.
+func spend_sp(amount: int) -> bool:
+	if amount > sp:
+		return false
+	sp -= amount
+	changed.emit()
+	return true
+
+
+## Ridà punti tecnica (mai oltre il massimo). Restituisce quanti ne sono tornati davvero.
+func restore_sp(amount: int) -> int:
+	var restored := mini(amount, max_sp - sp)
+	sp += restored
+	changed.emit()
+	return restored
 
 
 ## Dà esperienza. Restituisce di quanti livelli si è saliti (di solito 0 o 1).
@@ -66,9 +89,11 @@ func gain_xp(amount: int) -> int:
 		level += 1
 		gained += 1
 		max_hp += HP_PER_LEVEL
+		max_sp += SP_PER_LEVEL
 		attack += ATTACK_PER_LEVEL
 		defense += DEFENSE_PER_LEVEL
 		hp = max_hp   # salire di livello rimette in forze
+		sp = max_sp
 		leveled_up.emit(level)
 	changed.emit()
 	return gained
@@ -76,7 +101,7 @@ func gain_xp(amount: int) -> int:
 
 ## Le statistiche come dizionario, per i salvataggi e il punto di ritorno.
 func to_dict() -> Dictionary:
-	return {"level": level, "xp": xp, "max_hp": max_hp, "hp": hp, "attack": attack, "defense": defense}
+	return {"level": level, "xp": xp, "max_hp": max_hp, "hp": hp, "max_sp": max_sp, "sp": sp, "attack": attack, "defense": defense}
 
 
 ## Riparte dal livello 1, oppure da quello letto da un salvataggio.
@@ -86,6 +111,8 @@ func reset(data := {}) -> void:
 	xp = data.get("xp", BASE.xp)
 	max_hp = data.get("max_hp", BASE.max_hp)
 	hp = data.get("hp", BASE.hp)
+	max_sp = data.get("max_sp", BASE.max_sp)
+	sp = data.get("sp", max_sp)
 	attack = data.get("attack", BASE.attack)
 	defense = data.get("defense", BASE.defense)
 	changed.emit()

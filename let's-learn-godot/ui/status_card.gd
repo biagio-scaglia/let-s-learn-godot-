@@ -1,10 +1,12 @@
 extends PanelContainer
-## La scheda del personaggio: livello, salute, attacco, difesa, esperienza, morti.
+## La scheda del personaggio: livello, salute, punti tecnica, attacco, difesa, esperienza, morti.
 ## Sta nel menu di pausa. Non chiede niente a nessuno: ascolta Stats e si aggiorna.
 
 @onready var level: Label = %Level
 @onready var hp_bar: ProgressBar = %HpBar
 @onready var hp: Label = %Hp
+@onready var sp_bar: ProgressBar = %SpBar
+@onready var sp: Label = %Sp
 @onready var attack: Label = %Attack
 @onready var defense: Label = %Defense
 @onready var xp: Label = %Xp
@@ -23,6 +25,9 @@ func refresh() -> void:
 	hp_bar.max_value = Stats.max_hp
 	hp_bar.value = Stats.hp
 	hp.text = "PS %d/%d" % [Stats.hp, Stats.max_hp]
+	sp_bar.max_value = Stats.max_sp
+	sp_bar.value = Stats.sp
+	sp.text = "PT %d/%d" % [Stats.sp, Stats.max_sp]
 	attack.text = "Attacco %d" % Stats.attack
 	defense.text = "Difesa %d" % Stats.defense
 	xp.text = "Esp. %d/%d" % [Stats.xp, Stats.xp_to_next()]
