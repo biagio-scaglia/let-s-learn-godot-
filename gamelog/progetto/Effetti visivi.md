@@ -41,3 +41,16 @@ Ombre, icone, freccia e suono sono generati dal [[Generatore degli effetti]].
 
 > [!tip] Regolare gli effetti
 > Quasi tutto si regola dall'Inspector senza codice: la forza della vignettatura (`strength` nel materiale di `Effects/Vignette`), il colore di `Tint`, la quantità di pollini (`amount`), la forza dei raggi (`intensity`), il vento e la quantità delle nuvole (`wind`, `coverage`)…
+
+## Nel combattimento
+
+Dal [[2026-11-16-combattimento-v2|combattimento v2]]:
+
+| Effetto | Come |
+|---|---|
+| Transizione d'ingresso | [[Shader#Transizione d'ingresso nel combattimento]] |
+| Scossa | Un [[Tween]] di tanti piccoli spostamenti casuali dello `Stage`, sempre più piccoli |
+| Zoom del pugno caricato | `Stage.scale` da 1 a 1,06 mentre Subaru carica |
+| Lampi | Il `ColorRect` `Flash`: bianco (colpo forte), viola scuro (Shamac), azzurro (rottura) |
+| Hit stop | [[AnimatedSprite2D#Agire a un frame preciso]] |
+| Scintille, aura, nebbia, schegge, pulviscolo | [[Particelle#Particelle create dal codice]] |

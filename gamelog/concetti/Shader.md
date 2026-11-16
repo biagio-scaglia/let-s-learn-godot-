@@ -54,6 +54,18 @@ Per il [[Ritorno dalla Morte]]:
 > [!warning] Parametri non salvati
 > `material.get_shader_parameter("x")` restituisce `null` se nel materiale `x` non è mai stato cambiato: il valore predefinito sta solo nello shader. Se il codice deve leggerlo, scrivilo nel materiale.
 
+### Transizione d'ingresso nel combattimento
+
+`effects/battle_transition.gdshader`, su un `ColorRect` sopra tutto il [[Combattimento]]. Un parametro `progress` (da 0 a 1) lo anima un [[Tween]] con `tween_method()`.
+
+![[transizione_battaglia.png|400]]
+
+- **Le bande:** `floor((uv.y + uv.x * 0.35) * bande)` dà a ogni pixel il numero della sua banda, inclinata. Le bande pari entrano da sinistra, le dispari da destra; ognuna parte un po' dopo (`mod(riga, 3.0) * 0.12`), così fanno "a scaletta".
+- **Fase 1** (`swirl = 1`): fuori dalle bande si vede lo schermo (la mappa), **ruotato** di più al centro come nel riavvolgimento, e sgranato: `floor(p / cella) * cella` legge un solo colore per quadretto, e il quadretto cresce da 1 a 14 pixel.
+- **Fase 2** (`swirl = 0`): fuori dalle bande è trasparente; `progress` torna da 1 a 0 e le bande si ritirano, scoprendo la battaglia che intanto entra.
+
+Lo stesso shader fa due cose diverse a seconda di un parametro: niente nodi in più.
+
 ## Vedi anche
 
 - [[CanvasLayer]] · [[CanvasModulate]] · [[Rumore]]

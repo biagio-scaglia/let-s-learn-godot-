@@ -25,7 +25,7 @@ Alla prima partita una breve cutscene mostra Subaru che arriva al villaggio.
 
 **Attenzione:** non provare a uscire dal villaggio. Se muori, puoi sempre *ritornare*…
 
-**Combattere:** nel villaggio ci sono una melma e uno spettro. Avvicinati e premi E: è un combattimento a turni (Attacca, Oggetti, Fuggi). Vincendo si sale di livello; la scheda di Subaru è nel menu di pausa.
+**Combattere:** nel villaggio ci sono una melma e uno spettro. Avvicinati e premi E: è un combattimento a turni: Attacca, Abilità (Calcio, Shamac, Pugno caricato, con i punti tecnica), Oggetti, Difendi, Fuggi. Ogni nemico ha uno scudo e delle debolezze da scoprire: colpiscile fino a romperlo, e salterà un turno. Vincendo si sale di livello; la scheda di Subaru è nel menu di pausa.
 
 **La prima missione:** Lina ha perso la chiave del suo baule. Trovala nel villaggio e portagliela.
 

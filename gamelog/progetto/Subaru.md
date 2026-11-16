@@ -31,7 +31,8 @@ Subaru (CharacterBody2D, gruppo "player")   + subaru.gd
 |---|---|
 | `subaru_sheet.png`, 6×4 celle da 32×48 px, generato dal suo [[Charset]] (ora solo nella cronologia di git) | [[Spritesheet]], [[Pixel art]], [[Generatore di Subaru]] |
 | `subaru_actions.png`, 4×4 celle da 64×48 px | [[#Le azioni]] |
-| `subaru_frames.tres`, 16 animazioni | [[SpriteFrames]], [[AtlasTexture]] |
+| `subaru_fight.png`, 4×4 celle da 64×48 px | [[#Il combattimento]] |
+| `subaru_frames.tres`, 23 animazioni | [[SpriteFrames]], [[AtlasTexture]] |
 | Sprite con origine ai piedi | [[AnimatedSprite2D]], [[Y-sort]] |
 | Movimento | [[CharacterBody2D]], [[Ciclo di gioco]] |
 | Tasti | [[Input Map]] |
@@ -66,6 +67,22 @@ Subaru (CharacterBody2D, gruppo "player")   + subaru.gd
 | *nessuna, per ora* | Guardia di spalle (2,4), volo all'indietro (3,2), camminata triste (3,4) | Pronte per dopo |
 
 Nessuna si ripete (*loop* spento): finiscono, e lo script aspetta `animation_finished`. Mentre un'azione è in corso i tasti non contano (`_scripted`). Se ne parte un'altra a metà (muore mentre esulta), la prima se ne accorge da `_action_id` e non rimette Subaru in piedi.
+
+## Il combattimento
+
+![[subaru_combattimento_3x.png|500]]
+
+`subaru_fight.png`: altre 16 pose, solo per il [[Combattimento]]. Stesse regole delle azioni: celle 64×48, centrate sul busto, piedi sul fondo, stessa palette, disegnate verso destra. L'originale è in `sorgenti/subaru_spritesheet_combattimento.jpg`.
+
+| Animazione | Pose (riga, colonna) | Quando |
+|---|---|---|
+| `fight_idle` | Guardia ×4 (riga 1), in loop a 5 fps: "respira" | In attesa |
+| `jab` | Carica (2,1), passo (2,2), pugno (2,3), ritorno (2,4) | Attacca. Il colpo arriva al frame 2 |
+| `kick` | Ginocchio (3,1), calcio (3,2), ginocchio, guardia | Calcio. Il colpo arriva al frame 1 |
+| `charge` | Accucciato, concentrato (3,3) | Shamac e l'inizio del pugno caricato |
+| `power_punch` | Passo deciso (4,2), pugno con scintille (4,3), ritorno (4,4) | Pugno caricato |
+| `stagger` | Sbilanciato all'indietro (4,1) | Il nemico lo colpisce |
+| `defend` | Guardia alta (3,4) | Difendi |
 
 ## Numeri
 

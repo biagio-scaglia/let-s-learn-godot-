@@ -38,6 +38,7 @@ Diario del progetto: cosa è stato fatto, perché, e cosa ho imparato di Godot s
 | 2026-11-14 | [[2026-11-14-ottimizzazioni-e-obiettivo\|Più veloce, un obiettivo, e un mondo che nota]] | Funzionante |
 | 2026-11-14 | [[2026-11-14-azioni-di-subaru\|Subaru cade, si rialza ed esulta]] | Funzionante |
 | 2026-11-14 | [[2026-11-14-primo-combattimento\|Il primo combattimento]] | Funzionante |
+| 2026-11-16 | [[2026-11-16-combattimento-v2\|Abilità, scudi e un combattimento che si fa sentire]] | Funzionante |
 
 ## Il progetto
 
@@ -83,6 +84,7 @@ Apri Godot 4.7, importa la cartella `let's-learn-godot` e premi **F5**. Dettagli
 - [x] Schermata iniziale e menu di pausa, con le opzioni
 - [x] Raccogliere oggetti (inventario) e la prima missione
 - [x] Salvataggio e Continua
-- [ ] Combattimento a turni
-- [ ] Statistiche e livelli
+- [x] Combattimento a turni
+- [x] Statistiche e livelli
+- [x] Abilità, scudi e debolezze nel combattimento
 - [ ] Una piccola storia dall'inizio alla fine

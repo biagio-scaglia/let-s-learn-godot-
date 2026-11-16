@@ -40,6 +40,12 @@ Invece di colori e bordi, un'**immagine**, tagliata in nove pezzi (*9-slice*) da
 
 Così una cornice di 32×32 pixel va bene per finestre di qualsiasi misura. Nel progetto: `window_battle.png`, con margini da 5 px. Dentro, il centro è una **sfumatura verticale** di blu: allungandosi resta una sfumatura, ed è da lì che viene l'aspetto dei giochi di ruolo classici. Serve il [[Filtro Nearest]] (lo mette lo `Screen` del combattimento) perché i pixel restino netti.
 
+## Inclinato: skew
+
+`StyleBoxFlat.skew = Vector2(0.3, 0)` inclina il riquadro: il lato di sopra scivola a destra, quello di sotto a sinistra, e diventa un **parallelogramma**. Il contenuto (il testo) resta dritto. Nel [[Combattimento]] lo usano la striscia del nome della mossa, la descrizione in basso e la lista dei comandi (`skew` più leggero, 0,15).
+
+![[combattimento_abilita.png|400]]
+
 ## Vedi anche
 
 - [[Interfaccia (Control)]] · [[Font]]

@@ -20,6 +20,8 @@ I numeri di [[Subaru]]: `core/stats.gd`, un [[Autoload]] chiamato `Stats`.
 |---|---|---|---|
 | Salute massima (`max_hp`) | 20 | +5 | Quanti colpi regge |
 | Salute (`hp`, i "PS") | 20 | torna al massimo | A zero si muore |
+| Punti tecnica massimi (`max_sp`) | 10 | +2 | Quanti PT si possono avere |
+| Punti tecnica (`sp`, i "PT") | 10 | tornano al massimo | Si spendono per le abilità del [[Combattimento]] |
 | Attacco (`attack`) | 5 | +1 | Quanto fa male un suo pugno |
 | Difesa (`defense`) | 2 | +1 | Quanto toglie ai colpi che riceve |
 | Esperienza (`xp`) | 0 | riparte | Si guadagna vincendo |
@@ -44,6 +46,16 @@ static func damage(attacker_attack: int, target_defense: int, roll := 0) -> int:
 | Spettro → Subaru Lv 1 | 8 − 2 ± 1 | 5–7 |
 | Subaru Lv 2 → Spettro | 6 − 3 ± 1 | 2–4 |
 | Spettro → Subaru Lv 2 | 8 − 3 ± 1 | 4–6 |
+
+## I punti tecnica
+
+| Funzione | Cosa fa |
+|---|---|
+| `spend_sp(n)` | Spende `n` PT e restituisce `true`. Se non bastano **non spende niente** e restituisce `false` |
+| `restore_sp(n)` | Ridà PT, senza superare il massimo. Restituisce quanti ne sono tornati davvero |
+| `heal_fully()` | Rimette salute **e** PT (la usa il [[Ritorno dalla Morte]]) |
+
+I PT tornano anche salendo di livello e con **Difendi** (+2) nel combattimento. Un salvataggio vecchio, senza PT, riparte con i PT pieni.
 
 ## Livelli
 

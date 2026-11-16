@@ -27,6 +27,7 @@ Mostra: il viso, il livello, i punti salute (numero e barra), attacco, difesa, e
 | Il viso | Un'[[AtlasTexture]] che ritaglia la testa dal primo frame di `subaru_sheet.png` |
 | Nodi presi con `%Nome` | I *nomi unici* della scena: lo script non dipende da dove sta il nodo nell'albero |
 | Si aggiorna da sola | Ascolta `Stats.changed` ([[Segnali]]). Il menu di pausa non le passa niente |
+| I punti tecnica | Una seconda [[ProgressBar]], azzurra, sotto quella della salute: vedi [[Statistiche#I punti tecnica]] |
 | Le morti | Stanno in [[Game]], che per quelle non avvisa: si rileggono ogni volta che la scheda compare (`visibility_changed`) |
 
 ## Perché una scena a parte

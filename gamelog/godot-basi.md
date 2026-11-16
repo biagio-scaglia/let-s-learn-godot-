@@ -63,9 +63,9 @@ Indice dei concetti di Godot incontrati finora. Ogni concetto ha la sua nota, co
 
 ## Effetti
 
-- [[Particelle]]: polvere, pollini, scintille
+- [[Particelle]]: polvere, pollini, scintille; anche [[Particelle#Particelle create dal codice|create dal codice]] per un colpo solo
 - [[Rumore]]: nuvole e fasci di luce fatti solo di matematica
-- [[Shader]]: programmi per ogni pixel
+- [[Shader]]: programmi per ogni pixel; la [[Shader#Transizione d'ingresso nel combattimento|transizione del combattimento]]
 - [[CanvasModulate]]: una tinta su tutto il mondo
 - [[Luci 2D]]: luci, buio e fiamme che tremolano
 - [[CanvasLayer]]: livelli fermi rispetto allo schermo
@@ -74,7 +74,7 @@ Indice dei concetti di Godot incontrati finora. Ogni concetto ha la sua nota, co
 ## Interfaccia
 
 - [[Interfaccia (Control)]]: Panel, Label, ancore
-- [[StyleBox]]: sfondi e bordi
+- [[StyleBox]]: sfondi e bordi, anche [[StyleBox#Inclinato: skew|inclinati]]
 - [[Font]]: caratteri, anche pixel
 - [[Theme]]: l'aspetto di tutti i menu in un posto solo
 - [[Menu e focus]]: menu usabili con tastiera e mouse

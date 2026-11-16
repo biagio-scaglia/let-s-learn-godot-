@@ -22,10 +22,12 @@ Un nemico è fatto di due pezzi separati.
 
 Una [[Risorse personalizzate|risorsa personalizzata]] (`enemies/enemy_data.gd`), come `Item` per gli [[Oggetti]]. Ogni tipo di nemico è un file `.tres` in `enemies/`.
 
-| Nemico | File | PS | Attacco | Difesa | Esperienza | Aspetto |
-|---|---|---|---|---|---|---|
-| Melma verde | `melma.tres` | 14 | 5 | 1 | 10 | Tile 108 di [[Tiny Dungeon]] |
-| Spettro | `spettro.tres` | 26 | 8 | 3 | 25 | Tile 121 di [[Tiny Dungeon]] |
+| Nemico | File | PS | Attacco | Difesa | Scudo | Debolezze | Esperienza | Aspetto |
+|---|---|---|---|---|---|---|---|---|
+| Melma verde | `melma.tres` | 14 | 5 | 1 | 2 | pugno, calcio | 10 | Tile 108 di [[Tiny Dungeon]] |
+| Spettro | `spettro.tres` | 26 | 8 | 3 | 3 | calcio, ombra | 25 | Tile 121 di [[Tiny Dungeon]] |
+
+`shield` sono i punti scudo, `weaknesses` un `Array[String]` con i tipi di colpo che lo indeboliscono (`"pugno"`, `"calcio"`, `"ombra"`). Come funzionano: [[Combattimento#Scudi, debolezze e rottura]].
 
 La melma è fatta per essere battuta al primo colpo d'occhio, e dà giusto l'esperienza per il livello 2. Lo spettro a livello 1 è quasi impossibile: serve il livello 2 e conviene avere le pozioni del baule di [[Lina]]. I conti sono in [[Statistiche#La formula del danno]].
 

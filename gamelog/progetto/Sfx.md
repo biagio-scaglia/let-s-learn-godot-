@@ -33,7 +33,21 @@ Funziona anche in [[Pausa]] (`process_mode = Always`): il [[Menu di pausa]] e lo
 
 ## Suoni del combattimento
 
-`HIT` (il colpo), `HEAL` (la cura) e `LEVEL_UP` (tre note in salita): fatti da noi con uno script Python usa e getta, come gli altri di `assets/effects/`. Li usa il [[Combattimento]].
+Quasi tutti fatti da noi con uno script Python usa e getta (onde e rumore sintetizzati), come gli altri di `assets/effects/`; due vengono da [[Kenney]]. Li usa il [[Combattimento]].
+
+| Costante | Suono | Quando |
+|---|---|---|
+| `HIT` | Colpo secco | Pugno, Shamac, il nemico che colpisce |
+| `HEAL` | Tre note in salita | Pozione |
+| `LEVEL_UP` | Quattro note e una lunga | Si sale di livello |
+| `SWING` | Fruscio d'aria (rumore filtrato) | Ogni scatto verso il nemico |
+| `KICK` | Tonfo basso | Calcio, pugno caricato |
+| `WEAK` | "Clink" metallico | Colpo su una debolezza |
+| `BREAK` | Vetro in frantumi e un colpo basso | Scudo rotto |
+| `GUARD` | "Vwum" morbido | Difendi, un colpo parato, il nemico che si riprende |
+| `BATTLE_START` | Spazzata che sale e un colpo | La transizione d'ingresso |
+| `CHARGE` | `forceField_001.ogg` di Kenney (lo usa anche il [[Ritorno dalla Morte]]) | Pugno caricato |
+| `SHAMAC` | `glitch_002.ogg` di Kenney | Shamac |
 
 ## Vedi anche
 
