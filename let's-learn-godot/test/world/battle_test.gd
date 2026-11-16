@@ -4,15 +4,15 @@ extends GdUnitTestSuite
 
 var result := ""
 var _message_time := 0.0
-var _gauge_time := 0.0
+var _transition_time := 0.0
 
 
 func before_test() -> void:
 	_clean_state()
 	_message_time = Battle.message_time
 	Battle.message_time = 0.02
-	_gauge_time = Battle.gauge_time
-	Battle.gauge_time = 0.02
+	_transition_time = Battle.transition_time
+	Battle.transition_time = 0.05
 	Battle.rng.seed = 1234   # stessi tiri a ogni esecuzione
 	result = ""
 	Battle.finished.connect(_on_finished)
@@ -21,7 +21,7 @@ func before_test() -> void:
 func after_test() -> void:
 	Battle.finished.disconnect(_on_finished)
 	Battle.message_time = _message_time
-	Battle.gauge_time = _gauge_time
+	Battle.transition_time = _transition_time
 	Battle.flee_chance = 0.5
 	_clean_state()
 
@@ -43,8 +43,10 @@ func _clean_state() -> void:
 	Stats.reset()
 
 
-func _enemy(hp: int, attack: int, defense := 0, xp := 4) -> EnemyData:
+func _enemy(hp: int, attack: int, defense := 0, xp := 4, shield := 2, weaknesses: Array[String] = []) -> EnemyData:
 	var data := EnemyData.new()
+	data.shield = shield
+	data.weaknesses = weaknesses
 	data.name = "Fantoccio"
 	data.max_hp = hp
 	data.attack = attack
@@ -225,3 +227,112 @@ func test_con_poca_salute_subaru_e_in_ginocchio() -> void:
 	Battle.flee_chance = 1.0
 	Battle.flee_button.pressed.emit()
 	await _wait_turn()
+
+
+## Fugge per chiudere il combattimento senza lasciarlo a metà.
+func _flee() -> void:
+	Battle.flee_chance = 1.0
+	Battle.flee_button.pressed.emit()
+	await _wait_turn()
+
+
+func test_fuori_dal_combattimento_subaru_e_in_guardia() -> void:
+	Battle.start(_enemy(50, 1))
+	await _wait_turn()
+	assert_str(Battle.hero.animation).is_equal("fight_idle")
+	await _flee()
+
+
+func test_il_calcio_costa_tre_pt_e_fa_piu_male() -> void:
+	Battle.start(_enemy(50, 1))
+	await _wait_turn()
+	Battle.kick_button.pressed.emit()
+	await _wait_turn()
+	assert_int(Stats.sp).is_equal(7)
+	# Da 4 a 6 danni come il pugno, per 1,5: da 6 a 9.
+	assert_int(Battle.enemy_hp).is_between(41, 44)
+	await _flee()
+
+
+func test_senza_pt_l_abilita_non_parte() -> void:
+	Stats.spend_sp(8)   # ne restano 2: il calcio ne vuole 3
+	Battle.start(_enemy(50, 4))
+	await _wait_turn()
+	Battle.kick_button.pressed.emit()
+	await await_millis(50)
+	assert_bool(Battle.menu.visible).is_true()   # il turno è ancora tuo
+	assert_int(Stats.sp).is_equal(2)
+	assert_int(Battle.enemy_hp).is_equal(50)
+	assert_str(Battle.help_text.text).contains("PT")
+	await _flee()
+
+
+func test_le_debolezze_si_scoprono_colpendo() -> void:
+	var weak: Array[String] = ["calcio"]
+	Battle.start(_enemy(50, 1, 0, 4, 3, weak))
+	await _wait_turn()
+	assert_array(Battle.revealed).is_empty()
+	Battle.attack_button.pressed.emit()   # un pugno: non è una debolezza
+	await _wait_turn()
+	assert_int(Battle.enemy_shield).is_equal(3)
+	assert_array(Battle.revealed).is_empty()
+	Battle.kick_button.pressed.emit()
+	await _wait_turn()
+	assert_int(Battle.enemy_shield).is_equal(2)
+	assert_array(Battle.revealed).contains(["calcio"])
+	await _flee()
+
+
+func test_a_scudo_zero_il_nemico_e_rotto_e_salta_il_turno() -> void:
+	var weak: Array[String] = ["pugno"]
+	Battle.start(_enemy(200, 4, 0, 4, 1, weak))
+	await _wait_turn()
+	Battle.attack_button.pressed.emit()
+	await _wait_turn()
+	assert_bool(Battle.enemy_broken).is_true()
+	assert_int(Stats.hp).is_equal(20)   # rotto: non ha attaccato
+	# Il pugno rompe ma non raddoppia: 4-6 per 1,5 = da 6 a 9.
+	assert_int(Battle.enemy_hp).is_between(191, 194)
+	var before := Battle.enemy_hp
+	Battle.attack_button.pressed.emit()   # da rotto: per 1,5 e per 2
+	await _wait_turn()
+	assert_int(before - Battle.enemy_hp).is_between(12, 18)
+	# Poi si riprende, con lo scudo di nuovo pieno, e attacca.
+	assert_bool(Battle.enemy_broken).is_false()
+	assert_int(Battle.enemy_shield).is_equal(1)
+	assert_int(Stats.hp).is_less(20)
+	await _flee()
+
+
+func test_difendersi_dimezza_il_danno_e_rida_pt() -> void:
+	Stats.spend_sp(5)
+	Battle.start(_enemy(50, 12))
+	await _wait_turn()
+	Battle.defend_button.pressed.emit()
+	await _wait_turn()
+	assert_int(Stats.sp).is_equal(7)
+	# Attacco 12 contro difesa 2: da 9 a 11 danni, dimezzati: da 5 a 6.
+	assert_int(Stats.hp).is_between(14, 15)
+	assert_bool(Battle.defending).is_false()   # vale un turno solo
+	await _flee()
+
+
+func test_shamac_e_di_tipo_ombra() -> void:
+	var weak: Array[String] = ["ombra"]
+	Battle.start(_enemy(50, 1, 0, 4, 2, weak))
+	await _wait_turn()
+	Battle.shamac_button.pressed.emit()
+	await _wait_turn()
+	assert_int(Stats.sp).is_equal(6)
+	assert_int(Battle.enemy_shield).is_equal(1)
+	await _flee()
+
+
+func test_la_barra_dei_turni_mostra_chi_tocca() -> void:
+	Battle.start(_enemy(50, 1))
+	await _wait_turn()
+	assert_str(Battle.turn).is_equal(Battle.HERO)
+	await await_millis(20)   # le icone vecchie spariscono a fine frame
+	# 6 turni e 2 separatori tra un giro e l'altro.
+	assert_int(Battle.turn_icons.get_child_count()).is_equal(8)
+	await _flee()
