@@ -35,6 +35,10 @@ Un piccolo RPG in pixel art fatto per **imparare Godot 4 un passo alla volta**: 
 
 Una casa di pietra a nord-est del villaggio, con un **tileset disegnato apposta** in pixel art. Dentro è sempre notte: raggi di luna con la polvere che galleggia, candele che tremolano, un'Archivista, scaffali da leggere e un libro nero che forse non dovresti aprire.
 
+### Colonna sonora
+
+Tutta originale, sintetizzata nota per nota: un valzer per il villaggio (che si spegne quando ti avvicini al bordo), un carillon in re minore per la biblioteca, un tema di battaglia, e per il game over il tema del villaggio rotto e stonato. Con una risata.
+
 ### Combattimenti a turni
 
 ![Il pugno caricato: Subaru si concentra, scatta e colpisce; un'onda d'urto piega lo schermo](docs/combattimento.gif)
