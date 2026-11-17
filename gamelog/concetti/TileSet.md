@@ -39,6 +39,8 @@ Un TileSet può prendere tile da **più immagini**: ognuna è una *sorgente* con
 
 `world/tileset.tres`, usato dai tre livelli della [[Mappa principale]]: `Ground`, `Shadows` e `Objects`.
 
+`world/library_tileset.tres`, il tileset disegnato apposta per la [[Biblioteca]]. Le librerie sono alte 2 tile: la parte di sopra ha `y_sort_origin = 24` (16 + 8), così si ordina con la base, come la chioma degli alberi.
+
 ## Vedi anche
 
 - [[TileMapLayer]] · [[Tiny Town]] · [[AtlasTexture]]
