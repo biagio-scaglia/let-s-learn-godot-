@@ -96,6 +96,9 @@ func die() -> void:
 	# La nebbia striscia dai bordi verso il centro (shader miasma.gdshader).
 	t.tween_method(_set_fog, 0.0, 0.8, 2.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	t.tween_property(drone, "volume_db", -9.0, 1.5)
+	# La musica del livello (gruppo "level_music") si spegne: il mondo si allontana.
+	for music in get_tree().get_nodes_in_group("level_music"):
+		t.tween_property(music, "volume_db", -60.0, 1.5)
 	await t.finished
 
 	# 3. Il game over.
