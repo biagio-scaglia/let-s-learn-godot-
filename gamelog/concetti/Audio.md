@@ -37,6 +37,14 @@ AudioServer.set_bus_volume_db(0, linear_to_db(volume))   # volume da 0 a 1
 
 `linear_to_db` converte da "percentuale" a decibel, l'unità che usano i suoni.
 
+## Musica in loop
+
+La musica della [[Biblioteca]] è un `AudioStreamPlayer` con **`autoplay = true`**: parte da sola quando si entra nella scena, e si ferma quando la scena viene liberata (uscendo dalla porta).
+
+Per farla **ripetere**, con un WAV non si tocca il nodo ma l'**import**: selezionare il file, pannello *Import*, **Loop Mode → Forward**, poi *Reimport*. Nel file `.import` diventa `edit/loop_mode=2`. (Con gli OGG invece c'è la casella `loop`.)
+
+Perché il loop non si "senta", la fine del brano deve attaccarsi bene all'inizio: nel nostro WAV la coda del riverbero è già sommata all'inizio, vedi [[2026-11-17-biblioteca#La musica]].
+
 ## Vedi anche
 
 - [[Effetti visivi]]
