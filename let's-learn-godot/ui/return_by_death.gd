@@ -194,6 +194,7 @@ func _on_title() -> void:
 	for item in [return_button, title_button, quit_button]:
 		item.disabled = true
 	Game.change_scene(Game.TITLE_SCENE, "", "", false)
+	create_tween().tween_property(game_over_music, "volume_db", -40.0, Fade.duration)
 	await get_tree().create_timer(Fade.duration).timeout
 	is_active = false
 	_reset()
