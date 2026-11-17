@@ -131,6 +131,12 @@ layout_mode = 2
 text = "Torna al titolo"
 script = ExtResource("4_item")
 
+[node name="Quit" type="Button" parent="Panel/Items/List"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Esci dal gioco"
+script = ExtResource("4_item")
+
 [node name="RewindFx" type="ColorRect" parent="."]
 visible = false
 material = SubResource("rewind_mat")

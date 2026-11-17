@@ -21,6 +21,7 @@ const RETURN_LINES := [
 @onready var count: Label = %Count
 @onready var return_button: MenuItem = %Return
 @onready var title_button: MenuItem = %ToTitle
+@onready var quit_button: MenuItem = %Quit
 @onready var rewind_fx: ColorRect = $RewindFx
 @onready var impact: AudioStreamPlayer = $Impact
 @onready var drone: AudioStreamPlayer = $Drone
@@ -35,6 +36,8 @@ func _ready() -> void:
 	(drone.stream as AudioStreamOggVorbis).loop = true
 	return_button.pressed.connect(_on_return)
 	title_button.pressed.connect(_on_title)
+	# Anche da morto si può uscire: con il congedo, che qui ha una frase sua.
+	quit_button.pressed.connect(Farewell.leave)
 	_reset()
 
 
@@ -52,7 +55,7 @@ func _reset() -> void:
 	rewind_fx.visible = false
 	_set_rewind(0.0)
 	drone.stop()
-	for item in [return_button, title_button]:
+	for item in [return_button, title_button, quit_button]:
 		item.disabled = false
 
 
@@ -119,7 +122,7 @@ func _show_panel() -> void:
 
 ## "Ritorna": il riavvolgimento, poi il risveglio al punto di ritorno.
 func _on_return() -> void:
-	for item in [return_button, title_button]:
+	for item in [return_button, title_button, quit_button]:
 		item.disabled = true
 	rewind_sound.play()
 	glitch.play()
@@ -171,7 +174,7 @@ func _cleanup_when_black() -> void:
 
 ## "Torna al titolo".
 func _on_title() -> void:
-	for item in [return_button, title_button]:
+	for item in [return_button, title_button, quit_button]:
 		item.disabled = true
 	Game.change_scene(Game.TITLE_SCENE, "", "", false)
 	await get_tree().create_timer(Fade.duration).timeout
