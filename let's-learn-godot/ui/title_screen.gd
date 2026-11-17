@@ -19,6 +19,7 @@ const PAN_SECONDS := 16.0
 @onready var save_info: Label = %SaveInfo
 @onready var options_button: MenuItem = %Options
 @onready var quit_button: MenuItem = %Quit
+@onready var hands: ShadowHands = %ShadowHands
 
 
 func _ready() -> void:
@@ -36,6 +37,8 @@ func _ready() -> void:
 	options_button.pressed.connect(_on_options)
 	quit_button.pressed.connect(get_tree().quit)
 	options.closed.connect(_on_options_closed)
+	# Qualcuno nel buio afferra la voce che scegli.
+	hands.watch(menu.get_children())
 	_intro()
 
 
@@ -93,6 +96,7 @@ func _float_title(base_y: float) -> void:
 func _on_continue() -> void:
 	for item in menu.get_children():
 		item.disabled = true
+	await hands.seize(continue_button)
 	SaveSystem.continue_game()
 
 
@@ -109,16 +113,19 @@ func _on_new_game() -> void:
 	# Niente doppi clic: il menu non risponde più.
 	for item in menu.get_children():
 		item.disabled = true
+	await hands.seize(new_game_button)
 	Game.new_game()
 
 
 func _on_options() -> void:
+	hands.set_active(false)
 	_show_title_texts(false)
 	options.open()
 
 
 func _on_options_closed() -> void:
 	_show_title_texts(true)
+	hands.set_active(true)
 	options_button.focus_silently()
 
 
