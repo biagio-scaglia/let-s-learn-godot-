@@ -45,6 +45,34 @@ Per farla **ripetere**, con un WAV non si tocca il nodo ma l'**import**: selezio
 
 Perché il loop non si "senta", la fine del brano deve attaccarsi bene all'inizio: nel nostro WAV la coda del riverbero è già sommata all'inizio, vedi [[2026-11-17-biblioteca#La musica]].
 
+## La musica del livello
+
+Ogni livello ha un nodo `Music` nel **gruppo** `level_music` ([[Gruppi]]). Così chi deve comandarla la trova senza sapere in che scena siamo:
+
+```gdscript
+for music in get_tree().get_nodes_in_group("level_music"):
+	t.tween_property(music, "volume_db", -60.0, 1.5)   # alla morte: si spegne
+```
+
+Nel villaggio `VillageEdge` la abbassa quando Subaru si avvicina al bordo:
+
+```gdscript
+music.volume_db = _music_db + linear_to_db(maxf(1.0 - danger * 0.95, 0.001))
+```
+
+`linear_to_db(1.0)` è 0 (volume invariato), `linear_to_db(0.05)` circa −26 dB (quasi muto).
+
+## Pausa e ripresa
+
+Il [[Combattimento]] non ferma la musica del villaggio: la mette **in pausa**.
+
+| Comando | Cosa succede |
+|---|---|
+| `stop()` poi `play()` | Ricomincia **da capo** |
+| `stream_paused = true` poi `false` | Riprende **dal punto in cui era** |
+
+Tutti i brani sono descritti in [[Colonna sonora]].
+
 ## Vedi anche
 
 - [[Effetti visivi]]
