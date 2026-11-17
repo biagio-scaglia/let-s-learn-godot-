@@ -29,7 +29,9 @@ Nel gioco, per ora, si muore in un modo solo: **provando a uscire dal villaggio*
 5. **"Ritorna":** lo schermo si avvita in un vortice viola, i colori si separano e virano al negativo.
 6. **Risveglio** al punto di ritorno. Subaru dice qualcosa di diverso a seconda di quante volte è morto.
 
-"Torna al titolo" invece chiude tutto e torna alla [[Schermata iniziale]].
+"Torna al titolo" invece chiude tutto e torna alla [[Schermata iniziale]]. "Esci dal gioco" apre il [[Congedo]], che qui ha una frase sua: *"Scappi proprio adesso?"*
+
+![[game_over_esci.png|400]]
 
 ![[ritorno.png|500]]
 

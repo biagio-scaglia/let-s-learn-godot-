@@ -50,6 +50,13 @@ func _notification(what: int) -> void:
 
 Uno "schermo nello schermo": quello che ci metti dentro viene disegnato in una texture (`get_texture()`), che puoi mostrare con una `TextureRect`. Serve per applicare **uno shader a un gruppo di nodi insieme**: uno shader su un nodo non tocca i suoi figli, ma su una `TextureRect` che mostra un SubViewport tocca tutto quello che c'è dentro.
 
+### Il mouse nei SubViewport
+
+Per **cliccare** qualcosa dentro un SubViewport lo si mette in un `SubViewportContainer`, che dovrebbe passargli mouse e tastiera. Nel [[Congedo]] la tastiera arrivava ai bottoni, ma il clic no: il contenitore lo riceveva (`gui_input`, con le coordinate giuste) senza passarlo. Soluzione semplice: nel `gui_input` del contenitore guardiamo noi su quale bottone è caduto (`button.get_rect().has_point(posizione)`) e chiamiamo `pressed.emit()`.
+
+> [!tip] Come l'ho scoperto
+> Invece di provare a caso, ho "ascoltato" i segnali uno per uno: `window_input` della finestra, `gui_input` del contenitore, `mouse_entered` del bottone. Il primo che non arrivava diceva dove si fermava il clic.
+
 ## Nel progetto
 
 Il [[Congedo]]: quando chiudi il gioco, `ui/farewell.gd` (autoload `Farewell`) apre una finestra senza bordi e trasparente sul desktop. Dentro c'è un SubViewport con la figura e la scritta, mostrato con lo [[Shader#Glitch|shader del glitch]]. Vedi [[2026-11-17-congedo]].

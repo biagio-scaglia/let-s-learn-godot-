@@ -23,7 +23,7 @@ Il gioco parte dalla schermata iniziale: frecce o mouse per scegliere, Invio per
 
 Alla prima partita una breve cutscene mostra Subaru che arriva al villaggio.
 
-Quando chiudi il gioco, qualcuno ti chiede se sei sicuro.
+Quando chiudi il gioco (anche dal game over), qualcuno ti chiede se sei sicuro. E sa come ti chiami.
 
 **Attenzione:** non provare a uscire dal villaggio. Se muori, puoi sempre *ritornare*…
 

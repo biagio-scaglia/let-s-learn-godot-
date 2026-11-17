@@ -43,6 +43,7 @@ Diario del progetto: cosa è stato fatto, perché, e cosa ho imparato di Godot s
 | 2026-11-17 | [[2026-11-17-plugin\|Tre plugin per i futuri RPG]] | Installati |
 | 2026-11-17 | [[2026-11-17-mani-d-ombra\|Mani d'ombra nel titolo, e il combattimento in ordine]] | Funzionante |
 | 2026-11-17 | [[2026-11-17-congedo\|"Sei sicuro?", e il combattimento diviso in pezzi]] | Funzionante |
+| 2026-11-17 | [[2026-11-17-congedo-v2\|La finestra che conosce il tuo nome]] | Funzionante |
 
 ## Il progetto
 
