@@ -23,6 +23,8 @@ Il gioco parte dalla schermata iniziale: frecce o mouse per scegliere, Invio per
 
 Alla prima partita una breve cutscene mostra Subaru che arriva al villaggio.
 
+Quando chiudi il gioco, qualcuno ti chiede se sei sicuro.
+
 **Attenzione:** non provare a uscire dal villaggio. Se muori, puoi sempre *ritornare*…
 
 **Combattere:** nel villaggio ci sono una melma e uno spettro. Avvicinati e premi E: è un combattimento a turni: Attacca, Abilità (Calcio, Shamac, Pugno caricato, con i punti tecnica), Oggetti, Difendi, Fuggi. Ogni nemico ha uno scudo e delle debolezze da scoprire: colpiscile fino a romperlo, e salterà un turno. Vincendo si sale di livello; la scheda di Subaru è nel menu di pausa. I colpi hanno i loro effetti: stelle d'impatto e fendenti disegnati a mano, lampi, scie e onde d'urto che piegano lo schermo.

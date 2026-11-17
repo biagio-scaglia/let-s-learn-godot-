@@ -69,6 +69,7 @@ Indice dei concetti di Godot incontrati finora. Ogni concetto ha la sua nota, co
 - [[Shader]]: programmi per ogni pixel; la [[Shader#Transizione d'ingresso nel combattimento|transizione del combattimento]], il [[Shader#Lampo bianco sullo sprite|lampo bianco]] e l'[[Shader#Onda d'urto|onda d'urto]]
 - [[BackBufferCopy]]: rifare la "foto" dello schermo per gli shader che la leggono
 - [[Line2D]]: linee spezzate, anche ondeggianti: le braccia d'ombra del titolo
+- [[Window]]: finestre vere del sistema, la X che non chiude subito, i SubViewport
 - [[CanvasModulate]]: una tinta su tutto il mondo
 - [[Luci 2D]]: luci, buio e fiamme che tremolano
 - [[CanvasLayer]]: livelli fermi rispetto allo schermo

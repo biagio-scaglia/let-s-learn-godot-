@@ -30,7 +30,7 @@ Si apre con **Esc** in qualsiasi livello. È un [[Autoload]] chiamato `Pause` (`
 | Salva | Salva la partita, vedi [[Salvataggio]] |
 | Opzioni | Apre le [[Opzioni]]; Esc torna qui |
 | Torna al titolo | Sfuma al nero e torna alla [[Schermata iniziale]] |
-| Esci dal gioco | Chiude il gioco |
+| Esci dal gioco | Chiude il gioco, con il [[Congedo]] |
 
 Le voci sono [[MenuItem]]: frecce per scegliere, Invio per confermare, oppure il mouse.
 

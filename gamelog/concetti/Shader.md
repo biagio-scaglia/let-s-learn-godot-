@@ -90,6 +90,16 @@ Con `amount = 1` resta solo la **sagoma** dello sprite, tutta bianca. Nel [[Comb
 - Il centro arriva da GDScript: la posizione nello `Stage` → `get_global_transform_with_canvas()` → pixel dello schermo → diviso per la grandezza della finestra.
 - Serve un [[BackBufferCopy]] prima del `ColorRect`, se no legge una "foto" vecchia dello schermo.
 
+### Glitch
+
+`effects/glitch.gdshader`, nel [[Congedo]]. Tutto "a scatti": `floor(TIME * 12.0)` cambia solo 12 volte al secondo, come un segnale disturbato.
+
+- **Strisce che scattano:** l'immagine è divisa in strisce alte 3 pixel; per alcune, a caso, la x viene spostata di lato.
+- **Colori separati:** il rosso si legge un po' a destra, il blu un po' a sinistra, il verde al suo posto. Ogni tanto (`step(0.85, hash(t))`) la separazione triplica.
+- **Righe e sfarfallio:** una riga sì e una no un po' più scura, e una luminosità che trema.
+
+Lo shader sta su una `TextureRect` che mostra un SubViewport (vedi [[Window#SubViewport]]): così si rompono insieme la figura **e** la scritta.
+
 ### Ombra viva
 
 `effects/shadow.gdshader`, sulle mani della [[Schermata iniziale]]. Due cose, entrambe "a quadretti" per restare [[Pixel art]]:

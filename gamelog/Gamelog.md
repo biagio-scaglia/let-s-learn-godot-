@@ -42,6 +42,7 @@ Diario del progetto: cosa è stato fatto, perché, e cosa ho imparato di Godot s
 | 2026-11-17 | [[2026-11-17-vfx\|Più effetti: stelle d'impatto, onde d'urto e un ingresso più forte]] | Funzionante |
 | 2026-11-17 | [[2026-11-17-plugin\|Tre plugin per i futuri RPG]] | Installati |
 | 2026-11-17 | [[2026-11-17-mani-d-ombra\|Mani d'ombra nel titolo, e il combattimento in ordine]] | Funzionante |
+| 2026-11-17 | [[2026-11-17-congedo\|"Sei sicuro?", e il combattimento diviso in pezzi]] | Funzionante |
 
 ## Il progetto
 

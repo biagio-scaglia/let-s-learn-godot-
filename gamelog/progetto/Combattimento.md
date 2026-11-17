@@ -94,6 +94,7 @@ Il danno: `Stats.damage(attacco, difesa, tiro)` (vedi [[Statistiche#La formula d
 ```
 Battle (CanvasLayer, livello 12)     + battle.gd (le regole e l'interfaccia)
 ├── Vfx (Node, creato dal codice)  + battle_vfx.gd: tutti gli effetti visivi
+│   (TurnBar + battle_turn_bar.gd, Commands + battle_commands.gd, EnemyInfo + battle_enemy_info.gd: vedi sotto)
 ├── Backdrop (ColorRect)        ← la mappa sfocata e scurita (shader pause_blur)
 ├── Screen (Control, filtro Nearest)
 │   ├── Floor, Vignette         ← il pavimento più scuro, gli angoli scuri
@@ -128,6 +129,7 @@ Battle (CanvasLayer, livello 12)     + battle.gd (le regole e l'interfaccia)
 | La transizione d'ingresso | [[Shader#Transizione d'ingresso nel combattimento]] |
 | Scossa, zoom, lampi, numeri che rimbalzano | [[Tween]], [[Effetti visivi#Nel combattimento]] |
 | I tiri | `Battle.rng`: vedi [[Numeri casuali]]. Gli effetti hanno **i loro** dadi (`Battle.vfx.rng`): girare una stella non cambia il danno del colpo dopo |
+| Barra dei turni, comandi, riquadro del nemico | Tre script sui loro nodi: disegnano, e i comandi **emettono segnali** (`skill_chosen`…). Le regole restano in `battle.gd`. Vedi [[2026-11-17-congedo#Il combattimento in quattro pezzi]] |
 | Gli effetti in uno script a parte | `BattleVfx` ([[Classi globali\|class_name]]): `vfx.impact()`, `vfx.shake()`, `vfx.flash_white()`… Vedi [[Responsabilità]] |
 | Suoni | [[Sfx#Suoni del combattimento]] |
 

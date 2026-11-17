@@ -43,7 +43,7 @@ La prima cosa che si vede avviando il gioco (`ui/title_screen.tscn`, la scena pr
 | Continua | Solo se c'è un [[Salvataggio]]; già selezionato. Sotto, luogo e data |
 | Nuova partita | `Game.new_game()`: dimentica tutto ([[Game]] `flags` e zaino) e va al villaggio |
 | Opzioni | Nasconde titolo e menu e apre le [[Opzioni]] |
-| Esci | Chiude il gioco |
+| Esci | Chiude il gioco, con il [[Congedo]] |
 
 Il nome **Erbalta** è quello del villaggio sul [[Cartello]]: si cambia nel testo del nodo `UI/Title`.
 

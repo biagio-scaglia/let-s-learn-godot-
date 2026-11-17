@@ -13,7 +13,7 @@ aliases:
 
 # 2026-11-17 — Mani d'ombra nel titolo, e il combattimento in ordine
 
-← [[Gamelog]] · Voce precedente: [[2026-11-17-plugin|Tre plugin per i futuri RPG]]
+← [[Gamelog]] · Voce precedente: [[2026-11-17-plugin|Tre plugin per i futuri RPG]] · Successiva: [[2026-11-17-congedo|"Sei sicuro?"]]
 
 ## Obiettivo
 
