@@ -73,3 +73,9 @@ func test_morendo_subaru_cade_a_terra() -> void:
 	await runner.simulate_frames(3)
 	var sprite := player.get_node("AnimatedSprite2D") as AnimatedSprite2D
 	assert_str(sprite.animation).is_equal("collapse")
+
+
+func test_il_villaggio_ha_la_sua_musica_in_loop() -> void:
+	var music := runner.scene().get_node("Music") as AudioStreamPlayer
+	assert_bool(music.playing).is_true()
+	assert_int((music.stream as AudioStreamWAV).loop_mode).is_equal(AudioStreamWAV.LOOP_FORWARD)
