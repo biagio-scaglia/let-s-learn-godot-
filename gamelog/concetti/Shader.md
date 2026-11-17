@@ -100,6 +100,19 @@ Con `amount = 1` resta solo la **sagoma** dello sprite, tutta bianca. Nel [[Comb
 
 Lo shader sta su una `TextureRect` che mostra un SubViewport (vedi [[Window#SubViewport]]): così si rompono insieme la figura **e** la scritta.
 
+### Lo strappo
+
+Sempre in `glitch.gdshader`: con `tear` da 0 a 1 l'immagine si strappa in due lungo una linea **frastagliata** (a metà, spostata a caso ogni 4 righe). Ogni metà legge l'immagine un po' più verso il centro (così "si allontana"), nel mezzo il colore è trasparente e si vede quello che c'è dietro. Il bordo dello strappo è appena più chiaro, come carta.
+
+> [!warning] Niente `return` in `fragment()`
+> Negli shader di Godot non si può uscire prima dalla funzione `fragment()`. Ci si segna cosa succede (`bool in_gap`, `bool on_edge`) e si sceglie il colore alla fine.
+
+### Ritagliare con una forma
+
+`effects/eye_mask.gdshader`, sull'iride dell'occhio grande. L'iride si muove, ma deve vedersi solo dentro la mandorla. Lo shader riceve l'immagine della mandorla (`shape`) e dove si trova l'iride lì dentro (`offset`, aggiornato da GDScript a ogni frame): per ogni pixel guarda se nello stesso punto la mandorla c'è, e se no lo rende trasparente.
+
+Prima usavo una "maschera": un'immagine del colore del buio con un buco a forma d'occhio, messa sopra. Funzionava solo su uno sfondo esattamente di quel colore: con l'alone viola dietro si vedeva un rettangolo scuro.
+
 ### Ombra viva
 
 `effects/shadow.gdshader`, sulle mani della [[Schermata iniziale]]. Due cose, entrambe "a quadretti" per restare [[Pixel art]]:
