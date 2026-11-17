@@ -287,6 +287,13 @@ tile_set = ExtResource("2_tiles")
 position = Vector2(384, 488)
 shape = SubResource("doorway_block")
 
+[node name="Archivista" parent="World" instance=ExtResource("4_npc")]
+position = Vector2(464, 282)
+npc_name = "Archivista"
+lines = PackedStringArray("Shh! Questa è una biblioteca.", "...Oh, un visitatore. Non ne arrivano da... be', da un bel po'.", "Io sono l'Archivista. Tengo in ordine i libri di Erbalta, anche quelli che nessuno legge.", "Guarda pure in giro. Solo una cosa: il libro nero sul leggio non è in prestito.")
+repeat_lines = PackedStringArray("Gli scaffali a sinistra parlano del villaggio, quelli a destra delle creature dei dintorni.", "Il libro nero? Non ricordo chi l'abbia portato qui. E non ricordo di averlo mai chiuso.")
+sprite_tile = 100
+
 [node name="Exit" parent="World" instance=ExtResource("6_door")]
 position = Vector2(384, 472)
 target_scene = "res://world/main.tscn"
