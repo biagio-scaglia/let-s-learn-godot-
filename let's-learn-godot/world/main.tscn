@@ -88,7 +88,7 @@ shape = SubResource("bounds_v")
 position = Vector2(752, 352)
 npc_name = "Saggio"
 lines = PackedStringArray("Oh, un volto nuovo! Benvenuto in questo piccolo villaggio.", "Io sono il Saggio. Passo le giornate a guardare crescere gli alberi.", "Se hai fretta, tieni premuto Shift per correre... ma qui nessuno ha fretta.", "Torna a trovarmi quando vuoi. Avrò altre storie da raccontarti!")
-repeat_lines = PackedStringArray("Ancora qui? Gli alberi non crescono più in fretta se li guardiamo in due!", "Hai letto il cartello vicino alla piazza? Lo ha scritto mio nonno.", "E se passi dalla casa col tetto rosso, saluta mia nipote Lina.")
+repeat_lines = PackedStringArray("Ancora qui? Gli alberi non crescono più in fretta se li guardiamo in due!", "Hai letto il cartello vicino alla piazza? Lo ha scritto mio nonno.", "E se passi dalla casa col tetto rosso, saluta mia nipote Lina.", "La casa di pietra a nord-est è la biblioteca. Ci lavora una mia vecchia amica: parla piano, mi raccomando.")
 
 [node name="Emilia" parent="World" instance=ExtResource("3_npc")]
 position = Vector2(560, 476)
