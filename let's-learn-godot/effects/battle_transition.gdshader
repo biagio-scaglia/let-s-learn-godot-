@@ -13,6 +13,11 @@ uniform float swirl : hint_range(0.0, 1.0) = 1.0;
 // Quante bande.
 uniform float bands = 9.0;
 uniform vec4 band_color : source_color = vec4(0.01, 0.01, 0.04, 1.0);
+// Il filo di luce in punta a ogni banda, e quanto è spesso.
+uniform vec4 edge_color : source_color = vec4(1.0, 0.45, 0.25, 1.0);
+uniform float edge_width = 0.025;
+// Quanto si separano rosso e blu nel vortice (aberrazione cromatica).
+uniform float split = 0.012;
 
 void fragment() {
 	vec2 uv = SCREEN_UV;
@@ -26,6 +31,9 @@ void fragment() {
 
 	if (covered) {
 		COLOR = band_color;
+		// Vicino alla punta della banda: una linea luminosa, come una lama.
+		float edge = 1.0 - smoothstep(0.0, edge_width, reach - from_left);
+		COLOR.rgb = mix(COLOR.rgb, edge_color.rgb, edge * edge_color.a);
 	} else if (swirl > 0.5) {
 		// Il vortice: più forte al centro, cresce con progress.
 		vec2 d = uv - 0.5;
@@ -37,7 +45,12 @@ void fragment() {
 		// I quadrettoni: da 1 a 14 pixel dello schermo.
 		vec2 cell = SCREEN_PIXEL_SIZE * mix(1.0, 14.0, progress);
 		p = (floor(p / cell) + 0.5) * cell;
-		vec3 col = texture(screen_texture, p).rgb;
+		// Rosso e blu presi un po' spostati, verso fuori e verso dentro: l'immagine "vibra".
+		vec2 shift = normalize(d + 0.0001) * split * progress;
+		vec3 col;
+		col.r = texture(screen_texture, p + shift).r;
+		col.g = texture(screen_texture, p).g;
+		col.b = texture(screen_texture, p - shift).b;
 		// Si sbianca un po' all'inizio (il "lampo") e poi si scurisce.
 		col = mix(col, vec3(1.0), 0.35 * sin(progress * 3.14159));
 		col *= 1.0 - 0.5 * progress;
