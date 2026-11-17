@@ -34,6 +34,23 @@ func test_l_uscita_porta_alla_porta_della_biblioteca() -> void:
 	village.free()
 
 
+func test_l_archivista_parla() -> void:
+	var archivista := runner.scene().get_node("World/Archivista") as Node2D
+	var player := runner.scene().get_node("World/Subaru") as Node2D
+	player.global_position = archivista.global_position + Vector2(0, 20)
+	await await_millis(150)
+	runner.simulate_action_pressed("interact")
+	await await_millis(100)
+	assert_bool(Dialogue.is_active).is_true()
+	for i in 20:
+		if not Dialogue.is_active:
+			break
+		runner.simulate_action_pressed("interact")
+		await await_millis(150)
+	var memory := FlagKeys.talked(archivista.get_node("Interactable"))
+	assert_int(Game.flags.get(memory, 0)).is_equal(1)
+
+
 func test_le_luci_delle_fiamme_tremolano() -> void:
 	# Ogni fiamma deve usare flicker.gd, se no resta una luce ferma.
 	var flames := runner.scene().get_node("Flames").get_children()
