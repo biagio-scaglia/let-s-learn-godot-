@@ -154,6 +154,7 @@ func _on_return() -> void:
 	t.tween_property(vortex, "rotation", -TAU * 2.0, 1.4)
 	t.tween_property(vortex, "modulate:a", 0.9, 0.6)
 	t.tween_property(drone, "volume_db", -40.0, 1.2)
+	t.tween_property(game_over_music, "volume_db", -40.0, 1.2)
 	await t.finished
 
 	# Game.return_to_checkpoint fa la dissolvenza al nero: quando lo schermo è nero
