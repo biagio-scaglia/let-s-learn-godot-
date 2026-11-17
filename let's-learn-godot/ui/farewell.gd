@@ -7,8 +7,10 @@ extends Node
 ## Poi si corrompe: il titolo diventa "???" e la domanda si riscrive col tuo nome.
 ##
 ## - "No" (o Esc): "Bene. Resta con me." e si torna al gioco, com'era.
-## - "Sì": la finestra si strappa, dal buio sale una figura con gli occhi viola e ti
-##   saluta con una frase che dipende da te (ora, morti, quanto hai giocato…).
+## - "Sì": accanto alla finestra, sul desktop, compare LEI (una figura alta, d'ombra)
+##   e allunga un braccio: la finestra trema. Due mani d'ombra la afferrano e la
+##   strappano in due; nello strappo si apre un occhio enorme che segue il tuo mouse.
+##   Poi ti saluta con una frase che dipende da te (ora, morti, quanto hai giocato…).
 ## - Se non rispondi, decide lei.
 ##
 ## Il nome è quello con cui sei entrato nel computer (la variabile USERNAME): si legge
@@ -19,7 +21,6 @@ extends Node
 ## Emesso alla fine: true se il gioco sta per chiudersi, false se si resta.
 signal finished(quitting: bool)
 
-const WATCHER := preload("res://assets/effects/watcher.png")
 const WARNING := preload("res://assets/ui/dialog_warning.png")
 const GLITCH := preload("res://effects/glitch.gdshader")
 const FONT := preload("res://assets/fonts/kenpixel_high_square.ttf")
@@ -30,6 +31,8 @@ const VIEW := Vector2i(300, 140)
 const ZOOM := 2
 const TITLE := "Erbalta"
 const QUESTION := "Vuoi davvero uscire da Erbalta?"
+## Quanto si apre lo strappo (come tear_gap nello shader del glitch).
+const TEAR_GAP := 0.34
 
 ## True: una finestra vera del sistema, fuori dal gioco. False: dentro il gioco
 ## (serve ai test, che non possono aprire finestre sul desktop).
@@ -56,9 +59,12 @@ var goodbye: Label
 ## "yes", "no", oppure "" finché non scegli.
 var _choice := ""
 var _screen: SubViewportContainer
-var _void: ColorRect
-var _figure: Sprite2D
-var _glow: TextureRect
+## Tutto quello che c'è nella finestra: serve per spegnerla (schiacciarla) in un colpo.
+var _frame: Control
+## Dietro al dialogo: il buio con l'occhio, che si vede solo dallo strappo.
+var _eye: WatchingEye
+## Lei, nella sua finestra accanto.
+var _figure: FarewellFigure
 var _heartbeat: AudioStreamPlayer
 ## Come stava la finestra del gioco prima di sparire (finestra, schermo intero…).
 var _previous_mode := Window.MODE_WINDOWED
@@ -206,7 +212,8 @@ func _stay() -> void:
 	leaving = false
 
 
-## Hai detto sì (o non hai risposto): la finestra si strappa, sale lei, ti saluta.
+## Hai detto sì (o non hai risposto). Tre cose, una dopo l'altra:
+## lei arriva accanto e tocca la finestra; le mani la strappano; nello strappo, l'occhio.
 func _goodbye(no_answer: bool) -> void:
 	yes_button.disabled = true
 	no_button.disabled = true
@@ -217,13 +224,34 @@ func _goodbye(no_answer: bool) -> void:
 	Sfx.play(Sfx.SHAMAC)
 	_heartbeat.play()
 	title_label.text = "???"
-	var tear := create_tween()
-	tear.tween_method(_set_glitch, 1.0, 0.25, 0.6 * speed)
-	tear.parallel().tween_property(_void, "color:a", 1.0, 0.35 * speed)
-	tear.parallel().tween_property(_glow, "modulate:a", 1.0, 0.6 * speed).set_delay(0.15 * speed)
-	tear.parallel().tween_property(_figure, "modulate:a", 1.0, 0.6 * speed).set_delay(0.15 * speed)
-	tear.parallel().tween_property(_figure, "position:y", _figure.position.y - 12.0, 0.8 * speed).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	await tear.finished
+	_set_glitch(0.5)
+
+	# 1. Lei, sul desktop, accanto alla finestra. Allunga il braccio: la finestra trema.
+	_figure = _open_figure()
+	_figure.appear(0.9 * speed)
+	await _wait(0.5)
+	_figure.reach(0.6 * speed)
+	_tremble(1.4 * speed)
+	await _wait(0.8)
+
+	# 2. Due mani escono dai bordi, afferrano il centro e strappano.
+	var gap := VIEW.x * TEAR_GAP
+	var left := _spawn_hand(Vector2(-14, 112), Vector2(VIEW.x / 2.0 - 34, 60))
+	var right := _spawn_hand(Vector2(VIEW.x + 14, 24), Vector2(VIEW.x / 2.0 + 34, 82))
+	await _wait(0.35)
+	left.grip()
+	right.grip()
+	await _wait(0.15)
+	Sfx.play(Sfx.BREAK)
+	var rip := create_tween().set_parallel().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	rip.tween_method(_set_tear, 0.0, 1.0, 0.6 * speed)
+	rip.tween_property(left, "tip", left.tip - Vector2(gap / 2.0, 0), 0.6 * speed)
+	rip.tween_property(right, "tip", right.tip + Vector2(gap / 2.0, 0), 0.6 * speed)
+	rip.tween_method(_set_glitch, 0.9, 0.25, 0.6 * speed)
+	await rip.finished
+
+	# 3. Nello strappo, nel buio, si apre l'occhio. E ti guarda.
+	await _eye.open(0.5 * speed)
 	var time := Time.get_time_dict_from_system()
 	goodbye.text = goodbye_line(user_name, Game.deaths, time.hour, time.minute,
 		int(Time.get_ticks_msec() / 60000.0), ReturnByDeath.is_active)
@@ -232,9 +260,50 @@ func _goodbye(no_answer: bool) -> void:
 	var typing := create_tween()
 	typing.tween_property(goodbye, "visible_ratio", 1.0, 1.0 * speed)
 	await typing.finished
-	await _wait(1.6)
+	await _wait(2.2)
+	_figure.vanish(0.4 * speed)
 	await _switch_off()
 	quit_action.call()
+
+
+## Lei ha la sua finestra, a sinistra di quella del congedo (o a destra, se a
+## sinistra non c'è spazio sullo schermo).
+func _open_figure() -> FarewellFigure:
+	var figure := FarewellFigure.new()
+	var figure_size := FarewellFigure.VIEW * ZOOM
+	var toward := 1
+	var overlap := FarewellFigure.OVERLAP * ZOOM
+	var at := Vector2i(window.position.x - figure_size.x + overlap, window.position.y + window.size.y - figure_size.y + 40)
+	if separate_window:
+		var screen := DisplayServer.screen_get_usable_rect(DisplayServer.window_get_current_screen(window.get_window_id()))
+		if at.x < screen.position.x:
+			toward = -1
+			at.x = window.position.x + window.size.x - overlap
+		at.y = clampi(at.y, screen.position.y, screen.end.y - figure_size.y)
+	figure.setup(ZOOM, toward)
+	figure.position = at
+	add_child(figure)
+	return figure
+
+
+## Una mano d'ombra nella finestra del congedo, sopra il dialogo (e sotto la frase).
+func _spawn_hand(from: Vector2, to: Vector2) -> ShadowHand:
+	var hand := ShadowHand.new()
+	_frame.add_child(hand)
+	_frame.move_child(hand, goodbye.get_index())
+	hand.set_size_factor(0.7)
+	hand.setup(from, from)
+	hand.reach(to, 0.3 * speed)
+	return hand
+
+
+## La finestra trema: tanti piccoli spostamenti, poi torna a posto.
+func _tremble(time: float) -> void:
+	var home := window.position
+	var t := create_tween()
+	for i in int(time / 0.04):
+		t.tween_property(window, "position", home + Vector2i(randi_range(-3, 3), randi_range(-2, 2)), 0.04)
+	t.tween_property(window, "position", home, 0.04)
 
 
 ## Uno strappo, poi l'immagine si schiaccia in una riga e in un punto, come un
@@ -243,9 +312,9 @@ func _switch_off() -> void:
 	Sfx.play(Sfx.SHAMAC)
 	var off := create_tween()
 	off.tween_method(_set_glitch, 0.3, 1.0, 0.2 * speed)
-	off.tween_property(_screen, "scale:y", 0.02, 0.12 * speed).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-	off.parallel().tween_property(_screen, "modulate", Color(3, 3, 3), 0.12 * speed)
-	off.tween_property(_screen, "scale:x", 0.0, 0.1 * speed)
+	off.tween_property(_frame, "scale:y", 0.02, 0.12 * speed).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	off.parallel().tween_property(_frame, "modulate", Color(3, 3, 3), 0.12 * speed)
+	off.tween_property(_frame, "scale:x", 0.0, 0.1 * speed)
 	await off.finished
 	await _wait(0.15)
 
@@ -276,22 +345,39 @@ func _open_window() -> void:
 	window.close_requested.connect(choose.bind("no"))
 	window.window_input.connect(_on_window_input)
 
+	# Tre strati, dentro un riquadro che si spegne tutto insieme:
+	# dietro il buio con l'occhio, in mezzo il dialogo (strappabile), sopra mani e frase.
+	_frame = Control.new()
+	_frame.size = Vector2(VIEW)
+	_frame.pivot_offset = Vector2(VIEW) / 2.0
+	_frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	window.add_child(_frame)
+	_build_abyss()
 	_screen = SubViewportContainer.new()
 	_screen.size = Vector2(VIEW)
 	_screen.stretch = true
-	_screen.pivot_offset = Vector2(VIEW) / 2.0
 	_screen.focus_mode = Control.FOCUS_ALL
 	var mat := ShaderMaterial.new()
 	mat.shader = GLITCH
 	_screen.material = mat
 	_screen.gui_input.connect(_on_screen_input)
-	window.add_child(_screen)
+	_frame.add_child(_screen)
 	var view := SubViewport.new()
 	view.size = VIEW
 	view.transparent_bg = true
 	view.canvas_item_default_texture_filter = Viewport.DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_NEAREST
 	_screen.add_child(view)
 	_build_dialog(view)
+	goodbye = _label(_frame, "", Rect2(0, VIEW.y - 28, VIEW.x, 22), Color(0.88, 0.7, 1.0))
+	goodbye.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	goodbye.add_theme_font_override("font", FONT)
+	goodbye.add_theme_font_size_override("font_size", 16)
+	goodbye.add_theme_color_override("font_outline_color", Color(0.05, 0.0, 0.08))
+	goodbye.add_theme_constant_override("outline_size", 4)
+	var band := StyleBoxFlat.new()
+	band.bg_color = Color(0.02, 0.0, 0.04, 0.75)
+	goodbye.add_theme_stylebox_override("normal", band)
+	goodbye.visible = false
 	add_child(window)
 	_screen.grab_focus()
 	no_button.grab_focus()   # la risposta già selezionata è la più prudente
@@ -322,26 +408,24 @@ func _build_dialog(view: SubViewport) -> void:
 	no_button.pressed.connect(choose.bind("no"))
 	yes_button.focus_neighbor_right = yes_button.get_path_to(no_button)
 	no_button.focus_neighbor_left = no_button.get_path_to(yes_button)
-	# Il buio e la figura, nascosti finché non servono.
-	_void = _rect(dialog, Rect2(0, 20, VIEW.x, VIEW.y - 20), Color(0.02, 0.0, 0.04, 0.0))
-	# Dietro di lei un alone viola, se no nel buio non si vedrebbe.
-	_glow = TextureRect.new()
-	_glow.texture = _glow_texture()
-	_glow.position = Vector2(VIEW.x / 2.0 - 75, 14)
-	_glow.size = Vector2(150, 116)
-	_glow.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_glow.modulate.a = 0.0
-	dialog.add_child(_glow)
-	_figure = Sprite2D.new()
-	_figure.texture = WATCHER
-	_figure.position = Vector2(VIEW.x / 2.0, 72)
-	_figure.modulate.a = 0.0
-	dialog.add_child(_figure)
-	goodbye = _label(dialog, "", Rect2(0, VIEW.y - 26, VIEW.x, 20), Color(0.85, 0.65, 1.0))
-	goodbye.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	goodbye.add_theme_color_override("font_outline_color", Color(0.05, 0.0, 0.08))
-	goodbye.add_theme_constant_override("outline_size", 4)
-	goodbye.visible = false
+
+
+## Il buio dietro al dialogo: nero, un alone viola e l'occhio. Si vede solo dallo strappo.
+func _build_abyss() -> void:
+	var dark := _rect(_frame, Rect2(Vector2.ZERO, Vector2(VIEW)), Color(0.02, 0.0, 0.04))
+	var glow := TextureRect.new()
+	glow.texture = _glow_texture()
+	glow.position = Vector2(VIEW.x / 2.0 - 70, 20)
+	glow.size = Vector2(140, 100)
+	glow.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	dark.add_child(glow)
+	_eye = WatchingEye.new()
+	_eye.position = Vector2(VIEW.x / 2.0, 70)
+	_frame.add_child(_eye)
+
+
+func _set_tear(value: float) -> void:
+	(_screen.material as ShaderMaterial).set_shader_parameter("tear", value)
 
 
 ## Un tema "da sistema operativo": bottoni chiari con il bordo, blu quando selezionati.
@@ -436,7 +520,10 @@ func _on_window_input(event: InputEvent) -> void:
 func _close_window() -> void:
 	if is_instance_valid(window):
 		window.queue_free()
+	if is_instance_valid(_figure):
+		_figure.queue_free()
 	window = null
+	_figure = null
 
 
 func _set_glitch(value: float) -> void:

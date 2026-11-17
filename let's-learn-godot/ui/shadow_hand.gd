@@ -95,6 +95,14 @@ func retract(time := 0.35) -> void:
 	queue_free()
 
 
+## Rimpicciolisce (o ingrandisce) mano e braccio: per finestre più piccole del gioco.
+func set_size_factor(factor: float) -> void:
+	_hand.scale = Vector2(1.6, 1.6) * factor
+	_rim.width = 16.0 * factor
+	_arm.width = 12.0 * factor
+	sway = 6.0 * factor
+
+
 func set_pose(pose: Pose) -> void:
 	_atlas.region = Rect2(Vector2(pose * CELL.x, 0), CELL)
 

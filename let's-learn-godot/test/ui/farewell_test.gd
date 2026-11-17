@@ -160,3 +160,17 @@ func test_esc_vuol_dire_no() -> void:
 	Farewell._on_window_input(esc)
 	assert_bool(await _wait_until(func() -> bool: return not Farewell.leaving)).is_true()
 	assert_int(quit_called).is_equal(0)
+
+
+func test_con_il_si_arrivano_lei_lo_strappo_e_l_occhio() -> void:
+	Farewell.leave()
+	Farewell.choose("yes")
+	assert_bool(await _wait_until(func() -> bool: return Farewell.goodbye.visible)).is_true()
+	# Lei, nella sua finestra accanto.
+	assert_bool(is_instance_valid(Farewell._figure)).is_true()
+	# La finestra del congedo è strappata del tutto...
+	var mat := Farewell._screen.material as ShaderMaterial
+	assert_float(mat.get_shader_parameter("tear")).is_equal_approx(1.0, 0.01)
+	# ...e nello strappo l'occhio è aperto.
+	assert_float(Farewell._eye.scale.y).is_greater(0.9)
+	assert_bool(await _wait_until(func() -> bool: return quit_called > 0)).is_true()
