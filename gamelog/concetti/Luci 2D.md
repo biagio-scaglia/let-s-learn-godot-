@@ -41,6 +41,19 @@ Nella [[Casa di Lina]]:
 
 Il contrasto tra caldo e freddo rende la stanza più interessante. Vedi [[Effetti visivi]].
 
+Nella [[Biblioteca]] lo stesso contrasto, più in grande: otto fiamme calde che tremolano, la luna fredda dalle finestre e una luce viola lentissima sul libro nero (`flicker.gd` con `speed = 1.2` e `amount = 0.45`: invece di tremolare, "respira").
+
+## Raggi di luce senza texture
+
+I raggi di luna della [[Biblioteca]] non sono immagini: sono **`Polygon2D`**, trapezi con un colore **per ogni vertice** (`vertex_colors`). Ai due vertici in alto azzurro semitrasparente, ai due in basso trasparente: Godot sfuma da solo nel mezzo.
+
+| Proprietà del materiale (`CanvasItemMaterial`) | Perché |
+|---|---|
+| `blend_mode = Add` | Il colore si **somma** a quello sotto: schiarisce, come una luce vera |
+| `light_mode = Unshaded` | Il buio del [[CanvasModulate]] non lo tocca, altrimenti il raggio sparirebbe |
+
+Dentro ogni raggio c'è un po' di polvere ([[Particelle]]) con lo stesso materiale: brilla solo dove c'è il raggio.
+
 ## Vedi anche
 
 - [[CanvasModulate]] · [[Effetti visivi]]
