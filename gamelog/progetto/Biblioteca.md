@@ -41,6 +41,7 @@ Library (Node2D)                  + level.gd
 │   ├── Exit (Porta)
 │   └── Subaru + Camera2D con limiti
 ├── Spawns/Entrance
+├── Music (AudioStreamPlayer)      ← il valzer in re minore, in loop
 └── Effects/Vignette
 ```
 
