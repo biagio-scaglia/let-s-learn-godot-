@@ -79,3 +79,11 @@ func test_il_villaggio_ha_la_sua_musica_in_loop() -> void:
 	var music := runner.scene().get_node("Music") as AudioStreamPlayer
 	assert_bool(music.playing).is_true()
 	assert_int((music.stream as AudioStreamWAV).loop_mode).is_equal(AudioStreamWAV.LOOP_FORWARD)
+
+
+func test_vicino_al_bordo_la_musica_si_abbassa() -> void:
+	var music := runner.scene().get_node("Music") as AudioStreamPlayer
+	var normal := music.volume_db
+	player.global_position = Vector2(1170, 400)
+	await await_millis(1000)
+	assert_float(music.volume_db).is_less(normal - 3.0)
