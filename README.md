@@ -25,7 +25,7 @@ Alla prima partita una breve cutscene mostra Subaru che arriva al villaggio.
 
 **Attenzione:** non provare a uscire dal villaggio. Se muori, puoi sempre *ritornare*…
 
-**Combattere:** nel villaggio ci sono una melma e uno spettro. Avvicinati e premi E: è un combattimento a turni: Attacca, Abilità (Calcio, Shamac, Pugno caricato, con i punti tecnica), Oggetti, Difendi, Fuggi. Ogni nemico ha uno scudo e delle debolezze da scoprire: colpiscile fino a romperlo, e salterà un turno. Vincendo si sale di livello; la scheda di Subaru è nel menu di pausa.
+**Combattere:** nel villaggio ci sono una melma e uno spettro. Avvicinati e premi E: è un combattimento a turni: Attacca, Abilità (Calcio, Shamac, Pugno caricato, con i punti tecnica), Oggetti, Difendi, Fuggi. Ogni nemico ha uno scudo e delle debolezze da scoprire: colpiscile fino a romperlo, e salterà un turno. Vincendo si sale di livello; la scheda di Subaru è nel menu di pausa. I colpi hanno i loro effetti: stelle d'impatto e fendenti disegnati a mano, lampi, scie e onde d'urto che piegano lo schermo.
 
 **La prima missione:** Lina ha perso la chiave del suo baule. Trovala nel villaggio e portagliela.
 
@@ -51,7 +51,7 @@ test.cmd --godot_binary C:\percorso\Godot_v4.7.2-stable_win64.exe
 | `let's-learn-godot/characters/npc/` | Personaggio con cui parlare (riutilizzabile) |
 | `let's-learn-godot/interactables/` | Componente `Interactable`: tutto ciò con cui si interagisce |
 | `let's-learn-godot/ui/` | Schermata iniziale, menu di pausa (autoload `Pause`), opzioni, Theme, finestra di dialogo (autoload `Dialogue`) e dissolvenza (autoload `Fade`) |
-| `let's-learn-godot/effects/` | Shader (vignettatura, sfocatura dei menu) e luci che tremolano |
+| `let's-learn-godot/effects/` | Shader (vignettatura, sfocatura dei menu, transizione, lampo bianco, onda d'urto) e luci che tremolano |
 | `let's-learn-godot/world/` | Il villaggio (`main.tscn`), la casa di Lina (`house.tscn`) e i loro TileSet |
 | `let's-learn-godot/cutscenes/` | Le scene d'intermezzo (per ora l'arrivo al villaggio) |
 | `let's-learn-godot/core/` | Gli autoload di base: stato della partita (`Game`), zaino (`Inventory`), salvataggio (`SaveSystem`), opzioni (`Settings`), suoni (`Sfx`); e le costanti `Facing` e `FlagKeys` |

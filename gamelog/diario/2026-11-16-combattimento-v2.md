@@ -13,7 +13,7 @@ aliases:
 
 # 2026-11-16 — Abilità, scudi e un combattimento che si fa sentire
 
-← [[Gamelog]] · Voce precedente: [[2026-11-14-primo-combattimento|Il primo combattimento]]
+← [[Gamelog]] · Voce precedente: [[2026-11-14-primo-combattimento|Il primo combattimento]] · Successiva: [[2026-11-17-vfx|Più effetti]]
 
 ## Obiettivo
 

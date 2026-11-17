@@ -54,3 +54,15 @@ Dal [[2026-11-16-combattimento-v2|combattimento v2]]:
 | Lampi | Il `ColorRect` `Flash`: bianco (colpo forte), viola scuro (Shamac), azzurro (rottura) |
 | Hit stop | [[AnimatedSprite2D#Agire a un frame preciso]] |
 | Scintille, aura, nebbia, schegge, pulviscolo | [[Particelle#Particelle create dal codice]] |
+
+Dal [[2026-11-17-vfx|17 novembre]]:
+
+| Effetto | Come |
+|---|---|
+| Stella d'impatto, fendente del calcio | Spritesheet disegnate a mano (`vfx_impact.png`, `vfx_slash.png`), animate da un `AnimatedSprite2D` creato dal codice, con blend **additivo** |
+| Lampo bianco su chi viene colpito | [[Shader#Lampo bianco sullo sprite]] |
+| Onda d'urto (pugno caricato, rottura, ingresso) | [[Shader#Onda d'urto]] + [[BackBufferCopy]] |
+| Scia di Subaru che scatta | 4 copie del frame attuale, azzurre, che svaniscono |
+| Polvere all'atterraggio | Due sbuffi di [[Particelle]], uno per lato |
+| Colonna di luce al nuovo livello | Particelle che salgono, additive |
+| Bande con la punta luminosa, colori sdoppiati | [[Shader#Transizione d'ingresso nel combattimento]] |

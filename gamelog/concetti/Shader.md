@@ -66,6 +66,30 @@ Per il [[Ritorno dalla Morte]]:
 
 Lo stesso shader fa due cose diverse a seconda di un parametro: niente nodi in più.
 
+Dal [[2026-11-17-vfx|17 novembre]] ha anche:
+
+- **Un filo di luce** in punta a ogni banda: `reach - from_left` è quanto manca alla punta; `1.0 - smoothstep(0.0, edge_width, ...)` vale 1 proprio lì e scende a 0 poco dopo.
+- **Aberrazione cromatica** nel vortice: il rosso si legge un po' spostato verso fuori, il blu verso dentro, il verde al suo posto. I bordi delle cose si sdoppiano in rosso e blu, come una lente che "vibra".
+
+### Lampo bianco sullo sprite
+
+`effects/hit_flash.gdshader`. `modulate` **moltiplica** i colori: rende più scuro o colorato, ma non bianco. Questo shader **mescola** il colore dello sprite con un colore pieno:
+
+```glsl
+vec4 c = texture(TEXTURE, UV) * COLOR;   // COLOR = il modulate
+c.rgb = mix(c.rgb, flash_color.rgb, amount);
+```
+
+Con `amount = 1` resta solo la **sagoma** dello sprite, tutta bianca. Nel [[Combattimento]] `amount` va da 1 a 0 in 0,14 s a ogni colpo, e in 0,35 s quando i due entrano in scena.
+
+### Onda d'urto
+
+`effects/shockwave.gdshader`, su un `ColorRect` grande quanto lo schermo. Per ogni pixel calcola la distanza dal `center`; vicino al raggio attuale (`progress * max_radius`) **sposta** il punto da cui legge lo schermo, verso fuori. Così l'immagine si piega lungo un anello che si allarga.
+
+- Le proporzioni: lo schermo è più largo che alto, quindi in coordinate da 0 a 1 un cerchio verrebbe ovale. Si moltiplica la x per larghezza/altezza prima di misurare.
+- Il centro arriva da GDScript: la posizione nello `Stage` → `get_global_transform_with_canvas()` → pixel dello schermo → diviso per la grandezza della finestra.
+- Serve un [[BackBufferCopy]] prima del `ColorRect`, se no legge una "foto" vecchia dello schermo.
+
 ## Vedi anche
 
-- [[CanvasLayer]] · [[CanvasModulate]] · [[Rumore]]
+- [[CanvasLayer]] · [[CanvasModulate]] · [[Rumore]] · [[BackBufferCopy]]

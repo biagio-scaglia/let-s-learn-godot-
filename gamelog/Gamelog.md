@@ -39,6 +39,7 @@ Diario del progetto: cosa è stato fatto, perché, e cosa ho imparato di Godot s
 | 2026-11-14 | [[2026-11-14-azioni-di-subaru\|Subaru cade, si rialza ed esulta]] | Funzionante |
 | 2026-11-14 | [[2026-11-14-primo-combattimento\|Il primo combattimento]] | Funzionante |
 | 2026-11-16 | [[2026-11-16-combattimento-v2\|Abilità, scudi e un combattimento che si fa sentire]] | Funzionante |
+| 2026-11-17 | [[2026-11-17-vfx\|Più effetti: stelle d'impatto, onde d'urto e un ingresso più forte]] | Funzionante |
 
 ## Il progetto
 
