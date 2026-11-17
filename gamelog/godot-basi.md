@@ -73,7 +73,7 @@ Indice dei concetti di Godot incontrati finora. Ogni concetto ha la sua nota, co
 - [[CanvasModulate]]: una tinta su tutto il mondo
 - [[Luci 2D]]: luci, buio e fiamme che tremolano
 - [[CanvasLayer]]: livelli fermi rispetto allo schermo
-- [[Audio]]: riprodurre suoni
+- [[Audio]]: riprodurre suoni, musica in loop, la musica del livello e la pausa
 
 ## Interfaccia
 
