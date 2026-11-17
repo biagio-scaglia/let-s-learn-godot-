@@ -60,6 +60,124 @@ tile_set = ExtResource("2_tiles")
 [node name="Darkness" type="CanvasModulate" parent="."]
 color = Color(0.36, 0.33, 0.5, 1)
 
+[node name="Moonlight" type="Node2D" parent="."]
+
+[node name="Shaft1" type="Polygon2D" parent="Moonlight"]
+material = SubResource("glow_mat")
+polygon = PackedVector2Array(168, 60, 184, 60, 236, 250, 196, 250)
+vertex_colors = PackedColorArray(0.55, 0.7, 1, 0.22, 0.55, 0.7, 1, 0.22, 0.55, 0.7, 1, 0, 0.55, 0.7, 1, 0)
+
+[node name="Dust1" type="CPUParticles2D" parent="Moonlight"]
+material = SubResource("glow_mat")
+position = Vector2(196, 150)
+amount = 10
+lifetime = 5.0
+preprocess = 5.0
+emission_shape = 3
+emission_rect_extents = Vector2(18, 70)
+direction = Vector2(0.3, 1)
+spread = 60.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 6.0
+scale_amount_min = 1.0
+scale_amount_max = 2.0
+color_ramp = SubResource("dust_fade")
+
+[node name="Glow1" type="PointLight2D" parent="Moonlight"]
+position = Vector2(200, 170)
+color = Color(0.55, 0.7, 1, 1)
+energy = 0.55
+texture = SubResource("light_tex")
+texture_scale = 2.2
+
+[node name="Shaft2" type="Polygon2D" parent="Moonlight"]
+material = SubResource("glow_mat")
+polygon = PackedVector2Array(296, 60, 312, 60, 364, 250, 324, 250)
+vertex_colors = PackedColorArray(0.55, 0.7, 1, 0.22, 0.55, 0.7, 1, 0.22, 0.55, 0.7, 1, 0, 0.55, 0.7, 1, 0)
+
+[node name="Dust2" type="CPUParticles2D" parent="Moonlight"]
+material = SubResource("glow_mat")
+position = Vector2(324, 150)
+amount = 10
+lifetime = 5.0
+preprocess = 5.0
+emission_shape = 3
+emission_rect_extents = Vector2(18, 70)
+direction = Vector2(0.3, 1)
+spread = 60.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 6.0
+scale_amount_min = 1.0
+scale_amount_max = 2.0
+color_ramp = SubResource("dust_fade")
+
+[node name="Glow2" type="PointLight2D" parent="Moonlight"]
+position = Vector2(328, 170)
+color = Color(0.55, 0.7, 1, 1)
+energy = 0.55
+texture = SubResource("light_tex")
+texture_scale = 2.2
+
+[node name="Shaft3" type="Polygon2D" parent="Moonlight"]
+material = SubResource("glow_mat")
+polygon = PackedVector2Array(456, 60, 472, 60, 524, 250, 484, 250)
+vertex_colors = PackedColorArray(0.55, 0.7, 1, 0.22, 0.55, 0.7, 1, 0.22, 0.55, 0.7, 1, 0, 0.55, 0.7, 1, 0)
+
+[node name="Dust3" type="CPUParticles2D" parent="Moonlight"]
+material = SubResource("glow_mat")
+position = Vector2(484, 150)
+amount = 10
+lifetime = 5.0
+preprocess = 5.0
+emission_shape = 3
+emission_rect_extents = Vector2(18, 70)
+direction = Vector2(0.3, 1)
+spread = 60.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 6.0
+scale_amount_min = 1.0
+scale_amount_max = 2.0
+color_ramp = SubResource("dust_fade")
+
+[node name="Glow3" type="PointLight2D" parent="Moonlight"]
+position = Vector2(488, 170)
+color = Color(0.55, 0.7, 1, 1)
+energy = 0.55
+texture = SubResource("light_tex")
+texture_scale = 2.2
+
+[node name="Shaft4" type="Polygon2D" parent="Moonlight"]
+material = SubResource("glow_mat")
+polygon = PackedVector2Array(584, 60, 600, 60, 652, 250, 612, 250)
+vertex_colors = PackedColorArray(0.55, 0.7, 1, 0.22, 0.55, 0.7, 1, 0.22, 0.55, 0.7, 1, 0, 0.55, 0.7, 1, 0)
+
+[node name="Dust4" type="CPUParticles2D" parent="Moonlight"]
+material = SubResource("glow_mat")
+position = Vector2(612, 150)
+amount = 10
+lifetime = 5.0
+preprocess = 5.0
+emission_shape = 3
+emission_rect_extents = Vector2(18, 70)
+direction = Vector2(0.3, 1)
+spread = 60.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 6.0
+scale_amount_min = 1.0
+scale_amount_max = 2.0
+color_ramp = SubResource("dust_fade")
+
+[node name="Glow4" type="PointLight2D" parent="Moonlight"]
+position = Vector2(616, 170)
+color = Color(0.55, 0.7, 1, 1)
+energy = 0.55
+texture = SubResource("light_tex")
+texture_scale = 2.2
+
 [node name="Flames" type="Node2D" parent="."]
 
 [node name="Sconce1" type="PointLight2D" parent="Flames"]
