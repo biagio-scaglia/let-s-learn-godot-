@@ -60,6 +60,72 @@ tile_set = ExtResource("2_tiles")
 [node name="Darkness" type="CanvasModulate" parent="."]
 color = Color(0.36, 0.33, 0.5, 1)
 
+[node name="Flames" type="Node2D" parent="."]
+
+[node name="Sconce1" type="PointLight2D" parent="Flames"]
+position = Vector2(144, 44)
+color = Color(1, 0.7, 0.4, 1)
+energy = 1.0
+texture = SubResource("light_tex")
+texture_scale = 2.2
+script = ExtResource("7_flicker")
+
+[node name="Sconce2" type="PointLight2D" parent="Flames"]
+position = Vector2(528, 44)
+color = Color(1, 0.7, 0.4, 1)
+energy = 1.0
+texture = SubResource("light_tex")
+texture_scale = 2.2
+script = ExtResource("7_flicker")
+
+[node name="Sconce3" type="PointLight2D" parent="Flames"]
+position = Vector2(624, 44)
+color = Color(1, 0.7, 0.4, 1)
+energy = 1.0
+texture = SubResource("light_tex")
+texture_scale = 2.2
+script = ExtResource("7_flicker")
+
+[node name="CandelabraL" type="PointLight2D" parent="Flames"]
+position = Vector2(304, 132)
+color = Color(1, 0.7, 0.4, 1)
+energy = 1.2
+texture = SubResource("light_tex")
+texture_scale = 2.8
+script = ExtResource("7_flicker")
+
+[node name="CandelabraR" type="PointLight2D" parent="Flames"]
+position = Vector2(464, 132)
+color = Color(1, 0.7, 0.4, 1)
+energy = 1.2
+texture = SubResource("light_tex")
+texture_scale = 2.8
+script = ExtResource("7_flicker")
+
+[node name="DeskCandle" type="PointLight2D" parent="Flames"]
+position = Vector2(398, 228)
+color = Color(1, 0.7, 0.4, 1)
+energy = 0.55
+texture = SubResource("light_tex")
+texture_scale = 1.4
+script = ExtResource("7_flicker")
+
+[node name="Candles" type="PointLight2D" parent="Flames"]
+position = Vector2(652, 112)
+color = Color(1, 0.7, 0.4, 1)
+energy = 0.8
+texture = SubResource("light_tex")
+texture_scale = 1.8
+script = ExtResource("7_flicker")
+
+[node name="ShelfCandle" type="PointLight2D" parent="Flames"]
+position = Vector2(210, 322)
+color = Color(1, 0.7, 0.4, 1)
+energy = 0.7
+texture = SubResource("light_tex")
+texture_scale = 1.5
+script = ExtResource("7_flicker")
+
 [node name="World" type="Node2D" parent="."]
 y_sort_enabled = true
 
