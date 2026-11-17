@@ -173,8 +173,23 @@ func start(data: EnemyData) -> String:
 
 	visible = true
 	vfx.stage_home = stage.position
+	_start_music()
 	_intro()
 	return await finished
+
+
+## La musica del livello si mette in pausa (riprenderà da dove era) e parte quella
+## della battaglia, sempre dall'inizio, entrando in fretta.
+func _start_music() -> void:
+	_pause_level_music(true)
+	music.volume_db = -20.0
+	music.play()
+	create_tween().tween_property(music, "volume_db", MUSIC_DB, 0.6)
+
+
+func _pause_level_music(paused: bool) -> void:
+	for level_music in get_tree().get_nodes_in_group("level_music"):
+		(level_music as AudioStreamPlayer).stream_paused = paused
 
 
 ## L'entrata. Prima la transizione: un lampo, la mappa che gira e si sgrana mentre
