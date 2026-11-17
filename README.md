@@ -57,6 +57,7 @@ test.cmd --godot_binary C:\percorso\Godot_v4.7.2-stable_win64.exe
 | `let's-learn-godot/core/` | Gli autoload di base: stato della partita (`Game`), zaino (`Inventory`), salvataggio (`SaveSystem`), opzioni (`Settings`), suoni (`Sfx`); e le costanti `Facing` e `FlagKeys` |
 | `let's-learn-godot/test/` | I test di gdUnit4: `core/` e `quests/` (unitari), `world/` e `characters/` (di scena) |
 | `let's-learn-godot/addons/gdUnit4/` | Il plugin gdUnit4 (MIT, vedi [CREDITS.md](CREDITS.md)) |
+| `let's-learn-godot/addons/` (gli altri) | Plugin per gli RPG, installati ma non ancora usati: Dialogue Manager (dialoghi ramificati), Phantom Camera (camere), Beehave (IA dei nemici) |
 | `let's-learn-godot/assets/` | Asset esterni (vedi [CREDITS.md](CREDITS.md)) |
 | `gamelog/` | Il diario del progetto, è un vault di [Obsidian](https://obsidian.md) |
 | `sorgenti/` | I file di partenza, prima della pulizia (le due spritesheet originali di Subaru: camminata e azioni) |
