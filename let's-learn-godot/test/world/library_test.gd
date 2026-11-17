@@ -51,6 +51,14 @@ func test_l_archivista_parla() -> void:
 	assert_int(Game.flags.get(memory, 0)).is_equal(1)
 
 
+func test_la_musica_parte_da_sola_e_si_ripete() -> void:
+	var music := runner.scene().get_node("Music") as AudioStreamPlayer
+	assert_bool(music.autoplay).is_true()
+	# Il loop si imposta nell'import del WAV (Loop Mode: Forward).
+	var stream := music.stream as AudioStreamWAV
+	assert_int(stream.loop_mode).is_equal(AudioStreamWAV.LOOP_FORWARD)
+
+
 func test_le_luci_delle_fiamme_tremolano() -> void:
 	# Ogni fiamma deve usare flicker.gd, se no resta una luce ferma.
 	var flames := runner.scene().get_node("Flames").get_children()
