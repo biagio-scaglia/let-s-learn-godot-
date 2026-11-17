@@ -27,6 +27,11 @@ const RETURN_LINES := [
 @onready var drone: AudioStreamPlayer = $Drone
 @onready var rewind_sound: AudioStreamPlayer = $Rewind
 @onready var glitch: AudioStreamPlayer = $Glitch
+@onready var game_over_music: AudioStreamPlayer = $GameOverMusic
+@onready var laugh: AudioStreamPlayer = $Laugh
+
+## Il volume del tema del game over quando è entrato del tutto.
+const GAME_OVER_MUSIC_DB := -6.0
 
 ## True dal momento della morte fino al risveglio.
 var is_active := false
@@ -55,6 +60,8 @@ func _reset() -> void:
 	rewind_fx.visible = false
 	_set_rewind(0.0)
 	drone.stop()
+	game_over_music.stop()
+	laugh.stop()
 	for item in [return_button, title_button, quit_button]:
 		item.disabled = false
 
