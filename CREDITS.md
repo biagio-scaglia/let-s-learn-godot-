@@ -12,6 +12,8 @@
 | [Interface Sounds](https://opengameart.org/content/interface-sounds) (glitch_002) | [Kenney](https://www.kenney.nl) | [CC0 1.0](http://creativecommons.org/publicdomain/zero/1.0/) | `let's-learn-godot/assets/kenney_interface_sounds/` |
 | [Heartbeat sounds](https://opengameart.org/content/heartbeat-sounds) (convertiti a WAV 16 bit) | bart (OpenGameArt) | [CC0 1.0](http://creativecommons.org/publicdomain/zero/1.0/) | `let's-learn-godot/assets/heartbeat_bart/` |
 
+Il tileset della biblioteca (`let's-learn-godot/assets/library/`) invece è nostro: disegnato per questo progetto, con la palette di Tiny Dungeon.
+
 Con la licenza CC0 gli asset si possono usare liberamente, anche in progetti commerciali, e citare l'autore non è obbligatorio. Lo citiamo lo stesso.
 
 I pacchetti sono stati scaricati da OpenGameArt ([Tiny Town](https://opengameart.org/content/tiny-town), [Tiny Dungeon](https://opengameart.org/content/tiny-dungeon), [Kenney Fonts](https://opengameart.org/content/kenney-fonts)), che ripubblica gli stessi file del sito di Kenney.
