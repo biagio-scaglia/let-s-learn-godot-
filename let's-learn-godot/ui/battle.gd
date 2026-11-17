@@ -578,7 +578,12 @@ func _end(result: String) -> void:
 	var t := create_tween().set_parallel()
 	t.tween_method(_set_blur, 1.0, 0.0, 0.25)
 	t.tween_property(screen, "modulate:a", 0.0, 0.25)
+	t.tween_property(music, "volume_db", -40.0, 0.25)
 	await t.finished
+	music.stop()
+	# Se si perde la musica del livello resta in pausa: ci pensa il Ritorno dalla Morte.
+	if result != LOSE:
+		_pause_level_music(false)
 	visible = false
 	is_active = false
 	enemy_shadow.modulate.a = 1.0
