@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3]
+[gd_scene load_steps=31 format=3]
 
 [ext_resource type="Script" path="res://ui/battle.gd" id="1_script"]
 [ext_resource type="Shader" path="res://effects/pause_blur.gdshader" id="2_blur"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://ui/battle_turn_bar.gd" id="12_turns"]
 [ext_resource type="Script" path="res://ui/battle_enemy_info.gd" id="13_enemy_info"]
 [ext_resource type="Script" path="res://ui/battle_commands.gd" id="14_commands"]
+[ext_resource type="AudioStream" uid="uid://dedrm3csc521u" path="res://assets/music/battle_theme.wav" id="15_music"]
 
 [sub_resource type="ShaderMaterial" id="blur_mat"]
 shader = ExtResource("2_blur")
@@ -638,3 +639,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_music")
+volume_db = -40.0
