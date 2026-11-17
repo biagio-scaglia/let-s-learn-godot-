@@ -122,10 +122,19 @@ target_scene = "res://world/house.tscn"
 target_spawn = "Entrance"
 arrive_facing = "up"
 
+[node name="LibraryDoor" parent="World" instance=ExtResource("7_door")]
+position = Vector2(944, 197)
+target_scene = "res://world/library.tscn"
+target_spawn = "Entrance"
+arrive_facing = "up"
+
 [node name="Spawns" type="Node2D" parent="."]
 
 [node name="HouseDoor" type="Marker2D" parent="Spawns"]
 position = Vector2(272, 226)
+
+[node name="LibraryDoor" type="Marker2D" parent="Spawns"]
+position = Vector2(944, 226)
 
 [node name="Subaru" parent="World" instance=ExtResource("2_subaru")]
 position = Vector2(656, 416)
