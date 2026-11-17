@@ -11,6 +11,8 @@ extends Node
 @export var death_distance := 12.0
 ## La vignettatura da stringere quando si è in pericolo.
 @export var vignette: ColorRect
+## La musica del villaggio: più ci si avvicina al bordo, più si spegne. Resta solo il cuore.
+@export var music: AudioStreamPlayer
 
 @onready var heartbeat_slow: AudioStreamPlayer = $HeartbeatSlow
 @onready var heartbeat_fast: AudioStreamPlayer = $HeartbeatFast
@@ -19,6 +21,7 @@ extends Node
 var danger := 0.0
 var _vignette_strength := 0.4
 var _vignette_material: ShaderMaterial
+var _music_db := 0.0
 ## Il giocatore, cercato una volta sola (non a ogni frame).
 var _player: Node2D
 
@@ -32,6 +35,8 @@ func _ready() -> void:
 	if vignette:
 		_vignette_material = vignette.material as ShaderMaterial
 		_vignette_strength = _vignette_material.get_shader_parameter("strength")
+	if music:
+		_music_db = music.volume_db
 	# Il battito ricomincia da solo finché c'è pericolo.
 	heartbeat_slow.finished.connect(_beat)
 	heartbeat_fast.finished.connect(_beat)
@@ -58,6 +63,9 @@ func _process(delta: float) -> void:
 		_beat()
 	if _vignette_material:
 		_vignette_material.set_shader_parameter("strength", _vignette_strength + danger * 0.5)
+	# Da morto la musica la spegne ReturnByDeath: qui non la si deve rialzare.
+	if music and not ReturnByDeath.is_active:
+		music.volume_db = _music_db + linear_to_db(maxf(1.0 - danger * 0.95, 0.001))
 
 
 ## Un battito: lento da lontano, veloce vicino al bordo.
