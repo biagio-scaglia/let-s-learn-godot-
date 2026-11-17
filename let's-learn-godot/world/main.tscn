@@ -198,9 +198,10 @@ stream = ExtResource("23_music")
 volume_db = -10.0
 autoplay = true
 
-[node name="VillageEdge" type="Node" parent="." node_paths=PackedStringArray("vignette")]
+[node name="VillageEdge" type="Node" parent="." node_paths=PackedStringArray("vignette", "music")]
 script = ExtResource("13_edge")
 vignette = NodePath("../Effects/Vignette")
+music = NodePath("../Music")
 
 [node name="HeartbeatSlow" type="AudioStreamPlayer" parent="VillageEdge"]
 stream = ExtResource("14_slow")
