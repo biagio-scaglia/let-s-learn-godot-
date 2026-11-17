@@ -82,6 +82,10 @@ const HP_ZERO := Color(1.0, 0.35, 0.3)
 @onready var message: Label = %Message
 @onready var results: Control = %Results
 @onready var results_text: Label = %ResultsText
+@onready var music: AudioStreamPlayer = $Music
+
+## Il volume del tema di battaglia quando è entrato del tutto.
+const MUSIC_DB := -7.0
 
 ## True dall'inizio alla fine del combattimento.
 var is_active := false
