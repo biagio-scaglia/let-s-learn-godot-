@@ -87,3 +87,12 @@ func test_vicino_al_bordo_la_musica_si_abbassa() -> void:
 	player.global_position = Vector2(1170, 400)
 	await await_millis(1000)
 	assert_float(music.volume_db).is_less(normal - 3.0)
+
+
+func test_morendo_la_musica_si_spegne_e_qualcuno_ride() -> void:
+	var music := runner.scene().get_node("Music") as AudioStreamPlayer
+	player.global_position = Vector2(1210, 400)
+	await await_millis(3200)   # caduta, nebbia, poi il pannello del game over
+	assert_float(music.volume_db).is_less(-40.0)
+	assert_bool(ReturnByDeath.laugh.playing).is_true()
+	assert_bool(ReturnByDeath.game_over_music.playing).is_true()
