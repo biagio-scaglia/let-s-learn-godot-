@@ -29,6 +29,12 @@ Un piccolo RPG in pixel art fatto per **imparare Godot 4 un passo alla volta**: 
 </tr>
 </table>
 
+### La biblioteca
+
+![La biblioteca di notte: raggi di luna dalle finestre, candele, scaffali e l'Archivista](gamelog/assets/biblioteca_interno.png)
+
+Una casa di pietra a nord-est del villaggio, con un **tileset disegnato apposta** in pixel art. Dentro è sempre notte: raggi di luna con la polvere che galleggia, candele che tremolano, un'Archivista, scaffali da leggere e un libro nero che forse non dovresti aprire.
+
 ### Combattimenti a turni
 
 ![Il pugno caricato: Subaru si concentra, scatta e colpisce; un'onda d'urto piega lo schermo](docs/combattimento.gif)
