@@ -336,3 +336,39 @@ func test_la_barra_dei_turni_mostra_chi_tocca() -> void:
 	# 6 turni e 2 separatori tra un giro e l'altro.
 	assert_int(Battle.turn_icons.get_child_count()).is_equal(8)
 	await _flee()
+
+
+func test_un_colpo_lascia_effetti_che_poi_spariscono() -> void:
+	Battle.start(_enemy(50, 1))
+	await _wait_turn()
+	Battle.attack_button.pressed.emit()
+	# Subito dopo il colpo, sul palco ci sono gli effetti animati (la stella dell'impatto).
+	var found := false
+	for i in 50:
+		if Battle.stage.get_children().any(func(n: Node) -> bool: return n is AnimatedSprite2D and n != Battle.hero):
+			found = true
+			break
+		await await_millis(10)
+	assert_bool(found).is_true()
+	await _wait_turn()
+	await await_millis(300)
+	# Finiti i colpi: niente effetti rimasti, e nessuno è più "bianco".
+	var left := Battle.stage.get_children().filter(func(n: Node) -> bool: return n is AnimatedSprite2D and n != Battle.hero)
+	assert_int(left.size()).is_equal(0)
+	var mat := Battle.enemy_sprite.material as ShaderMaterial
+	assert_float(mat.get_shader_parameter("amount")).is_equal_approx(0.0, 0.01)
+	Battle.flee_chance = 1.0
+	Battle.flee_button.pressed.emit()
+	await _wait_turn()
+
+
+func test_l_onda_d_urto_si_spegne_da_sola() -> void:
+	Battle.start(_enemy(50, 1))
+	await _wait_turn()
+	Battle._shockwave_at(Vector2.ZERO, 0.5, 0.05)
+	assert_bool(Battle._shockwave.visible).is_true()
+	await await_millis(200)
+	assert_bool(Battle._shockwave.visible).is_false()
+	Battle.flee_chance = 1.0
+	Battle.flee_button.pressed.emit()
+	await _wait_turn()

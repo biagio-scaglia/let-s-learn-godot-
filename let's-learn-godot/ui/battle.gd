@@ -57,6 +57,12 @@ const HP_OK := Color(0.96, 0.95, 1.0)
 const HP_LOW := Color(1.0, 0.85, 0.3)
 const HP_ZERO := Color(1.0, 0.35, 0.3)
 
+## Gli effetti disegnati a mano (sprite sheet a celle quadrate, in fila) e gli shader.
+const IMPACT_SHEET := preload("res://assets/effects/vfx_impact.png")
+const SLASH_SHEET := preload("res://assets/effects/vfx_slash.png")
+const HIT_FLASH := preload("res://effects/hit_flash.gdshader")
+const SHOCKWAVE := preload("res://effects/shockwave.gdshader")
+
 ## Quanto resta un messaggio se non si preme niente, in secondi.
 @export var message_time := 1.2
 ## Quanto dura la transizione d'ingresso (la mappa che gira e le bande nere).
@@ -143,6 +149,10 @@ var _enemy_scale := Vector2.ONE
 var _stage_home := Vector2.ZERO
 ## La descrizione di ogni voce di menu, mostrata in basso quando è selezionata.
 var _help_for := {}
+## Le animazioni degli effetti, costruite una volta sola dagli sprite sheet.
+var _vfx_frames := {}
+## Il rettangolo a tutto schermo che disegna l'onda d'urto.
+var _shockwave: ColorRect
 
 
 func _ready() -> void:
@@ -184,6 +194,7 @@ func _ready() -> void:
 		cost.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		pair[0].add_child(cost)
 	Stats.changed.connect(_update_hero_info)
+	_setup_vfx()
 
 
 ## Comincia un combattimento e aspetta che finisca. Restituisce WIN, LOSE o FLED.
@@ -266,7 +277,16 @@ func _intro() -> void:
 	enter.tween_property(hero, "position:x", _hero_home.x, 0.4)
 	enter.tween_property(turn_bar, "position:y", bar_y, 0.35).set_delay(0.15)
 	enter.tween_property(party, "position:x", party_x, 0.35).set_delay(0.15)
+	# Le bande si aprono con un'onda d'urto dal centro; i due arrivano come
+	# sagome bianche che prendono colore, e atterrano sollevando polvere.
+	_shockwave_at(Vector2(0, -30), 0.9, 0.6)
+	for sprite: CanvasItem in [hero, enemy_sprite]:
+		_set_flash(1.0, sprite)
+		create_tween().tween_method(_set_flash.bind(sprite), 1.0, 0.0, 0.35).set_delay(0.15)
 	await enter.finished
+	_landing_dust(hero.position)
+	_landing_dust(enemy_sprite.position)
+	_shake(2.0, 0.15)
 	await _say("%s appare!" % enemy.name)
 	_player_turn()
 
@@ -325,6 +345,7 @@ func _do_jab(skill: Dictionary) -> void:
 	await _until_frame(2)
 	_hit_stop()
 	_strike(skill, Sfx.HIT)
+	_impact(_impact_point(), 2.0)
 	_sparks(_impact_point(), Color(1, 0.95, 0.8), 10, 140.0)
 	await hero.animation_finished
 
@@ -337,6 +358,8 @@ func _do_kick(skill: Dictionary) -> void:
 	await _until_frame(1)
 	_hit_stop()
 	_strike(skill, Sfx.KICK)
+	_slash(_impact_point() + Vector2(-8, 4))
+	_impact(_impact_point(), 2.5)
 	_shake(5.0, 0.25)
 	_sparks(_impact_point(), Color(1, 0.75, 0.4), 16, 200.0)
 	await hero.animation_finished
@@ -381,6 +404,8 @@ func _do_power_punch(skill: Dictionary) -> void:
 	flash.color = Color(1, 0.95, 0.85, 0.7)
 	create_tween().tween_property(flash, "color:a", 0.0, 0.3)
 	_shake(9.0, 0.4)
+	_impact(_impact_point(), 4.0)
+	_shockwave_at(_impact_point(), 0.45)
 	_sparks(_impact_point(), Color(1, 0.8, 0.35), 28, 260.0)
 	create_tween().tween_property(stage, "scale", Vector2.ONE, 0.3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	await hero.animation_finished
@@ -429,6 +454,7 @@ func _break() -> void:
 	flash.color = Color(0.85, 0.95, 1.0, 0.75)
 	create_tween().tween_property(flash, "color:a", 0.0, 0.35)
 	_shake(7.0, 0.35)
+	_shockwave_at(enemy_sprite.position + Vector2(0, -40), 0.6)
 	var shards := _sparks(enemy_sprite.position + Vector2(0, -40), Color(0.7, 0.85, 1.0), 30, 280.0)
 	shards.scale_amount_min = 3.0
 	shards.scale_amount_max = 5.0
@@ -580,6 +606,7 @@ func _enemy_turn() -> void:
 	else:
 		hero.play("stagger")
 		_shake(3.0, 0.2)
+		_impact(hero.position + Vector2(-24, -40), 2.0)
 	_hit(hero, dealt, -128.0, Sfx.HIT, Color.WHITE, 32)
 	create_tween().tween_property(enemy_sprite, "position:x", _enemy_home.x, 0.25)
 	await _pause(message_time * 0.6)
@@ -596,6 +623,9 @@ func _enemy_turn() -> void:
 
 func _victory() -> void:
 	# Il nemico lampeggia di bianco, si tinge di viola e si scioglie verso il basso.
+	_impact(enemy_sprite.position + Vector2(0, -40), 4.0)
+	_set_flash(1.0, enemy_sprite)
+	create_tween().tween_method(_set_flash.bind(enemy_sprite), 1.0, 0.0, 0.5)
 	var t := create_tween()
 	t.tween_property(enemy_sprite, "modulate", Color(3, 3, 3), 0.06)
 	t.tween_property(enemy_sprite, "modulate", Color(1.0, 0.3, 0.8, 0.0), 0.5)
@@ -608,6 +638,7 @@ func _victory() -> void:
 	var text := "Esperienza  +%d" % enemy.xp
 	if levels > 0:
 		Sfx.play(Sfx.LEVEL_UP)
+		_level_up_burst()
 		text += "\nLivello %d!  Salute, PT, attacco e difesa aumentano." % Stats.level
 	else:
 		Sfx.play(Sfx.CONFIRM)
@@ -628,6 +659,9 @@ func _defeat() -> void:
 
 
 func _end(result: String) -> void:
+	if result != LOSE:
+		flash.color = Color(1, 1, 1, 0.6)
+		create_tween().tween_property(flash, "color:a", 0.0, 0.25)
 	var t := create_tween().set_parallel()
 	t.tween_method(_set_blur, 1.0, 0.0, 0.25)
 	t.tween_property(screen, "modulate:a", 0.0, 0.25)
@@ -638,6 +672,9 @@ func _end(result: String) -> void:
 	stage.position = _stage_home
 	stage.scale = Vector2.ONE
 	flash.color = Color(1, 1, 1, 0)
+	_shockwave.visible = false
+	_set_flash(0.0, hero)
+	_set_flash(0.0, enemy_sprite)
 	hero_status.visible = false
 	Game.in_cutscene = false
 	finished.emit(result)
@@ -826,6 +863,7 @@ func _enemy_color() -> Color:
 
 
 func _dash_to_enemy(time: float) -> void:
+	_afterimages(time)
 	create_tween().tween_property(hero, "position:x", _enemy_home.x + 95.0, time).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 
 
@@ -944,6 +982,7 @@ func _fade_ramp() -> Gradient:
 ## Il colpo: un suono, un lampo rosso, una scossa e il numero del danno che rimbalza.
 func _hit(target: Node2D, amount: int, height: float, sound: String, color: Color, font_size: int) -> void:
 	Sfx.play(sound)
+	create_tween().tween_method(_set_flash.bind(target), 1.0, 0.0, 0.14)
 	var x := target.position.x
 	var t := create_tween()
 	t.tween_property(target, "modulate", Color(1.0, 0.35, 0.35), 0.05)
@@ -1007,3 +1046,165 @@ func _set_transition(value: float) -> void:
 
 func _set_blur(value: float) -> void:
 	(backdrop.material as ShaderMaterial).set_shader_parameter("amount", value)
+
+
+# ---------- VFX: sprite animati, lampi, onde d'urto, scie ----------
+
+## Prepara gli effetti: il lampo bianco sui due personaggi (ognuno con il SUO
+## materiale, se no lampeggerebbero insieme) e il rettangolo dell'onda d'urto.
+func _setup_vfx() -> void:
+	for sprite: CanvasItem in [hero, enemy_sprite]:
+		var mat := ShaderMaterial.new()
+		mat.shader = HIT_FLASH
+		sprite.material = mat
+	_shockwave = ColorRect.new()
+	_shockwave.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	_shockwave.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var wave := ShaderMaterial.new()
+	wave.shader = SHOCKWAVE
+	_shockwave.material = wave
+	_shockwave.visible = false
+	# Lo "screen texture" viene copiato una volta sola, al primo shader che lo usa:
+	# qui è lo sfondo sfocato, PRIMA che la battaglia sia disegnata. Senza una nuova
+	# copia l'onda deformerebbe la mappa vecchia e coprirebbe tutto il resto.
+	var copy := BackBufferCopy.new()
+	copy.copy_mode = BackBufferCopy.COPY_MODE_VIEWPORT
+	add_child(copy)
+	move_child(copy, flash.get_index())
+	add_child(_shockwave)
+	move_child(_shockwave, flash.get_index())   # sopra la battaglia, sotto il lampo
+	_vfx_frames = {
+		"impact": _frames_from_sheet(IMPACT_SHEET, 24.0),
+		"slash": _frames_from_sheet(SLASH_SHEET, 26.0),
+	}
+
+
+## Da uno sprite sheet con celle quadrate in fila a un'animazione che non si ripete.
+func _frames_from_sheet(sheet: Texture2D, fps: float) -> SpriteFrames:
+	var cell := sheet.get_height()
+	var frames := SpriteFrames.new()
+	frames.set_animation_loop(&"default", false)
+	frames.set_animation_speed(&"default", fps)
+	for i in sheet.get_width() / cell:
+		var atlas := AtlasTexture.new()
+		atlas.atlas = sheet
+		atlas.region = Rect2(i * cell, 0, cell, cell)
+		frames.add_frame(&"default", atlas)
+	return frames
+
+
+## Fa partire un effetto disegnato in "pos" e lo cancella quando finisce.
+## Il blend "additivo" somma la luce: su uno sfondo scuro sembra brillare.
+func _play_vfx(kind: String, pos: Vector2, size: float, angle := 0.0) -> AnimatedSprite2D:
+	var fx := AnimatedSprite2D.new()
+	fx.sprite_frames = _vfx_frames[kind]
+	fx.position = pos
+	fx.scale = Vector2(size, size)
+	fx.rotation = angle
+	fx.material = _additive()
+	stage.add_child(fx)
+	fx.play()
+	fx.animation_finished.connect(fx.queue_free)
+	return fx
+
+
+func _additive() -> CanvasItemMaterial:
+	var add := CanvasItemMaterial.new()
+	add.blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
+	return add
+
+
+## La stella del colpo, girata a caso perché due colpi non sembrino identici.
+func _impact(pos: Vector2, size: float) -> void:
+	_play_vfx("impact", pos, size, rng.randi_range(0, 3) * PI / 8.0)
+
+
+## Il fendente del calcio: un arco di luce che passa sul nemico.
+func _slash(pos: Vector2) -> void:
+	_play_vfx("slash", pos, 2.5, PI)
+
+
+## Quanto è "bianco" uno dei due personaggi (0 = normale, 1 = sagoma bianca).
+func _set_flash(value: float, target: CanvasItem) -> void:
+	var mat := target.material as ShaderMaterial
+	if mat:
+		mat.set_shader_parameter("amount", value)
+
+
+## Un'onda d'urto che parte da "pos" (coordinate dello Stage) e deforma lo schermo.
+func _shockwave_at(pos: Vector2, size: float, time := 0.45) -> void:
+	var mat := _shockwave.material as ShaderMaterial
+	# Lo shader lavora in coordinate dello schermo da 0 a 1: convertiamo.
+	var on_screen := stage.get_global_transform_with_canvas() * pos
+	mat.set_shader_parameter("center", on_screen / get_viewport().get_visible_rect().size)
+	mat.set_shader_parameter("max_radius", size)
+	_shockwave.visible = true
+	var t := create_tween()
+	t.tween_method(_set_wave, 0.0, 1.0, time).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	t.tween_callback(_shockwave.hide)
+
+
+func _set_wave(value: float) -> void:
+	(_shockwave.material as ShaderMaterial).set_shader_parameter("progress", value)
+
+
+## La scia: copie di Subaru, azzurre e trasparenti, lasciate indietro mentre scatta.
+func _afterimages(time: float) -> void:
+	var copies := 4
+	for i in copies:
+		if not is_active:
+			return
+		var ghost := Sprite2D.new()
+		ghost.texture = hero.sprite_frames.get_frame_texture(hero.animation, hero.frame)
+		ghost.position = hero.position
+		ghost.scale = hero.scale
+		ghost.offset = hero.offset
+		ghost.flip_h = hero.flip_h
+		ghost.modulate = Color(0.5, 0.75, 1.0, 0.55)
+		stage.add_child(ghost)
+		stage.move_child(ghost, hero.get_index())   # dietro a Subaru
+		var t := create_tween()
+		t.tween_property(ghost, "modulate:a", 0.0, 0.22)
+		t.tween_callback(ghost.queue_free)
+		await _pause(time / copies)
+
+
+## Due sbuffi di polvere ai piedi, uno per lato, quando qualcuno atterra.
+func _landing_dust(feet: Vector2) -> void:
+	for side in [-1.0, 1.0]:
+		var p := _sparks(feet + Vector2(side * 10.0, -2.0), Color(0.85, 0.8, 0.9, 0.7), 8, 70.0)
+		p.direction = Vector2(side, -0.3)
+		p.spread = 25.0
+		p.gravity = Vector2(0, -20)
+		p.scale_amount_min = 3.0
+		p.scale_amount_max = 5.0
+
+
+## Il passaggio di livello: una colonna di luce che sale da Subaru e una stella.
+func _level_up_burst() -> void:
+	var base := hero.position
+	var p := CPUParticles2D.new()
+	p.one_shot = true
+	p.explosiveness = 0.3
+	p.amount = 40
+	p.lifetime = 0.9
+	p.emission_shape = CPUParticles2D.EMISSION_SHAPE_RECTANGLE
+	p.emission_rect_extents = Vector2(26, 4)
+	p.direction = Vector2(0, -1)
+	p.spread = 6.0
+	p.gravity = Vector2(0, -160)
+	p.initial_velocity_min = 40.0
+	p.initial_velocity_max = 110.0
+	p.scale_amount_min = 2.0
+	p.scale_amount_max = 4.0
+	var ramp := Gradient.new()
+	ramp.set_color(0, Color(1, 1, 0.85, 1))
+	ramp.set_color(1, Color(1, 0.75, 0.3, 0))
+	p.color_ramp = ramp
+	p.material = _additive()
+	p.position = base
+	stage.add_child(p)
+	p.emitting = true
+	get_tree().create_timer(1.5).timeout.connect(p.queue_free)
+	_impact(base + Vector2(0, -36), 3.0)
+	_glow(hero, Color(1.5, 1.4, 0.9))
