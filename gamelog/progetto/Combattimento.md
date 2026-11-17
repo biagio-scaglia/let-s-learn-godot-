@@ -92,7 +92,8 @@ Il danno: `Stats.damage(attacco, difesa, tiro)` (vedi [[Statistiche#La formula d
 ## Com'è fatto
 
 ```
-Battle (CanvasLayer, livello 12)     + battle.gd
+Battle (CanvasLayer, livello 12)     + battle.gd (le regole e l'interfaccia)
+├── Vfx (Node, creato dal codice)  + battle_vfx.gd: tutti gli effetti visivi
 ├── Backdrop (ColorRect)        ← la mappa sfocata e scurita (shader pause_blur)
 ├── Screen (Control, filtro Nearest)
 │   ├── Floor, Vignette         ← il pavimento più scuro, gli angoli scuri
@@ -126,7 +127,8 @@ Battle (CanvasLayer, livello 12)     + battle.gd
 | Scintille, aura, nebbia, schegge | [[Particelle#Particelle create dal codice]] |
 | La transizione d'ingresso | [[Shader#Transizione d'ingresso nel combattimento]] |
 | Scossa, zoom, lampi, numeri che rimbalzano | [[Tween]], [[Effetti visivi#Nel combattimento]] |
-| I tiri | `Battle.rng`: vedi [[Numeri casuali]] |
+| I tiri | `Battle.rng`: vedi [[Numeri casuali]]. Gli effetti hanno **i loro** dadi (`Battle.vfx.rng`): girare una stella non cambia il danno del colpo dopo |
+| Gli effetti in uno script a parte | `BattleVfx` ([[Classi globali\|class_name]]): `vfx.impact()`, `vfx.shake()`, `vfx.flash_white()`… Vedi [[Responsabilità]] |
 | Suoni | [[Sfx#Suoni del combattimento]] |
 
 ## Chi sa cosa

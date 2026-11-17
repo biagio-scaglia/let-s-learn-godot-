@@ -28,7 +28,7 @@ Mettere un `BackBufferCopy` (con *Copy Mode* `Viewport`) **prima** di uno shader
 
 ## Nel progetto
 
-Nel [[Combattimento]] lo sfondo sfocato (`pause_blur`) legge lo schermo per primo, quando c'è ancora solo la mappa. L'**onda d'urto** viene disegnata dopo, sopra la battaglia: senza un `BackBufferCopy` leggeva la foto della mappa e la disegnava sopra tutto. Il nodo lo crea `_setup_vfx()` in `battle.gd`. Vedi [[Shader#Onda d'urto]] e la voce [[2026-11-17-vfx]].
+Nel [[Combattimento]] lo sfondo sfocato (`pause_blur`) legge lo schermo per primo, quando c'è ancora solo la mappa. L'**onda d'urto** viene disegnata dopo, sopra la battaglia: senza un `BackBufferCopy` leggeva la foto della mappa e la disegnava sopra tutto. Il nodo lo crea `setup()` in `battle_vfx.gd`. Vedi [[Shader#Onda d'urto]] e la voce [[2026-11-17-vfx]].
 
 ## Vedi anche
 

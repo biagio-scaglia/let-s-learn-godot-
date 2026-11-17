@@ -90,6 +90,13 @@ Con `amount = 1` resta solo la **sagoma** dello sprite, tutta bianca. Nel [[Comb
 - Il centro arriva da GDScript: la posizione nello `Stage` → `get_global_transform_with_canvas()` → pixel dello schermo → diviso per la grandezza della finestra.
 - Serve un [[BackBufferCopy]] prima del `ColorRect`, se no legge una "foto" vecchia dello schermo.
 
+### Ombra viva
+
+`effects/shadow.gdshader`, sulle mani della [[Schermata iniziale]]. Due cose, entrambe "a quadretti" per restare [[Pixel art]]:
+
+- **Ondeggia:** `floor(UV / TEXTURE_PIXEL_SIZE)` dice in quale pixel della texture siamo; ogni colonna sale o scende di **un pixel intero** (`round(sin(...))`), con un'onda che scorre nel tempo.
+- **Si scioglie:** ogni pixel ha un numero "a caso" fisso (`hash`); se è minore di `dissolve` il pixel sparisce. Facendo andare `dissolve` da 0 a 1 la mano si sbriciola, e i pixel appena sopra la soglia diventano viola acceso, come un bordo che brucia.
+
 ## Vedi anche
 
 - [[CanvasLayer]] · [[CanvasModulate]] · [[Rumore]] · [[BackBufferCopy]]

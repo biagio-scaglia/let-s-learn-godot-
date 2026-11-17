@@ -66,3 +66,9 @@ Dal [[2026-11-17-vfx|17 novembre]]:
 | Polvere all'atterraggio | Due sbuffi di [[Particelle]], uno per lato |
 | Colonna di luce al nuovo livello | Particelle che salgono, additive |
 | Bande con la punta luminosa, colori sdoppiati | [[Shader#Transizione d'ingresso nel combattimento]] |
+
+Tutti questi stanno in `ui/battle_vfx.gd` (`BattleVfx`), separati dalle regole del combattimento.
+
+## Nella schermata iniziale
+
+Le **mani d'ombra** e gli **occhi nel buio**: [[Schermata iniziale#Qualcuno ti guarda]], [[Line2D]], [[Shader#Ombra viva]].

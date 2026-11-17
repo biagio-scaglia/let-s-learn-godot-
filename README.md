@@ -19,7 +19,7 @@ Per ora c'è Subaru che cammina e corre in una piccola mappa con alberi, sentier
 
 In alto a sinistra c'è sempre l'**obiettivo** del momento.
 
-Il gioco parte dalla schermata iniziale: frecce o mouse per scegliere, Invio per confermare. Nelle opzioni si regolano volume e schermo intero, che vengono ricordati. Dal menu di pausa si salva, e nel titolo compare *Continua*.
+Il gioco parte dalla schermata iniziale: frecce o mouse per scegliere, Invio per confermare. Qualcuno, nel buio, afferra le voci che scegli… Nelle opzioni si regolano volume e schermo intero, che vengono ricordati. Dal menu di pausa si salva, e nel titolo compare *Continua*.
 
 Alla prima partita una breve cutscene mostra Subaru che arriva al villaggio.
 
