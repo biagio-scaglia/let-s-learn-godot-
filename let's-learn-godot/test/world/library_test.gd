@@ -32,3 +32,11 @@ func test_l_uscita_porta_alla_porta_della_biblioteca() -> void:
 	assert_str(door.target_scene).is_equal("res://world/library.tscn")
 	assert_object(runner.scene().get_node_or_null("Spawns/" + door.target_spawn)).is_not_null()
 	village.free()
+
+
+func test_le_luci_delle_fiamme_tremolano() -> void:
+	# Ogni fiamma deve usare flicker.gd, se no resta una luce ferma.
+	var flames := runner.scene().get_node("Flames").get_children()
+	assert_int(flames.size()).is_greater(3)
+	for light in flames:
+		assert_object(light.get_script()).is_equal(load("res://effects/flicker.gd"))
