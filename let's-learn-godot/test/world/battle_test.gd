@@ -393,3 +393,23 @@ func test_l_onda_d_urto_si_spegne_da_sola() -> void:
 	Battle.flee_chance = 1.0
 	Battle.commands.flee_button.pressed.emit()
 	await _wait_turn()
+
+
+func test_in_battaglia_suona_il_suo_tema_e_poi_torna_quello_del_livello() -> void:
+	# Una musica "del livello" finta, come quella del villaggio.
+	var level_music := AudioStreamPlayer.new()
+	level_music.stream = load("res://assets/music/village_theme.wav")
+	level_music.add_to_group("level_music")
+	add_child(level_music)
+	level_music.play()
+	Battle.flee_chance = 1.0
+	Battle.start(_enemy(50, 4))
+	await _wait_turn()
+	assert_bool(Battle.music.playing).is_true()
+	assert_bool(level_music.stream_paused).is_true()
+	Battle.commands.flee_button.pressed.emit()
+	await _wait_turn()
+	await await_millis(400)
+	assert_bool(Battle.music.playing).is_false()
+	assert_bool(level_music.stream_paused).is_false()
+	level_music.queue_free()
