@@ -1,39 +1,92 @@
-# Let's learn Godot
+# Let's learn Godot — *Erbalta*
 
-Progetto personale per imparare le basi di **Godot 4**, un passo alla volta.
+Un piccolo RPG in pixel art fatto per **imparare Godot 4 un passo alla volta**: un villaggio da esplorare, dialoghi, una missione, combattimenti a turni con scudi e debolezze, la morte che ti riporta indietro… e qualcuno, nel buio, che non vuole lasciarti andare.
 
-Per ora c'è Subaru che cammina e corre in una piccola mappa con alberi, sentieri e staccionate, un Saggio con cui parlare, un cartello da leggere e una casa in cui entrare, dove abita Lina. Ci sono già ombre, polvere, pollini, passi sonori e una finestra di dialogo animata.
+![La schermata iniziale: una mano d'ombra afferra la voce scelta, e dal buio si aprono due occhi](docs/titolo.gif)
+
+**Godot 4.7.2** · GDScript · pixel art · **111 test** automatici con gdUnit4 · un diario di sviluppo in [Obsidian](gamelog/Gamelog.md)
+
+---
+
+## Cosa c'è
+
+<table>
+<tr>
+<td width="50%"><img src="gamelog/assets/sole_e_nuvole.png" alt="Il villaggio con raggi di sole e ombre delle nuvole"></td>
+<td width="50%"><img src="gamelog/assets/dialogo.png" alt="Subaru parla con il Saggio"></td>
+</tr>
+<tr>
+<td><b>Il villaggio di Erbalta.</b> Raggi di sole, ombre delle nuvole, pollini, polvere quando corri, passi che si sentono.</td>
+<td><b>Dialoghi.</b> Il Saggio, Emilia, Lina e un cartello. Si ricordano di te, anche tra una scena e l'altra.</td>
+</tr>
+<tr>
+<td><img src="gamelog/assets/casa_interno.png" alt="L'interno della casa di Lina"></td>
+<td><img src="gamelog/assets/emilia.png" alt="Emilia nella piazza del villaggio"></td>
+</tr>
+<tr>
+<td><b>Una missione.</b> Lina ha perso la chiave del suo baule: trovala e portagliela. In alto a sinistra c'è sempre l'obiettivo.</td>
+<td><b>Una cutscene</b> all'inizio, e personaggi che notano cosa ti è successo.</td>
+</tr>
+</table>
+
+### Combattimenti a turni
+
+![Il pugno caricato: Subaru si concentra, scatta e colpisce; un'onda d'urto piega lo schermo](docs/combattimento.gif)
+
+Attacca, **Abilità** (Calcio, Shamac, Pugno caricato, con i punti tecnica), Oggetti, Difendi, Fuggi. Ogni nemico ha uno **scudo** e delle **debolezze** da scoprire: colpiscile finché lo scudo si **rompe** e il nemico salta un turno. Vincendo si sale di livello.
+
+I colpi si sentono: stelle d'impatto e fendenti disegnati a mano, lampi bianchi, scie, scintille, *hit stop* e onde d'urto che deformano lo schermo.
+
+<table>
+<tr>
+<td width="50%"><img src="gamelog/assets/combattimento_rotto.png" alt="Lo scudo del nemico si rompe: ROTTO!"></td>
+<td width="50%"><img src="gamelog/assets/scheda_personaggio.png" alt="Il menu di pausa con la scheda di Subaru"></td>
+</tr>
+<tr>
+<td><b>Rotto!</b> Scudo a zero: il nemico barcolla e prende il doppio dei danni.</td>
+<td><b>Menu di pausa</b> con la scheda del personaggio, il salvataggio e le opzioni.</td>
+</tr>
+</table>
+
+### Il Ritorno dalla Morte
+
+Non provare a uscire dal villaggio. Se muori, una nebbia viola copre tutto… e puoi sempre *ritornare*. Il mondo dimentica; Subaru no.
+
+<table>
+<tr>
+<td width="50%"><img src="gamelog/assets/ritorno.png" alt="Il vortice viola del ritorno"></td>
+<td width="50%"><img src="gamelog/assets/game_over_esci.png" alt="Il game over: Sei morto"></td>
+</tr>
+</table>
+
+### Prova a chiudere il gioco
+
+Quando esci, la finestra del gioco sparisce e sul desktop compare una finestra di sistema. Sembra normale. Poi si corrompe, ti chiama **per nome**, e se rispondi "Sì"… arriva lei. Le mani strappano la finestra, e nello strappo un occhio segue il tuo mouse.
+
+![Il congedo: la finestra si corrompe, lei compare accanto, le mani la strappano e nello strappo si apre un occhio](docs/congedo.gif)
+
+> Il nome è quello del tuo utente sul computer: si legge solo lì e non va da nessuna parte. Con "No" (o Esc) si torna a giocare.
+
+---
 
 ## Come avviarlo
 
-1. Apri Godot 4.7 e importa la cartella `let's-learn-godot` (il file `project.godot`).
+1. Apri **Godot 4.7** e importa la cartella `let's-learn-godot` (il file `project.godot`).
 2. Premi **F5**.
 
 | Tasto | Azione |
 |---|---|
 | Frecce o WASD | Muoversi |
 | Shift (tenuto premuto) | Correre |
-| E, Spazio o Invio | Parlare, andare avanti nel dialogo |
+| E, Spazio o Invio | Parlare, interagire, andare avanti nel dialogo |
 | Esc | Menu di pausa (riprendi, salva, opzioni, torna al titolo, esci) |
 | Tab o I | Zaino (Invio usa l'oggetto selezionato) |
 
-In alto a sinistra c'è sempre l'**obiettivo** del momento.
-
-Il gioco parte dalla schermata iniziale: frecce o mouse per scegliere, Invio per confermare. Qualcuno, nel buio, afferra le voci che scegli… Nelle opzioni si regolano volume e schermo intero, che vengono ricordati. Dal menu di pausa si salva, e nel titolo compare *Continua*.
-
-Alla prima partita una breve cutscene mostra Subaru che arriva al villaggio.
-
-Quando chiudi il gioco (anche dal game over), qualcuno ti chiede se sei sicuro. E sa come ti chiami.
-
-**Attenzione:** non provare a uscire dal villaggio. Se muori, puoi sempre *ritornare*…
-
-**Combattere:** nel villaggio ci sono una melma e uno spettro. Avvicinati e premi E: è un combattimento a turni: Attacca, Abilità (Calcio, Shamac, Pugno caricato, con i punti tecnica), Oggetti, Difendi, Fuggi. Ogni nemico ha uno scudo e delle debolezze da scoprire: colpiscile fino a romperlo, e salterà un turno. Vincendo si sale di livello; la scheda di Subaru è nel menu di pausa. I colpi hanno i loro effetti: stelle d'impatto e fendenti disegnati a mano, lampi, scie e onde d'urto che piegano lo schermo.
-
-**La prima missione:** Lina ha perso la chiave del suo baule. Trovala nel villaggio e portagliela.
+Nelle opzioni si regolano volume e schermo intero, e vengono ricordati. Dopo aver salvato, nel titolo compare *Continua*.
 
 ## Test
 
-I test automatici sono in `let's-learn-godot/test/` e usano [gdUnit4](https://github.com/godot-gdunit-labs/gdUnit4).
+I test sono in `let's-learn-godot/test/` e usano [gdUnit4](https://github.com/godot-gdunit-labs/gdUnit4): **111** in tutto, dalle regole del combattimento al congedo.
 
 - **Nell'editor:** pannello *GdUnit* → ▶.
 - **Da terminale**, nella cartella `let's-learn-godot`:
@@ -44,27 +97,33 @@ test.cmd --godot_binary C:\percorso\Godot_v4.7.2-stable_win64.exe
 
 (oppure imposta la variabile d'ambiente `GODOT_BIN` e lancia solo `test.cmd`). I report vanno in `reports/`.
 
-## Struttura
+## Com'è fatto
 
 | Cartella | Contenuto |
 |---|---|
-| `let's-learn-godot/` | Il progetto Godot |
-| `let's-learn-godot/characters/subaru/` | Subaru: spritesheet, animazioni, scena e script |
-| `let's-learn-godot/characters/npc/` | Personaggio con cui parlare (riutilizzabile) |
-| `let's-learn-godot/interactables/` | Componente `Interactable`: tutto ciò con cui si interagisce |
-| `let's-learn-godot/ui/` | Schermata iniziale, menu di pausa (autoload `Pause`), opzioni, Theme, finestra di dialogo (autoload `Dialogue`) e dissolvenza (autoload `Fade`) |
-| `let's-learn-godot/effects/` | Shader (vignettatura, sfocatura dei menu, transizione, lampo bianco, onda d'urto) e luci che tremolano |
+| `let's-learn-godot/core/` | Gli autoload di base: stato della partita (`Game`), zaino (`Inventory`), salvataggio (`SaveSystem`), opzioni (`Settings`), suoni (`Sfx`), statistiche (`Stats`); le costanti `Facing` e `FlagKeys` |
+| `let's-learn-godot/characters/` | Subaru (spritesheet, animazioni, azioni), i personaggi con cui parlare, i nemici sulla mappa |
 | `let's-learn-godot/world/` | Il villaggio (`main.tscn`), la casa di Lina (`house.tscn`) e i loro TileSet |
-| `let's-learn-godot/cutscenes/` | Le scene d'intermezzo (per ora l'arrivo al villaggio) |
-| `let's-learn-godot/core/` | Gli autoload di base: stato della partita (`Game`), zaino (`Inventory`), salvataggio (`SaveSystem`), opzioni (`Settings`), suoni (`Sfx`); e le costanti `Facing` e `FlagKeys` |
-| `let's-learn-godot/test/` | I test di gdUnit4: `core/` e `quests/` (unitari), `world/` e `characters/` (di scena) |
-| `let's-learn-godot/addons/gdUnit4/` | Il plugin gdUnit4 (MIT, vedi [CREDITS.md](CREDITS.md)) |
-| `let's-learn-godot/addons/` (gli altri) | Plugin per gli RPG, installati ma non ancora usati: Dialogue Manager (dialoghi ramificati), Phantom Camera (camere), Beehave (IA dei nemici) |
-| `let's-learn-godot/assets/` | Asset esterni (vedi [CREDITS.md](CREDITS.md)) |
-| `gamelog/` | Il diario del progetto, è un vault di [Obsidian](https://obsidian.md) |
-| `sorgenti/` | I file di partenza, prima della pulizia (le due spritesheet originali di Subaru: camminata e azioni) |
+| `let's-learn-godot/ui/` | Titolo e mani d'ombra, menu di pausa, opzioni, dialoghi, zaino, il **combattimento** (`battle.gd` decide; `battle_vfx`, `battle_commands`, `battle_turn_bar`, `battle_enemy_info` disegnano), il Ritorno dalla Morte, il **congedo** (`farewell.gd`) |
+| `let's-learn-godot/effects/` | Gli shader: vignettatura, sfocatura, raggi di sole, nuvole, nebbia, riavvolgimento, transizione di battaglia, lampo bianco, onda d'urto, ombra viva, glitch con lo strappo, ritaglio dell'occhio |
+| `let's-learn-godot/interactables/`, `items/`, `enemies/`, `quests/`, `cutscenes/` | Oggetti e porte, gli oggetti dello zaino, i dati dei nemici, le missioni, l'intro |
+| `let's-learn-godot/test/` | I test: `core/` e `quests/` (unitari), `world/`, `characters/` e `ui/` (di scena) |
+| `let's-learn-godot/addons/` | gdUnit4 per i test; Dialogue Manager, Phantom Camera e Beehave, installati per i prossimi passi |
+| `gamelog/` | Il diario di sviluppo, un vault di Obsidian |
+| `docs/` | Le GIF di questo README |
+| `sorgenti/` | I file di partenza, prima della pulizia |
 
-## Gamelog
+## Il diario di sviluppo
 
-Il diario racconta cosa è stato fatto, perché, e cosa ho imparato di Godot.
-Si parte da [`gamelog/Gamelog.md`](gamelog/Gamelog.md); per leggerlo al meglio apri la cartella `gamelog` come vault in Obsidian.
+Ogni passo è raccontato in [`gamelog/`](gamelog/Gamelog.md): cosa è stato fatto, **perché**, cosa non ha funzionato e cosa ho imparato di Godot. Ci sono una nota per ogni concetto (nodi, segnali, shader, tween, finestre…) e una voce di diario per ogni sessione. Per leggerlo al meglio apri la cartella `gamelog` come vault in [Obsidian](https://obsidian.md).
+
+Qualche voce da cui partire:
+
+- [I concetti di Godot](gamelog/godot-basi.md), spiegati con esempi presi dal progetto
+- [Il combattimento](gamelog/progetto/Combattimento.md): turni, scudi, rottura e come è diviso il codice
+- [Gli effetti visivi](gamelog/progetto/Effetti%20visivi.md) e [gli shader](gamelog/concetti/Shader.md)
+- [Il congedo](gamelog/progetto/Congedo.md): finestre vere sul desktop, glitch, l'occhio che segue il mouse
+
+## Crediti
+
+Tileset, font, suoni e particelle di [Kenney](https://www.kenney.nl) (CC0), più qualche suono di altri autori: tutto è elencato in [CREDITS.md](CREDITS.md). Subaru ed Emilia sono personaggi di *Re:Zero* (© Tappei Nagatsuki, Kadokawa): sono usati solo per imparare, in un progetto personale e non commerciale. Gli effetti, le icone, le mani, gli occhi e le figure d'ombra sono disegnati da noi.
