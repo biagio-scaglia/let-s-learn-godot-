@@ -294,6 +294,68 @@ lines = PackedStringArray("Shh! Questa è una biblioteca.", "...Oh, un visitator
 repeat_lines = PackedStringArray("Gli scaffali a sinistra parlano del villaggio, quelli a destra delle creature dei dintorni.", "Il libro nero? Non ricordo chi l'abbia portato qui. E non ricordo di averlo mai chiuso.")
 sprite_tile = 100
 
+[node name="BlackBook" parent="World" instance=ExtResource("5_interactable")]
+position = Vector2(400, 152)
+speaker = "Libro nero"
+lines = PackedStringArray("Un libro rilegato in nero, senza titolo.", "Le pagine sono vuote...", "...no. Sull'ultima c'è una frase, scritta con una calligrafia che conosci bene: la tua.", "\"Ci siamo già visti, vero?\"")
+repeat_lines = PackedStringArray("Le pagine sono di nuovo vuote. Come se il libro aspettasse qualcosa.")
+prompt_height = 40.0
+
+[node name="HistoryShelf" parent="World" instance=ExtResource("5_interactable")]
+position = Vector2(144, 218)
+speaker = "Libreria"
+lines = PackedStringArray("\"Storia di Erbalta, volume 3\". I volumi 1 e 2 non ci sono.", "\"Il villaggio fu fondato da un uomo che sapeva guardare crescere gli alberi.\"", "...Sembra proprio il Saggio. Ma quanti anni avrà?")
+repeat_lines = PackedStringArray("\"Nessun abitante di Erbalta ha mai lasciato il villaggio.\" Lo scrive come se fosse un vanto.")
+prompt_height = 40.0
+
+[node name="RecipeShelf" parent="World" instance=ExtResource("5_interactable")]
+position = Vector2(112, 346)
+speaker = "Libreria"
+lines = PackedStringArray("\"Cento zuppe di funghi\".", "I funghi rossi a puntini stanno tutti nel capitolo \"Da NON mettere nella zuppa\".")
+repeat_lines = PackedStringArray("A margine di una ricetta, a matita: \"Lina, non ci provare\".")
+prompt_height = 40.0
+
+[node name="BestiaryShelf" parent="World" instance=ExtResource("5_interactable")]
+position = Vector2(624, 218)
+speaker = "Libreria"
+lines = PackedStringArray("\"Bestiario dei dintorni\".", "Melma verde: lenta e appiccicosa, vive a est della piazza.", "Spettro: compare dove l'aria si fa fredda. Le pagine dopo sono strappate.")
+repeat_lines = PackedStringArray("In fondo al bestiario c'è una pagina bianca. Il titolo è solo \"???\".")
+prompt_height = 40.0
+
+[node name="PoetryShelf" parent="World" instance=ExtResource("5_interactable")]
+position = Vector2(624, 346)
+speaker = "Libreria"
+lines = PackedStringArray("Un libro di poesie. Ne apri una a caso:", "\"Se il tempo tornasse indietro, / sceglierei ancora te.\"", "...Chissà perché, ti si stringe un po' il petto.")
+repeat_lines = PackedStringArray("Le poesie parlano tutte di ritorni.")
+prompt_height = 40.0
+
+[node name="Globe" parent="World" instance=ExtResource("5_interactable")]
+position = Vector2(272, 120)
+speaker = "Mappamondo"
+lines = PackedStringArray("Un mappamondo. Lo fai girare.", "Il villaggio di Erbalta non è segnato da nessuna parte.")
+repeat_lines = PackedStringArray("Gira, gira... e si ferma sempre sullo stesso punto.")
+prompt_height = 40.0
+
+[node name="OldMap" parent="World" instance=ExtResource("5_interactable")]
+position = Vector2(240, 88)
+speaker = "Mappa"
+lines = PackedStringArray("Una vecchia mappa di Erbalta. La biblioteca è segnata con una stellina.", "Fuori dai confini del villaggio, il cartografo ha disegnato solo nebbia.")
+prompt_height = 40.0
+
+[node name="Window" parent="World" instance=ExtResource("5_interactable")]
+position = Vector2(304, 88)
+speaker = "Finestra"
+lines = PackedStringArray("Fuori è notte fonda.", "...Strano. Quando sei entrato era pieno giorno.")
+repeat_lines = PackedStringArray("Le stelle sono ferme. Tutte quante.")
+prompt_height = 40.0
+
+[node name="Desk" parent="World" instance=ExtResource("5_interactable")]
+position = Vector2(384, 254)
+speaker = "Scrivania"
+lines = PackedStringArray("Un registro aperto e una piuma ancora sporca d'inchiostro.", "È il registro dei prestiti. L'ultimo prestito risale a cento anni fa.")
+repeat_lines = PackedStringArray("La piuma è ancora umida. Chi scrive qui, se non entra mai nessuno?")
+prompt_height = 40.0
+
 [node name="Exit" parent="World" instance=ExtResource("6_door")]
 position = Vector2(384, 472)
 target_scene = "res://world/main.tscn"
