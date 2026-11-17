@@ -10,6 +10,9 @@
 [ext_resource type="Texture2D" path="res://characters/subaru/subaru_sheet.png" id="8_sheet"]
 [ext_resource type="Texture2D" path="res://assets/ui/battle_icons.png" id="9_icons"]
 [ext_resource type="Shader" path="res://effects/battle_transition.gdshader" id="11_transition"]
+[ext_resource type="Script" path="res://ui/battle_turn_bar.gd" id="12_turns"]
+[ext_resource type="Script" path="res://ui/battle_enemy_info.gd" id="13_enemy_info"]
+[ext_resource type="Script" path="res://ui/battle_commands.gd" id="14_commands"]
 
 [sub_resource type="ShaderMaterial" id="blur_mat"]
 shader = ExtResource("2_blur")
@@ -124,8 +127,6 @@ anti_aliasing = false
 [node name="Battle" type="CanvasLayer"]
 layer = 12
 script = ExtResource("1_script")
-hero_portrait = SubResource("hero_face")
-icons = ExtResource("9_icons")
 
 [node name="Backdrop" type="ColorRect" parent="."]
 material = SubResource("blur_mat")
@@ -233,6 +234,8 @@ offset_right = -70.0
 offset_bottom = 100.0
 mouse_filter = 2
 theme_override_constants/separation = 0
+script = ExtResource("13_enemy_info")
+icons = ExtResource("9_icons")
 
 [node name="ShieldRow" type="HBoxContainer" parent="Screen/Stage/EnemyInfo"]
 layout_mode = 2
@@ -296,6 +299,8 @@ offset_right = 300.0
 offset_bottom = 36.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("turns")
+script = ExtResource("12_turns")
+hero_portrait = SubResource("hero_face")
 
 [node name="Row" type="HBoxContainer" parent="Screen/TurnBar"]
 layout_mode = 2
@@ -424,6 +429,7 @@ offset_right = -180.0
 offset_bottom = 34.0
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("commands")
+script = ExtResource("14_commands")
 
 [node name="Menu" type="VBoxContainer" parent="Screen/Commands"]
 unique_name_in_owner = true

@@ -40,12 +40,6 @@ const SKILLS := {
 	"carica": {"name": "Pugno caricato", "cost": 6, "power": 2.4, "type": "pugno",
 		"info": "Si concentra, poi colpisce con tutta la forza. Tipo pugno."},
 }
-## Le icone dentro battle_icons.png (celle da 16x16), nell'ordine.
-const ICON_SHIELD := 0
-const ICON_BROKEN := 5
-const ICON_UNKNOWN := 4
-const TYPE_ICONS := {"pugno": 1, "calcio": 2, "ombra": 3}
-
 ## Su una debolezza il danno cresce del 50%; a nemico rotto raddoppia.
 const WEAK_BONUS := 1.5
 const BREAK_BONUS := 2.0
@@ -63,10 +57,6 @@ const HP_ZERO := Color(1.0, 0.35, 0.3)
 @export var transition_time := 0.75
 ## La probabilità di riuscire a scappare (0.5 = una volta su due).
 @export var flee_chance := 0.5
-## Il ritratto di Subaru nella barra dei turni.
-@export var hero_portrait: Texture2D
-## Le icone di scudo e debolezze.
-@export var icons: Texture2D
 
 @onready var backdrop: ColorRect = $Backdrop
 @onready var flash: ColorRect = $Flash
@@ -77,14 +67,10 @@ const HP_ZERO := Color(1.0, 0.35, 0.3)
 @onready var enemy_sprite: Sprite2D = %Enemy
 @onready var hero_shadow: Sprite2D = %HeroShadow
 @onready var enemy_shadow: Sprite2D = %EnemyShadow
-@onready var enemy_info: Control = %EnemyInfo
-@onready var enemy_name: Label = %EnemyName
-@onready var shield_icon: TextureRect = %Shield
-@onready var shield_number: Label = %ShieldNumber
-@onready var weakness_row: HBoxContainer = %Weaknesses
+@onready var enemy_info: BattleEnemyInfo = %EnemyInfo
 @onready var break_label: Label = %BreakLabel
-@onready var turn_bar: Control = %TurnBar
-@onready var turn_icons: HBoxContainer = %TurnIcons
+@onready var turn_bar: BattleTurnBar = %TurnBar
+@onready var commands: BattleCommands = %Commands
 @onready var party: Control = %Party
 @onready var hero_level: Label = %HeroLevel
 @onready var hero_hp: Label = %HeroHp
@@ -94,21 +80,6 @@ const HP_ZERO := Color(1.0, 0.35, 0.3)
 @onready var hero_status: Label = %HeroStatus
 @onready var announce_box: Control = %Announce
 @onready var message: Label = %Message
-@onready var help: Control = %Help
-@onready var help_text: Label = %HelpText
-@onready var commands: Control = %Commands
-@onready var menu: Control = %Menu
-@onready var attack_button: MenuItem = %Attack
-@onready var skills_button: MenuItem = %Skills
-@onready var items_button: MenuItem = %Items
-@onready var defend_button: MenuItem = %Defend
-@onready var flee_button: MenuItem = %Flee
-@onready var skill_window: Control = %SkillWindow
-@onready var kick_button: MenuItem = %Kick
-@onready var shamac_button: MenuItem = %Shamac
-@onready var power_button: MenuItem = %PowerPunch
-@onready var item_window: Control = %ItemWindow
-@onready var potion_button: MenuItem = %Potion
 @onready var results: Control = %Results
 @onready var results_text: Label = %ResultsText
 
@@ -138,8 +109,6 @@ var _enemy_stun := 0
 var _hero_home := Vector2.ZERO
 var _enemy_home := Vector2.ZERO
 var _enemy_scale := Vector2.ONE
-## La descrizione di ogni voce di menu, mostrata in basso quando è selezionata.
-var _help_for := {}
 ## Gli effetti visivi (scintille, stelle, onde d'urto…): vedi battle_vfx.gd.
 var vfx: BattleVfx
 
@@ -150,38 +119,12 @@ func _ready() -> void:
 	_hero_home = hero.position
 	_enemy_home = enemy_sprite.position
 	_enemy_scale = enemy_sprite.scale
-	attack_button.pressed.connect(_use_skill.bind(ATTACK))
-	skills_button.pressed.connect(_open_skills)
-	items_button.pressed.connect(_open_items)
-	defend_button.pressed.connect(_on_defend)
-	flee_button.pressed.connect(_on_flee)
-	kick_button.pressed.connect(_use_skill.bind("calcio"))
-	shamac_button.pressed.connect(_use_skill.bind("shamac"))
-	power_button.pressed.connect(_use_skill.bind("carica"))
-	potion_button.pressed.connect(_on_potion)
-	_help_for = {
-		attack_button: SKILLS[ATTACK].info,
-		skills_button: "Le tecniche di Subaru. Costano punti tecnica (PT).",
-		items_button: "Usa un oggetto dello zaino.",
-		defend_button: "Para: il prossimo colpo fa metà danno. Recuperi %d PT." % DEFEND_SP,
-		flee_button: "Prova a scappare. Non sempre ci si riesce.",
-		kick_button: SKILLS.calcio.info,
-		shamac_button: SKILLS.shamac.info,
-		power_button: SKILLS.carica.info,
-		potion_button: "",
-	}
-	for button: MenuItem in _help_for:
-		button.focus_entered.connect(_show_help.bind(button))
-	# Il costo in PT, allineato a destra dentro la voce.
-	for pair in [[kick_button, "calcio"], [shamac_button, "shamac"], [power_button, "carica"]]:
-		var cost := Label.new()
-		cost.text = "%d PT" % SKILLS[pair[1]].cost
-		cost.theme_type_variation = &"HintLabel"
-		cost.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-		cost.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-		cost.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-		cost.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		pair[0].add_child(cost)
+	# I comandi dicono cosa hai scelto; qui si decide cosa succede.
+	commands.setup(SKILLS, ATTACK, DEFEND_SP)
+	commands.skill_chosen.connect(_use_skill)
+	commands.potion_chosen.connect(_on_potion)
+	commands.defend_chosen.connect(_on_defend)
+	commands.flee_chosen.connect(_on_flee)
 	Stats.changed.connect(_update_hero_info)
 	vfx = BattleVfx.new()
 	vfx.name = "Vfx"
@@ -209,10 +152,8 @@ func start(data: EnemyData) -> String:
 	enemy_sprite.modulate = Color.WHITE
 	enemy_sprite.scale = _enemy_scale
 	enemy_sprite.rotation = 0.0
-	enemy_name.text = data.name
-	enemy_info.modulate.a = 1.0
+	enemy_info.show_enemy(data, revealed)
 	_update_shield()
-	_update_weaknesses()
 	hero.modulate = Color.WHITE
 	hero.flip_h = true   # le azioni guardano a destra: qui Subaru guarda il nemico, a sinistra
 	_idle()
@@ -220,11 +161,10 @@ func start(data: EnemyData) -> String:
 	hero_bar.value = Stats.hp
 	sp_bar.value = Stats.sp
 	announce_box.visible = false
-	help.visible = false
 	results.visible = false
 	break_label.visible = false
-	_close_submenus()
-	_show_menu(false)
+	commands.close_submenus()
+	commands.show_menu(false)
 	_refresh_turns()
 
 	visible = true
@@ -291,13 +231,13 @@ func _player_turn() -> void:
 		hero_status.visible = false
 		_idle()
 	_refresh_turns()
-	_show_menu(true)
+	commands.show_menu(true)
 
 
 ## Subaru ha scelto: i comandi spariscono.
 func _act() -> void:
-	_show_menu(false)
-	_close_submenus()
+	commands.show_menu(false)
+	commands.close_submenus()
 
 
 ## Attacca e le abilità: spende i PT, fa la mossa, poi tocca al nemico.
@@ -305,7 +245,7 @@ func _use_skill(id: String) -> void:
 	var skill: Dictionary = SKILLS[id]
 	if not Stats.spend_sp(skill.cost):
 		Sfx.play(Sfx.BACK)
-		help_text.text = "Non hai abbastanza PT."
+		commands.say("Non hai abbastanza PT.")
 		return
 	_act()
 	_announce(skill.name)
@@ -430,7 +370,7 @@ func _strike(skill: Dictionary, sound: String) -> void:
 		if not enemy_broken:
 			enemy_shield -= 1
 			_update_shield()
-			vfx.bump(shield_icon)
+			vfx.bump(enemy_info.shield_icon)
 			if enemy_shield == 0:
 				_break()
 
@@ -469,46 +409,11 @@ func _recover() -> void:
 	enemy_broken = false
 	enemy_shield = enemy.shield
 	_update_shield()
-	vfx.bump(shield_icon)
+	vfx.bump(enemy_info.shield_icon)
 	Sfx.play(Sfx.GUARD)
 	var t := create_tween().set_parallel()
 	t.tween_property(enemy_sprite, "rotation", 0.0, 0.2)
 	t.tween_property(enemy_sprite, "modulate", Color.WHITE, 0.2)
-
-
-## Il sottomenu "Abilità". Le mosse che costano troppo sono più scure.
-func _open_skills() -> void:
-	for pair in [[kick_button, "calcio"], [shamac_button, "shamac"], [power_button, "carica"]]:
-		var button: MenuItem = pair[0]
-		var cost: int = SKILLS[pair[1]].cost
-		button.modulate = Color.WHITE if Stats.sp >= cost else Color(0.55, 0.55, 0.65)
-	skill_window.visible = true
-	kick_button.focus_silently()
-	_show_help(kick_button)
-
-
-## Il sottomenu "Oggetti". Esc torna ai comandi (vedi _unhandled_input).
-func _open_items() -> void:
-	var count: int = Inventory.items.get(Inventory.POTION, 0)
-	potion_button.text = "Pozione   x%d" % count
-	_help_for[potion_button] = "Rimette %d PS." % Inventory.item(Inventory.POTION).heal if count > 0 else "Non ne hai."
-	item_window.visible = true
-	potion_button.focus_silently()
-	_show_help(potion_button)
-
-
-## Chiude il sottomenu aperto e torna alla sua voce dei comandi.
-func _close_items() -> void:
-	var back_to := items_button if item_window.visible else skills_button
-	_close_submenus()
-	Sfx.play(Sfx.BACK)
-	back_to.focus_silently()
-	_show_help(back_to)
-
-
-func _close_submenus() -> void:
-	item_window.visible = false
-	skill_window.visible = false
 
 
 func _on_potion() -> void:
@@ -668,88 +573,24 @@ func _end(result: String) -> void:
 		ReturnByDeath.die()
 
 
-# ---------- La barra dei turni ----------
-
-## Ridisegna la barra in alto: chi agisce ora (più grande) e i prossimi.
-## Un turno che il nemico rotto salterà è grigio.
+## Ridisegna la barra dei turni in alto (vedi battle_turn_bar.gd).
 func _refresh_turns() -> void:
-	for child in turn_icons.get_children():
-		child.queue_free()
-	var who := turn
-	var stun := _enemy_stun
-	for i in 6:
-		var skipped := who == ENEMY and stun > 0
-		if skipped:
-			stun -= 1
-		# Un trattino separa un giro (Subaru + nemico) dal successivo.
-		if i > 0 and who == HERO:
-			var line := ColorRect.new()
-			line.custom_minimum_size = Vector2(1, 14)
-			line.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-			line.color = Color(0.92, 0.84, 0.62, 0.5)
-			turn_icons.add_child(line)
-		turn_icons.add_child(_turn_icon(who, i == 0, skipped))
-		who = ENEMY if who == HERO else HERO
+	turn_bar.refresh(turn, _enemy_stun, enemy.texture)
 
 
-func _turn_icon(who: String, current: bool, skipped: bool) -> Control:
-	var frame := PanelContainer.new()
-	var style := StyleBoxFlat.new()
-	style.bg_color = Color(0.08, 0.1, 0.2, 0.9) if who == HERO else Color(0.2, 0.06, 0.08, 0.9)
-	style.set_border_width_all(1)
-	style.border_color = Color(1, 0.85, 0.45) if current else Color(0.6, 0.62, 0.72, 0.8)
-	style.anti_aliasing = false
-	frame.add_theme_stylebox_override("panel", style)
-	frame.size_flags_vertical = Control.SIZE_SHRINK_CENTER
-	frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	var face := TextureRect.new()
-	face.texture = hero_portrait if who == HERO else enemy.texture
-	face.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	face.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	face.custom_minimum_size = Vector2(20, 20) if current else Vector2(14, 14)
-	face.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	frame.add_child(face)
-	if skipped:
-		frame.modulate = Color(0.45, 0.45, 0.55, 0.8)
-	return frame
-
-
-# ---------- Scudo e debolezze ----------
-
-func _icon(index: int) -> AtlasTexture:
-	var atlas := AtlasTexture.new()
-	atlas.atlas = icons
-	atlas.region = Rect2(index * 16, 0, 16, 16)
-	return atlas
-
+# ---------- Scudo, debolezze e barra dei turni ----------
 
 func _update_shield() -> void:
-	shield_icon.texture = _icon(ICON_BROKEN if enemy_broken else ICON_SHIELD)
-	shield_number.text = str(enemy_shield)
-	shield_number.visible = not enemy_broken
+	enemy_info.set_shield(enemy_shield, enemy_broken)
 
 
-## Una casella per ogni debolezza: l'icona se scoperta, "?" se no.
-func _update_weaknesses() -> void:
-	for child in weakness_row.get_children():
-		child.queue_free()
-	for kind in enemy.weaknesses:
-		var slot := TextureRect.new()
-		slot.custom_minimum_size = Vector2(16, 16)
-		slot.texture = _icon(TYPE_ICONS[kind] if revealed.has(kind) else ICON_UNKNOWN)
-		slot.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		slot.name = kind
-		weakness_row.add_child(slot)
-
-
-## Una debolezza appena scoperta: il "?" diventa l'icona, con un lampo.
+## Una debolezza appena scoperta: la si ricorda, e la sua casella fa un salto.
 func _reveal(kind: String) -> void:
 	if revealed.has(kind):
 		return
 	revealed.append(kind)
-	var slot := weakness_row.get_node_or_null(NodePath(kind)) as TextureRect
+	var slot := enemy_info.reveal(kind)
 	if slot:
-		slot.texture = _icon(TYPE_ICONS[kind])
 		vfx.bump(slot)
 
 
@@ -794,25 +635,10 @@ func _pause(seconds: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if not is_active:
 		return
-	if (item_window.visible or skill_window.visible) and event.is_action_pressed("ui_cancel"):
-		get_viewport().set_input_as_handled()
-		_close_items()
-	elif _waiting and event.is_action_pressed("interact"):
+	# (Esc nei sottomenu lo gestisce battle_commands.gd.)
+	if _waiting and event.is_action_pressed("interact"):
 		get_viewport().set_input_as_handled()
 		_advance.emit()
-
-
-func _show_menu(shown: bool) -> void:
-	commands.visible = shown
-	menu.visible = shown
-	help.visible = shown
-	if shown:
-		attack_button.focus_silently()
-		_show_help(attack_button)
-
-
-func _show_help(button: MenuItem) -> void:
-	help_text.text = _help_for.get(button, "")
 
 
 ## In guardia (con il "respiro"), oppure in ginocchio se la salute è quasi finita.
