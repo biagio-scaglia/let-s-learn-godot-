@@ -21,6 +21,9 @@ I pacchetti sono stati scaricati da OpenGameArt ([Tiny Town](https://opengameart
 | Strumento | Autore | Licenza | Dove si trova nel progetto |
 |---|---|---|---|
 | [gdUnit4](https://github.com/godot-gdunit-labs/gdUnit4) (v6.2.3) | Mike Schulze e contributori | [MIT](https://github.com/godot-gdunit-labs/gdUnit4/blob/master/LICENSE) | `let's-learn-godot/addons/gdUnit4/` (la licenza è nel file `LICENSE` della cartella) |
+| [Dialogue Manager](https://github.com/nathanhoad/godot_dialogue_manager) (v4.2.0) | Nathan Hoad e contributori | [MIT](https://github.com/nathanhoad/godot_dialogue_manager/blob/main/LICENSE) | `let's-learn-godot/addons/dialogue_manager/` |
+| [Phantom Camera](https://github.com/ramokz/phantom-camera) (v0.11.0.4) | Marcus Skov e contributori | [MIT](https://github.com/ramokz/phantom-camera/blob/main/LICENSE) | `let's-learn-godot/addons/phantom_camera/` |
+| [Beehave](https://github.com/bitbrain/beehave) (v2.9.3) | bitbrain e contributori | [MIT](https://github.com/bitbrain/beehave/blob/godot-4.x/LICENSE) | `let's-learn-godot/addons/beehave/`, `let's-learn-godot/script_templates/` |
 
 ## Personaggi di Re:Zero
 
