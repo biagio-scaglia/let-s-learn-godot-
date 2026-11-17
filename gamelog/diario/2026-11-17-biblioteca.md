@@ -12,7 +12,7 @@ aliases:
 
 # 2026-11-17 — La biblioteca di Erbalta
 
-← [[Gamelog]] · Voce precedente: [[2026-11-17-congedo-v3|Lei accanto, le mani che strappano, l'occhio che ti segue]]
+← [[Gamelog]] · Voce precedente: [[2026-11-17-congedo-v3|Lei accanto, le mani che strappano, l'occhio che ti segue]] · Successiva: [[2026-11-17-colonna-sonora|La colonna sonora]]
 
 ## Obiettivo
 
