@@ -42,7 +42,8 @@ Un **tileset nostro**, disegnato da zero in pixel art, e una seconda stanza espl
 | 8 fiamme con `flicker.gd`, e una luce viola che "respira" lenta | [[Luci 2D#La fiamma che tremola]] |
 | Nel villaggio: casa di pietra (tile di [[Tiny Town]] già nell'immagine, aggiunti al [[TileSet]]), sentiero, porta, punto d'arrivo | [[Mappa principale]], [[Porta]] |
 | Il Saggio ha una frase nuova sulla biblioteca | [[Saggio]] |
-| `test/world/library_test.gd`: 3 test (porte, Archivista, fiamme): **114 in tutto** | [[Test con gdUnit4]] |
+| `assets/music/library_theme.wav`: la musica della biblioteca, in loop | [[#La musica]], [[Audio#Musica in loop]] |
+| `test/world/library_test.gd`: 4 test (porte, Archivista, musica, fiamme): **115 in tutto** | [[Test con gdUnit4]] |
 
 ![[biblioteca_tileset_6x.png]]
 
@@ -57,6 +58,20 @@ Un **tileset nostro**, disegnato da zero in pixel art, e una seconda stanza espl
 - **I raggi di luna** sono trapezi (`Polygon2D`) con `vertex_colors`: azzurri e un po' trasparenti in alto, trasparenti del tutto in basso. Godot sfuma i colori tra i vertici da solo. Il materiale ha `blend_mode = Add` (si somma, come una luce) e `light_mode = Unshaded` (il buio del [[CanvasModulate]] non lo scurisce).
 - **La camera segue Subaru** con dei limiti: la stanza (768×480) è più grande dello schermo (640×360), quindi un po' si esplora. Nella casa di Lina invece la camera è ferma.
 - **Nessuno script nuovo**: la stanza usa solo pezzi che esistevano già (`level.gd`, [[Interactable]], [[Porta]], NPC, `flicker.gd`). Il NPC dell'Archivista è il personaggio 100 di [[Tiny Dungeon]].
+
+## La musica
+
+La biblioteca ha la sua colonna sonora: `assets/music/library_theme.wav`, un **valzer lento in re minore** (66 battiti al minuto, 32 battute, 87 secondi) che si ripete all'infinito. L'atmosfera è quella delle biblioteche dei vecchi horror fatti con RPG Maker, ma la melodia è nostra.
+
+- **Tutto sintetizzato in Python** (numpy + scipy), senza campioni: ogni nota è una somma di onde sinusoidali che si spengono piano.
+  - **Carillon**: la melodia, con armoniche "stonate" (4,2 e 6,8 volte la nota) come le lamelle di metallo vere, e un'altezza che ondeggia appena.
+  - **Pianoforte**: basso sul primo battito, accordo sul secondo e sul terzo (il "um-pa-pa" del valzer).
+  - **Archi**: accordi tenuti, tre voci leggermente scordate tra loro, che entrano e escono piano.
+  - **Bordone** di re grave sempre sotto, e il **tic-tac di un orologio** su ogni battito.
+  - Nella seconda metà, un **secondo carillon appena stonato** suona insieme al primo: qualcosa non torna.
+- **Riverbero** per convoluzione: il suono viene "mescolato" con un rumore che si spegne in 3 secondi, come l'eco di una stanza grande.
+- **Loop senza stacchi.** La coda del riverbero che uscirebbe dalla fine viene **sommata all'inizio**: quando il brano ricomincia, l'eco dell'ultima nota c'è ancora.
+- **In Godot**: un `AudioStreamPlayer` con `autoplay`. Il loop si attiva nell'**import** del WAV (`Loop Mode: Forward`), vedi [[Audio#Musica in loop]]. Quando si esce, la scena viene liberata e la musica si ferma da sola.
 
 ## Problemi incontrati
 
