@@ -30,6 +30,7 @@ ReturnByDeath="*res://ui/return_by_death.tscn"
 Hud="*res://ui/hud.tscn"
 InventoryMenu="*res://ui/inventory_menu.tscn"
 Battle="*res://ui/battle.tscn"
+Farewell="*res://ui/farewell.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 BeehaveGlobalMetrics="*res://addons/beehave/metrics/beehave_global_metrics.gd"
@@ -44,6 +45,7 @@ window/size/window_height_override=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/stretch/scale_mode="integer"
+window/per_pixel_transparency/allowed=true
 
 [editor_plugins]
 

@@ -35,7 +35,7 @@ func _ready() -> void:
 	continue_button.pressed.connect(_on_continue)
 	new_game_button.pressed.connect(_on_new_game)
 	options_button.pressed.connect(_on_options)
-	quit_button.pressed.connect(get_tree().quit)
+	quit_button.pressed.connect(Farewell.leave)
 	options.closed.connect(_on_options_closed)
 	# Qualcuno nel buio afferra la voce che scegli.
 	hands.watch(menu.get_children())

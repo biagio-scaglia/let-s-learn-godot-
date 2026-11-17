@@ -26,7 +26,7 @@ func _ready() -> void:
 	save_button.pressed.connect(_save)
 	options_button.pressed.connect(_open_options)
 	title_button.pressed.connect(_back_to_title)
-	quit_button.pressed.connect(get_tree().quit)
+	quit_button.pressed.connect(Farewell.leave)
 	options.closed.connect(_on_options_closed)
 
 
