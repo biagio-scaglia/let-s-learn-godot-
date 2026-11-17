@@ -117,6 +117,12 @@ func _shake(camera: Camera2D) -> void:
 
 func _show_panel() -> void:
 	count.text = "Morte n. %d" % Game.deaths
+	# Qualcuno ride. Poi, piano, entra il tema del game over (in loop).
+	laugh.play()
+	game_over_music.volume_db = -40.0
+	game_over_music.play()
+	create_tween().tween_property(game_over_music, "volume_db", GAME_OVER_MUSIC_DB, 3.0) \
+		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	panel.visible = true
 	panel.modulate.a = 0.0
 	var title_y := title.position.y
