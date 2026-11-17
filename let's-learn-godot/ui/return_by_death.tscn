@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3]
+[gd_scene load_steps=18 format=3]
 
 [ext_resource type="Script" path="res://ui/return_by_death.gd" id="1_script"]
 [ext_resource type="Texture2D" path="res://assets/kenney_particle_pack/smoke_04.png" id="2_smoke"]
@@ -10,6 +10,8 @@
 [ext_resource type="AudioStream" path="res://assets/kenney_sci_fi_sounds/forceField_001.ogg" id="8_rewind"]
 [ext_resource type="AudioStream" path="res://assets/kenney_interface_sounds/glitch_002.ogg" id="9_glitch"]
 [ext_resource type="Shader" path="res://effects/miasma.gdshader" id="10_miasma"]
+[ext_resource type="AudioStream" uid="uid://co2fwfqu7w0ti" path="res://assets/music/game_over_theme.wav" id="11_gameover"]
+[ext_resource type="AudioStream" uid="uid://cbnkyirxu14ff" path="res://assets/music/game_over_laugh.wav" id="12_laugh"]
 
 [sub_resource type="Gradient" id="miasma_colors"]
 offsets = PackedFloat32Array(0, 0.25, 0.7, 1)
@@ -162,3 +164,11 @@ volume_db = -4.0
 [node name="Glitch" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_glitch")
 volume_db = -6.0
+
+[node name="GameOverMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_gameover")
+volume_db = -40.0
+
+[node name="Laugh" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_laugh")
+volume_db = -3.0
