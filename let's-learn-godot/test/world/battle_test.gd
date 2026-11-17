@@ -343,32 +343,53 @@ func test_un_colpo_lascia_effetti_che_poi_spariscono() -> void:
 	await _wait_turn()
 	Battle.attack_button.pressed.emit()
 	# Subito dopo il colpo, sul palco ci sono gli effetti animati (la stella dell'impatto).
-	var found := false
-	for i in 50:
-		if Battle.stage.get_children().any(func(n: Node) -> bool: return n is AnimatedSprite2D and n != Battle.hero):
-			found = true
-			break
-		await await_millis(10)
-	assert_bool(found).is_true()
+	assert_bool(await _wait_until(func() -> bool: return _effects_on_stage() > 0)).is_true()
 	await _wait_turn()
-	await await_millis(300)
-	# Finiti i colpi: niente effetti rimasti, e nessuno è più "bianco".
-	var left := Battle.stage.get_children().filter(func(n: Node) -> bool: return n is AnimatedSprite2D and n != Battle.hero)
-	assert_int(left.size()).is_equal(0)
+	# Finiti i colpi gli effetti se ne vanno da soli, e nessuno resta "bianco".
+	# Si aspetta finché succede (al massimo 2 secondi), non un tempo fisso:
+	# su un computer lento il test non fallisce per sbaglio.
+	assert_bool(await _wait_until(func() -> bool: return _effects_on_stage() == 0)).is_true()
 	var mat := Battle.enemy_sprite.material as ShaderMaterial
-	assert_float(mat.get_shader_parameter("amount")).is_equal_approx(0.0, 0.01)
+	assert_bool(await _wait_until(func() -> bool: return mat.get_shader_parameter("amount") < 0.01)).is_true()
 	Battle.flee_chance = 1.0
 	Battle.flee_button.pressed.emit()
 	await _wait_turn()
 
 
+## Quanti effetti animati (stelle, fendenti) ci sono sul palco.
+func _effects_on_stage() -> int:
+	return Battle.stage.get_children().filter(func(n: Node) -> bool: return n is AnimatedSprite2D and n != Battle.hero).size()
+
+
+## Aspetta che "condition" diventi vera, al massimo 2 secondi. Dice se ci è riuscita.
+func _wait_until(condition: Callable) -> bool:
+	for i in 100:
+		if condition.call():
+			return true
+		await await_millis(20)
+	return false
+
+
+func test_gli_effetti_non_usano_i_dadi_del_combattimento() -> void:
+	# Due generatori diversi: gli effetti possono tirare quanti numeri vogliono
+	# senza cambiare il prossimo tiro del combattimento.
+	assert_object(Battle.vfx.rng).is_not_same(Battle.rng)
+	Battle.rng.seed = 42
+	var expected := Battle.rng.randi()
+	Battle.rng.seed = 42
+	for i in 10:
+		Battle.vfx.impact(Vector2.ZERO, 1.0)
+		Battle.vfx.shake(1.0, 0.1)
+	assert_int(Battle.rng.randi()).is_equal(expected)
+
+
 func test_l_onda_d_urto_si_spegne_da_sola() -> void:
 	Battle.start(_enemy(50, 1))
 	await _wait_turn()
-	Battle._shockwave_at(Vector2.ZERO, 0.5, 0.05)
-	assert_bool(Battle._shockwave.visible).is_true()
+	Battle.vfx.shockwave_at(Vector2.ZERO, 0.5, 0.05)
+	assert_bool(Battle.vfx.shockwave.visible).is_true()
 	await await_millis(200)
-	assert_bool(Battle._shockwave.visible).is_false()
+	assert_bool(Battle.vfx.shockwave.visible).is_false()
 	Battle.flee_chance = 1.0
 	Battle.flee_button.pressed.emit()
 	await _wait_turn()

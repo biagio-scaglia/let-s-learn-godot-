@@ -9,7 +9,6 @@
 [ext_resource type="Shader" path="res://effects/vignette.gdshader" id="7_vignette"]
 [ext_resource type="Texture2D" path="res://characters/subaru/subaru_sheet.png" id="8_sheet"]
 [ext_resource type="Texture2D" path="res://assets/ui/battle_icons.png" id="9_icons"]
-[ext_resource type="Texture2D" path="res://assets/kenney_particle_pack/smoke_04.png" id="10_smoke"]
 [ext_resource type="Shader" path="res://effects/battle_transition.gdshader" id="11_transition"]
 
 [sub_resource type="ShaderMaterial" id="blur_mat"]
@@ -127,7 +126,6 @@ layer = 12
 script = ExtResource("1_script")
 hero_portrait = SubResource("hero_face")
 icons = ExtResource("9_icons")
-smoke = ExtResource("10_smoke")
 
 [node name="Backdrop" type="ColorRect" parent="."]
 material = SubResource("blur_mat")
