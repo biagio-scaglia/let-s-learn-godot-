@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3]
+[gd_scene load_steps=27 format=3]
 
 [ext_resource type="TileSet" path="res://world/tileset.tres" id="1_tiles"]
 [ext_resource type="PackedScene" path="res://characters/subaru/subaru.tscn" id="2_subaru"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" path="res://characters/enemy/enemy.tscn" id="20_enemy"]
 [ext_resource type="Resource" path="res://enemies/melma.tres" id="21_melma"]
 [ext_resource type="Resource" path="res://enemies/spettro.tres" id="22_spettro"]
+[ext_resource type="AudioStream" uid="uid://du71ahnhmark3" path="res://assets/music/village_theme.wav" id="23_music"]
 
 [sub_resource type="ShaderMaterial" id="vignette_mat"]
 shader = ExtResource("4_vignette")
@@ -191,6 +192,11 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Intro" parent="." instance=ExtResource("10_intro")]
+
+[node name="Music" type="AudioStreamPlayer" parent="." groups=["level_music"]]
+stream = ExtResource("23_music")
+volume_db = -10.0
+autoplay = true
 
 [node name="VillageEdge" type="Node" parent="." node_paths=PackedStringArray("vignette")]
 script = ExtResource("13_edge")
