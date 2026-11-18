@@ -4,7 +4,7 @@ Un piccolo RPG in pixel art fatto per **imparare Godot 4 un passo alla volta**: 
 
 ![La schermata iniziale: una mano d'ombra afferra la voce scelta, e dal buio si aprono due occhi](docs/titolo.gif)
 
-**Godot 4.7.2** · GDScript · pixel art · **111 test** automatici con gdUnit4 · un diario di sviluppo in [Obsidian](gamelog/Gamelog.md)
+**Godot 4.7.2** · GDScript · pixel art · **124 test** automatici con gdUnit4 · un diario di sviluppo in [Obsidian](gamelog/Gamelog.md)
 
 ---
 
@@ -25,9 +25,15 @@ Un piccolo RPG in pixel art fatto per **imparare Godot 4 un passo alla volta**: 
 </tr>
 <tr>
 <td><b>Una missione.</b> Lina ha perso la chiave del suo baule: trovala e portagliela. In alto a sinistra c'è sempre l'obiettivo.</td>
-<td><b>Una cutscene</b> all'inizio, e personaggi che notano cosa ti è successo.</td>
+<td><b>Due cutscene</b> all'inizio, e personaggi che notano cosa ti è successo.</td>
 </tr>
 </table>
+
+### La Rocca d'Argento
+
+![Di notte, Subaru ed Emilia escono dal portone del castello: torce, braci e riflessi sul fossato](gamelog/assets/castello_torce.png)
+
+Tutto comincia di notte, in un castello con un **tileset disegnato apposta**. Subaru ed Emilia attraversano il ponte levatoio tra torce che crepitano e scintille sull'acqua, e partono per Erbalta. Arrivano all'alba, insieme; lei si apposta in piazza, tu vai a parlare con la gente.
 
 ### La biblioteca
 
