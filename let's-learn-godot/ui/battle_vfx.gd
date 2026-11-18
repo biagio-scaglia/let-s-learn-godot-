@@ -383,27 +383,6 @@ func snowfall() -> CPUParticles2D:
 	return p
 
 
-## Emilia arriva alle spalle di Subaru: scivola dentro dal bordo, avvolta da una luce
-## fredda e da qualche scintilla di brina. Si aspetta con await.
-func emilia_appears(emilia: Sprite2D, home: Vector2) -> void:
-	emilia.visible = true
-	emilia.position = home + Vector2(60, 0)
-	emilia.modulate = Color(1.6, 1.9, 2.2, 0.0)
-	var t := create_tween().set_parallel()
-	t.tween_property(emilia, "position", home, 0.35).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	t.tween_property(emilia, "modulate", Color(1.15, 1.25, 1.4, 1.0), 0.35)
-	sparks(home + Vector2(0, -60), ICE_COLOR, 14, 110.0)
-	await t.finished
-
-
-func emilia_leaves(emilia: Sprite2D) -> void:
-	var t := create_tween().set_parallel()
-	t.tween_property(emilia, "modulate:a", 0.0, 0.4)
-	t.tween_property(emilia, "position:x", emilia.position.x + 40.0, 0.4)
-	await t.finished
-	emilia.visible = false
-
-
 ## Le scaglie compaiono a ventaglio sopra "center", una dopo l'altra, e brillano.
 func ice_shards(center: Vector2, count: int) -> Array[Sprite2D]:
 	var shards: Array[Sprite2D] = []
