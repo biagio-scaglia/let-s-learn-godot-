@@ -56,11 +56,14 @@ func _ready() -> void:
 	_setup_gallery_button()
 	continue_button.pressed.connect(_on_continue)
 	new_game_button.pressed.connect(_on_new_game)
+	gallery_button.pressed.connect(_on_gallery)
 	options_button.pressed.connect(_on_options)
 	quit_button.pressed.connect(Farewell.leave)
 	options.closed.connect(_on_options_closed)
 	# Qualcuno nel buio afferra la voce che scegli.
 	hands.watch(menu.get_children())
+	hands.set_active(false)   # finché il menu è chiuso, le mani aspettano
+	_pulse_glow()
 	_intro()
 
 
