@@ -214,3 +214,8 @@ stream = ExtResource("15_fast")
 script = ExtResource("16_memory")
 saggio = NodePath("../World/Npc/Interactable")
 emilia = NodePath("../World/Emilia/Interactable")
+
+[node name="VoicesQuest" type="Node" parent="." node_paths=PackedStringArray("saggio", "emilia")]
+script = ExtResource("24_voices")
+saggio = NodePath("../World/Npc/Interactable")
+emilia = NodePath("../World/Emilia/Interactable")
