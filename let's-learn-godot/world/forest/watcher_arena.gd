@@ -37,3 +37,10 @@ func _ready() -> void:
 	var bob := create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS).set_loops()
 	bob.tween_property(eye, "position:y", eye.position.y - 6.0, 1.6).set_trans(Tween.TRANS_SINE)
 	bob.tween_property(eye, "position:y", eye.position.y, 1.6).set_trans(Tween.TRANS_SINE)
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if _started or not body.is_in_group("player") or Game.in_cutscene:
+		return
+	_started = true
+	_awaken(body)
