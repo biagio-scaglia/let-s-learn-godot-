@@ -29,6 +29,12 @@ enum Pose { IDLE, IDLE_2, WINDUP, ATTACK, HURT }
 @export var frames := 1
 ## L'oggetto (id dello zaino, vedi Inventory) che lascia quando viene sconfitto. "" = niente.
 @export var drop := ""
+## Quanto è più grande del normale, in battaglia (un boss: 2 o più).
+@export var battle_scale := 1.0
+## La musica della sua battaglia. Vuota = il tema di battaglia normale.
+@export var music: AudioStream
+## Un comportamento speciale (uno script che estende BattleBehavior): le regole di un boss.
+@export var behavior: Script
 
 
 ## Ha tutte le pose per animarsi?
