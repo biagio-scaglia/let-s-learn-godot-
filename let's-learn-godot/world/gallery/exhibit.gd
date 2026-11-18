@@ -54,3 +54,13 @@ func _ready() -> void:
 	_add_figure()
 	_add_lectern()
 	_add_body()
+
+
+## Il piedistallo: due rettangoli di pietra disegnati con _draw() (niente immagini).
+func _draw() -> void:
+	var outline := Color(0.12, 0.08, 0.16)
+	var stone := Color(0.62, 0.6, 0.7)
+	var top := Color(0.78, 0.76, 0.86)
+	draw_rect(Rect2(-_half - 1, -7, _half * 2 + 2, 12), outline)
+	draw_rect(Rect2(-_half, -6, _half * 2, 10), stone)
+	draw_rect(Rect2(-_half, -6, _half * 2, 3), top)
