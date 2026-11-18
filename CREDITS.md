@@ -1,5 +1,7 @@
 # Crediti
 
+**Un gioco di Biagio Scaglia**: idea, direzione, scelte e scrittura del progetto.
+
 ## Asset esterni
 
 | Asset | Autore | Licenza | Dove si trova nel progetto |
