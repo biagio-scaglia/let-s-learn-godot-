@@ -420,10 +420,9 @@ func _do_kick(skill: Dictionary) -> void:
 	await hero.animation_finished
 
 
-## Scaglie di gelo: lo schermo si fa azzurro e nevica, Emilia arriva alle spalle di
-## Subaru, sopra di lei nascono sette scaglie che partono una dopo l'altra; l'ultima
-## chiude il nemico in un blocco di ghiaccio che va in frantumi.
-func _do_frost(skill: Dictionary) -> void:
+## Cristallo infranto: Emilia chiude il nemico in un blocco di ghiaccio, intanto Subaru
+## si carica; poi scatta e lo manda in frantumi con il pugno caricato.
+func _do_shatter(skill: Dictionary) -> void:
 	hero.play("charge")
 	Sfx.play(Sfx.ICE_CAST)
 	flash.color = Color(0.55, 0.8, 1.0, 0.0)
