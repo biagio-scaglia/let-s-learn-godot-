@@ -108,3 +108,19 @@ func test_lo_sguardo_si_carica_e_poi_colpisce_forte() -> void:
 	var expected := ceili(ceili(Stats.max_hp * WatcherBehavior.GAZE_RATIO) / 2.0)
 	assert_int(hp - Stats.hp).is_equal(expected)
 	await _finish_with_ultimate()
+
+
+func test_lo_shamac_mentre_carica_lo_acceca() -> void:
+	Battle.start(BOSS)
+	await _wait_turn()
+	var watcher := Battle.behavior as WatcherBehavior
+	watcher.charging = true
+	Battle.commands.shamac_button.pressed.emit()
+	await await_millis(60)
+	await _wait_turn()
+	assert_bool(watcher.charging).is_false()
+	assert_bool(Battle.enemy_broken).is_true()
+	assert_bool(Battle.revealed.has("ombra")).is_true()
+	# Subaru non lo dimenticherà più.
+	assert_bool(Game.remembers(WatcherBehavior.MEMORY_GAZE)).is_true()
+	await _finish_with_ultimate()
