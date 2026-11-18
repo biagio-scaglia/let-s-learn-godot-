@@ -270,3 +270,14 @@ func _blink_press() -> void:
 	var t := create_tween().set_loops()
 	t.tween_property(press, "modulate:a", 0.35, 0.9).set_trans(Tween.TRANS_SINE)
 	t.tween_property(press, "modulate:a", 1.0, 0.9).set_trans(Tween.TRANS_SINE)
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if not _can_leave:
+		return
+	if event.is_action_pressed("interact") or event.is_action_pressed("ui_accept") \
+			or event.is_action_pressed("pause"):
+		_can_leave = false
+		Sfx.play(Sfx.CONFIRM)
+		create_tween().tween_property(music, "volume_db", -40.0, Fade.duration)
+		Game.change_scene(Game.TITLE_SCENE, "", "", false)
