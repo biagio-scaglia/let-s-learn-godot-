@@ -62,6 +62,7 @@ func setup(skills: Dictionary, attack: String, defend_sp: int) -> void:
 	items_button.pressed.connect(open_items)
 	defend_button.pressed.connect(defend_chosen.emit)
 	flee_button.pressed.connect(flee_chosen.emit)
+	ultimate_button.pressed.connect(ultimate_chosen.emit)
 	potion_button.pressed.connect(potion_chosen.emit)
 	_help_for = {
 		attack_button: skills[attack].info,
