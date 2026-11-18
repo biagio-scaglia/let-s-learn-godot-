@@ -21,11 +21,23 @@ Il riquadro in alto a sinistra che dice **cosa fare adesso**. Prima, dopo aver p
 
 | Situazione | Obiettivo |
 |---|---|
-| Appena arrivato | Esplora il villaggio |
+Dal [[2026-11-18-atto-2]] segue tutto l'[[Atto 2]]:
+
+| Situazione | Obiettivo |
+|---|---|
+| Appena arrivato | Chiedi al Saggio delle voci strane |
+| Il Saggio non ricorda | Vai da Lina, nella casa col tetto rosso |
 | Lina ti ha chiesto la chiave | Trova la chiave di Lina, a ovest della piazza |
 | Hai la chiave | Porta la chiave a Lina |
 | L'hai mostrata a Lina | Apri il baule di Lina |
-| Baule aperto | *(il riquadro sparisce)* |
+| Hai la pagina strappata | Porta la pagina strappata all'Archivista |
+| L'Archivista l'ha letta | Sconfiggi lo Spettro, a est della piazza |
+| Hai anche la lacrima | Leggi il libro nero, in biblioteca |
+| Hai letto il libro | Racconta tutto a Emilia, in piazza |
+| Fine dell'atto 2 | All'alba, il bosco a nord (atto 3 in arrivo) |
+| *Vecchio salvataggio: baule aperto, niente pagina* | Guarda meglio nel baule di Lina |
+
+`current()` controlla **dalla fine**: il primo passo già fatto decide cosa viene dopo.
 
 ## Com'è fatto
 
