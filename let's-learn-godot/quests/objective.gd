@@ -35,7 +35,7 @@ static func current() -> String:
 	if Inventory.has(Inventory.PAGE):
 		return SHOW_PAGE
 	if Game.has_flag(FlagKeys.CHEST_OPEN):
-		return NONE
+		return CHECK_CHEST
 	if Inventory.has(Inventory.KEY):
 		return OPEN_CHEST if Game.has_flag(FlagKeys.KEY_SHOWN) else BRING_KEY
 	if Game.has_flag(FlagKeys.KEY_QUEST_STARTED):
