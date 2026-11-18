@@ -76,3 +76,21 @@ func test_senza_la_lacrima_il_libro_resta_muto() -> void:
 	book.interacted.emit()
 	assert_array(Array(book.override_lines)).is_empty()
 	assert_bool(Inventory.has(Inventory.PAGE)).is_true()
+
+
+func test_pagina_e_lacrima_sul_libro_nero() -> void:
+	Game.set_flag(FlagKeys.PAGE_READ)
+	Inventory.add(Inventory.PAGE)
+	Inventory.add(Inventory.TEAR)
+	var runner := await _library()
+	var book := runner.scene().get_node("World/BlackBook") as Interactable
+	book.interacted.emit()
+	assert_str("\n".join(book.override_lines)).contains("Erbalta ricomincia")
+	# Pagina e lacrima restano nel libro.
+	assert_bool(Inventory.has(Inventory.PAGE)).is_false()
+	assert_bool(Inventory.has(Inventory.TEAR)).is_false()
+	# Il ricordo arriva quando il dialogo del libro finisce.
+	Dialogue.finished.emit()
+	await runner.simulate_frames(1)
+	assert_bool(Game.has_flag(FlagKeys.BOOK_READ)).is_true()
+	assert_bool(Dialogue.is_active).is_true()   # Subaru commenta
