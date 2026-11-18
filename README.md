@@ -184,10 +184,10 @@ test.cmd --godot_binary C:\percorso\Godot_v4.7.2-stable_win64.exe
 |---|---|
 | `let's-learn-godot/core/` | Gli autoload di base: stato della partita (`Game`), zaino (`Inventory`), salvataggio (`SaveSystem`), opzioni (`Settings`), ciò che resta sbloccato per sempre (`Progress`), suoni (`Sfx`), statistiche (`Stats`); le costanti `Facing` e `FlagKeys` |
 | `let's-learn-godot/characters/` | Subaru (spritesheet, animazioni, azioni), i personaggi con cui parlare, i nemici sulla mappa |
-| `let's-learn-godot/world/` | Il villaggio (`main.tscn`), la casa di Lina (`house.tscn`), la biblioteca (`library.tscn`) e i loro TileSet |
-| `let's-learn-godot/ui/` | Titolo e mani d'ombra, menu di pausa, opzioni, dialoghi, zaino, il **combattimento** (`battle.gd` decide; `battle_vfx`, `battle_commands`, `battle_turn_bar`, `battle_enemy_info` disegnano), il Ritorno dalla Morte, il **congedo** (`farewell.gd`) |
-| `let's-learn-godot/effects/` | Gli shader: vignettatura, sfocatura, raggi di sole, nuvole, nebbia, riavvolgimento, transizione di battaglia, lampo bianco, onda d'urto, ombra viva, glitch con lo strappo, ritaglio dell'occhio |
-| `let's-learn-godot/interactables/`, `items/`, `enemies/`, `quests/`, `cutscenes/` | Oggetti e porte, gli oggetti dello zaino, i dati dei nemici, le missioni, l'intro |
+| `let's-learn-godot/world/` | Il villaggio (`main.tscn`), la casa di Lina (`house.tscn`), la biblioteca (`library.tscn`), il castello, il bosco, la **Galleria** (`gallery.tscn` e `gallery/`: vetrine, libri, lettore) e i loro TileSet |
+| `let's-learn-godot/ui/` | Il filmato iniziale (`opening_movie`), i titoli di coda (`credits`), i ritratti (`portraits.gd`), titolo e mani d'ombra, menu di pausa, opzioni, dialoghi, zaino, il **combattimento** (`battle.gd` decide; `battle_vfx`, `battle_commands`, `battle_turn_bar`, `battle_enemy_info` disegnano), il Ritorno dalla Morte, il **congedo** (`farewell.gd`) |
+| `let's-learn-godot/effects/` | Gli shader: vignettatura, sfocatura, raggi di sole, nuvole, nebbia, riavvolgimento, transizione di battaglia, lampo bianco, onda d'urto, ombra viva, glitch con lo strappo, ritaglio dell'occhio, riflesso sul titolo |
+| `let's-learn-godot/interactables/`, `items/`, `enemies/`, `quests/`, `cutscenes/` | Oggetti e porte, gli oggetti dello zaino, i dati dei nemici, le missioni, le cutscene (castello, arrivo, bosco, **finale**) |
 | `let's-learn-godot/test/` | I test: `core/` e `quests/` (unitari), `world/`, `characters/` e `ui/` (di scena) |
 | `let's-learn-godot/addons/` | gdUnit4 per i test; Dialogue Manager, Phantom Camera e Beehave, installati per i prossimi passi |
 | `gamelog/` | Il diario di sviluppo, un vault di Obsidian |
