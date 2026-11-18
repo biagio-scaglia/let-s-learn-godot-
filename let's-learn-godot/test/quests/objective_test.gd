@@ -43,16 +43,39 @@ func test_dopo_averla_mostrata_si_apre_il_baule() -> void:
 	assert_str(Objective.current()).is_equal(Objective.OPEN_CHEST)
 
 
-func test_a_baule_aperto_nessun_obiettivo() -> void:
-	Game.set_flag(FlagKeys.KEY_QUEST_STARTED)
+func test_con_la_pagina_si_va_dall_archivista() -> void:
 	Game.set_flag(FlagKeys.CHEST_OPEN)
-	assert_str(Objective.current()).is_equal(Objective.NONE)
+	Inventory.reset({Inventory.PAGE: 1})
+	assert_str(Objective.current()).is_equal(Objective.SHOW_PAGE)
 
 
-func test_un_vecchio_salvataggio_a_missione_finita() -> void:
-	# I salvataggi di prima non hanno i ricordi nuovi, solo "baule_aperto".
+func test_un_vecchio_salvataggio_a_baule_aperto_senza_pagina() -> void:
+	# I salvataggi di prima dell'atto 2 hanno solo "baule_aperto": la pagina va ripresa.
 	Game.load_flags({"baule_aperto": true})
-	assert_str(Objective.current()).is_equal(Objective.NONE)
+	assert_str(Objective.current()).is_equal(Objective.CHECK_CHEST)
+
+
+func test_letta_la_pagina_si_cerca_lo_spettro() -> void:
+	Game.set_flag(FlagKeys.PAGE_READ)
+	Inventory.reset({Inventory.PAGE: 1})
+	assert_str(Objective.current()).is_equal(Objective.DEFEAT_SPECTRE)
+
+
+func test_con_la_lacrima_si_legge_il_libro() -> void:
+	Game.set_flag(FlagKeys.PAGE_READ)
+	Inventory.reset({Inventory.PAGE: 1, Inventory.TEAR: 1})
+	assert_str(Objective.current()).is_equal(Objective.READ_BOOK)
+
+
+func test_letto_il_libro_si_torna_da_emilia() -> void:
+	Game.set_flag(FlagKeys.BOOK_READ)
+	assert_str(Objective.current()).is_equal(Objective.TELL_EMILIA)
+
+
+func test_a_fine_atto_il_bosco_a_nord() -> void:
+	Game.set_flag(FlagKeys.BOOK_READ)
+	Game.set_flag(FlagKeys.ACT2_DONE)
+	assert_str(Objective.current()).is_equal(Objective.FOREST)
 
 
 func test_i_ricordi_avvisano_quando_cambiano() -> void:
