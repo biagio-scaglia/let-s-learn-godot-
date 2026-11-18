@@ -32,6 +32,10 @@ func _ready() -> void:
 		# Il villaggio fa da sfondo al titolo: niente Subaru, niente da controllare.
 		set_process(false)
 		return
+	if Game.has_flag(FlagKeys.BOSS_DEFEATED):
+		# Colui che guarda non c'è più: il bordo è solo un bordo. Niente cuore, niente morte.
+		set_process(false)
+		return
 	if vignette:
 		_vignette_material = vignette.material as ShaderMaterial
 		_vignette_strength = _vignette_material.get_shader_parameter("strength")
