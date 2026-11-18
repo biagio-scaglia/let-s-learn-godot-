@@ -27,6 +27,8 @@
 [ext_resource type="Resource" path="res://enemies/occhio_errante.tres" id="25_occhio"]
 [ext_resource type="Resource" path="res://enemies/mano_ombra.tres" id="26_mano"]
 [ext_resource type="Resource" path="res://enemies/guardiano_rovi.tres" id="27_guardiano"]
+[ext_resource type="Script" path="res://world/forest/watcher_arena.gd" id="28_arena"]
+[ext_resource type="Texture2D" path="res://assets/enemies/colui_che_guarda.png" id="29_watcher"]
 
 [sub_resource type="Gradient" id="light_falloff"]
 offsets = PackedFloat32Array(0, 1)
