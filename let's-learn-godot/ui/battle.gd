@@ -113,6 +113,12 @@ var _enemy_stun := 0
 var _hero_home := Vector2.ZERO
 var _enemy_home := Vector2.ZERO
 var _enemy_scale := Vector2.ONE
+## La scala del nemico nella scena per uno sprite da 16 pixel. Gli sprite più grandi
+## (i nemici nuovi sono da 32) vengono rimpiccioliti: sullo schermo sono tutti alti uguali.
+var _enemy_base_scale := Vector2.ONE
+## Il respiro del nemico (le due pose di riposo in loop) e se una posa lo sta sostituendo.
+var _enemy_breath: Tween
+var _enemy_posing := false
 ## Gli effetti visivi (scintille, stelle, onde d'urto…): vedi battle_vfx.gd.
 var vfx: BattleVfx
 
@@ -122,7 +128,7 @@ func _ready() -> void:
 	rng.randomize()
 	_hero_home = hero.position
 	_enemy_home = enemy_sprite.position
-	_enemy_scale = enemy_sprite.scale
+	_enemy_base_scale = enemy_sprite.scale
 	# I comandi dicono cosa hai scelto; qui si decide cosa succede.
 	commands.setup(SKILLS, ATTACK, DEFEND_SP)
 	commands.skill_chosen.connect(_use_skill)
