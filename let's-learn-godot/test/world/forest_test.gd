@@ -64,3 +64,16 @@ func test_la_nebbia_sbarra_la_radura() -> void:
 	assert_bool(shape.disabled).is_false()
 	# Il varco copre tutta l'apertura nei rovi: niente spazio per passarci accanto.
 	assert_float((shape.shape as RectangleShape2D).size.x).is_greater_equal(256.0)
+
+
+func test_il_bosco_ha_un_nome_nei_salvataggi() -> void:
+	assert_str(SaveSystem.PLACE_NAMES.get(Game.FOREST_SCENE, "")).is_equal("Bosco Senza Tempo")
+
+
+func test_la_musica_del_bosco_si_ripete() -> void:
+	Game.set_flag(FlagKeys.FOREST_ARRIVED)
+	var runner := scene_runner(Game.FOREST_SCENE)
+	await runner.simulate_frames(2)
+	var music := runner.scene().get_node("Music") as AudioStreamPlayer
+	assert_bool(music.is_in_group("level_music")).is_true()
+	assert_int((music.stream as AudioStreamWAV).loop_mode).is_equal(AudioStreamWAV.LOOP_FORWARD)
