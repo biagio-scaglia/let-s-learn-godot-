@@ -117,3 +117,12 @@ func _process(delta: float) -> void:
 	list.position.y -= _speed * step
 	if list.position.y + list.size.y < 0.0:
 		_show_final_card()
+
+
+## Il colore del cielo segue il tempo: dalla notte (inizio) alla mattina (fine).
+func _update_sky() -> void:
+	var k := clampf(_time / maxf(_total - FINAL_HOLD, 1.0), 0.0, 1.0) * (SKY.size() - 1)
+	var i := mini(int(k), SKY.size() - 2)
+	sky.color = (SKY[i] as Color).lerp(SKY[i + 1], k - i)
+	# Le stelle si spengono quando arriva il giorno.
+	stars.modulate.a = clampf(1.0 - k, 0.0, 1.0)
