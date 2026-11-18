@@ -219,6 +219,25 @@ script = ExtResource("8_flicker")
 amount = 0.3
 speed = 0.8
 
+
+[node name="EyeOvest" type="Sprite2D" parent="World/FogGate"]
+position = Vector2(-70, -10)
+scale = Vector2(2, 2)
+texture = ExtResource("6_eyes")
+hframes = 3
+
+[node name="EyeSud" type="Sprite2D" parent="World/FogGate"]
+position = Vector2(0, -18)
+scale = Vector2(2, 2)
+texture = ExtResource("6_eyes")
+hframes = 3
+
+[node name="EyeEst" type="Sprite2D" parent="World/FogGate"]
+position = Vector2(70, -10)
+scale = Vector2(2, 2)
+texture = ExtResource("6_eyes")
+hframes = 3
+
 [node name="Interactable" parent="World/FogGate" instance=ExtResource("19_interactable")]
 position = Vector2(0, 16)
 speaker = "Nebbia viola"
