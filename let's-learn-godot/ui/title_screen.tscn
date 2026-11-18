@@ -103,8 +103,25 @@ scale_amount_curve = SubResource("petal_size")
 color_ramp = SubResource("petal_fade")
 color_initial_ramp = SubResource("petal_colors")
 
+[node name="Glow" type="TextureRect" parent="UI"]
+unique_name_in_owner = true
+material = SubResource("additive")
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 6.0
+offset_right = 200.0
+offset_bottom = 136.0
+grow_horizontal = 2
+pivot_offset = Vector2(200, 65)
+mouse_filter = 2
+texture = SubResource("glow_tex")
+expand_mode = 1
+
 [node name="Title" type="Label" parent="UI"]
 unique_name_in_owner = true
+material = SubResource("title_shine")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
