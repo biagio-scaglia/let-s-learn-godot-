@@ -58,7 +58,7 @@ func _send_beam(from: Vector2, to: Vector2) -> void:
 	orb.global_position = from
 	# Una curva (Bézier quadratica): sale prima, poi scende sulla nebbia.
 	var mid := (from + to) / 2.0 + Vector2(0, -120)
-	var t := create_tween()
+	var t := create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	t.tween_method(func(k: float): orb.global_position = from.lerp(mid, k).lerp(mid.lerp(to, k), k), 0.0, 1.0, 1.1) \
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	await t.finished
