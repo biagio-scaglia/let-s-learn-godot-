@@ -305,6 +305,7 @@ charset = ExtResource("4_emilia")
 position = Vector2(370, 180)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+process_callback = 0
 position = Vector2(384, 180)
 limit_left = 0
 limit_top = 0
