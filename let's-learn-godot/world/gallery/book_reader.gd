@@ -30,3 +30,9 @@ var _page_number: Label
 var _prev: Label
 var _next: Label
 var _tween: Tween
+
+
+func _ready() -> void:
+	layer = 7
+	_build()
+	visible = false
