@@ -359,3 +359,30 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="Spawns" type="Node2D" parent="."]
+
+[node name="Entrance" type="Marker2D" parent="Spawns"]
+position = Vector2(598, 930)
+
+[node name="Music" type="AudioStreamPlayer" parent="." groups=["level_music"]]
+stream = ExtResource("13_music")
+volume_db = -9.0
+autoplay = true
+
+[node name="Wind" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_wind")
+volume_db = -16.0
+autoplay = true
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="Crow" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("15_crow")
+volume_db = -6.0
+
+[node name="Ambience" type="Node" parent="."]
+script = ExtResource("17_ambience")
+sounds = Array[AudioStream]([ExtResource("15_crow"), ExtResource("16_creak"), ExtResource("16_creak")])
+
+[node name="ForestArrival" parent="." instance=ExtResource("20_arrival")]
