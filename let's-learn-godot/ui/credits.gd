@@ -240,3 +240,13 @@ func _walk_emilia() -> void:
 	for column in [1, 2, 3, 0]:
 		t.tween_callback(func(): emilia.frame = 2 * 4 + column)
 		t.tween_interval(0.15)
+
+
+## Gli alberi scorrono verso sinistra: sono loro a muoversi, Subaru ed Emilia
+## camminano sul posto (come in un tapis roulant). Chi esce a sinistra rientra a destra.
+func _scroll_trees(step: float) -> void:
+	var width := size.x
+	for tree: Node2D in trees.get_children():
+		tree.position.x -= 24.0 * step * (tree.scale.x)
+		if tree.position.x < -24.0:
+			tree.position.x += width + 48.0
