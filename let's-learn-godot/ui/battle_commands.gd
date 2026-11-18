@@ -75,9 +75,10 @@ func setup(skills: Dictionary, attack: String, defend_sp: int) -> void:
 		button.focus_entered.connect(show_help.bind(button))
 
 
-## Chi sceglie adesso. Subaru: le sue mosse (le Scaglie di gelo solo se Emilia le ha
-## insegnate e NON è nel party: altrimenti sono sue). Emilia: Dardo di gelo al posto
-## di Attacca, e tra le abilità solo le Scaglie di gelo, pagate con i suoi PT.
+## Chi sceglie adesso. Subaru: le sue mosse, più Cristallo infranto se l'hanno imparato
+## (costa PT a tutti e due). Emilia: Dardo di gelo al posto di Attacca, e tra le abilità
+## le Scaglie di gelo, pagate con i suoi PT. "emilia_sp" serve anche a Subaru: la mossa
+## combinata si può scegliere solo se anche lei ha abbastanza PT.
 func set_actor(who: String, emilia_sp := 0, ally_attack := "dardo", ally_defend_sp := 3) -> void:
 	actor = who
 	ally_sp = emilia_sp
