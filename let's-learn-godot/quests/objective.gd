@@ -3,6 +3,10 @@ class_name Objective
 ##
 ## Non c'è niente da ricordare: la risposta si ricava ogni volta dai ricordi (Game.flags)
 ## e dallo zaino. Così dopo un Ritorno dalla Morte o un "Continua" è già giusta da sola.
+##
+## L'atto 2, "Le voci di Erbalta", in ordine:
+## Saggio → Lina e la sua chiave → il baule (la pagina) → l'Archivista → lo Spettro
+## (la lacrima) → il libro nero → Emilia.
 
 const EXPLORE := "Esplora il villaggio"
 const FIND_KEY := "Trova la chiave di Lina, a ovest della piazza"
