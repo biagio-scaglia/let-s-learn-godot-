@@ -101,3 +101,38 @@ func test_il_ghiaccio_ha_la_sua_icona() -> void:
 	assert_bool(BattleEnemyInfo.TYPE_ICONS.has("ghiaccio")).is_true()
 	var icons := load("res://assets/ui/battle_icons.png") as Texture2D
 	assert_int(icons.get_width()).is_greater_equal((BattleEnemyInfo.TYPE_ICONS.ghiaccio + 1) * 16)
+
+
+# ---------- Emilia nel party ----------
+
+func test_nel_party_emilia_ha_il_suo_turno() -> void:
+	Game.set_flag(FlagKeys.FOREST_ARRIVED)   # da qui Emilia è nel party
+	Game.set_flag(FlagKeys.ICE_UNLOCKED)
+	Battle.start(_tough_enemy())
+	await _wait_turn()
+	assert_bool(Battle.with_emilia).is_true()
+	assert_bool(Battle.emilia_sprite.visible).is_true()
+	# Nel turno di Subaru le Scaglie di gelo non ci sono: sono di Emilia.
+	assert_str(Battle.turn).is_equal(Battle.HERO)
+	Battle.commands.open_skills()
+	assert_bool(Battle.commands.frost_button.visible).is_false()
+	Battle.commands.close_submenus()
+	Battle.commands.attack_button.pressed.emit()
+	await await_millis(100)
+	await _wait_turn()
+	# Dopo Subaru, tocca a Emilia: il suo "Attacca" è il Dardo di gelo.
+	assert_str(Battle.turn).is_equal(Battle.ALLY)
+	assert_str(Battle.commands.attack_button.text).is_equal(Battle.SKILLS.dardo.name)
+	Battle.commands.open_skills()
+	assert_bool(Battle.commands.frost_button.visible).is_true()
+	assert_bool(Battle.commands.kick_button.visible).is_false()
+	Battle.commands.close_submenus()
+	var hp: int = Battle.enemy_hp
+	Battle.commands.frost_button.pressed.emit()
+	await await_millis(100)
+	await _wait_turn()
+	# Le Scaglie le paga Emilia, non Subaru; il ghiaccio è una debolezza.
+	assert_int(Battle.ally_sp).is_equal(Battle.ALLY_MAX_SP - Battle.SKILLS.gelo.cost)
+	assert_int(Battle.enemy_hp).is_less(hp)
+	assert_bool(Battle.revealed.has("ghiaccio")).is_true()
+	await _escape()
