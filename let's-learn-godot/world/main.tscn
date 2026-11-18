@@ -20,6 +20,7 @@
 [ext_resource type="Resource" path="res://enemies/melma.tres" id="21_melma"]
 [ext_resource type="Resource" path="res://enemies/spettro.tres" id="22_spettro"]
 [ext_resource type="AudioStream" uid="uid://du71ahnhmark3" path="res://assets/music/village_theme.wav" id="23_music"]
+[ext_resource type="Script" path="res://quests/voices_quest.gd" id="24_voices"]
 
 [sub_resource type="ShaderMaterial" id="vignette_mat"]
 shader = ExtResource("4_vignette")
