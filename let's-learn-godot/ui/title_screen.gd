@@ -208,6 +208,11 @@ func _disable_menu() -> void:
 	# Niente doppi clic: il menu non risponde più.
 	for item in menu.get_children():
 		item.disabled = true
+	_state = "leaving"
+
+
+func _on_continue() -> void:
+	_disable_menu()
 	await hands.seize(continue_button)
 	SaveSystem.continue_game()
 
