@@ -217,3 +217,13 @@ speaker = "Nebbia viola"
 lines = PackedStringArray("Una nebbia viola, fitta come un muro. Dentro, qualcosa respira.", "Ci sono dei bagliori, nella nebbia... tre. Come tre occhi aperti.", "Forse, se si chiudessero, la nebbia se ne andrebbe.")
 repeat_lines = PackedStringArray("La nebbia non si muove. I tre bagliori neanche.")
 prompt_height = 40.0
+
+[node name="Emilia" parent="World" instance=ExtResource("4_npc")]
+position = Vector2(632, 930)
+npc_name = "Emilia"
+lines = PackedStringArray("Ti seguo, Subaru. Non preoccuparti per me.", "...Però cammina piano. Ho l'impressione che il bosco ci ascolti.")
+repeat_lines = PackedStringArray("Hai visto gli occhi tra i rovi? Quando ti avvicini, si chiudono.", "Come se non volessero farsi guardare.")
+charset = ExtResource("5_emilia")
+
+[node name="Follower" type="Node" parent="World/Emilia"]
+script = ExtResource("18_follower")
