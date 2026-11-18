@@ -71,7 +71,7 @@ Tre colonne di pietra con un occhio (`world/forest/stone_eye.tscn`, `StoneEye`),
 - **vede** con un cono di 40° lungo 170 pixel ([[Angoli e coni di visione]]). Se vede Subaru: stridio, lampo rosso, dissolvenza, e lui si ritrova in un punto lontano (`respawn`) con 2 PS in meno (mai sotto 1). Emilia gli si rimette dietro (`snap_behind()` sul gruppo `followers`). La prima volta lei spiega il trucco;
 - **si chiude** se le arrivi alle spalle e premi E: la palpebra scende, l'energia viola viene risucchiata (particelle con accelerazione radiale negativa), la luce si spegne, la camera trema. Poi `forest_quest.gd` manda un globo viola fino alla nebbia, su una curva, e il bagliore corrispondente si chiude.
 
-Al primo occhio chiuso Emilia insegna le **Scaglie di gelo**; al terzo la nebbia (`FogGate`) si dissolve con un accordo maggiore. Ricordi: `occhio_chiuso:ovest/est/sud`, `gelo_sbloccato`, `occhio_visto`, `nebbia_vista`.
+Al primo occhio chiuso Subaru ed Emilia inventano la mossa combinata **Cristallo infranto**; al terzo la nebbia (`FogGate`) si dissolve con un accordo maggiore. Ricordi: `occhio_chiuso:ovest/est/sud`, `cristallo_sbloccato`, `occhio_visto`, `nebbia_vista`.
 
 ## I nemici del bosco
 
