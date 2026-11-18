@@ -74,3 +74,22 @@ func _add_figure() -> void:
 		_add_npc(book)
 	else:
 		_add_monster()
+
+
+## Subaru di pietra: il suo primo frame, grigio-azzurro, con una targa da leggere.
+func _add_statue(book: Dictionary) -> void:
+	var sprite := Sprite2D.new()
+	sprite.texture = Portraits.of("subaru")
+	sprite.offset = Vector2(0, -24)
+	sprite.position.y = -6
+	sprite.modulate = Color(0.62, 0.66, 0.8)   # pietra azzurrina
+	add_child(sprite)
+	var plate := INTERACTABLE.instantiate() as Interactable
+	plate.speaker = "Statua"
+	plate.lines = [
+		"Una statua di Subaru, in posa eroica. Sulla base: \"%s\"." % book.get("role", ""),
+		"...Mi somiglia un sacco. Bel lavoro, chiunque sia stato.",
+	]
+	plate.repeat_lines = ["Lo sguardo di pietra fissa l'orizzonte. Quello vero non lo fa mai."]
+	plate.prompt_height = 60.0
+	add_child(plate)
