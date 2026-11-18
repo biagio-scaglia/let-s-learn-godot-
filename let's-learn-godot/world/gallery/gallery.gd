@@ -8,3 +8,11 @@ extends Node2D
 @onready var reader: BookReader = $Reader
 @onready var place_name: Control = %PlaceName
 @onready var hint: Label = %Hint
+
+
+func _ready() -> void:
+	Progress.see_gallery()   # da ora nel titolo non è più "Nuova!"
+	for exhibit in find_children("*", "Node2D"):
+		if exhibit is Exhibit:
+			exhibit.book_opened.connect(reader.open)
+	_show_place_name()
