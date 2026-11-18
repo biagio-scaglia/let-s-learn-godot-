@@ -73,6 +73,12 @@ Il [[Combattimento]] non ferma la musica del villaggio: la mette **in pausa**.
 
 Tutti i brani sono descritti in [[Colonna sonora]].
 
+## Suoni nello spazio
+
+`AudioStreamPlayer2D` è un suono **con una posizione**: si sente più forte quando la camera è vicina e sparisce oltre `max_distance`; se sta a destra, si sente più a destra. Nella [[Rocca d'Argento]] ogni torcia ha il suo crepitio (`max_distance = 320`) e il fossato il suo sciabordio: mentre la camera scende verso il prato, l'acqua si allontana e il fuoco si avvicina, da solo.
+
+I due loop (`assets/castle/castle_water.wav`, `castle_fire.wav`) sono sintetizzati come la musica: rumore filtrato che "respira" più qualche bolla per l'acqua, un fruscio basso più tanti clic brevissimi per il fuoco. Per non sentire il "clic" quando il loop ricomincia, la coda del suono è sfumata sopra l'inizio.
+
 ## Vedi anche
 
 - [[Effetti visivi]]

@@ -120,6 +120,14 @@ Prima usavo una "maschera": un'immagine del colore del buio con un buco a forma 
 - **Ondeggia:** `floor(UV / TEXTURE_PIXEL_SIZE)` dice in quale pixel della texture siamo; ogni colonna sale o scende di **un pixel intero** (`round(sin(...))`), con un'onda che scorre nel tempo.
 - **Si scioglie:** ogni pixel ha un numero "a caso" fisso (`hash`); se è minore di `dissolve` il pixel sparisce. Facendo andare `dissolve` da 0 a 1 la mano si sbriciola, e i pixel appena sopra la soglia diventano viola acceso, come un bordo che brucia.
 
+### Acqua
+
+`effects/water.gdshader`, sul fossato della [[Rocca d'Argento]]. Sta su un [[TileMapLayer]] che contiene **solo** i tile d'acqua: uno shader su un nodo vale per tutto il nodo, e l'erba non deve luccicare.
+
+- **La posizione nel mondo:** nella funzione `vertex()` si calcola `MODEL_MATRIX * VERTEX` e la si passa a `fragment()` con una `varying`. Così l'onda continua da un tile all'altro, invece di ricominciare in ogni quadratino.
+- **Creste:** due `sin()` che si incrociano; dove il prodotto supera 0,72 (`step`) si aggiunge un azzurro chiaro. La posizione è arrotondata a 2 pixel con `floor`, così i riflessi restano a quadretti.
+- **Niente UV spostate:** in un TileSet tutti i tile stanno nella stessa immagine; spostando le UV si leggerebbero pixel del tile accanto (un pezzo di muro nell'acqua). Si cambia solo il colore.
+
 ## Vedi anche
 
 - [[CanvasLayer]] · [[CanvasModulate]] · [[Rumore]] · [[BackBufferCopy]]
