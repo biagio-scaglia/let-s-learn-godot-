@@ -176,3 +176,25 @@ func test_sotto_un_quarto_arriva_l_ultimate_e_vince() -> void:
 			break
 		await await_millis(20)
 	assert_str(result).is_equal(Battle.WIN)
+
+
+func test_la_radura_dopo_la_vittoria() -> void:
+	Game.set_flag(FlagKeys.BOSS_DEFEATED)
+	for id in FlagKeys.STONE_EYES:
+		Game.set_flag(FlagKeys.eye_closed(id))
+	var runner := scene_runner(Game.FOREST_SCENE)
+	await runner.simulate_frames(3)
+	# Colui che guarda non c'è più, e nemmeno gli occhi nei rovi.
+	assert_object(runner.scene().get_node_or_null("Watcher")).is_null()
+	assert_int(runner.scene().get_tree().get_nodes_in_group("thicket_eyes").size()).is_equal(0)
+	assert_str(Objective.current()).is_equal(Objective.BACK_HOME)
+
+
+func test_prima_della_battaglia_il_guardiano_dorme_nella_radura() -> void:
+	for id in FlagKeys.STONE_EYES:
+		Game.set_flag(FlagKeys.eye_closed(id))
+	var runner := scene_runner(Game.FOREST_SCENE)
+	await runner.simulate_frames(3)
+	var watcher := runner.scene().get_node_or_null("Watcher")
+	assert_object(watcher).is_not_null()
+	assert_int((watcher.get_node("Eye") as Sprite2D).frame).is_equal(EnemyData.Pose.HURT)
