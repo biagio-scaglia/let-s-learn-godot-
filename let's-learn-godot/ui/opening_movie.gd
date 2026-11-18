@@ -166,3 +166,10 @@ func _cut_out(seconds: float) -> void:
 	var t := create_tween()
 	t.tween_property(black, "color:a", 1.0, seconds)
 	await t.finished
+
+
+## Il mondo si scurisce fino ad "amount", cominciando al secondo "at".
+func _darken(amount: float, at: float, seconds: float) -> void:
+	var t := create_tween()
+	t.tween_interval(maxf(at - _elapsed(), 0.0))
+	t.tween_property(shade, "color:a", amount, seconds).set_trans(Tween.TRANS_SINE)
