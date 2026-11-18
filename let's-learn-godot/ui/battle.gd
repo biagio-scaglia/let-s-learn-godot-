@@ -367,6 +367,8 @@ func _use_skill(id: String) -> void:
 			await _do_shamac(skill)
 		"carica":
 			await _do_power_punch(skill)
+		"gelo":
+			await _do_frost(skill)
 		_:
 			await _do_jab(skill)
 	await _pause(message_time * 0.5)
