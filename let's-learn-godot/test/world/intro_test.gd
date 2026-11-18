@@ -42,3 +42,12 @@ func test_arrivando_da_una_porta_non_parte() -> void:
 	var player := runner.scene().get_node("World/Subaru") as Node2D
 	var door := runner.scene().get_node("Spawns/HouseDoor") as Node2D
 	assert_vector(player.global_position).is_equal(door.global_position)
+
+
+func test_emilia_arriva_con_subaru() -> void:
+	var runner := scene_runner("res://world/main.tscn")
+	await runner.simulate_frames(2)
+	# All'inizio della cutscene Emilia non è in piazza: è in fondo al sentiero con Subaru.
+	var emilia := runner.scene().get_node("World/Emilia") as Node2D
+	var subaru := runner.scene().get_node("World/Subaru") as Node2D
+	assert_float(emilia.global_position.distance_to(subaru.global_position)).is_less(60.0)
