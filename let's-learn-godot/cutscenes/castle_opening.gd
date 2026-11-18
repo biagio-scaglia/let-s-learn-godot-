@@ -72,5 +72,5 @@ func _play(player: Node2D, emilia: Node2D) -> void:
 
 
 func _pan_camera(to: Vector2, seconds: float) -> void:
-	create_tween().tween_property(camera, "position", to, seconds) \
+	create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS).tween_property(camera, "position", to, seconds) \
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
