@@ -50,7 +50,10 @@ func _ready() -> void:
 	# "Continua" c'è solo se esiste un salvataggio; sotto, luogo e data.
 	var info := SaveSystem.save_info()
 	continue_button.visible = not info.is_empty()
-	save_info.text = "" if info.is_empty() else "Salvataggio: %s - %s" % [info.luogo, _pretty_date(info.data)]
+	save_info.visible = not info.is_empty()
+	if not info.is_empty():
+		save_info.text = "%s\n%s" % [info.luogo, _pretty_date(info.data)]
+	_setup_gallery_button()
 	continue_button.pressed.connect(_on_continue)
 	new_game_button.pressed.connect(_on_new_game)
 	options_button.pressed.connect(_on_options)
