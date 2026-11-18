@@ -423,8 +423,8 @@ func fire_shard(shard: Sprite2D, target: Vector2, time: float, on_hit: Callable)
 	t.tween_callback(shard.queue_free)
 
 
-## Il nemico chiuso in un blocco di ghiaccio, che poi va in frantumi.
-func ice_block(feet: Vector2) -> void:
+## Il nemico chiuso in un blocco di ghiaccio, che dopo "hold" secondi va in frantumi.
+func ice_block(feet: Vector2, hold := 0.45) -> void:
 	var b := Sprite2D.new()
 	b.texture = ICE_BLOCK
 	b.position = feet + Vector2(0, -44)
@@ -434,7 +434,7 @@ func ice_block(feet: Vector2) -> void:
 	var t := create_tween()
 	t.tween_property(b, "scale", Vector2(2.4, 2.4), 0.12).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	t.parallel().tween_property(b, "modulate:a", 1.0, 0.12)
-	t.tween_interval(0.45)
+	t.tween_interval(hold)
 	t.tween_callback(func():
 		var shards := sparks(b.position, ICE_COLOR, 34, 320.0)
 		shards.scale_amount_min = 3.0
