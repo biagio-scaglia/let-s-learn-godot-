@@ -102,6 +102,12 @@ func current_sp() -> int:
 	return ally_sp if actor == "ally" else Stats.sp
 
 
+## Si può pagare questa mossa? (Per Cristallo infranto pagano in due.)
+func can_afford(id: String) -> bool:
+	var skill: Dictionary = _skills[id]
+	return current_sp() >= skill.cost and ally_sp >= skill.get("ally_cost", 0)
+
+
 ## Mostra (o nasconde) i comandi e la descrizione. Mostrandoli, si parte da Attacca.
 func show_menu(shown: bool) -> void:
 	visible = shown
