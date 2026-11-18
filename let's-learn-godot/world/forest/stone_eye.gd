@@ -118,3 +118,9 @@ func _caught() -> void:
 		])
 		await Dialogue.finished
 	_busy = false
+
+
+func _on_interacted() -> void:
+	if is_closed or _busy:
+		return
+	_close()
