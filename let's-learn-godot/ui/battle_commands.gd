@@ -70,6 +70,7 @@ func setup(skills: Dictionary, attack: String, defend_sp: int) -> void:
 		items_button: "Usa un oggetto dello zaino.",
 		defend_button: "Para: il prossimo colpo fa metà danno. Recuperi %d PT." % defend_sp,
 		flee_button: "Prova a scappare. Non sempre ci si riesce.",
+		ultimate_button: "Subaru ed Emilia, insieme, con tutto quello che hanno. Una volta sola.",
 		potion_button: "",
 	}
 	for button: MenuItem in _skill_buttons:
