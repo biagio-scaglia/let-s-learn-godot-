@@ -128,6 +128,10 @@ Prima usavo una "maschera": un'immagine del colore del buio con un buco a forma 
 - **Creste:** due `sin()` che si incrociano; dove il prodotto supera 0,72 (`step`) si aggiunge un azzurro chiaro. La posizione è arrotondata a 2 pixel con `floor`, così i riflessi restano a quadretti.
 - **Niente UV spostate:** in un TileSet tutti i tile stanno nella stessa immagine; spostando le UV si leggerebbero pixel del tile accanto (un pezzo di muro nell'acqua). Si cambia solo il colore.
 
+### Nebbia
+
+`effects/fog.gdshader`, nel [[Bosco Senza Tempo]]. Come le ombre delle nuvole del villaggio (rumore "fbm" sulla posizione nel mondo), ma con **due strati** che scorrono in direzioni diverse: dove si sommano la nebbia è più fitta, e la forma cambia sempre. Il risultato è arrotondato a 4 livelli di trasparenza (`floor(fog * 4.0) / 4.0`): sfumature "a gradini", in stile [[Pixel art]].
+
 ## Vedi anche
 
 - [[CanvasLayer]] · [[CanvasModulate]] · [[Rumore]] · [[BackBufferCopy]]
