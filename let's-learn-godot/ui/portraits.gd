@@ -31,3 +31,10 @@ static func of(id: String) -> Texture2D:
 static func enemy_data(id: String) -> EnemyData:
 	var path := "res://enemies/%s.tres" % id
 	return load(path) as EnemyData if ResourceLoader.exists(path) else null
+
+
+static func _region(atlas: Texture2D, rect: Rect2) -> AtlasTexture:
+	var tex := AtlasTexture.new()
+	tex.atlas = atlas
+	tex.region = rect
+	return tex
