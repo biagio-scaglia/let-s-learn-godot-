@@ -1,6 +1,7 @@
-extends CanvasLayer
-## La cutscene d'apertura, solo alla prima partita: schermo nero, si sentono dei passi,
-## poi sorge il sole e Subaru arriva a piedi nel villaggio dal sentiero a sud.
+extends Cutscene
+## L'arrivo a Erbalta, alla prima partita (subito dopo la cutscene del castello):
+## schermo nero, si sentono dei passi, poi sorge il sole e Subaru ed Emilia arrivano
+## a piedi dal sentiero a sud. Emilia si apposta in piazza, Subaru va in giro.
 ##
 ## È una "regia" scritta in codice: una riga dopo l'altra, con await per aspettare
 ## che ogni azione finisca prima di passare alla successiva.
@@ -8,18 +9,13 @@ extends CanvasLayer
 ## Da dove parte Subaru (fuori dallo schermo, in fondo al sentiero) e dove si ferma.
 const START := Vector2(656, 820)
 const STOP := Vector2(656, 416)
-## Altezza delle bande nere "da film", in pixel.
-const BAR_HEIGHT := 36.0
+## Emilia gli cammina accanto, sulla destra, e alla fine va al suo posto in piazza.
+const EMILIA_OFFSET := Vector2(36, 6)
 ## I colori dell'alba: prima il blu della notte che finisce, poi l'arancio del sole basso.
 const NIGHT_TINT := Color(0.5, 0.52, 0.8)
 const DAWN_TINT := Color(1.0, 0.76, 0.62)
 ## Quanto sono forti i raggi di sole nel momento più bello dell'alba.
 const DAWN_RAYS := 0.9
-
-@onready var top_bar: ColorRect = $TopBar
-@onready var bottom_bar: ColorRect = $BottomBar
-@onready var place_card: Control = $PlaceCard
-@onready var place_line: ColorRect = $PlaceCard/Line
 
 
 func _ready() -> void:
@@ -37,9 +33,15 @@ func _ready() -> void:
 
 func _play(player: Node2D) -> void:
 	# Le bande nere sono già al loro posto quando l'immagine compare.
-	# Sono ancorate ai bordi: basta dire quanto sporgono verso il centro.
-	top_bar.offset_bottom = BAR_HEIGHT
-	bottom_bar.offset_top = -BAR_HEIGHT
+	_show_bars_now()
+	# Emilia c'è sempre nella scena, al suo posto in piazza: la portiamo in fondo al
+	# sentiero, accanto a Subaru. Se un giorno non ci fosse, la cutscene va avanti lo stesso.
+	var emilia := get_parent().get_node_or_null("World/Emilia")
+	var emilia_post := Vector2.ZERO
+	if emilia:
+		emilia_post = emilia.global_position
+		emilia.global_position = START + EMILIA_OFFSET
+		emilia.face(Facing.UP)
 
 	player.global_position = START
 	player.face(Facing.UP)
@@ -51,7 +53,10 @@ func _play(player: Node2D) -> void:
 	_sunrise()
 	await _wait(0.5)
 	_fade_in_later(1.6, 1.8)
-	# 2. Subaru cammina fino alla piazza (await: aspetta che sia arrivato).
+	# 2. Camminano fino alla piazza, fianco a fianco: Emilia parte senza await
+	#    (così vanno insieme), si aspetta solo Subaru. Stessa velocità, stessa strada.
+	if emilia:
+		emilia.walk_to(STOP + EMILIA_OFFSET, player.walk_speed)
 	await player.walk_to(STOP)
 
 	# 3. Compare il nome del luogo, e intanto Subaru si guarda intorno.
@@ -62,15 +67,14 @@ func _play(player: Node2D) -> void:
 	player.face(Facing.RIGHT)
 	await _wait(0.8)
 	player.face(Facing.DOWN)
-	await _wait(0.9)
+	await _wait(0.6)
 
-	# 4. Via le bande, poi un pensiero ad alta voce.
+	# 4. Via le bande, poi due parole: Emilia si apposta in piazza.
 	await _hide_bars()
-	Dialogue.start("Subaru", [
-		"...Dove sono finito?",
-		"Un villaggio. Magari qui qualcuno sa dirmi qualcosa.",
-	])
-	await Dialogue.finished
+	if emilia:
+		await _emilia_takes_post(player, emilia, emilia_post)
+	else:
+		await _say("Subaru", ["Erbalta... Vediamo se qualcuno sa dirmi qualcosa."])
 
 	# 5. Fine: il giocatore riprende i comandi. il ricordo finisce nel salvataggio.
 	Game.set_flag(FlagKeys.INTRO_SEEN)
@@ -78,6 +82,25 @@ func _play(player: Node2D) -> void:
 	# Il primo punto di ritorno del Ritorno dalla Morte: Subaru in piazza, appena arrivato.
 	Game.set_checkpoint()
 	queue_free()
+
+
+func _emilia_takes_post(player: Node2D, emilia: Node2D, post: Vector2) -> void:
+	player.face(Facing.RIGHT)
+	emilia.face(Facing.LEFT)
+	await _say("Emilia", [
+		"Eccoci: il villaggio di Erbalta. Sembra così tranquillo...",
+		"Io mi apposto qui, in piazza. Da qui vedo chi entra e chi esce.",
+		"Tu fai un giro e parla con gli abitanti. Se scopri qualcosa, vieni a dirmelo!",
+	])
+	# Va al suo posto; Subaru la segue con lo sguardo.
+	player.face(Facing.DOWN)
+	await emilia.walk_to(post)
+	emilia.face(Facing.DOWN)
+	player.face(Facing.LEFT)
+	await _say("Subaru", [
+		"Agli ordini! Il vecchio Subaru non ti deluderà.",
+		"...Allora. Da dove comincio?",
+	])
 
 
 ## L'alba: la luce del mondo (Tint) passa dal blu all'arancio al colore normale,
@@ -107,34 +130,3 @@ func _sunrise() -> void:
 
 func _set_rays(value: float, mat: ShaderMaterial) -> void:
 	mat.set_shader_parameter("intensity", value)
-
-
-## "Villaggio di Erbalta": la scritta scende un poco e compare, la linea dorata si allarga
-## dal centro, poi tutto sparisce.
-func _show_place_card() -> void:
-	var y := place_card.position.y
-	place_card.position.y = y - 8.0
-	place_line.scale.x = 0.0
-	var t := create_tween()
-	t.tween_property(place_card, "modulate:a", 1.0, 0.6)
-	t.parallel().tween_property(place_card, "position:y", y, 0.8).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	t.parallel().tween_property(place_line, "scale:x", 1.0, 0.9).set_delay(0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	t.tween_interval(1.4)
-	t.tween_property(place_card, "modulate:a", 0.0, 0.7)
-
-
-## Toglie il nero dopo "delay" secondi, in "seconds" secondi, senza fermare la cutscene.
-func _fade_in_later(delay: float, seconds: float) -> void:
-	await _wait(delay)
-	Fade.fade_in(seconds)
-
-
-func _wait(seconds: float) -> void:
-	await get_tree().create_timer(seconds).timeout
-
-
-func _hide_bars() -> void:
-	var t := create_tween().set_parallel().set_trans(Tween.TRANS_SINE)
-	t.tween_property(top_bar, "offset_bottom", 0.0, 0.4)
-	t.tween_property(bottom_bar, "offset_top", 0.0, 0.4)
-	await t.finished
