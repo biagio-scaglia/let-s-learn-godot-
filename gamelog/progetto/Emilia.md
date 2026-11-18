@@ -53,6 +53,8 @@ L'autore ha fornito un secondo foglio, `emilia-charset-attacco.jpg`: 6 × 4 pose
 
 Risultato: `characters/emilia/emilia_attack.png`, usato in battaglia quando Emilia è nel party ([[Combattimento#Emilia nel party]]).
 
+**Seconda versione**, per stare accanto a Subaru: celle 44×48, così Emilia è alta ~45 pixel come sulla mappa; ogni colore è portato al più vicino della **palette del suo charset** (25 colori), tranne l'azzurro del ghiaccio; un contorno scuro di 1 pixel come nel charset; in battaglia ingrandita **×3**, un numero intero, come Subaru (con ×2,4 i pixel venivano di grandezze diverse). Il ghiaccio si riconosce dal **verde più alto del rosso**: il viola di Emilia ha tanto blu, ma il verde sotto il rosso.
+
 ## Il punto di riferimento
 
 Nell'[[Atto 2]] Emilia resta in piazza e, a ogni passo, ti dice dove andare (le sue frasi le sceglie `VoicesQuest`). Alla fine Subaru le racconta quello che ha letto nel libro nero, in una conversazione a due voci, e decidono di partire all'alba per il bosco a nord. Quando le riparli, si parte: è l'inizio dell'[[Atto 3]].
