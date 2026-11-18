@@ -40,3 +40,14 @@ func _village() -> GdUnitSceneRunner:
 	var runner := scene_runner(Game.FIRST_LEVEL)
 	await runner.simulate_frames(3)
 	return runner
+
+
+func test_l_obiettivo_conta_i_saluti() -> void:
+	Game.set_flag(FlagKeys.HOME_AGAIN)
+	assert_str(Objective.current()).is_equal(Objective.GREET_VILLAGE % 0)
+	Game.set_flag(FlagKeys.greeted("lina"))
+	assert_str(Objective.current()).is_equal(Objective.GREET_VILLAGE % 1)
+	_greet_everyone()
+	assert_str(Objective.current()).is_equal(Objective.LEAVE_SOUTH)
+	Game.set_flag(FlagKeys.GAME_FINISHED)
+	assert_str(Objective.current()).is_equal(Objective.NONE)
