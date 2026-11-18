@@ -36,3 +36,7 @@ func test_i_mostri_prendono_i_numeri_dal_loro_file() -> void:
 	var stats: Array = book.stats
 	assert_str(stats[0][1]).is_equal("16")             # PS
 	assert_str(stats[-1][1]).is_equal("Calcio, Ombra")  # debolezze
+
+
+func test_un_libro_che_non_esiste_e_vuoto() -> void:
+	assert_bool(GalleryBooks.entry("nessuno").is_empty()).is_true()
