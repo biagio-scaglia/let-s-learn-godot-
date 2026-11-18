@@ -114,3 +114,12 @@ func play() -> void:
 	await Fade.fade_out(2.5)
 	await _wait(0.8)
 	Game.change_scene(CREDITS_SCENE, "", "", false)
+
+
+## Il Saggio saluta: due saltelli sul posto.
+func _wave(saggio: Node2D) -> void:
+	var y := saggio.position.y
+	var t := create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS).set_loops(3)
+	t.tween_property(saggio, "position:y", y - 4.0, 0.15).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	t.tween_property(saggio, "position:y", y, 0.15).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	t.tween_interval(0.5)
