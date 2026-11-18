@@ -143,3 +143,14 @@ func test_ricordandolo_la_debolezza_e_gia_scoperta() -> void:
 	await _wait_turn()
 	assert_bool(Battle.revealed.has("ombra")).is_true()
 	await _finish_with_ultimate()
+
+
+func test_l_occhio_aperto_schiva_parte_dei_colpi() -> void:
+	Battle.start(BOSS)
+	await _wait_turn()
+	var watcher := Battle.behavior as WatcherBehavior
+	assert_int(watcher.modify_damage({}, 10)).is_equal(7)
+	Battle.enemy_broken = true
+	assert_int(watcher.modify_damage({}, 10)).is_equal(10)
+	Battle.enemy_broken = false
+	await _finish_with_ultimate()
