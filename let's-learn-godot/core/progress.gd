@@ -38,3 +38,11 @@ func finish_story() -> void:
 		return
 	story_finished = true
 	_save()
+
+
+## Chiamato entrando nella Galleria: non è più "Nuova!".
+func see_gallery() -> void:
+	if gallery_seen:
+		return
+	gallery_seen = true
+	_save()
