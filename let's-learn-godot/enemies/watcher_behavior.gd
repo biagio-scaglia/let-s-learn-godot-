@@ -67,3 +67,11 @@ func on_hit(skill: Dictionary) -> void:
 	if charging and skill.type == "ombra":
 		_blind()
 	_check_phase()
+
+
+func can_flee() -> bool:
+	return false
+
+
+func no_flee_text() -> String:
+	return "Non si scappa da Colui che guarda."
