@@ -288,7 +288,7 @@ data = ExtResource("27_guardiano")
 position = Vector2(632, 930)
 npc_name = "Emilia"
 lines = PackedStringArray("Ti seguo, Subaru. Non preoccuparti per me.", "...Però cammina piano. Ho l'impressione che il bosco ci ascolti.")
-repeat_lines = PackedStringArray("Hai visto gli occhi tra i rovi? Quando ti avvicini, si chiudono.", "Come se non volessero farsi guardare.")
+repeat_lines = PackedStringArray("Hai visto gli occhi tra i rovi? Quando ti avvicini, si chiudono.", "Gli occhi di pietra, invece, guardano avanti e indietro. Avvicinati quando guardano dall'altra parte.")
 charset = ExtResource("5_emilia")
 
 [node name="Follower" type="Node" parent="World/Emilia"]
