@@ -82,3 +82,29 @@ func _close_fast() -> void:
 	t.tween_property(self, "modulate:a", 0.0, 0.25)
 	t.tween_callback(func(): _busy = false)
 	get_tree().create_timer(randf_range(4.0, 8.0)).timeout.connect(_open)
+
+
+## Colui che guarda si sveglia: tutti gli occhi del bosco si spalancano e restano aperti.
+func stare() -> void:
+	if _done:
+		return
+	_staring = true
+	_shut = false
+	_busy = false
+	frame = Lids.OPEN
+	var t := create_tween()
+	t.tween_property(self, "modulate", Color(1.6, 0.8, 1.6, 1.0), 0.15)
+	t.tween_property(self, "modulate", Color.WHITE, 0.4)
+
+
+## Colui che guarda è sconfitto: si chiudono, svaniscono, e non tornano più.
+func close_forever() -> void:
+	_done = true
+	_staring = false
+	var t := create_tween()
+	t.tween_interval(randf_range(0.0, 0.8))   # non tutti insieme
+	t.tween_callback(func(): frame = Lids.HALF)
+	t.tween_interval(0.12)
+	t.tween_callback(func(): frame = Lids.SHUT)
+	t.tween_property(self, "modulate:a", 0.0, 0.5)
+	t.tween_callback(queue_free)
