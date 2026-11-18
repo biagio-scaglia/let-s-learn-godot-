@@ -28,6 +28,10 @@ Le collisioni decidono **chi sbatte contro cosa**.
 | Staccionata, cartello | Rettangolo basso | Come sopra |
 | Bordi della mappa | 4 rettangoli grandi | Muri invisibili, vedi [[StaticBody2D]] |
 
+## Provare prima di muoversi
+
+`test_move(transform, spostamento)` (di ogni corpo fisico, anche uno [[StaticBody2D]]) risponde a "se mi spostassi così, sbatterei contro qualcosa?" **senza muoversi davvero**. I [[Nemici#Gironzolano|nemici che gironzolano]] lo chiedono prima di ogni passo: se la risposta è sì, restano dove sono. Così un nemico mosso con un [[Tween]] (che di suo attraverserebbe tutto) non finisce dentro un albero.
+
 ## Vedi anche
 
 - [[Y-sort]] (le collisioni basse funzionano insieme all'ordine di disegno)
