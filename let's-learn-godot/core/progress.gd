@@ -46,3 +46,10 @@ func see_gallery() -> void:
 		return
 	gallery_seen = true
 	_save()
+
+
+func _save() -> void:
+	var config := ConfigFile.new()
+	config.set_value("storia", "finita", story_finished)
+	config.set_value("galleria", "vista", gallery_seen)
+	config.save(path)
