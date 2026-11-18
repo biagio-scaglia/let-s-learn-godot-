@@ -250,3 +250,17 @@ func _scroll_trees(step: float) -> void:
 		tree.position.x -= 24.0 * step * (tree.scale.x)
 		if tree.position.x < -24.0:
 			tree.position.x += width + 48.0
+
+
+# ---------- Il cartello finale ----------
+
+func _show_final_card() -> void:
+	_finished = true
+	hint.hide()
+	var t := create_tween()
+	t.tween_property(final_card, "modulate:a", 1.0, 2.0)
+	t.tween_interval(3.0)
+	t.tween_property(press, "modulate:a", 1.0, 0.8)
+	t.tween_callback(func(): _can_leave = true)
+	# "Premi Invio" lampeggia piano.
+	t.tween_callback(_blink_press)
