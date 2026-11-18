@@ -175,3 +175,30 @@ func _label(style: String, text: String) -> Label:
 func _outline(label: Label) -> void:
 	label.add_theme_color_override("font_outline_color", Color(0.1, 0.05, 0.12))
 	label.add_theme_constant_override("outline_size", 5)
+
+
+## Una riga del cast: il ritratto (ingrandito, pixel netti) e accanto nome e ruolo.
+func _portrait_row(id: String, title: String, role: String) -> Control:
+	var row := HBoxContainer.new()
+	row.alignment = BoxContainer.ALIGNMENT_CENTER
+	row.add_theme_constant_override("separation", 12)
+	var pic := TextureRect.new()
+	pic.texture = Portraits.of(id)
+	pic.custom_minimum_size = Vector2(40, 40)
+	pic.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	pic.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	row.add_child(pic)
+	var text := VBoxContainer.new()
+	text.alignment = BoxContainer.ALIGNMENT_CENTER
+	text.add_theme_constant_override("separation", 0)
+	text.custom_minimum_size.x = 220
+	var name_label := Label.new()
+	name_label.text = title
+	_outline(name_label)
+	text.add_child(name_label)
+	var role_label := Label.new()
+	role_label.text = role
+	role_label.theme_type_variation = &"HintLabel"
+	text.add_child(role_label)
+	row.add_child(text)
+	return row
