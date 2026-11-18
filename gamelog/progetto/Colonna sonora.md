@@ -75,3 +75,14 @@ Con il tema, sei suoni: lo Sguardo che si carica (un ronzio che sale, con il bat
 ## Vedi anche
 
 - [[2026-11-17-biblioteca#La musica]] · [[2026-11-17-colonna-sonora]] · [[Audio]] · [[Sfx]]
+
+## Il finale
+
+Due brani nuovi, con gli stessi strumenti sintetizzati (flauto, carillon, pianoforte, archi):
+
+| Brano | Dove | Com'è |
+|---|---|---|
+| `prologue_theme.wav` (37 s) | [[Filmato iniziale]] | Notte: un bordone basso e note isolate di carillon. Villaggio: la prima frase del valzer al flauto. Bosco: il carillon si scorda, il bordone diventa re contro mi bemolle. Un accordo al contrario che cresce, un colpo, una nota sola |
+| `credits_theme.wav` (126 s) | [[Titoli di coda]] | *Un giorno nuovo*: il valzer del villaggio **senza ombre** (al posto del si bemolle minore e del re bemolle, accordi maggiori), poi la seconda metà un tono sopra e più piena, e un accordo finale di sol maggiore col carillon che sale |
+
+Non sono in loop: finiscono con il filmato e con i titoli.
