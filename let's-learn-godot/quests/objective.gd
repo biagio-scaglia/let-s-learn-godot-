@@ -22,6 +22,9 @@ const TELL_EMILIA := "Racconta tutto a Emilia, in piazza"
 const DEPART := "Parla con Emilia quando sei pronto a partire"
 ## Atto 3.
 const CROSS_FOREST := "Attraversa il Bosco Senza Tempo"
+## %d = quanti occhi di pietra sono già chiusi.
+const CLOSE_EYES := "Chiudi gli occhi di pietra (%d/3)"
+const ENTER_CLEARING := "Entra nella radura, in cima al bosco"
 ## Nessun obiettivo: il riquadro sparisce.
 const NONE := ""
 
