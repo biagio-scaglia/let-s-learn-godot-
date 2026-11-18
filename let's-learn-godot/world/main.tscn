@@ -138,6 +138,9 @@ position = Vector2(272, 226)
 [node name="LibraryDoor" type="Marker2D" parent="Spawns"]
 position = Vector2(944, 226)
 
+[node name="ForestPath" type="Marker2D" parent="Spawns"]
+position = Vector2(656, 120)
+
 [node name="Subaru" parent="World" instance=ExtResource("2_subaru")]
 position = Vector2(656, 416)
 
