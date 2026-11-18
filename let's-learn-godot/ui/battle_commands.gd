@@ -20,7 +20,7 @@ signal flee_chosen
 @onready var kick_button: MenuItem = %Kick
 @onready var shamac_button: MenuItem = %Shamac
 @onready var power_button: MenuItem = %PowerPunch
-## La mossa con Emilia: c'è solo dopo che lei l'ha insegnata (atto 3).
+## Le Scaglie di gelo: una magia di Emilia, nel suo turno.
 @onready var frost_button: MenuItem = %Frost
 @onready var item_window: Control = %ItemWindow
 @onready var potion_button: MenuItem = %Potion
