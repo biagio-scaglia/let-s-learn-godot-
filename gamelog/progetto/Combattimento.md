@@ -104,11 +104,13 @@ Se il foglio del nemico ha le 5 pose ([[Nemici#L'aspetto]]):
 
 ![[scaglie_di_gelo.png|500]]
 
-La mossa di Emilia (5 PT, potenza ×1,9, tipo **ghiaccio**), sbloccata al primo occhio di pietra chiuso. Lo schermo si fa azzurro e nevica, compaiono sette scaglie a ventaglio, partono una dopo l'altra con un tintinnio e un fiocco di brina dove colpiscono; l'ultima, più grande, chiude il nemico in un **blocco di ghiaccio** che va in frantumi (onda d'urto, scossa, schegge). Gli effetti stanno in `battle_vfx.gd` (sezione "Ghiaccio"), la regia in `_frost_volley()`.
+Una magia di Emilia (5 dei suoi PT, potenza ×1,9, tipo **ghiaccio**), nel suo turno. Si carica (neve, scintille), tende il braccio, e da lì nascono sette scaglie a ventaglio che partono una dopo l'altra con un tintinnio e un fiocco di brina dove colpiscono; l'ultima, più grande, chiude il nemico in un **blocco di ghiaccio** che va in frantumi. Gli effetti stanno in `battle_vfx.gd` (sezione "Ghiaccio"), la regia in `_ally_frost()` e `_frost_volley()`.
 
-Chi la lancia:
-- se Emilia è **nel party**, la usa lei nel suo turno, con le sue pose d'attacco e i suoi PT;
-- se non lo è (ma te l'ha insegnata), Subaru la **chiama**: Emilia compare alle sue spalle solo per il tempo della mossa.
+## Cristallo infranto
+
+![[cristallo_infranto.png|500]]
+
+La mossa **combinata** di Subaru ed Emilia, imparata al primo occhio di pietra chiuso (ricordo `cristallo_sbloccato`). La sceglie Subaru, ma pagano in due: **4 PT a testa** (nel menu: "4+4 PT"). Emilia chiude il nemico in un blocco di ghiaccio che resta intero (`ice_block(feet, hold)`), intanto Subaru si carica; poi scatta e lo frantuma con il pugno caricato: potenza ×2,6, tipo ghiaccio. Emilia non perde il suo turno. Se lei non ha abbastanza PT la mossa non parte e il turno resta a Subaru.
 
 ## Emilia nel party
 
@@ -119,7 +121,7 @@ Dall'arrivo nel bosco (`Game.emilia_in_party()`) Emilia combatte con Subaru. I t
 | Comando | Emilia |
 |---|---|
 | Attacca → **Dardo di gelo** | 0 PT, ×0,9, ghiaccio: una scheggia sola |
-| Abilità → **Scaglie di gelo** | 5 dei suoi PT |
+| Abilità → **Scaglie di gelo** | 5 dei suoi PT (sue fin dal primo combattimento) |
 | Oggetti | Dà la pozione a Subaru |
 | Difendi → **Barriera** | Il prossimo colpo a Subaru fa metà danno, lei recupera 3 PT |
 | Fuggi | Scappano insieme |
