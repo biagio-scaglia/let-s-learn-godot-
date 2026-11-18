@@ -62,6 +62,12 @@ const SOUNDS := {
 	EYE_CLOSE: ["res://assets/forest/eye_close.wav", -3.0],
 	EYE_ALERT: ["res://assets/forest/eye_alert.wav", -5.0],
 	FOG_DISSOLVE: ["res://assets/forest/fog_dissolve.wav", -3.0],
+	GAZE_CHARGE: ["res://assets/boss/gaze_charge.wav", -3.0],
+	GAZE_BEAM: ["res://assets/boss/gaze_beam.wav", -2.0],
+	BOSS_ROAR: ["res://assets/boss/boss_roar.wav", -2.0],
+	ULT_CUTIN: ["res://assets/boss/ultimate_cutin.wav", -2.0],
+	ULT_CRYSTAL: ["res://assets/boss/ultimate_crystal.wav", -3.0],
+	ULT_FINALE: ["res://assets/boss/ultimate_finale.wav", -1.0],
 }
 
 var _players := {}
