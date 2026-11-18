@@ -787,7 +787,7 @@ func _on_flee() -> void:
 		_end(FLED)
 	else:
 		await _say("Non riesci a scappare!")
-		_enemy_turn()
+		_next_turn()
 
 
 # ---------- Il turno del nemico ----------
