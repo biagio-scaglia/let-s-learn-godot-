@@ -68,3 +68,18 @@ func close() -> void:
 	visible = false
 	Game.in_cutscene = false
 	closed.emit()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if not is_open:
+		return
+	if event.is_action_pressed("move_right") or event.is_action_pressed("ui_right"):
+		_turn(1)
+	elif event.is_action_pressed("move_left") or event.is_action_pressed("ui_left"):
+		_turn(-1)
+	elif event.is_action_pressed("interact") or event.is_action_pressed("pause") \
+			or event.is_action_pressed("ui_cancel"):
+		close()
+	else:
+		return
+	get_viewport().set_input_as_handled()
