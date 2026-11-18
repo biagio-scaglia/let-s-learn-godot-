@@ -25,7 +25,12 @@ func _ready() -> void:
 
 
 func _on_lina() -> void:
-	if Game.has_flag(FlagKeys.CHEST_OPEN):
+	if Game.has_flag(FlagKeys.BOOK_READ):
+		lina.override_lines = [
+			"Il nonno dice che domani sarà un giorno come gli altri.",
+			"...Lo dice tutte le mattine. Prima non ci avevo mai fatto caso.",
+		]
+	elif Game.has_flag(FlagKeys.CHEST_OPEN):
 		lina.override_lines = [
 			"Ti sono piaciute le pozioni? Erano del nonno: dice che fanno miracoli.",
 		]
