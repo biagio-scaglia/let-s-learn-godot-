@@ -34,3 +34,21 @@ func _ready() -> void:
 			or Game.has_flag(FlagKeys.GAME_FINISHED):
 		queue_free()
 		return
+
+
+func _process(_delta: float) -> void:
+	if not Game.player_can_move():
+		return
+	if not TRIGGER.has_point(_player.global_position):
+		_warned = false
+		return
+	if FlagKeys.greeted_count() == FlagKeys.VILLAGERS.size():
+		set_process(false)
+		Game.in_cutscene = true
+		play()
+	elif not _warned:
+		_warned = true
+		Dialogue.start("Emilia", [
+			"Aspetta, Subaru. Prima di partire salutiamo tutti.",
+			"Il Saggio, Lina e l'Archivista. Non possiamo andarcene senza una parola.",
+		])
