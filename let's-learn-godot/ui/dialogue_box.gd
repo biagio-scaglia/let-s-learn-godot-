@@ -76,6 +76,14 @@ func _on_line_typed() -> void:
 	_arrow_bob.tween_property(arrow, "position:y", _arrow_y, 0.3)
 
 
+## Ferma la scrittura della frase precedente, se è ancora in corso: altrimenti
+## continuerebbe a scrivere lettere della frase vecchia su quella nuova.
+func _stop_typing() -> void:
+	if _typing:
+		_typing.kill()
+		_typing = null
+
+
 func _stop_arrow() -> void:
 	if _arrow_bob:
 		_arrow_bob.kill()
