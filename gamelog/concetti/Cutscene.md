@@ -49,7 +49,9 @@ Due `ColorRect` neri in un [[CanvasLayer]], uno in alto e uno in basso, ancorati
 
 ## Nel progetto
 
-- [[Intro]]: Subaru arriva al villaggio, alla prima partita.
+- [[Rocca d'Argento]]: Subaru ed Emilia partono dal castello, di notte. È la prima scena di una partita nuova.
+- [[Intro]]: arrivano al villaggio all'alba, ed Emilia si apposta in piazza.
+- Le funzioni comuni (bande nere, nome del luogo, attese) stanno nella classe base `Cutscene`: vedi [[Ereditarietà]].
 
 ## Vedi anche
 

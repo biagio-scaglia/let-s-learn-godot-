@@ -41,6 +41,7 @@ Indice dei concetti di Godot incontrati finora. Ogni concetto ha la sua nota, co
 - [[Plugin]]: addon che aggiungono nodi e strumenti all'editor (Dialogue Manager, Phantom Camera, Beehave)
 - [[Ottimizzazione]]: misurare, e non far lavorare il gioco per niente
 - [[Classi globali]]: `class_name`, uno script diventa un tipo
+- [[Ereditarietà]]: `extends` un proprio script, funzioni condivise
 - [[Tween]]: animare una proprietà dal codice
 - [[Numeri casuali]]: dadi, probabilità e il seme
 - [[Await]]: aspettare senza bloccare il gioco
