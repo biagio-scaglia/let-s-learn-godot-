@@ -19,6 +19,10 @@ var _done := false
 
 
 func _ready() -> void:
+	add_to_group("thicket_eyes")
+	if Game.has_flag(FlagKeys.BOSS_DEFEATED):
+		queue_free()   # il bosco è libero: niente più occhi
+		return
 	hframes = 3
 	frame = Lids.SHUT
 	modulate.a = 0.0
