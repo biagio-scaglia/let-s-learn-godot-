@@ -518,6 +518,17 @@ text = "Fuggi"
 script = ExtResource("3_item")
 cursor_texture = ExtResource("6_hand")
 
+[node name="Ultimate" type="Button" parent="Screen/Commands/Menu"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.84, 0.4, 1)
+theme_override_colors/font_focus_color = Color(1, 0.95, 0.7, 1)
+theme_override_font_sizes/font_size = 16
+text = "Alba di cristallo"
+script = ExtResource("3_item")
+cursor_texture = ExtResource("6_hand")
+
 [node name="SkillWindow" type="PanelContainer" parent="Screen"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(190, 0)
