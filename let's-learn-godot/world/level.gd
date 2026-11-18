@@ -23,6 +23,8 @@ func _ready() -> void:
 	else:
 		return   # partita nuova: il giocatore resta dov'è nella scena
 
+	# Un teletrasporto: niente "strisciata" dal punto di prima (interpolazione della fisica).
+	player.reset_physics_interpolation()
 	if Game.spawn_facing != "" and player.has_method("face"):
 		player.face(Game.spawn_facing)
 	# La camera deve "saltare" subito sul giocatore, non scivolare dalla vecchia posizione.
