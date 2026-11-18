@@ -117,3 +117,11 @@ static func entry(id: String) -> Dictionary:
 		if book.id == id:
 			return _with_stats(book)
 	return {}
+
+
+## Tutti gli id, nell'ordine della Galleria: prima i personaggi, poi i mostri.
+static func all_ids() -> Array[String]:
+	var ids: Array[String] = []
+	for book in CHARACTERS + MONSTERS:
+		ids.append(book.id)
+	return ids
