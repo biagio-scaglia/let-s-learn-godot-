@@ -524,7 +524,12 @@ func _enemy_turn() -> void:
 	var dealt := Stats.damage(enemy.attack, Stats.defense, rng.randi_range(-1, 1))
 	if defending:
 		dealt = maxi(1, ceili(dealt / 2.0))
-	# Scatta verso Subaru, colpisce, torna al suo posto.
+	# Si carica (indietreggia un poco), poi scatta verso Subaru, colpisce, torna al suo posto.
+	_enemy_pose(EnemyData.Pose.WINDUP)
+	var windup := create_tween()
+	windup.tween_property(enemy_sprite, "position:x", _enemy_home.x - 14.0, 0.3).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	await windup.finished
+	_enemy_pose(EnemyData.Pose.ATTACK)
 	var lunge := create_tween()
 	lunge.tween_property(enemy_sprite, "position:x", _enemy_home.x + 70.0, 0.12).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	await lunge.finished
