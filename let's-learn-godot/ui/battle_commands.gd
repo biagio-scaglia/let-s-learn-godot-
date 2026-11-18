@@ -33,6 +33,14 @@ var _skills := {}
 var _skill_buttons := {}
 ## La descrizione di ogni voce, mostrata in basso quando è selezionata.
 var _help_for := {}
+## Chi sta scegliendo: "hero" (Subaru) o "ally" (Emilia). Cambia voci e PT.
+var actor := "hero"
+## La mossa del comando Attacca per chi sta scegliendo.
+var _attack_id := ""
+var _hero_attack := ""
+## I PT di Emilia (quelli di Subaru stanno in Stats).
+var ally_sp := 0
+var _defend_sp := 0
 
 
 ## Collega i bottoni. "attack" è la mossa del comando Attacca.
