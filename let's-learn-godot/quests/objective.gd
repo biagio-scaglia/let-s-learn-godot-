@@ -13,7 +13,14 @@ const VISIT_LINA := "Vai da Lina, nella casa col tetto rosso"
 const FIND_KEY := "Trova la chiave di Lina, a ovest della piazza"
 const BRING_KEY := "Porta la chiave a Lina"
 const OPEN_CHEST := "Apri il baule di Lina"
-## Missione finita: nessun obiettivo, il riquadro sparisce.
+## Solo per i salvataggi di prima dell'atto 2: baule aperto, ma senza la pagina.
+const CHECK_CHEST := "Guarda meglio nel baule di Lina"
+const SHOW_PAGE := "Porta la pagina strappata all'Archivista"
+const DEFEAT_SPECTRE := "Sconfiggi lo Spettro, a est della piazza"
+const READ_BOOK := "Leggi il libro nero, in biblioteca"
+const TELL_EMILIA := "Racconta tutto a Emilia, in piazza"
+const FOREST := "All'alba, il bosco a nord (atto 3 in arrivo)"
+## Nessun obiettivo: il riquadro sparisce.
 const NONE := ""
 
 
