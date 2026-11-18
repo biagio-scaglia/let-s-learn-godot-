@@ -44,3 +44,54 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 	_started = true
 	_awaken(body)
+
+
+func _awaken(player: Node2D) -> void:
+	Game.in_cutscene = true
+	var seen := Game.remembers(MEMORY_SEEN)
+	Game.remember(MEMORY_SEEN)
+	var camera := player.get_node_or_null("Camera2D") as Camera2D
+	# La musica del bosco si spegne: c'è solo il silenzio, e il vento.
+	for music in get_tree().get_nodes_in_group("level_music"):
+		create_tween().tween_property(music, "volume_db", -40.0, 1.5)
+	# La camera sale verso l'occhio.
+	if camera:
+		var look := (eye.global_position - player.global_position) * 0.55
+		await create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS) \
+			.tween_property(camera, "offset", look, 1.4).set_trans(Tween.TRANS_SINE).finished
+	# Si sveglia: ruggito, terremoto, tutti gli occhi del bosco si spalancano.
+	Sfx.play(Sfx.BOSS_ROAR)
+	_shake(camera, 1.2)
+	get_tree().call_group("thicket_eyes", "stare")
+	eye.frame = EnemyData.Pose.WINDUP
+	aura.emitting = true
+	create_tween().tween_property(glow, "energy", 2.2, 0.5)
+	await get_tree().create_timer(1.0).timeout
+	_breathe()
+	if seen:
+		Dialogue.start("Colui che guarda", ["...Ancora tu."])
+		await Dialogue.finished
+		Dialogue.start("Subaru", ["Di nuovo qui. Ma stavolta ricordo il tuo sguardo."])
+		await Dialogue.finished
+	else:
+		Dialogue.start("Colui che guarda", [
+			"...Ancora tu.",
+			"Ogni volta torni. Ogni volta muori. E ogni volta, resti.",
+			"Erbalta dorme. Erbalta è al sicuro. Perché vuoi svegliarla?",
+		])
+		await Dialogue.finished
+		Dialogue.start("Subaru", [
+			"Al sicuro? È una gabbia. Gli alberi non crescono, il Saggio non ricorda, le stelle sono ferme.",
+			"Questa volta no. Questa volta la porto via di qui.",
+		])
+		await Dialogue.finished
+		Dialogue.start("Emilia", ["Subaru. Insieme."])
+		await Dialogue.finished
+	if camera:
+		create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS).tween_property(camera, "offset", Vector2.ZERO, 0.5)
+	var result: String = await Battle.start(BOSS)
+	if result == Battle.WIN:
+		await _defeated(player)
+	elif result == Battle.LOSE:
+		# Il Ritorno dalla Morte riporta tutto indietro. Tutto, tranne quello che Subaru ha visto.
+		Game.remember(WatcherBehavior.MEMORY_GAZE)
