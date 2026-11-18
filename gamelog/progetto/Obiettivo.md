@@ -36,6 +36,8 @@ Dal [[2026-11-18-atto-2]] segue tutto l'[[Atto 2]]:
 | Hai letto il libro | Racconta tutto a Emilia, in piazza |
 | Fine dell'atto 2 | Parla con Emilia quando sei pronto a partire |
 | Arrivati nel bosco ([[Atto 3]]) | Attraversa il Bosco Senza Tempo |
+| Vista la nebbia, o chiuso un occhio | Chiudi gli occhi di pietra (N/3) |
+| Nebbia aperta | Entra nella radura, in cima al bosco |
 | *Vecchio salvataggio: baule aperto, niente pagina* | Guarda meglio nel baule di Lina |
 
 `current()` controlla **dalla fine**: il primo passo già fatto decide cosa viene dopo.
