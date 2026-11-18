@@ -120,3 +120,85 @@ func _animate(target: float) -> void:
 	_tween = create_tween().set_parallel()
 	_tween.tween_property(_dim, "color:a", 0.6 * target, 0.2)
 	_tween.tween_property(_book, "modulate:a", target, 0.2)
+
+
+# ---------- Costruzione ----------
+
+func _build() -> void:
+	_dim = ColorRect.new()
+	_dim.color = Color(0.04, 0.02, 0.06, 0.0)
+	_dim.set_anchors_preset(Control.PRESET_FULL_RECT)
+	_dim.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(_dim)
+
+	# Il libro, centrato nello schermo di 640x360.
+	_book = Control.new()
+	_book.size = BOOK_SIZE
+	_book.position = (Vector2(640, 360) - BOOK_SIZE) / 2.0 - Vector2(0, 8)
+	_book.modulate.a = 0.0
+	add_child(_book)
+	_book.add_child(_panel(Rect2(Vector2.ZERO, BOOK_SIZE), LEATHER, Color(0.16, 0.07, 0.07), 3))
+	var half := (BOOK_SIZE.x - 28) / 2.0
+	var left := _panel(Rect2(10, 8, half, BOOK_SIZE.y - 16), PAPER, PAPER_DARK, 2)
+	var right := _panel(Rect2(18 + half, 8, half, BOOK_SIZE.y - 16), PAPER, PAPER_DARK, 2)
+	_book.add_child(left)
+	_book.add_child(right)
+	# La piega in mezzo: una striscia più scura.
+	var fold := ColorRect.new()
+	fold.color = Color(0.55, 0.42, 0.3, 0.6)
+	fold.position = Vector2(10 + half - 2, 8)
+	fold.size = Vector2(12, BOOK_SIZE.y - 16)
+	_book.add_child(fold)
+
+	# Pagina sinistra: ritratto, nome, sottotitolo, numeri.
+	var lv := VBoxContainer.new()
+	lv.position = Vector2(14, 10)
+	lv.size = left.size - Vector2(28, 20)
+	lv.add_theme_constant_override("separation", 2)
+	left.add_child(lv)
+	_portrait = TextureRect.new()
+	_portrait.custom_minimum_size = Vector2(0, 104)
+	_portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	_portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	_portrait.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	lv.add_child(_portrait)
+	_name = _ink_label("", INK)
+	_name.add_theme_font_size_override("font_size", 24)
+	_name.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	lv.add_child(_name)
+	_role = _ink_label("", INK_SOFT)
+	_role.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_role.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	lv.add_child(_role)
+	_stats = GridContainer.new()
+	_stats.columns = 2
+	_stats.add_theme_constant_override("h_separation", 8)
+	_stats.add_theme_constant_override("v_separation", -2)
+	lv.add_child(_stats)
+
+	# Pagina destra: il testo, il numero di pagina e le frecce.
+	_text = _ink_label("", INK)
+	_text.position = Vector2(14, 14)
+	_text.size = right.size - Vector2(28, 44)
+	_text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	right.add_child(_text)
+	_page_number = _ink_label("", INK_SOFT)
+	_page_number.position = Vector2(0, right.size.y - 26)
+	_page_number.size = Vector2(right.size.x, 20)
+	_page_number.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	right.add_child(_page_number)
+	_prev = _ink_label("<", INK)
+	_prev.position = Vector2(right.size.x / 2.0 - 46, right.size.y - 26)
+	right.add_child(_prev)
+	_next = _ink_label(">", INK)
+	_next.position = Vector2(right.size.x / 2.0 + 38, right.size.y - 26)
+	right.add_child(_next)
+
+	# Sotto il libro, i comandi.
+	var hint := Label.new()
+	hint.theme_type_variation = &"HintLabel"
+	hint.text = "Frecce: sfoglia - E: chiudi"
+	hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	hint.position = Vector2(0, BOOK_SIZE.y + 4)
+	hint.size = Vector2(BOOK_SIZE.x, 20)
+	_book.add_child(hint)
