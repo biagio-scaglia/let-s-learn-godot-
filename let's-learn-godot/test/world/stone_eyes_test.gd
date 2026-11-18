@@ -62,3 +62,31 @@ func test_chiudere_un_occhio_insegna_il_gelo() -> void:
 	# Il bagliore corrispondente nella nebbia si è spento.
 	var gate := runner.scene().get_node("World/FogGate")
 	assert_bool(gate.get_node("EyeOvest").visible).is_false()
+
+
+func test_l_occhio_chiuso_resta_chiuso() -> void:
+	Game.set_flag(FlagKeys.eye_closed("est"))
+	var runner := await _forest()
+	var eye := runner.scene().get_node("World/StoneEyeEst") as StoneEye
+	assert_bool(eye.is_closed).is_true()
+	assert_bool(eye.gaze.visible).is_false()
+	assert_bool(runner.scene().get_node("World/FogGate/EyeEst").visible).is_false()
+
+
+func test_con_tre_occhi_chiusi_la_nebbia_si_apre() -> void:
+	Game.set_flag(FlagKeys.ICE_UNLOCKED)
+	Game.set_flag(FlagKeys.eye_closed("ovest"))
+	Game.set_flag(FlagKeys.eye_closed("est"))
+	var runner := await _forest()
+	var gate := runner.scene().get_node("World/FogGate")
+	runner.scene().get_node("World/StoneEyeSud").interactable.interacted.emit()
+	await _play_until(runner, func(): return not is_instance_valid(gate) and not Game.in_cutscene)
+	assert_bool(is_instance_valid(gate)).is_false()
+	assert_str(Objective.current()).is_equal(Objective.ENTER_CLEARING)
+
+
+func test_tornando_a_nebbia_aperta_non_c_e_piu() -> void:
+	for id in FlagKeys.STONE_EYES:
+		Game.set_flag(FlagKeys.eye_closed(id))
+	var runner := await _forest()
+	assert_object(runner.scene().get_node_or_null("World/FogGate")).is_null()
