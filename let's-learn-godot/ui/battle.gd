@@ -559,6 +559,8 @@ func _enemy_turn() -> void:
 
 func _victory() -> void:
 	# Il nemico lampeggia di bianco, si tinge di viola e si scioglie verso il basso.
+	_stop_enemy_breathing()
+	_enemy_pose(EnemyData.Pose.HURT)
 	vfx.impact(enemy_sprite.position + Vector2(0, -40), 4.0)
 	vfx.flash_white(enemy_sprite, 0.5)
 	var t := create_tween()
