@@ -622,7 +622,7 @@ func _ally_defend() -> void:
 
 ## Dove sta la mano di Emilia quando tende il braccio (da lì partono le scaglie).
 func _ally_hand() -> Vector2:
-	return emilia_sprite.position + Vector2(-34, -70)
+	return emilia_sprite.position + Vector2(-36, -78)
 
 
 ## Una scaglia (non l'ultima) arriva: brina, un tintinnio, una scossa piccola.
