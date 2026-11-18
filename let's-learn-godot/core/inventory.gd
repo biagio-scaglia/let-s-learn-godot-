@@ -17,6 +17,8 @@ const ITEMS := {
 	KEY: preload("res://items/chiave.tres"),
 	POTION: preload("res://items/pozione.tres"),
 	COIN: preload("res://items/moneta.tres"),
+	PAGE: preload("res://items/pagina.tres"),
+	TEAR: preload("res://items/lacrima.tres"),
 }
 
 ## Emesso a ogni cambiamento (lo ascolta il menu dello zaino).
