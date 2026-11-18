@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://enemies/enemy_data.gd" id="1_data"]
+[ext_resource type="Texture2D" path="res://assets/enemies/colui_che_guarda.png" id="2_look"]
+[ext_resource type="AudioStream" path="res://assets/music/boss_theme.wav" id="3_music"]
+[ext_resource type="Script" path="res://enemies/watcher_behavior.gd" id="4_behavior"]
+
+[resource]
+script = ExtResource("1_data")
+name = "Colui che guarda"
+max_hp = 150
+attack = 10
+defense = 4
+shield = 4
+weaknesses = Array[String](["ombra", "ghiaccio"])
+xp = 100
+texture = ExtResource("2_look")
+frames = 5
+battle_scale = 2.2
+music = ExtResource("3_music")
+behavior = ExtResource("4_behavior")
