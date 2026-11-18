@@ -13,6 +13,24 @@ shader_parameter/amount = 1.0
 shader_parameter/max_blur = 1.4
 shader_parameter/tint = Color(0.06, 0.03, 0.1, 0.22)
 
+[sub_resource type="ShaderMaterial" id="title_shine"]
+shader = ExtResource("6_shine")
+
+[sub_resource type="Gradient" id="glow_gradient"]
+offsets = PackedFloat32Array(0, 1)
+colors = PackedColorArray(1, 0.85, 0.55, 0.35, 1, 0.85, 0.55, 0)
+
+[sub_resource type="GradientTexture2D" id="glow_tex"]
+gradient = SubResource("glow_gradient")
+width = 128
+height = 64
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="CanvasItemMaterial" id="additive"]
+blend_mode = 1
+
 [sub_resource type="Gradient" id="shade_gradient"]
 offsets = PackedFloat32Array(0, 0.38, 0.62, 1)
 colors = PackedColorArray(0.06, 0.03, 0.1, 0.78, 0.06, 0.03, 0.1, 0.25, 0.06, 0.03, 0.1, 0.2, 0.06, 0.03, 0.1, 0.82)
