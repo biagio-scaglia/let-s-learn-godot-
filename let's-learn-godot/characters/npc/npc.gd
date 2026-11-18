@@ -45,7 +45,7 @@ func _ready() -> void:
 	# Respiro: lo sprite si schiaccia appena e torna, all'infinito.
 	# Si deforma dai piedi perché l'origine dello sprite è in basso.
 	var base := sprite.scale
-	var breathe := create_tween().set_loops()
+	var breathe := create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS).set_loops()
 	breathe.tween_property(sprite, "scale", base * Vector2(1.03, 0.96), 0.9) \
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	breathe.tween_property(sprite, "scale", base, 0.9) \
@@ -115,7 +115,7 @@ func walk_to(point: Vector2, speed := 70.0) -> void:
 		for column in [1, 2, 3, 0]:
 			_walk_anim.tween_callback(func(): sprite.frame = row + column)
 			_walk_anim.tween_interval(0.15)
-	var t := create_tween()
+	var t := create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	t.tween_property(self, "global_position", point, global_position.distance_to(point) / speed)
 	await t.finished
 	if _walk_anim:
