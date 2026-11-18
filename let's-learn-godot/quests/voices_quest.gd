@@ -196,3 +196,16 @@ func _on_black_book() -> void:
 		"...Questa è la mia calligrafia. Non c'è dubbio.",
 		"Devo dirlo a Emilia. Subito.",
 	])
+
+
+## Il libro si "sveglia": la sua luce viola si gonfia e torna a tremolare piano.
+func _book_wakes() -> void:
+	if book_glow == null:
+		return
+	Sfx.play(Sfx.SHAMAC)
+	# La luce ha flicker.gd, che a ogni frame riscrive "energy" partendo da "_base_energy":
+	# per questo animiamo il valore di base, e il tremolio continua sopra.
+	var base: float = book_glow.get("_base_energy")
+	var t := create_tween()
+	t.tween_property(book_glow, "_base_energy", base * 4.0, 0.6).set_trans(Tween.TRANS_SINE)
+	t.tween_property(book_glow, "_base_energy", base, 2.5).set_trans(Tween.TRANS_SINE)
