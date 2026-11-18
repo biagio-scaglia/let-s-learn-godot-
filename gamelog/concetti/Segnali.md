@@ -36,6 +36,12 @@ finished.emit()
 | `finished` di un [[Tween]] | La scrittura del testo | La [[Finestra di dialogo]], per mostrare la freccia |
 | `finished` | La [[Finestra di dialogo]] | Nessuno per ora: servirà per le missioni |
 
+## Collegamenti usa e getta
+
+`segnale.connect(funzione, CONNECT_ONE_SHOT)` collega una funzione che verrà chiamata **una volta sola**, poi il collegamento sparisce. È un'alternativa ad `await segnale`, con una differenza importante: se il nodo che aspetta viene distrutto, il collegamento si toglie da solo.
+
+Nel progetto: quando Emilia dice "Andiamo", `VoicesQuest` aspetta la fine del dialogo per cambiare scena. Con `await Dialogue.finished` l'attesa sarebbe rimasta "appesa" anche dopo la fine di un test, e la prima finestra chiusa in un altro test avrebbe cambiato scena. Con `Dialogue.finished.connect(_go_to_forest, CONNECT_ONE_SHOT)` no. Vedi [[2026-11-18-bosco]].
+
 ## Vedi anche
 
 - [[Area2D]] · [[Tween]] · [[GDScript]]
