@@ -53,6 +53,34 @@ func _ready() -> void:
 	hop.parallel().tween_property(sprite, "scale", base, 0.35)
 
 
+## Ogni tanto fa qualche passo attorno a casa. Prima controlla di non sbattere contro
+## qualcosa (un albero, un rovo, Subaru) con test_move: se sbatterebbe, resta dov'è.
+func _wander_later() -> void:
+	get_tree().create_timer(randf_range(2.5, 5.5)).timeout.connect(_wander)
+
+
+func _wander() -> void:
+	if not is_inside_tree() or Game.has_flag(FlagKeys.defeated(self)):
+		return
+	# Fermo durante dialoghi, cutscene e battaglie, e quando Subaru gli sta parlando vicino.
+	if Game.player_can_move() and interactable.player == null:
+		step_towards(_home + Vector2.from_angle(randf() * TAU) * randf_range(12.0, wander_radius))
+	_wander_later()
+
+
+## Un passo verso "target", se la strada è libera. Restituisce true se si è mosso.
+func step_towards(target: Vector2) -> bool:
+	var motion := target - global_position
+	if motion.length() < 4.0 or test_move(global_transform, motion):
+		return false
+	sprite.flip_h = motion.x < 0.0   # guarda dove va
+	if _wander_tween:
+		_wander_tween.kill()
+	_wander_tween = create_tween()
+	_wander_tween.tween_property(self, "global_position", target, motion.length() / wander_speed) 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	return true
+
+
 func _fight() -> void:
 	var result: String = await Battle.start(data)
 	if result != Battle.WIN:
