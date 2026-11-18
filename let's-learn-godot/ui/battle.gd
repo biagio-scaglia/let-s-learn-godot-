@@ -1181,6 +1181,9 @@ func _enemy_rest() -> void:
 	if enemy_broken or enemy_hp == 0:
 		enemy_sprite.frame = EnemyData.Pose.HURT
 		return
+	if behavior and behavior.held_pose() >= 0:
+		enemy_sprite.frame = behavior.held_pose()
+		return
 	_enemy_posing = false
 	enemy_sprite.frame = EnemyData.Pose.IDLE
 
