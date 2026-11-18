@@ -51,3 +51,14 @@ func test_l_obiettivo_conta_i_saluti() -> void:
 	assert_str(Objective.current()).is_equal(Objective.LEAVE_SOUTH)
 	Game.set_flag(FlagKeys.GAME_FINISHED)
 	assert_str(Objective.current()).is_equal(Objective.NONE)
+
+
+func test_il_saggio_saluta_e_se_ne_ricorda() -> void:
+	var runner := await _village()
+	var saggio := runner.scene().get_node("World/Npc/Interactable") as Interactable
+	saggio.interacted.emit()
+	assert_bool(Game.has_flag(FlagKeys.greeted("saggio"))).is_true()
+	assert_str("\n".join(saggio.override_lines)).contains("alberi")
+	# La seconda volta parla della partenza.
+	saggio.interacted.emit()
+	assert_str("\n".join(saggio.override_lines)).contains("sentiero a sud")
