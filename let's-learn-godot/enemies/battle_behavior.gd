@@ -14,3 +14,14 @@ var battle: Node
 
 func setup(owner_battle: Node) -> void:
 	battle = owner_battle
+
+
+## Dopo "X appare!": un ruggito, un ricordo, una frase. Si può aspettare (await).
+func after_intro() -> void:
+	pass
+
+
+## Il turno del nemico. Restituisce true se ha fatto lui qualcosa di speciale (allora
+## Battle salta l'attacco normale), false per l'attacco normale. Si può aspettare.
+func take_turn() -> bool:
+	return false
