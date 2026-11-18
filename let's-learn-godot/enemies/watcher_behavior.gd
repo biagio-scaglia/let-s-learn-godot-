@@ -35,3 +35,19 @@ func after_intro() -> void:
 	if Game.remembers(MEMORY_GAZE):
 		battle._reveal("ombra")
 		await battle._say("Subaru ricorda: quando carica lo Sguardo, lo Shamac lo acceca!")
+
+
+func take_turn() -> bool:
+	if _pending != "":
+		Sfx.play(Sfx.BOSS_ROAR)
+		battle.vfx.shake(9.0, 0.8)
+		await battle._say(_pending)
+		_pending = ""
+	_turns += 1
+	if charging:
+		await _fire_gaze()
+		return true
+	if _turns == 2 or (_turns > 2 and (_turns - 2) % 3 == 0):
+		await _start_charge()
+		return true
+	return false
