@@ -43,7 +43,12 @@ Da Erbalta arrivano voci strane: nessuno vuole più lasciare il villaggio. Il Sa
 
 I nemici sono disegnati apposta e **animati**: respirano, si caricano, attaccano e fanno una smorfia quando li colpisci.
 
-### La biblioteca
+### Atto 3: il Bosco Senza Tempo
+
+![Subaru ed Emilia nel bosco morto all'alba: alberi spogli, nebbia, funghi viola e occhi tra i rovi](gamelog/assets/bosco_emilia_segue.png)
+
+All'alba, Subaru ed Emilia partono per il bosco a nord. Gli alberi non hanno foglie, la nebbia scorre tra i tronchi, i funghi brillano di viola, e tra i rovi degli occhi si aprono… e si chiudono di colpo se ti avvicini. Emilia ti segue passo passo. *(In lavorazione: un pezzo alla volta.)*
+
 
 ![La biblioteca di notte: raggi di luna dalle finestre, candele, scaffali e l'Archivista](gamelog/assets/biblioteca_interno.png)
 
