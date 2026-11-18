@@ -55,3 +55,9 @@ func take_turn() -> bool:
 
 func held_pose() -> int:
 	return EnemyData.Pose.WINDUP if charging else -1
+
+
+func modify_damage(_skill: Dictionary, amount: int) -> int:
+	if battle.enemy_broken:
+		return amount   # accecato o rotto: non vede niente
+	return maxi(1, roundi(amount * SEEN_HIT))
