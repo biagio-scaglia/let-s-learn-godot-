@@ -25,6 +25,7 @@ const CROSS_FOREST := "Attraversa il Bosco Senza Tempo"
 ## %d = quanti occhi di pietra sono già chiusi.
 const CLOSE_EYES := "Chiudi gli occhi di pietra (%d/3)"
 const ENTER_CLEARING := "Entra nella radura, in cima al bosco"
+const BACK_HOME := "Torna a Erbalta con Emilia"
 ## Nessun obiettivo: il riquadro sparisce.
 const NONE := ""
 
