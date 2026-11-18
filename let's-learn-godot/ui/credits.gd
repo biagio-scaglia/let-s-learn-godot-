@@ -169,3 +169,9 @@ func _label(style: String, text: String) -> Label:
 		_:
 			_outline(label)
 	return label
+
+
+## Un bordo scuro attorno alle lettere: quando il cielo diventa chiaro si leggono lo stesso.
+func _outline(label: Label) -> void:
+	label.add_theme_color_override("font_outline_color", Color(0.1, 0.05, 0.12))
+	label.add_theme_constant_override("outline_size", 5)
