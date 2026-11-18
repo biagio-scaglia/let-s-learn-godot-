@@ -62,12 +62,13 @@ func test_senza_il_primo_occhio_niente_combinata() -> void:
 	await _escape()
 
 
-func test_dopo_l_insegnamento_di_emilia_c_e() -> void:
-	Game.set_flag(FlagKeys.ICE_UNLOCKED)
-	Battle.start(load("res://enemies/occhio_errante.tres"))
+func test_dopo_il_primo_occhio_c_e_la_combinata() -> void:
+	Game.set_flag(FlagKeys.FOREST_ARRIVED)
+	Game.set_flag(FlagKeys.COMBO_UNLOCKED)
+	Battle.start(_tough_enemy())
 	await _wait_turn()
 	Battle.commands.open_skills()
-	assert_bool(Battle.commands.frost_button.visible).is_true()
+	assert_bool(Battle.commands.shatter_button.visible).is_true()
 	Battle.commands.close_submenus()
 	await _escape()
 
