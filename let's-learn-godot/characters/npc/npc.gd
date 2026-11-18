@@ -26,6 +26,10 @@ const CHARSET_ROWS := {Facing.DOWN: 0, Facing.LEFT: 1, Facing.RIGHT: 2, Facing.U
 @onready var interactable: Interactable = $Interactable
 
 var facing := Facing.DOWN
+## True mentre una cutscene lo fa camminare: non si gira verso il giocatore da solo.
+var _scripted := false
+## Il Tween della camminata dei piedi (i frame del charset), per fermarlo all'arrivo.
+var _walk_anim: Tween
 
 
 func _ready() -> void:
@@ -69,7 +73,8 @@ func _use_dungeon_tile() -> void:
 
 func _process(_delta: float) -> void:
 	var player := interactable.player
-	if player == null:
+	# In una cutscene decide la regia dove guardare.
+	if player == null or _scripted or Game.in_cutscene:
 		return
 	var to_player := player.global_position - global_position
 	if charset:
@@ -85,3 +90,36 @@ func _process(_delta: float) -> void:
 func _show_facing() -> void:
 	# Colonna 0: in piedi, fermo.
 	sprite.frame = CHARSET_ROWS[facing] * 4
+
+
+# ---------- Comandi per le cutscene (solo con un charset) ----------
+
+## Si gira in una direzione (una costante di Facing).
+func face(direction: String) -> void:
+	facing = direction
+	if charset:
+		_show_facing()
+
+
+## Cammina fino a "point" (coordinate globali) e si ferma. Si può aspettare con await,
+## come Subaru.walk_to(). Le 4 colonne della riga del charset sono i passi.
+func walk_to(point: Vector2, speed := 70.0) -> void:
+	_scripted = true
+	face(Facing.from_vector(point - global_position))
+	if charset:
+		var row: int = CHARSET_ROWS[facing] * 4
+		if _walk_anim:
+			_walk_anim.kill()
+		# Un Tween che non finisce mai: cambia frame ogni 0.15 secondi.
+		_walk_anim = create_tween().set_loops()
+		for column in [1, 2, 3, 0]:
+			_walk_anim.tween_callback(func(): sprite.frame = row + column)
+			_walk_anim.tween_interval(0.15)
+	var t := create_tween()
+	t.tween_property(self, "global_position", point, global_position.distance_to(point) / speed)
+	await t.finished
+	if _walk_anim:
+		_walk_anim.kill()
+		_walk_anim = null
+	_scripted = false
+	face(facing)
