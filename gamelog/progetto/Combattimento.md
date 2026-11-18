@@ -73,6 +73,9 @@ Il danno: `Stats.damage(attacco, difesa, tiro)` (vedi [[Statistiche#La formula d
 |---|---|---|
 | Melma verde | 2 | pugno, calcio |
 | Spettro | 2 | calcio, ombra |
+| Occhio errante | 2 | pugno, ghiaccio |
+| Mano d'ombra | 2 | calcio, ghiaccio |
+| Guardiano dei rovi | 3 | ghiaccio, ombra |
 
 | Scelta | Costa il turno? |
 |---|---|
@@ -96,6 +99,32 @@ Se il foglio del nemico ha le 5 pose ([[Nemici#L'aspetto]]):
 | Sconfitto | `HURT` mentre si scioglie |
 
 `_enemy_pose(posa)` mette una posa e alza `_enemy_posing`, così il respiro non la sovrascrive; `_enemy_rest()` la abbassa. Le pose hanno un nome grazie a un [[Enum]].
+
+## Scaglie di gelo
+
+![[scaglie_di_gelo.png|500]]
+
+La mossa di Emilia (5 PT, potenza ×1,9, tipo **ghiaccio**), sbloccata al primo occhio di pietra chiuso. Lo schermo si fa azzurro e nevica, compaiono sette scaglie a ventaglio, partono una dopo l'altra con un tintinnio e un fiocco di brina dove colpiscono; l'ultima, più grande, chiude il nemico in un **blocco di ghiaccio** che va in frantumi (onda d'urto, scossa, schegge). Gli effetti stanno in `battle_vfx.gd` (sezione "Ghiaccio"), la regia in `_frost_volley()`.
+
+Chi la lancia:
+- se Emilia è **nel party**, la usa lei nel suo turno, con le sue pose d'attacco e i suoi PT;
+- se non lo è (ma te l'ha insegnata), Subaru la **chiama**: Emilia compare alle sue spalle solo per il tempo della mossa.
+
+## Emilia nel party
+
+![[emilia_party.png|500]]
+
+Dall'arrivo nel bosco (`Game.emilia_in_party()`) Emilia combatte con Subaru. I turni diventano **Subaru → Emilia → nemico** (la barra in alto mostra anche il suo ritratto). Nel suo turno i comandi sono gli stessi, ma con le sue voci:
+
+| Comando | Emilia |
+|---|---|
+| Attacca → **Dardo di gelo** | 0 PT, ×0,9, ghiaccio: una scheggia sola |
+| Abilità → **Scaglie di gelo** | 5 dei suoi PT |
+| Oggetti | Dà la pozione a Subaru |
+| Difendi → **Barriera** | Il prossimo colpo a Subaru fa metà danno, lei recupera 3 PT |
+| Fuggi | Scappano insieme |
+
+Ha **12 PT** suoi, pieni a ogni combattimento (riga "Emilia PT" sotto quelli di Subaru). I nemici attaccano solo Subaru: lui le fa da scudo, lei sta dietro. Nel codice: `_next_turn()` decide chi viene dopo, `commands.set_actor()` cambia le voci, `_use_skill()` sa se sta agendo Emilia (`turn == ALLY`).
 
 ## Come finisce
 
