@@ -117,24 +117,26 @@ func _setup_gallery_button() -> void:
 func _intro() -> void:
 	var title_y := title.position.y
 	title.position.y = title_y - 28
-	for node in [title, subtitle, footer, version, save_info]:
+	for node in [title, glow, subtitle, ornament, footer, version, credit, press_start]:
 		node.modulate.a = 0.0
-	var items := menu.get_children().filter(func(n): return n.visible)
-	for item in items:
-		item.modulate.a = 0.0
+	menu_panel.visible = false
+	ornament.scale = Vector2(0.0, 1.0)
+	ornament.pivot_offset = Vector2.ZERO   # il suo centro è già l'origine
 
 	var t := create_tween()
 	t.tween_interval(0.35)
 	t.tween_property(title, "modulate:a", 1.0, 0.5)
 	t.parallel().tween_property(title, "position:y", title_y, 0.8).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	t.parallel().tween_property(glow, "modulate:a", 1.0, 1.2)
+	# L'ornamento si allarga dal centro, poi compare il sottotitolo.
+	t.tween_property(ornament, "modulate:a", 1.0, 0.2)
+	t.parallel().tween_property(ornament, "scale:x", 1.0, 0.5).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	t.tween_property(subtitle, "modulate:a", 1.0, 0.4)
-	for item in items:
-		t.tween_property(item, "modulate:a", 1.0, 0.18)
 	t.tween_property(footer, "modulate:a", 1.0, 0.3)
 	t.parallel().tween_property(version, "modulate:a", 1.0, 0.3)
-	t.parallel().tween_property(save_info, "modulate:a", 1.0, 0.3)
-	t.tween_callback((continue_button if continue_button.visible else new_game_button).focus_silently)
+	t.parallel().tween_property(credit, "modulate:a", 1.0, 0.3)
 	t.tween_callback(_float_title.bind(title_y))
+	t.tween_callback(_wait_for_press)
 
 
 ## Il titolo "galleggia" piano su e giù.
