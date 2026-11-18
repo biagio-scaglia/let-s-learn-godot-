@@ -34,7 +34,8 @@ Dal [[2026-11-18-atto-2]] segue tutto l'[[Atto 2]]:
 | L'Archivista l'ha letta | Sconfiggi lo Spettro, a est della piazza |
 | Hai anche la lacrima | Leggi il libro nero, in biblioteca |
 | Hai letto il libro | Racconta tutto a Emilia, in piazza |
-| Fine dell'atto 2 | All'alba, il bosco a nord (atto 3 in arrivo) |
+| Fine dell'atto 2 | Parla con Emilia quando sei pronto a partire |
+| Arrivati nel bosco ([[Atto 3]]) | Attraversa il Bosco Senza Tempo |
 | *Vecchio salvataggio: baule aperto, niente pagina* | Guarda meglio nel baule di Lina |
 
 `current()` controlla **dalla fine**: il primo passo già fatto decide cosa viene dopo.
