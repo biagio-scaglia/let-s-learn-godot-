@@ -189,6 +189,7 @@ shape = SubResource("bounds_h")
 
 [node name="FogGate" type="StaticBody2D" parent="World"]
 position = Vector2(672.0, 272)
+script = ExtResource("22_fog_gate")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/FogGate"]
 shape = SubResource("gate_shape")
