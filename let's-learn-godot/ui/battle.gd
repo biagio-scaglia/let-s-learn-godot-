@@ -829,7 +829,7 @@ func _do_shamac(skill: Dictionary) -> void:
 	flash.color = Color(0.12, 0.0, 0.2, 0.0)
 	var dark := create_tween()
 	dark.tween_property(flash, "color:a", 0.45, 0.25)
-	vfx.mist(enemy_sprite.position + Vector2(0, -36))
+	vfx.mist(_enemy_center())
 	create_tween().tween_property(enemy_sprite, "modulate", Color(0.45, 0.3, 0.6), 0.4)
 	await _pause(0.7)
 	_strike(skill, Sfx.HIT)
