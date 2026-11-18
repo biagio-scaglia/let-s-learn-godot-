@@ -96,3 +96,10 @@ func _turn(direction: int) -> void:
 	t.tween_property(_text, "modulate:a", 0.0, 0.08)
 	t.tween_callback(_show_page)
 	t.tween_property(_text, "modulate:a", 1.0, 0.15)
+
+
+func _show_page() -> void:
+	_text.text = _pages[_page] if _page < _pages.size() else ""
+	_page_number.text = "%d / %d" % [_page + 1, maxi(_pages.size(), 1)]
+	_prev.modulate.a = 1.0 if _page > 0 else 0.0
+	_next.modulate.a = 1.0 if _page < _pages.size() - 1 else 0.0
