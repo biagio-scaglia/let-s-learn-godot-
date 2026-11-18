@@ -31,7 +31,7 @@ static func current() -> String:
 	if Game.has_flag(FlagKeys.FOREST_ARRIVED):
 		return CROSS_FOREST
 	if Game.has_flag(FlagKeys.ACT2_DONE):
-		return FOREST
+		return DEPART
 	if Game.has_flag(FlagKeys.BOOK_READ):
 		return TELL_EMILIA
 	if Game.has_flag(FlagKeys.PAGE_READ):
