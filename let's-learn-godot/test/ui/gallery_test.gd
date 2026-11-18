@@ -28,3 +28,11 @@ func test_ogni_libro_ha_ritratto_nome_e_pagine() -> void:
 		assert_str(book.get("name", "")).override_failure_message("nome mancante: " + id).is_not_empty()
 		assert_bool(book.get("pages", []).is_empty()).override_failure_message("pagine mancanti: " + id).is_false()
 		assert_object(Portraits.of(id)).override_failure_message("ritratto mancante: " + id).is_not_null()
+
+
+func test_i_mostri_prendono_i_numeri_dal_loro_file() -> void:
+	var book := GalleryBooks.entry("spettro")
+	assert_str(book.name).is_equal("Spettro")
+	var stats: Array = book.stats
+	assert_str(stats[0][1]).is_equal("16")             # PS
+	assert_str(stats[-1][1]).is_equal("Calcio, Ombra")  # debolezze
