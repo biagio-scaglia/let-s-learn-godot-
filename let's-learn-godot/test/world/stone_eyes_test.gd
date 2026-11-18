@@ -50,13 +50,13 @@ func test_l_occhio_vede_solo_davanti_a_se() -> void:
 	assert_bool(eye.sees(origin + Vector2(400, 0))).is_false()    # troppo lontano
 
 
-func test_chiudere_un_occhio_insegna_il_gelo() -> void:
+func test_chiudere_un_occhio_insegna_la_combinata() -> void:
 	var runner := await _forest()
 	var eye := runner.scene().get_node("World/StoneEyeOvest") as StoneEye
 	eye.interactable.interacted.emit()
-	await _play_until(runner, func(): return Game.has_flag(FlagKeys.ICE_UNLOCKED) and not Game.in_cutscene)
+	await _play_until(runner, func(): return Game.has_flag(FlagKeys.COMBO_UNLOCKED) and not Game.in_cutscene)
 	assert_bool(Game.has_flag(FlagKeys.eye_closed("ovest"))).is_true()
-	assert_bool(Game.has_flag(FlagKeys.ICE_UNLOCKED)).is_true()
+	assert_bool(Game.has_flag(FlagKeys.COMBO_UNLOCKED)).is_true()
 	assert_bool(eye.is_closed).is_true()
 	assert_str(Objective.current()).is_equal(Objective.CLOSE_EYES % 1)
 	# Il bagliore corrispondente nella nebbia si è spento.
@@ -74,7 +74,7 @@ func test_l_occhio_chiuso_resta_chiuso() -> void:
 
 
 func test_con_tre_occhi_chiusi_la_nebbia_si_apre() -> void:
-	Game.set_flag(FlagKeys.ICE_UNLOCKED)
+	Game.set_flag(FlagKeys.COMBO_UNLOCKED)
 	Game.set_flag(FlagKeys.eye_closed("ovest"))
 	Game.set_flag(FlagKeys.eye_closed("est"))
 	var runner := await _forest()
