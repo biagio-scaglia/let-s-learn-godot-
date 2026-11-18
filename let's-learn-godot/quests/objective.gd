@@ -19,7 +19,9 @@ const SHOW_PAGE := "Porta la pagina strappata all'Archivista"
 const DEFEAT_SPECTRE := "Sconfiggi lo Spettro, a est della piazza"
 const READ_BOOK := "Leggi il libro nero, in biblioteca"
 const TELL_EMILIA := "Racconta tutto a Emilia, in piazza"
-const FOREST := "All'alba, il bosco a nord (atto 3 in arrivo)"
+const DEPART := "Parla con Emilia quando sei pronto a partire"
+## Atto 3.
+const CROSS_FOREST := "Attraversa il Bosco Senza Tempo"
 ## Nessun obiettivo: il riquadro sparisce.
 const NONE := ""
 
