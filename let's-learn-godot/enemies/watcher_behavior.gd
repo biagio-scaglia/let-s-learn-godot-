@@ -116,3 +116,15 @@ func _fire_gaze() -> void:
 	battle._hit(battle.hero, dealt, -140.0, Sfx.HIT, Color(1.0, 0.45, 0.5), 44)
 	await battle._pause(1.0)
 	battle._enemy_rest()
+
+
+## Lo Shamac mentre carica: l'occhio è accecato, lo Sguardo non parte, scudo in frantumi.
+func _blind() -> void:
+	charging = false
+	_stop_pulse()
+	Game.remember(MEMORY_GAZE)   # anche scoprendolo da solo, Subaru non lo dimentica più
+	battle._reveal("ombra")
+	battle.vfx.pop_number(battle._enemy_center(), "ACCECATO!", Color(0.85, 0.6, 1.0), -120.0, 40)
+	if not battle.enemy_broken:
+		battle.enemy_shield = 0
+		battle._break()
