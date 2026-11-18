@@ -12,4 +12,5 @@ defense = 1
 shield = 2
 weaknesses = Array[String](["pugno", "calcio"])
 xp = 10
-texture = SubResource("look")
+texture = ExtResource("2_look")
+frames = 5
