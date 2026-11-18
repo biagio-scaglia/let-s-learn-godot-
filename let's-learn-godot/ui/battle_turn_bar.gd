@@ -36,8 +36,20 @@ func refresh(first: String, enemy_skips: int, enemy_face: Texture2D, ally_face: 
 			line.size_flags_vertical = Control.SIZE_SHRINK_CENTER
 			line.color = Color(0.92, 0.84, 0.62, 0.5)
 			row.add_child(line)
-		row.add_child(_icon(hero_portrait if who == HERO else enemy_face, who == HERO, i == 0, skipped))
-		who = ENEMY if who == HERO else HERO
+		var face: Texture2D = hero_portrait if who == HERO else (ally_face if who == ALLY else enemy_face)
+		row.add_child(_icon(face, who != ENEMY, i == 0, skipped))
+		who = _next(who, ally_face != null)
+
+
+## Chi viene dopo: Subaru → (Emilia) → nemico → Subaru...
+static func _next(who: String, with_ally: bool) -> String:
+	match who:
+		HERO:
+			return ALLY if with_ally else ENEMY
+		ALLY:
+			return ENEMY
+		_:
+			return HERO
 
 
 ## Una casella: blu per Subaru, rossa per il nemico.
