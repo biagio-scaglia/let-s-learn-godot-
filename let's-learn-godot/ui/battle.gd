@@ -45,6 +45,8 @@ const SKILLS := {
 		"info": "Una pioggia di scaglie di ghiaccio. Tipo ghiaccio."},
 	"dardo": {"name": "Dardo di gelo", "cost": 0, "power": 0.9, "type": "ghiaccio",
 		"info": "Emilia lancia una scheggia di ghiaccio. Tipo ghiaccio."},
+	"cristallo": {"name": "Cristallo infranto", "cost": 4, "ally_cost": 4, "power": 2.6, "type": "ghiaccio",
+		"info": "Emilia chiude il nemico nel ghiaccio, Subaru lo manda in frantumi. 4 PT a testa. Tipo ghiaccio."},
 }
 ## Quante scaglie lancia Emilia: tutte fanno scena, l'ultima fa il danno.
 const FROST_SHARDS := 7
