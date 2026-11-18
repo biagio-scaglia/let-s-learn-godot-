@@ -68,6 +68,12 @@ func load_flags(data := {}) -> void:
 
 # ---------- Chi può fare cosa ----------
 
+## Emilia è nel party? Da quando arrivano nel bosco insieme (atto 3) combatte accanto
+## a Subaru, con il suo turno e le sue mosse (vedi Battle).
+func emilia_in_party() -> bool:
+	return has_flag(FlagKeys.FOREST_ARRIVED)
+
+
 ## Il giocatore può muoversi e interagire? No durante un dialogo, un cambio di scena
 ## o una cutscene.
 func player_can_move() -> bool:
