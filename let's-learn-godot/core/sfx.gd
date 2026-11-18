@@ -28,6 +28,12 @@ const SKILL_UNLOCK := "skill_unlock"
 const EYE_CLOSE := "eye_close"
 const EYE_ALERT := "eye_alert"
 const FOG_DISSOLVE := "fog_dissolve"
+const GAZE_CHARGE := "gaze_charge"
+const GAZE_BEAM := "gaze_beam"
+const BOSS_ROAR := "boss_roar"
+const ULT_CUTIN := "ultimate_cutin"
+const ULT_CRYSTAL := "ultimate_crystal"
+const ULT_FINALE := "ultimate_finale"
 
 ## Nome del suono → [file, volume in decibel].
 const SOUNDS := {
