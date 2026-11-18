@@ -149,6 +149,15 @@ var _enemy_breath: Tween
 var _enemy_posing := false
 ## Emilia combatte con Subaru (deciso a inizio combattimento) e i suoi PT.
 var with_emilia := false
+## Le regole speciali del nemico (un boss), o null. Vedi BattleBehavior.
+var behavior: BattleBehavior
+## Attacco in più del nemico (un boss che si infuria). Torna a zero a ogni battaglia.
+var enemy_attack_bonus := 0
+## La musica di battaglia normale (un boss può avere la sua).
+var _default_music: AudioStream
+var _enemy_shadow_scale := Vector2.ONE
+## L'ultimate si usa una volta sola per battaglia.
+var _ultimate_used := false
 var ally_sp := 0
 var _ally_breath: Tween
 ## Gli effetti visivi (scintille, stelle, onde d'urto…): vedi battle_vfx.gd.
