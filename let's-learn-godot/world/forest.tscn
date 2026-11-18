@@ -227,3 +227,31 @@ charset = ExtResource("5_emilia")
 
 [node name="Follower" type="Node" parent="World/Emilia"]
 script = ExtResource("18_follower")
+
+[node name="Subaru" parent="World" instance=ExtResource("3_subaru")]
+position = Vector2(598, 930)
+
+[node name="Camera2D" type="Camera2D" parent="World/Subaru"]
+limit_left = 0
+limit_top = 0
+limit_right = 1280
+limit_bottom = 1088
+position_smoothing_enabled = true
+
+[node name="Leaves" type="CPUParticles2D" parent="World/Subaru/Camera2D"]
+z_index = 5
+amount = 24
+lifetime = 8.0
+preprocess = 8.0
+local_coords = false
+texture = ExtResource("12_leaf")
+emission_shape = 3
+emission_rect_extents = Vector2(360, 220)
+direction = Vector2(-0.4, 1)
+spread = 25.0
+gravity = Vector2(0, 4)
+initial_velocity_min = 8.0
+initial_velocity_max = 18.0
+angular_velocity_min = -90.0
+angular_velocity_max = 90.0
+color_ramp = SubResource("leaf_fade")
