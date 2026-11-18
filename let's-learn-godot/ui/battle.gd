@@ -1060,6 +1060,11 @@ func _enemy_turn() -> void:
 	back.tween_property(enemy_sprite, "position:x", _enemy_home.x, 0.25)
 	back.tween_callback(_enemy_rest)
 	await _pause(message_time * 0.6)
+	_after_enemy_action()
+
+
+## Dopo l'azione del nemico: Subaru è caduto, o tocca di nuovo a lui.
+func _after_enemy_action() -> void:
 	announce_box.visible = false
 	if Stats.hp == 0:
 		_defeat()
