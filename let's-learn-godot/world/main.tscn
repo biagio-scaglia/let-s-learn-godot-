@@ -95,7 +95,7 @@ repeat_lines = PackedStringArray("Ancora qui? Gli alberi non crescono più in fr
 [node name="Emilia" parent="World" instance=ExtResource("3_npc")]
 position = Vector2(560, 476)
 npc_name = "Emilia"
-lines = PackedStringArray("Allora, Subaru? Hai già fatto un giro?", "Questo villaggio è così tranquillo... Il Saggio dice che qui gli alberi crescono più felici.", "Hai già conosciuto Lina? Abita nella casa col tetto rosso, a nord-ovest.")
+lines = PackedStringArray("Allora, Subaru? Hai già fatto un giro?", "Comincerei dal Saggio: sta sempre vicino agli alberi, a est della piazza.")
 repeat_lines = PackedStringArray("Se ti stanchi, riposiamo un po' qui in piazza. Non c'è nessuna fretta, no?")
 charset = ExtResource("8_emilia")
 
