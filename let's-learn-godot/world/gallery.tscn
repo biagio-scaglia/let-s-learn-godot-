@@ -70,3 +70,28 @@ tile_set = ExtResource("2_tiles")
 [node name="Doorway" type="CollisionShape2D" parent="World/Bounds"]
 position = Vector2(416, 520)
 shape = SubResource("doorway_block")
+
+[node name="SaggioBook" type="Node2D" parent="World"]
+position = Vector2(160, 176)
+script = ExtResource("5_exhibit")
+book_id = "saggio"
+
+[node name="LinaBook" type="Node2D" parent="World"]
+position = Vector2(288, 176)
+script = ExtResource("5_exhibit")
+book_id = "lina"
+
+[node name="SubaruStatue" type="Node2D" parent="World"]
+position = Vector2(416, 176)
+script = ExtResource("5_exhibit")
+book_id = "subaru"
+
+[node name="EmiliaBook" type="Node2D" parent="World"]
+position = Vector2(544, 176)
+script = ExtResource("5_exhibit")
+book_id = "emilia"
+
+[node name="ArchivistaBook" type="Node2D" parent="World"]
+position = Vector2(672, 176)
+script = ExtResource("5_exhibit")
+book_id = "archivista"
