@@ -6,6 +6,8 @@ extends PanelContainer
 
 const HERO := "hero"
 const ENEMY := "enemy"
+## Emilia, quando è nel party: agisce dopo Subaru e prima del nemico.
+const ALLY := "ally"
 ## Quanti turni si vedono.
 const SHOWN := 6
 
