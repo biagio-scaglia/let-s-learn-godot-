@@ -128,6 +128,21 @@ Dall'arrivo nel bosco (`Game.emilia_in_party()`) Emilia combatte con Subaru. I t
 
 Ha **12 PT** suoi, pieni a ogni combattimento (riga "Emilia PT" sotto quelli di Subaru). I nemici attaccano solo Subaru: lui le fa da scudo, lei sta dietro. Nel codice: `_next_turn()` decide chi viene dopo, `commands.set_actor()` cambia le voci, `_use_skill()` sa se sta agendo Emilia (`turn == ALLY`).
 
+## L'ultimate
+
+![[ultimate_alba.png|500]]
+
+**Alba di cristallo**, di Subaru ed Emilia insieme: contro un boss (`behavior.ultimate_ready()`, per [[Colui che guarda]] sotto il 25%), con Emilia nel party, una volta sola per battaglia. Compare in fondo al menu, in oro, nei turni di tutti e due.
+
+1. Velo nero e due strisce con i ritratti che entrano dai lati, il nome che rimbalza (`_cut_in()`; la striscia è figlia della battaglia, sopra il velo).
+2. Anello di 12 scaglie attorno al nemico (`vfx.ring_shards`), aura d'ombra su Subaru, neve.
+3. La lancia di cristallo (una scaglia ingrandita ×8) nasce dalla mano di Emilia; partono insieme.
+4. Impatto: tre onde d'urto, il blocco di ghiaccio che esplode, scintille di tre colori, luce dorata che sfuma. Il nemico va a zero.
+
+## I boss
+
+Un nemico può avere un **comportamento** (`EnemyData.behavior`, vedi [[Script come regole]]), la sua musica (`music`) e una taglia (`battle_scale`). Battle chiama il comportamento dopo l'entrata, a ogni turno del nemico, a ogni colpo; ne chiede la posa da tenere e se si può scappare. Il raggio dello Sguardo è `vfx.beam()`: due linee additive (colore e bianco) che si allargano e si stringono.
+
 ## Come finisce
 
 | Risultato | Cosa succede |
