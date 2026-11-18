@@ -443,3 +443,48 @@ func ice_block(feet: Vector2, hold := 0.45) -> void:
 	t.tween_property(b, "scale", Vector2(2.9, 2.9), 0.1)
 	t.parallel().tween_property(b, "modulate:a", 0.0, 0.1)
 	t.tween_callback(b.queue_free)
+
+
+# ---------- Il boss e l'ultimate ----------
+
+## Un raggio da "from" a "to": si allarga in fretta, brucia, si stringe e sparisce.
+## Due linee: fuori il colore, dentro il bianco. Scintille dove arriva.
+func beam(from: Vector2, to: Vector2, color: Color, width: float, time: float) -> void:
+	for layer in [[color, 1.0], [Color(1, 1, 1, 0.9), 0.4]]:
+		var line := Line2D.new()
+		line.points = PackedVector2Array([from, to])
+		line.default_color = layer[0]
+		line.width = 0.0
+		line.begin_cap_mode = Line2D.LINE_CAP_ROUND
+		line.end_cap_mode = Line2D.LINE_CAP_ROUND
+		line.material = _additive()
+		stage.add_child(line)
+		var t := create_tween()
+		t.tween_property(line, "width", width * layer[1], time * 0.15).set_ease(Tween.EASE_OUT)
+		t.tween_property(line, "width", width * layer[1] * 0.8, time * 0.55)
+		t.tween_property(line, "width", 0.0, time * 0.3).set_ease(Tween.EASE_IN)
+		t.tween_callback(line.queue_free)
+	var burst := sparks(to, color, 40, 320.0)
+	burst.scale_amount_min = 3.0
+	burst.scale_amount_max = 6.0
+	shockwave_at(to, 0.5)
+
+
+## Scaglie disposte in cerchio attorno a "center", con la punta verso il centro.
+func ring_shards(center: Vector2, radius: float, count: int) -> Array[Sprite2D]:
+	var shards: Array[Sprite2D] = []
+	for i in count:
+		var a := TAU * i / count
+		var s := Sprite2D.new()
+		s.texture = ICE_SHARD
+		s.material = _additive()
+		s.position = center + Vector2.from_angle(a) * radius
+		s.rotation = a + PI   # verso il centro
+		s.scale = Vector2.ZERO
+		stage.add_child(s)
+		var t := create_tween()
+		t.tween_interval(i * 0.05)
+		t.tween_property(s, "scale", Vector2(3.0, 3.0), 0.2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		shards.append(s)
+	return shards
+
