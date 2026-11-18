@@ -124,3 +124,28 @@ func _on_interacted() -> void:
 	if is_closed or _busy:
 		return
 	_close()
+
+
+## Si chiude: la palpebra scende, l'energia viola viene risucchiata, la luce si spegne,
+## e un raggio parte verso la nebbia.
+func _close() -> void:
+	_busy = true
+	is_closed = true
+	Game.in_cutscene = true
+	if _sweep_tween:
+		_sweep_tween.kill()
+	Sfx.play(Sfx.EYE_CLOSE)
+	implode.emitting = true
+	var t := create_tween()
+	t.tween_callback(func(): sprite.frame = Lids.HALF)
+	t.tween_interval(0.35)
+	t.tween_callback(func(): sprite.frame = Lids.SHUT)
+	t.parallel().tween_property(cone_shape, "modulate:a", 0.0, 0.4)
+	t.parallel().tween_property(glow, "energy", 0.0, 0.8)
+	t.tween_callback(_shake_camera)
+	await t.finished
+	Game.set_flag(FlagKeys.eye_closed(eye_id))
+	interactable.lines = ["L'occhio è chiuso. La pietra è fredda, come se dormisse."]
+	_busy = false
+	Game.in_cutscene = false
+	closed.emit(eye_id)
