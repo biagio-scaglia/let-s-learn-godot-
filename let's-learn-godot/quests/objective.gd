@@ -32,6 +32,12 @@ const NONE := ""
 static func current() -> String:
 	# Si parte dalla fine: il primo passo già fatto decide cosa viene dopo.
 	if Game.has_flag(FlagKeys.FOREST_ARRIVED):
+		var closed := FlagKeys.eyes_closed_count()
+		if closed == FlagKeys.STONE_EYES.size():
+			return ENTER_CLEARING
+		# Finché non ha visto la nebbia (o chiuso un occhio), basta attraversare il bosco.
+		if closed > 0 or Game.has_flag(FlagKeys.FOG_SEEN):
+			return CLOSE_EYES % closed
 		return CROSS_FOREST
 	if Game.has_flag(FlagKeys.ACT2_DONE):
 		return DEPART
