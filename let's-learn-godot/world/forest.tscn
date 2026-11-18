@@ -255,3 +255,80 @@ initial_velocity_max = 18.0
 angular_velocity_min = -90.0
 angular_velocity_max = 90.0
 color_ramp = SubResource("leaf_fade")
+
+[node name="Canopy" type="Node2D" parent="."]
+
+[node name="Crowns" type="TileMapLayer" parent="Canopy"]
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray(0, 0, 10, 0, 10, 0, 0, 0, 1, 0, 1, 0, 0, 0, 27, 0, 10, 0, 0, 0, 1, 0, 1, 0, 0, 0, 28, 0, 12, 0, 0, 0, 2, 0, 1, 0, 0, 0, 16, 0, 14, 0, 0, 0, 1, 0, 1, 0, 0, 0, 6, 0, 16, 0, 0, 0, 2, 0, 1, 0, 0, 0, 28, 0, 18, 0, 0, 0, 1, 0, 1, 0, 0, 0, 11, 0, 19, 0, 0, 0, 1, 0, 1, 0, 0, 0, 11, 0, 22, 0, 0, 0, 1, 0, 1, 0, 0, 0, 22, 0, 22, 0, 0, 0, 1, 0, 1, 0, 0, 0, 20, 0, 24, 0, 0, 0, 0, 0, 1, 0, 0, 0)
+tile_set = ExtResource("2_tiles")
+
+[node name="Eyes1" type="Sprite2D" parent="Canopy"]
+position = Vector2(912, 524)
+texture = ExtResource("6_eyes")
+script = ExtResource("7_eyes_script")
+
+[node name="Eyes2" type="Sprite2D" parent="Canopy"]
+position = Vector2(496, 268)
+texture = ExtResource("6_eyes")
+script = ExtResource("7_eyes_script")
+
+[node name="Eyes3" type="Sprite2D" parent="Canopy"]
+position = Vector2(912, 268)
+texture = ExtResource("6_eyes")
+script = ExtResource("7_eyes_script")
+
+[node name="Eyes4" type="Sprite2D" parent="Canopy"]
+position = Vector2(336, 268)
+texture = ExtResource("6_eyes")
+script = ExtResource("7_eyes_script")
+
+[node name="Eyes5" type="Sprite2D" parent="Canopy"]
+position = Vector2(432, 268)
+texture = ExtResource("6_eyes")
+script = ExtResource("7_eyes_script")
+
+[node name="Eyes6" type="Sprite2D" parent="Canopy"]
+position = Vector2(240, 332)
+texture = ExtResource("6_eyes")
+script = ExtResource("7_eyes_script")
+
+[node name="Eyes7" type="Sprite2D" parent="Canopy"]
+position = Vector2(176, 460)
+texture = ExtResource("6_eyes")
+script = ExtResource("7_eyes_script")
+
+[node name="Eyes8" type="Sprite2D" parent="Canopy"]
+position = Vector2(1040, 716)
+texture = ExtResource("6_eyes")
+script = ExtResource("7_eyes_script")
+
+[node name="Eyes9" type="Sprite2D" parent="Canopy"]
+position = Vector2(1072, 364)
+texture = ExtResource("6_eyes")
+script = ExtResource("7_eyes_script")
+
+[node name="Eyes10" type="Sprite2D" parent="Canopy"]
+position = Vector2(1040, 332)
+texture = ExtResource("6_eyes")
+script = ExtResource("7_eyes_script")
+
+[node name="Eyes11" type="Sprite2D" parent="Canopy"]
+position = Vector2(368, 876)
+texture = ExtResource("6_eyes")
+script = ExtResource("7_eyes_script")
+
+[node name="Eyes12" type="Sprite2D" parent="Canopy"]
+position = Vector2(848, 556)
+texture = ExtResource("6_eyes")
+script = ExtResource("7_eyes_script")
+
+[node name="Eyes13" type="Sprite2D" parent="Canopy"]
+position = Vector2(304, 300)
+texture = ExtResource("6_eyes")
+script = ExtResource("7_eyes_script")
+
+[node name="Eyes14" type="Sprite2D" parent="Canopy"]
+position = Vector2(1072, 748)
+texture = ExtResource("6_eyes")
+script = ExtResource("7_eyes_script")
