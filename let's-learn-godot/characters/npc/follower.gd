@@ -77,3 +77,16 @@ func _drop_crumb() -> void:
 		_trail.append(here)
 		if _trail.size() > MAX_CRUMBS:
 			_trail.remove_at(0)
+
+
+## Il punto della scia che sta "distance" pixel dietro al giocatore.
+func _point_behind() -> Vector2:
+	if _trail.size() < 2:
+		return _npc.global_position   # il giocatore non si è ancora mosso: resta dov'è
+	var left := distance
+	for i in range(_trail.size() - 1, 0, -1):
+		var seg := _trail[i] - _trail[i - 1]
+		if seg.length() >= left:
+			return _trail[i] - seg.normalized() * left
+		left -= seg.length()
+	return _trail[0]
