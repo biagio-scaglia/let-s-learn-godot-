@@ -378,7 +378,7 @@ func _use_skill(id: String) -> void:
 	if enemy_hp == 0:
 		_victory()
 	else:
-		_enemy_turn()
+		_next_turn()
 
 
 ## Pugno: scatta davanti al nemico e colpisce al terzo frame.
