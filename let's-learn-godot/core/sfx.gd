@@ -49,6 +49,13 @@ const SOUNDS := {
 	CHARGE: ["res://assets/kenney_sci_fi_sounds/forceField_001.ogg", -6.0],
 	BATTLE_START: ["res://assets/effects/battle_start.wav", -4.0],
 	SHAMAC: ["res://assets/kenney_interface_sounds/glitch_002.ogg", -4.0],
+	ICE_CAST: ["res://assets/effects/ice_cast.wav", -5.0],
+	ICE_HIT: ["res://assets/effects/ice_hit.wav", -8.0],
+	ICE_SHATTER: ["res://assets/effects/ice_shatter.wav", -3.0],
+	SKILL_UNLOCK: ["res://assets/effects/skill_unlock.wav", -4.0],
+	EYE_CLOSE: ["res://assets/forest/eye_close.wav", -3.0],
+	EYE_ALERT: ["res://assets/forest/eye_alert.wav", -5.0],
+	FOG_DISSOLVE: ["res://assets/forest/fog_dissolve.wav", -3.0],
 }
 
 var _players := {}
