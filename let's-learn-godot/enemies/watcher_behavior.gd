@@ -75,3 +75,7 @@ func can_flee() -> bool:
 
 func no_flee_text() -> String:
 	return "Non si scappa da Colui che guarda."
+
+
+func ultimate_ready() -> bool:
+	return phase >= 3
