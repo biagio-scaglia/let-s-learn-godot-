@@ -77,3 +77,19 @@ func test_la_musica_del_bosco_si_ripete() -> void:
 	var music := runner.scene().get_node("Music") as AudioStreamPlayer
 	assert_bool(music.is_in_group("level_music")).is_true()
 	assert_int((music.stream as AudioStreamWAV).loop_mode).is_equal(AudioStreamWAV.LOOP_FORWARD)
+
+
+func test_gli_occhi_nei_rovi_si_chiudono_se_ti_avvicini() -> void:
+	Game.set_flag(FlagKeys.FOREST_ARRIVED)
+	var runner := scene_runner(Game.FOREST_SCENE)
+	await runner.simulate_frames(2)
+	var eyes := runner.scene().get_node("Canopy/Eyes1") as ThicketEyes
+	var subaru := runner.scene().get_node("World/Subaru") as Node2D
+	# Li apriamo a mano (di solito aspettano un momento a caso), poi Subaru si avvicina.
+	subaru.global_position = eyes.global_position + Vector2(0, 400)
+	eyes._open()
+	await runner.simulate_frames(60)
+	assert_int(eyes.frame).is_equal(ThicketEyes.Lids.OPEN)
+	subaru.global_position = eyes.global_position + Vector2(0, 30)
+	await runner.simulate_frames(30)
+	assert_int(eyes.frame).is_equal(ThicketEyes.Lids.SHUT)
