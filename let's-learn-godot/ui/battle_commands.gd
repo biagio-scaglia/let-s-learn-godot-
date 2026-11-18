@@ -70,7 +70,7 @@ func setup(skills: Dictionary, attack: String, defend_sp: int) -> void:
 	}
 	for button: MenuItem in _skill_buttons:
 		_help_for[button] = skills[_skill_buttons[button]].info
-		_add_cost_label(button, skills[_skill_buttons[button]].cost)
+		_add_cost_label(button, skills[_skill_buttons[button]])
 	for button: MenuItem in _help_for:
 		button.focus_entered.connect(show_help.bind(button))
 
