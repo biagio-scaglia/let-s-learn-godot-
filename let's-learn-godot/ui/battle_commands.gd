@@ -130,8 +130,7 @@ func say(text: String) -> void:
 ## Il sottomenu "Abilità". Le mosse che costano troppo sono più scure.
 func open_skills() -> void:
 	for button: MenuItem in _skill_buttons:
-		var cost: int = _skills[_skill_buttons[button]].cost
-		button.modulate = Color.WHITE if current_sp() >= cost else Color(0.55, 0.55, 0.65)
+		button.modulate = Color.WHITE if can_afford(_skill_buttons[button]) else Color(0.55, 0.55, 0.65)
 	skill_window.visible = true
 	var first: MenuItem = frost_button if actor == "ally" else kick_button
 	first.focus_silently()
