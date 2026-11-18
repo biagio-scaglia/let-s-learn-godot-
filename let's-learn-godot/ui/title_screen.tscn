@@ -141,15 +141,15 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -200.0
-offset_top = 124.0
+offset_top = 106.0
 offset_right = 200.0
-offset_bottom = 144.0
+offset_bottom = 126.0
 grow_horizontal = 2
 theme_type_variation = &"SubtitleLabel"
-text = "~ let's learn godot ~"
+text = "let's learn godot"
 horizontal_alignment = 1
 
-[node name="Menu" type="VBoxContainer" parent="UI"]
+[node name="Ornament" type="Control" parent="UI"]
 unique_name_in_owner = true
 anchors_preset = 8
 anchor_left = 0.5
