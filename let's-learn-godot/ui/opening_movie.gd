@@ -173,3 +173,13 @@ func _darken(amount: float, at: float, seconds: float) -> void:
 	var t := create_tween()
 	t.tween_interval(maxf(at - _elapsed(), 0.0))
 	t.tween_property(shade, "color:a", amount, seconds).set_trans(Tween.TRANS_SINE)
+
+
+# ---------- Le scritte ----------
+
+## Una riga della voce narrante: compare al secondo "at" e resta "seconds" secondi.
+func _say(text: String, at: float, seconds: float) -> void:
+	if not await _at(at):
+		return
+	narration.text = text
+	_show_text(narration, 0.0, seconds)
