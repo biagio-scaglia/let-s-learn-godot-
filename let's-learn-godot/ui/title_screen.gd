@@ -10,6 +10,9 @@ extends Node2D
 const PAN_FROM := Vector2(430, 300)
 const PAN_TO := Vector2(880, 430)
 const PAN_SECONDS := 16.0
+## Dopo quanti secondi senza toccare niente riparte il filmato iniziale.
+const IDLE_SECONDS := 45.0
+const LOCK := preload("res://assets/ui/lock.png")
 
 @onready var camera: Camera2D = $Camera2D
 @onready var title: Label = %Title
