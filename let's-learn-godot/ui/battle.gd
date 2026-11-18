@@ -757,6 +757,10 @@ func _on_potion() -> void:
 ## Difendersi: metà danno al prossimo colpo, e qualche PT di ritorno.
 func _on_defend() -> void:
 	_act()
+	if turn == ALLY:
+		await _ally_defend()
+		_next_turn()
+		return
 	defending = true
 	_announce("Difesa")
 	Sfx.play(Sfx.GUARD)
