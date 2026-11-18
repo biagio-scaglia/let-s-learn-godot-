@@ -461,8 +461,8 @@ func _do_shatter(skill: Dictionary) -> void:
 	_ally_pose(AllyPose.STAND)
 
 
-## La raffica di scaglie (per Subaru che chiama Emilia o per Emilia nel party):
-## partono una dopo l'altra, l'ultima più grande chiude il nemico nel ghiaccio.
+## La raffica delle Scaglie di gelo: le scaglie partono una dopo l'altra, l'ultima
+## (più grande) chiude il nemico nel ghiaccio.
 func _frost_volley(shards: Array[Sprite2D], skill: Dictionary) -> void:
 	var target := enemy_sprite.position + Vector2(0, -36)
 	for i in shards.size() - 1:
