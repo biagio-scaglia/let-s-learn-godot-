@@ -772,7 +772,7 @@ func _on_defend() -> void:
 		vfx.pop_number(hero.position, "+%d PT" % restored, Color(0.5, 0.78, 1.0), -128.0, 24)
 	await _pause(message_time * 0.6)
 	announce_box.visible = false
-	_enemy_turn()
+	_next_turn()
 
 
 func _on_flee() -> void:
