@@ -24,6 +24,14 @@ func _ready() -> void:
 	sprite.offset = Vector2(0, -height / 2.0)
 	interactable.interacted.connect(_fight)
 
+	# Respira: le due pose di riposo si alternano (solo se il foglio le ha).
+	if data.animated():
+		var breathe := create_tween().set_loops()
+		breathe.tween_callback(func(): sprite.frame = EnemyData.Pose.IDLE)
+		breathe.tween_interval(0.45)
+		breathe.tween_callback(func(): sprite.frame = EnemyData.Pose.IDLE_2)
+		breathe.tween_interval(0.45)
+
 	# Saltella sul posto: sale schiacciandosi un poco, e ricade.
 	var base := sprite.scale
 	var hop := create_tween().set_loops()
