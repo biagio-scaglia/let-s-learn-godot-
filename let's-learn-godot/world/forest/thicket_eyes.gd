@@ -12,3 +12,12 @@ enum Lids { OPEN, HALF, SHUT }
 var _player: Node2D
 var _shut := true
 var _busy := false
+
+
+func _ready() -> void:
+	hframes = 3
+	frame = Lids.SHUT
+	modulate.a = 0.0
+	_player = get_tree().get_first_node_in_group("player") as Node2D
+	# Ognuno si apre per conto suo, non tutti insieme.
+	get_tree().create_timer(randf_range(0.5, 4.0)).timeout.connect(_open)
