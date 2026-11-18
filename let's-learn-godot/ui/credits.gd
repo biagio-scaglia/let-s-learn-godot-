@@ -231,3 +231,12 @@ func _plant_trees() -> void:
 	for tree in trees.get_children():
 		if tree.scale.x > 1.0:
 			tree.z_index = 1
+
+
+## Emilia non ha un'animazione pronta come Subaru: il suo charset ha 4 passi per
+## riga, e la riga 2 è "verso destra". Un Tween che non finisce mai cambia il frame.
+func _walk_emilia() -> void:
+	var t := create_tween().set_loops()
+	for column in [1, 2, 3, 0]:
+		t.tween_callback(func(): emilia.frame = 2 * 4 + column)
+		t.tween_interval(0.15)
