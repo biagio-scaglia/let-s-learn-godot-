@@ -57,6 +57,7 @@ func _on_saggio() -> void:
 			"Partite? Allora andate dal sentiero a sud, all'alba. È da lì che si va nel mondo.",
 			"E tornate, eh. Voglio farvi vedere quanto sono cresciuti, i miei alberi.",
 		]
+		Game.set_flag(FlagKeys.greeted("saggio"))
 	elif Game.has_flag(FlagKeys.ACT2_DONE):
 		saggio.override_lines = [
 			"Il bosco a nord? Non ci va nessuno, ragazzo. Non ci è mai andato nessuno.",
