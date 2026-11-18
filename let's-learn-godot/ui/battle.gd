@@ -1080,7 +1080,7 @@ func _victory() -> void:
 	# Il nemico lampeggia di bianco, si tinge di viola e si scioglie verso il basso.
 	_stop_enemy_breathing()
 	_enemy_pose(EnemyData.Pose.HURT)
-	vfx.impact(enemy_sprite.position + Vector2(0, -40), 4.0)
+	vfx.impact(_enemy_center(), 4.0)
 	vfx.flash_white(enemy_sprite, 0.5)
 	var t := create_tween()
 	t.tween_property(enemy_sprite, "modulate", Color(1.0, 0.3, 0.8, 0.0), 0.5)
