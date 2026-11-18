@@ -59,7 +59,8 @@ func _on_chest() -> void:
 	elif Inventory.has(Inventory.KEY):
 		chest.override_lines = [
 			"La chiave gira nella serratura... clic!",
-			"Dentro ci sono due pozioni rosse e qualche moneta d'oro.",
+			"Dentro ci sono due pozioni rosse e qualche moneta d'oro...",
+			"...e, sul fondo, una pagina strappata. L'inchiostro sembra ancora fresco.",
 		]
 		# Il baule si apre quando il dialogo finisce (una volta sola).
 		Dialogue.finished.connect(_open_chest, CONNECT_ONE_SHOT)
