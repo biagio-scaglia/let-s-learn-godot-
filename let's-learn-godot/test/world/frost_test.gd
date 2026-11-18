@@ -50,10 +50,13 @@ func _escape() -> void:
 		await _wait_turn()
 
 
-func test_senza_emilia_la_mossa_non_c_e() -> void:
-	Battle.start(load("res://enemies/occhio_errante.tres"))
+func test_senza_il_primo_occhio_niente_combinata() -> void:
+	Game.set_flag(FlagKeys.FOREST_ARRIVED)
+	Battle.start(_tough_enemy())
 	await _wait_turn()
 	Battle.commands.open_skills()
+	assert_bool(Battle.commands.shatter_button.visible).is_false()
+	# Le Scaglie di gelo non sono mai di Subaru: sono una magia di Emilia.
 	assert_bool(Battle.commands.frost_button.visible).is_false()
 	Battle.commands.close_submenus()
 	await _escape()
