@@ -667,7 +667,7 @@ func _enemy_rest() -> void:
 
 ## Ridisegna la barra dei turni in alto (vedi battle_turn_bar.gd).
 func _refresh_turns() -> void:
-	turn_bar.refresh(turn, _enemy_stun, enemy.texture)
+	turn_bar.refresh(turn, _enemy_stun, enemy.portrait())
 
 
 # ---------- Scudo, debolezze e barra dei turni ----------
