@@ -9,6 +9,9 @@ extends Area2D
 @export_enum("down", "up", "left", "right") var arrive_facing := "down"
 ## Grandezza della zona che fa scattare la porta.
 @export var size := Vector2(24, 12)
+## Se non è vuoto, la porta funziona solo con questo ricordo (es. "guardiano_sconfitto":
+## il sentiero dal bosco al villaggio si apre solo dopo il boss).
+@export var required_flag := ""
 
 
 func _ready() -> void:
@@ -21,5 +24,8 @@ func _ready() -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player") and target_scene != "":
-		Game.change_scene(target_scene, target_spawn, arrive_facing)
+	if not body.is_in_group("player") or target_scene == "":
+		return
+	if required_flag != "" and not Game.has_flag(required_flag):
+		return
+	Game.change_scene(target_scene, target_spawn, arrive_facing)
