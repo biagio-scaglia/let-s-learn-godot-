@@ -26,3 +26,12 @@ var _pending := ""
 ## Il rosso che pulsa sullo schermo mentre carica.
 var _red: ColorRect
 var _pulse: Tween
+
+
+func after_intro() -> void:
+	Sfx.play(Sfx.BOSS_ROAR)
+	battle.vfx.shake(8.0, 0.9)
+	await battle._pause(0.6)
+	if Game.remembers(MEMORY_GAZE):
+		battle._reveal("ombra")
+		await battle._say("Subaru ricorda: quando carica lo Sguardo, lo Shamac lo acceca!")
