@@ -16,3 +16,13 @@ var gallery_seen := false
 
 func _ready() -> void:
 	load_progress()
+
+
+## Rilegge il file (all'avvio, e nei test dopo aver cambiato "path").
+func load_progress() -> void:
+	var config := ConfigFile.new()
+	story_finished = false
+	gallery_seen = false
+	if config.load(path) == OK:
+		story_finished = config.get_value("storia", "finita", false)
+		gallery_seen = config.get_value("galleria", "vista", false)
