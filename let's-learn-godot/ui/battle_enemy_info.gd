@@ -7,7 +7,7 @@ extends VBoxContainer
 const ICON_SHIELD := 0
 const ICON_UNKNOWN := 4
 const ICON_BROKEN := 5
-const TYPE_ICONS := {"pugno": 1, "calcio": 2, "ombra": 3}
+const TYPE_ICONS := {"pugno": 1, "calcio": 2, "ombra": 3, "ghiaccio": 6}
 
 ## Le icone di scudo e debolezze.
 @export var icons: Texture2D
