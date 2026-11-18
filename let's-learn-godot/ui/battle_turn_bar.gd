@@ -17,9 +17,10 @@ const SHOWN := 6
 @onready var row: HBoxContainer = %TurnIcons
 
 
-## Ridisegna la barra. "first" è chi agisce ora (HERO o ENEMY), "enemy_skips"
-## quanti turni il nemico salterà, "enemy_face" la sua faccia.
-func refresh(first: String, enemy_skips: int, enemy_face: Texture2D) -> void:
+## Ridisegna la barra. "first" è chi agisce ora (HERO, ALLY o ENEMY), "enemy_skips"
+## quanti turni il nemico salterà, "enemy_face" la sua faccia; "ally_face" quella di
+## Emilia, se è nel party (altrimenti null e i giri sono da due).
+func refresh(first: String, enemy_skips: int, enemy_face: Texture2D, ally_face: Texture2D = null) -> void:
 	for child in row.get_children():
 		child.queue_free()
 	var who := first
