@@ -446,6 +446,7 @@ func _recover() -> void:
 	var t := create_tween().set_parallel()
 	t.tween_property(enemy_sprite, "rotation", 0.0, 0.2)
 	t.tween_property(enemy_sprite, "modulate", Color.WHITE, 0.2)
+	_enemy_rest()
 
 
 func _on_potion() -> void:
