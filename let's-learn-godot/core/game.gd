@@ -115,6 +115,7 @@ func new_game() -> void:
 	spawn_position = null
 	checkpoint = {}
 	deaths = 0
+	memories = {}
 	change_scene(OPENING_SCENE, "", "", false)
 
 
