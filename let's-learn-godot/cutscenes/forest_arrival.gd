@@ -28,6 +28,8 @@ func _play(player: Node2D, emilia: Node2D) -> void:
 	emilia.global_position = START + EMILIA_OFFSET
 	player.face(Facing.UP)
 	emilia.face(Facing.UP)
+	player.reset_physics_interpolation()
+	emilia.reset_physics_interpolation()
 	var camera := player.get_node("Camera2D") as Camera2D
 	camera.reset_smoothing.call_deferred()
 
