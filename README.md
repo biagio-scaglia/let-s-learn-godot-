@@ -163,7 +163,7 @@ Quando esci, la finestra del gioco sparisce e sul desktop compare una finestra d
 | Esc | Menu di pausa (riprendi, salva, opzioni, torna al titolo, esci) |
 | Tab o I | Zaino (Invio usa l'oggetto selezionato) |
 
-Nelle opzioni si regolano volume e schermo intero, e vengono ricordati. Dopo aver salvato, nel titolo compare *Continua*.
+Nelle opzioni si regolano volume e schermo intero, e vengono ricordati. Dopo aver salvato, nel titolo compare *Continua*. Il filmato iniziale si salta con un tasto qualsiasi; nella Galleria Esc riporta al titolo.
 
 ## Test
 
