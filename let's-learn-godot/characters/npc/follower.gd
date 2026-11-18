@@ -43,3 +43,9 @@ func snap_behind(offset := Vector2(-24, 14)) -> void:
 		return
 	_npc.global_position = _player.global_position + offset
 	_seed()
+
+
+## La scia ricomincia: un pezzo solo, da dove sta il PNG a dove sta il giocatore.
+func _seed() -> void:
+	_trail = [_npc.global_position, _player.global_position]
+	_needs_seed = false
