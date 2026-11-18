@@ -6,10 +6,10 @@
 [resource]
 script = ExtResource("1_data")
 name = "Spettro"
-max_hp = 26
-attack = 8
-defense = 3
-shield = 3
+max_hp = 16
+attack = 5
+defense = 2
+shield = 2
 weaknesses = Array[String](["calcio", "ombra"])
 xp = 25
 texture = SubResource("look")
