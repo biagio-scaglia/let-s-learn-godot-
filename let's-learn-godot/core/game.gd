@@ -41,6 +41,9 @@ var in_cutscene := false:
 var checkpoint := {}
 ## Quante volte Subaru è morto. Il Ritorno NON lo riporta indietro: lui se lo ricorda.
 var deaths := 0
+## Le cose che Subaru ha imparato morendo (es. il punto debole di un boss). Come "deaths",
+## il Ritorno dalla Morte non le cancella: il mondo dimentica, Subaru no.
+var memories := {}
 
 
 ## Gli autoload che sono interfaccia (sullo schermo, animati a ogni frame): fuori
