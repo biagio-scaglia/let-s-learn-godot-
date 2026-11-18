@@ -395,3 +395,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="VoicesQuest" type="Node" parent="." node_paths=PackedStringArray("archivista", "black_book", "book_glow")]
+script = ExtResource("10_voices")
+archivista = NodePath("../World/Archivista/Interactable")
+black_book = NodePath("../World/BlackBook")
+book_glow = NodePath("../BlackBookGlow")
