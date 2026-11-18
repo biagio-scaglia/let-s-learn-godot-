@@ -128,3 +128,16 @@ func _blind() -> void:
 	if not battle.enemy_broken:
 		battle.enemy_shield = 0
 		battle._break()
+
+
+func _check_phase() -> void:
+	var ratio := float(battle.enemy_hp) / float(battle.enemy.max_hp)
+	if battle.enemy_hp == 0:
+		return
+	if phase == 1 and ratio <= 0.6:
+		phase = 2
+		battle.enemy_attack_bonus = 3
+		_pending = "Le mani d'ombra si moltiplicano. Colui che guarda è furioso!"
+	if phase == 2 and ratio <= 0.25:
+		phase = 3
+		_pending = "L'occhio trema. Subaru ed Emilia si guardano: è il momento!"
