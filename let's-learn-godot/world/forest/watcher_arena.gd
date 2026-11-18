@@ -95,3 +95,63 @@ func _awaken(player: Node2D) -> void:
 	elif result == Battle.LOSE:
 		# Il Ritorno dalla Morte riporta tutto indietro. Tutto, tranne quello che Subaru ha visto.
 		Game.remember(WatcherBehavior.MEMORY_GAZE)
+
+
+## Vinto: l'occhio si crepa e svanisce, il bosco si sveglia.
+func _defeated(player: Node2D) -> void:
+	Game.in_cutscene = true
+	if _breath:
+		_breath.kill()
+	eye.frame = EnemyData.Pose.HURT
+	Sfx.play(Sfx.ICE_SHATTER)
+	var camera := player.get_node_or_null("Camera2D") as Camera2D
+	_shake(camera, 0.8)
+	aura.emitting = false
+	var burst := CPUParticles2D.new()
+	burst.one_shot = true
+	burst.explosiveness = 1.0
+	burst.amount = 60
+	burst.lifetime = 1.4
+	burst.spread = 180.0
+	burst.initial_velocity_min = 40.0
+	burst.initial_velocity_max = 160.0
+	burst.gravity = Vector2(0, -20)
+	burst.scale_amount_min = 2.0
+	burst.scale_amount_max = 4.0
+	burst.color = Color(0.85, 0.6, 1.0)
+	var ramp := Gradient.new()
+	ramp.set_color(0, Color.WHITE)
+	ramp.set_color(1, Color(1, 1, 1, 0))
+	burst.color_ramp = ramp
+	burst.position = eye.position
+	add_child(burst)
+	burst.emitting = true
+	var t := create_tween().set_parallel()
+	t.tween_property(eye, "modulate", Color(2.0, 2.0, 2.0, 0.0), 1.2)
+	t.tween_property(eye, "scale", eye.scale * 1.4, 1.2)
+	t.tween_property(glow, "energy", 0.0, 1.2)
+	get_tree().call_group("thicket_eyes", "close_forever")
+	# La luce si scalda, la nebbia si dirada: è mattina davvero.
+	if dawn:
+		t.tween_property(dawn, "color", Color(1.0, 0.94, 0.84), 3.0)
+	if fog:
+		t.tween_property(fog, "modulate:a", 0.25, 3.0)
+	if rays:
+		var mat := rays.material as ShaderMaterial
+		if mat:
+			t.tween_method(func(v: float): mat.set_shader_parameter("intensity", v), 0.22, 0.6, 3.0)
+	await t.finished
+	Dialogue.start("Emilia", [
+		"È... finita?",
+		"Senti, Subaru. Il vento. Prima non c'era.",
+	])
+	await Dialogue.finished
+	Dialogue.start("Subaru", [
+		"Gli occhi si sono chiusi. Tutti.",
+		"Torniamo a Erbalta. Voglio vedere se il villaggio si è svegliato.",
+	])
+	await Dialogue.finished
+	Game.set_flag(FlagKeys.BOSS_DEFEATED)
+	Game.in_cutscene = false
+	Game.set_checkpoint()
+	queue_free()
