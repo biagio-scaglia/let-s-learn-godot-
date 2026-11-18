@@ -1,0 +1,77 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://world/forest/stone_eye.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/forest/stone_eye.png" id="2_tex"]
+[ext_resource type="Texture2D" path="res://assets/effects/shadow_character.png" id="3_shadow"]
+[ext_resource type="PackedScene" path="res://interactables/interactable.tscn" id="4_interactable"]
+
+[sub_resource type="RectangleShape2D" id="base"]
+size = Vector2(22, 10)
+
+[sub_resource type="Gradient" id="falloff"]
+offsets = PackedFloat32Array(0, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="light_tex"]
+gradient = SubResource("falloff")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="CanvasItemMaterial" id="additive"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="implode_fade"]
+offsets = PackedFloat32Array(0, 0.7, 1)
+colors = PackedColorArray(0.7, 0.4, 1, 0, 0.85, 0.6, 1, 1, 1, 1, 1, 0)
+
+[node name="StoneEye" type="StaticBody2D"]
+script = ExtResource("1_script")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+scale = Vector2(1.8, 1.4)
+texture = ExtResource("3_shadow")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tex")
+offset = Vector2(0, -24)
+hframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("base")
+
+[node name="Gaze" type="Node2D" parent="."]
+position = Vector2(0, -34)
+
+[node name="Cone" type="Polygon2D" parent="Gaze"]
+material = SubResource("additive")
+
+[node name="Glow" type="PointLight2D" parent="."]
+position = Vector2(0, -34)
+color = Color(0.75, 0.45, 1, 1)
+texture = SubResource("light_tex")
+texture_scale = 1.4
+
+[node name="Implode" type="CPUParticles2D" parent="."]
+position = Vector2(0, -34)
+material = SubResource("additive")
+emitting = false
+amount = 40
+lifetime = 0.6
+one_shot = true
+explosiveness = 0.4
+emission_shape = 2
+emission_sphere_radius = 48.0
+gravity = Vector2(0, 0)
+radial_accel_min = -260.0
+radial_accel_max = -200.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+color_ramp = SubResource("implode_fade")
+
+[node name="Interactable" parent="." instance=ExtResource("4_interactable")]
+speaker = "Occhio di pietra"
+prompt_height = 66.0
