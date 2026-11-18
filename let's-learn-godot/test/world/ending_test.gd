@@ -100,3 +100,14 @@ func test_senza_saluti_emilia_ferma_subaru() -> void:
 	assert_bool(Dialogue.is_active).is_true()
 	assert_bool(Game.in_cutscene).is_false()
 	assert_bool(Game.has_flag(FlagKeys.GAME_FINISHED)).is_false()
+
+
+func test_salutati_tutti_in_fondo_al_sentiero_si_parte() -> void:
+	_greet_everyone()
+	var runner := await _village()
+	var subaru := runner.scene().get_node("World/Subaru") as Node2D
+	subaru.global_position = Vector2(656, 690)
+	await runner.simulate_frames(3)
+	assert_bool(Game.in_cutscene).is_true()
+	var ending := runner.scene().get_node("Ending")
+	assert_bool(ending.is_processing()).is_false()   # parte una volta sola
