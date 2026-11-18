@@ -26,7 +26,9 @@ const CROSS_FOREST := "Attraversa il Bosco Senza Tempo"
 const CLOSE_EYES := "Chiudi gli occhi di pietra (%d/3)"
 const ENTER_CLEARING := "Entra nella radura, in cima al bosco"
 const BACK_HOME := "Torna a Erbalta con Emilia"
-const GREET_VILLAGE := "Saluta gli abitanti di Erbalta"
+## %d = quanti abitanti (Saggio, Lina, Archivista) sono già stati salutati.
+const GREET_VILLAGE := "Saluta gli abitanti di Erbalta (%d/3)"
+const LEAVE_SOUTH := "Parti con Emilia dal sentiero a sud"
 ## Nessun obiettivo: il riquadro sparisce.
 const NONE := ""
 
