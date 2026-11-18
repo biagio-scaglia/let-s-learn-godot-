@@ -63,6 +63,7 @@ func continue_game() -> void:
 	Inventory.reset(config.get_value("partita", "zaino", {}))
 	Game.spawn_position = config.get_value("partita", "posizione", null)
 	Game.deaths = config.get_value("partita", "morti", 0)   # i vecchi salvataggi non ce l'hanno
+	Game.memories = config.get_value("partita", "memorie", {})
 	Stats.reset(config.get_value("partita", "statistiche", {}))   # idem: si parte dal livello 1
 	var scene: String = config.get_value("partita", "scena", Game.FIRST_LEVEL)
 	await Game.change_scene(scene, "", config.get_value("partita", "direzione", Facing.DOWN), false)
