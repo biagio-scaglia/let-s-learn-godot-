@@ -12,6 +12,8 @@ var path := "user://salvataggio.cfg"
 const PLACE_NAMES := {
 	"res://world/main.tscn": "Villaggio di Erbalta",
 	"res://world/house.tscn": "Casa di Lina",
+	"res://world/library.tscn": "Biblioteca",
+	"res://world/forest.tscn": "Bosco Senza Tempo",
 }
 
 
