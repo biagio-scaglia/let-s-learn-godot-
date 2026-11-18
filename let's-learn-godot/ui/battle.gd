@@ -143,6 +143,10 @@ var _enemy_base_scale := Vector2.ONE
 ## Il respiro del nemico (le due pose di riposo in loop) e se una posa lo sta sostituendo.
 var _enemy_breath: Tween
 var _enemy_posing := false
+## Emilia combatte con Subaru (deciso a inizio combattimento) e i suoi PT.
+var with_emilia := false
+var ally_sp := 0
+var _ally_breath: Tween
 ## Gli effetti visivi (scintille, stelle, onde d'urto…): vedi battle_vfx.gd.
 var vfx: BattleVfx
 
