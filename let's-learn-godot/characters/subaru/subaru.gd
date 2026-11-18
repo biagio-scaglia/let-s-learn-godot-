@@ -64,7 +64,7 @@ func walk_to(point: Vector2, speed := walk_speed) -> void:
 	_scripted = true
 	facing = Facing.from_vector(point - global_position)
 	_play_walk()
-	var t := create_tween()
+	var t := create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)   # la fisica: interpolata, come i passi normali
 	t.tween_property(self, "global_position", point, global_position.distance_to(point) / speed)
 	await t.finished
 	_scripted = false
