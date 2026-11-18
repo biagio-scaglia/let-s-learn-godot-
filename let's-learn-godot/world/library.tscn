@@ -368,6 +368,7 @@ size = Vector2(64, 12)
 position = Vector2(384, 420)
 
 [node name="Camera2D" type="Camera2D" parent="World/Subaru"]
+process_callback = 0
 limit_left = 0
 limit_top = 0
 limit_right = 768
