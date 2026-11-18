@@ -14,6 +14,10 @@ signal interacted
 @export_multiline var repeat_lines: PackedStringArray = []
 ## Altezza della nuvoletta sopra l'oggetto, in pixel.
 @export var prompt_height := 60.0
+## Precedenza bassa: se il giocatore è vicino anche a un'altra cosa, risponde l'altra.
+## Serve a chi lo segue (Emilia nel bosco): è sempre lì accanto, e senza questo
+## premere E davanti a un nemico farebbe parlare lei invece di cominciare il combattimento.
+@export var low_priority := false
 
 @onready var prompt: Sprite2D = $Prompt
 
@@ -36,6 +40,7 @@ var times: int:
 
 
 func _ready() -> void:
+	add_to_group("interactables")
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 	prompt.visible = false
@@ -48,12 +53,14 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	prompt.visible = player != null and Game.player_can_move()
+	prompt.visible = _show_prompt()
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	if player == null or not Game.player_can_move() or not event.is_action_pressed("interact"):
 		return
+	if not _is_first_choice():
+		return   # c'è qualcosa di più importante (o più vicino): risponde quello
 	# Segna il tasto come "usato", così la finestra di dialogo non lo riceve
 	# subito anche lei e non salta la prima frase.
 	get_viewport().set_input_as_handled()
@@ -72,6 +79,27 @@ func _unhandled_input(event: InputEvent) -> void:
 	# Senza frasi niente dialogo: basta il segnale (es. un oggetto da raccogliere).
 	if not text.is_empty():
 		Dialogue.start(speaker, text)
+
+
+## Tra tutte le cose vicine al giocatore, tocca a me? Prima chi non ha precedenza
+## bassa, poi la più vicina.
+func _is_first_choice() -> bool:
+	var my_distance := global_position.distance_to(player.global_position)
+	for other: Interactable in get_tree().get_nodes_in_group("interactables"):
+		if other == self or other.player == null:
+			continue
+		if other.low_priority != low_priority:
+			if low_priority:
+				return false   # l'altro è più importante
+			continue
+		if other.global_position.distance_to(player.global_position) < my_distance:
+			return false
+	return true
+
+
+## La nuvoletta compare solo su quello che risponderebbe a E.
+func _show_prompt() -> bool:
+	return player != null and Game.player_can_move() and _is_first_choice()
 
 
 func _on_body_entered(body: Node2D) -> void:
