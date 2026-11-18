@@ -315,6 +315,7 @@ func _intro() -> void:
 func _player_turn() -> void:
 	turn = HERO
 	commands.set_actor(HERO, ally_sp)
+	commands.ultimate_button.visible = _ultimate_ready()
 	if defending:
 		defending = false
 		hero_status.visible = false
