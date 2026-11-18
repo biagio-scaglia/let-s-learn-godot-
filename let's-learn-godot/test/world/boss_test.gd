@@ -66,3 +66,25 @@ func _finish_with_ultimate() -> void:
 		if not Battle.is_active:
 			return
 		await await_millis(20)
+
+
+func test_il_boss_e_fatto_bene() -> void:
+	assert_bool(BOSS.behavior != null).is_true()
+	assert_bool(BOSS.music != null).is_true()
+	assert_float(BOSS.battle_scale).is_greater(1.5)
+	assert_bool(BOSS.weaknesses.has("ombra")).is_true()
+	assert_int(BOSS.texture.get_width()).is_equal(96 * BOSS.frames)
+
+
+func test_da_colui_che_guarda_non_si_scappa() -> void:
+	Battle.start(BOSS)
+	await _wait_turn()
+	var hp := Battle.enemy_hp
+	Battle.flee_chance = 1.0
+	Battle.commands.flee_button.pressed.emit()
+	await await_millis(60)
+	await _wait_turn()
+	assert_bool(Battle.is_active).is_true()
+	assert_int(Battle.enemy_hp).is_equal(hp)
+	Battle.flee_chance = 0.5
+	await _finish_with_ultimate()
