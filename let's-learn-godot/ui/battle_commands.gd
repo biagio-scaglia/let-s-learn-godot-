@@ -22,6 +22,8 @@ signal flee_chosen
 @onready var power_button: MenuItem = %PowerPunch
 ## Le Scaglie di gelo: una magia di Emilia, nel suo turno.
 @onready var frost_button: MenuItem = %Frost
+## Cristallo infranto: la mossa combinata di Subaru ed Emilia (dopo il primo occhio di pietra).
+@onready var shatter_button: MenuItem = %Shatter
 @onready var item_window: Control = %ItemWindow
 @onready var potion_button: MenuItem = %Potion
 @onready var help: Control = %Help
