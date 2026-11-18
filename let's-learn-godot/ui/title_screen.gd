@@ -34,6 +34,12 @@ const LOCK := preload("res://assets/ui/lock.png")
 @onready var quit_button: MenuItem = %Quit
 @onready var hands: ShadowHands = %ShadowHands
 
+## In che momento siamo: "intro" (le scritte entrano), "press" (aspetta Invio), "menu".
+var _state := "intro"
+## Secondi passati senza che nessuno tocchi niente.
+var _idle := 0.0
+var _press_tween: Tween
+
 
 func _ready() -> void:
 	_add_village_background()
