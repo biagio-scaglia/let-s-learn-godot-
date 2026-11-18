@@ -515,8 +515,8 @@ func _setup_ally() -> void:
 		_ally_pose(AllyPose.STAND)
 		# Respira piano, come i PNG sulla mappa.
 		_ally_breath = create_tween().set_loops()
-		_ally_breath.tween_property(emilia_sprite, "scale", Vector2(2.45, 2.34), 0.9).set_trans(Tween.TRANS_SINE)
-		_ally_breath.tween_property(emilia_sprite, "scale", Vector2(2.4, 2.4), 0.9).set_trans(Tween.TRANS_SINE)
+		_ally_breath.tween_property(emilia_sprite, "scale", Vector2(ALLY_SCALE * 1.02, ALLY_SCALE * 0.97), 0.9).set_trans(Tween.TRANS_SINE)
+		_ally_breath.tween_property(emilia_sprite, "scale", Vector2(ALLY_SCALE, ALLY_SCALE), 0.9).set_trans(Tween.TRANS_SINE)
 	else:
 		emilia_sprite.texture = EMILIA_CHARSET
 		emilia_sprite.hframes = 4
