@@ -346,6 +346,7 @@ func _ally_turn() -> void:
 	_refresh_turns()
 	_ally_pose(AllyPose.READY)
 	commands.set_actor(ALLY, ally_sp, ALLY_ATTACK, ALLY_DEFEND_SP)
+	commands.ultimate_button.visible = _ultimate_ready()
 	commands.show_menu(true)
 
 
