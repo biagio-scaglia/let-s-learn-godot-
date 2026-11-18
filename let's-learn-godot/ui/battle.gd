@@ -87,7 +87,7 @@ const HP_ZERO := Color(1.0, 0.35, 0.3)
 @onready var screen: Control = $Screen
 @onready var stage: Control = %Stage
 @onready var hero: AnimatedSprite2D = %Hero
-## Emilia, che compare solo per le Scaglie di gelo.
+## Emilia, in campo quando è nel party.
 @onready var emilia_sprite: Sprite2D = %Emilia
 @onready var ally_row: Control = %AllyRow
 @onready var ally_sp_label: Label = %AllySp
