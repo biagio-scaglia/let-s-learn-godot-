@@ -135,3 +135,28 @@ Prima usavo una "maschera": un'immagine del colore del buio con un buco a forma 
 ## Vedi anche
 
 - [[CanvasLayer]] · [[CanvasModulate]] · [[Rumore]] · [[BackBufferCopy]]
+
+## Riflesso sul titolo
+
+`effects/title_shine.gdshader`, sul Label "Erbalta" della [[Schermata iniziale]]. Una striscia di luce in diagonale attraversa le lettere ogni 5 secondi.
+
+Il problema: nel `fragment()` di un Label, `UV` è la posizione nella texture dei **caratteri**, non nella scritta. Serve sapere dove siamo nel Label. Si usa una **varying**: una variabile che il `vertex()` riempie e il `fragment()` riceve (sfumata tra i vertici).
+
+```glsl
+varying vec2 local;
+
+void vertex() {
+	local = VERTEX;   // la posizione in pixel dentro il Label
+}
+
+void fragment() {
+	float t = clamp(mod(TIME, period) / sweep, 0.0, 1.0);
+	float center = mix(from_x, to_x, t);
+	float x = local.x - local.y * 0.5;                          // la diagonale
+	float band = 1.0 - smoothstep(0.0, width, abs(x - center));
+	float bright = step(0.55, dot(COLOR.rgb, vec3(0.333)));     // solo le lettere chiare
+	COLOR.rgb = mix(COLOR.rgb, shine_color, band * strength * bright);
+}
+```
+
+`bright` evita di schiarire il bordo scuro delle lettere: il riflesso passa solo sul riempimento.
