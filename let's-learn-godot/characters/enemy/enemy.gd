@@ -32,6 +32,9 @@ func _ready() -> void:
 	sprite.scale = Vector2.ONE * (MAP_HEIGHT / height)
 	sprite.offset = Vector2(0, -height / 2.0)
 	interactable.interacted.connect(_fight)
+	_home = global_position
+	if wander_radius > 0.0:
+		_wander_later()
 
 	# Respira: le due pose di riposo si alternano (solo se il foglio le ha).
 	if data.animated():
