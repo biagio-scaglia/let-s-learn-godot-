@@ -45,3 +45,21 @@ func _open() -> void:
 	t.tween_callback(func(): frame = Lids.OPEN)
 	t.tween_callback(func(): _busy = false)
 	t.tween_callback(_blink_later)
+
+
+func _blink_later() -> void:
+	get_tree().create_timer(randf_range(2.0, 5.0)).timeout.connect(_blink)
+
+
+func _blink() -> void:
+	if _shut or _busy or not is_inside_tree():
+		return
+	var t := create_tween()
+	t.tween_callback(func(): frame = Lids.HALF)
+	t.tween_interval(0.05)
+	t.tween_callback(func(): frame = Lids.SHUT)
+	t.tween_interval(0.09)
+	t.tween_callback(func(): frame = Lids.HALF)
+	t.tween_interval(0.05)
+	t.tween_callback(func(): frame = Lids.OPEN)
+	t.tween_callback(_blink_later)
