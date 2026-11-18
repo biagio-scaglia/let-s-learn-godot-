@@ -64,3 +64,22 @@ func _send_beam(from: Vector2, to: Vector2) -> void:
 	await t.finished
 	orb.emitting = false
 	get_tree().create_timer(1.0).timeout.connect(orb.queue_free)
+
+
+## Emilia spiega la mossa nuova. Un carillon, l'avviso in alto, il ricordo.
+func _teach_frost() -> void:
+	Dialogue.start("Emilia", [
+		"Hai visto? Quando l'occhio si è chiuso, l'aria è diventata più fredda...",
+		"Queste ombre hanno paura del gelo. E il gelo è una cosa che so fare bene.",
+		"Facciamo così: quando combatti, chiamami. Io arrivo alle tue spalle e le colpisco con le mie scaglie di ghiaccio.",
+	])
+	await Dialogue.finished
+	Dialogue.start("Subaru", ["Un attacco combinato con Emilia-tan?! ...Questo bosco comincia a piacermi."])
+	await Dialogue.finished
+	Game.set_flag(FlagKeys.ICE_UNLOCKED)
+	Sfx.play(Sfx.SKILL_UNLOCK)
+	var icon := AtlasTexture.new()
+	icon.atlas = preload("res://assets/ui/battle_icons.png")
+	icon.region = Rect2(ICE_ICON_INDEX * 16, 0, 16, 16)
+	Hud.show_message("Nuova abilità: Scaglie di gelo", icon)
+	await get_tree().create_timer(1.2).timeout
