@@ -95,3 +95,37 @@ func _on_emilia() -> void:
 			"Comincerei dal Saggio: sta sempre vicino agli alberi, a est della piazza.",
 			"Se qualcuno sa qualcosa delle voci su Erbalta, è lui.",
 		]
+
+
+## La fine dell'atto 2: Subaru racconta, Emilia decide. È una conversazione a più
+## voci: la prima battuta la dice il dialogo normale di Emilia, le altre seguono.
+func _final_talk() -> void:
+	emilia.override_lines = [
+		"Subaru! Sei corso fin qui. Cosa c'era scritto nel libro?",
+	]
+	Game.in_cutscene = true   # nessuno interrompe la conversazione
+	await _then("Subaru", [
+		"Erbalta non invecchia, Emilia. Ricomincia.",
+		"Ogni alba è la stessa alba. Gli abitanti la vivono per sempre e non se ne accorgono.",
+		"C'è qualcosa che li tiene qui. Il libro lo chiama \"Colui che guarda\". Dorme nel bosco a nord.",
+	])
+	await _then("Emilia", [
+		"Un villaggio che ricomincia sempre lo stesso giorno...",
+		"Allora è per questo che nessuno se ne va. Non è che non vogliono: non possono.",
+		"...Ma tu come fai a ricordartelo, Subaru?",
+	])
+	await _then("Subaru", [
+		"...",
+		"Diciamo che sono bravo a ricordare le cose. Anche quelle che non dovrei.",
+	])
+	await _then("Emilia", [
+		"Va bene. Non ti chiedo altro.",
+		"Andremo nel bosco a nord. Insieme.",
+		"Ma non adesso: riposati, prima. Partiamo domani all'alba.",
+		"...Sempre che domani arrivi davvero.",
+	])
+	await Dialogue.finished
+	Game.set_flag(FlagKeys.ACT2_DONE)
+	Game.in_cutscene = false
+	# Fine dell'atto: da qui si riparte dopo un Ritorno dalla Morte.
+	Game.set_checkpoint()
