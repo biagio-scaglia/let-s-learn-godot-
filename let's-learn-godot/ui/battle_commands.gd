@@ -51,7 +51,7 @@ func setup(skills: Dictionary, attack: String, defend_sp: int) -> void:
 	_hero_attack = attack
 	_attack_id = attack
 	_defend_sp = defend_sp
-	_skill_buttons = {kick_button: "calcio", shamac_button: "shamac", power_button: "carica", frost_button: "gelo"}
+	_skill_buttons = {kick_button: "calcio", shamac_button: "shamac", power_button: "carica", frost_button: "gelo", shatter_button: "cristallo"}
 	attack_button.pressed.connect(func(): skill_chosen.emit(_attack_id))
 	for button: MenuItem in _skill_buttons:
 		button.pressed.connect(skill_chosen.emit.bind(_skill_buttons[button]))
