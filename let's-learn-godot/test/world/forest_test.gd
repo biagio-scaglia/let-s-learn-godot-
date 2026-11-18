@@ -34,3 +34,21 @@ func test_gia_arrivati_niente_cutscene() -> void:
 	assert_bool(Game.in_cutscene).is_false()
 	assert_object(runner.scene().get_node_or_null("ForestArrival")).is_null()
 	assert_str(Objective.current()).is_equal(Objective.CROSS_FOREST)
+
+
+func test_emilia_segue_subaru() -> void:
+	Game.set_flag(FlagKeys.FOREST_ARRIVED)
+	var runner := scene_runner(Game.FOREST_SCENE)
+	await runner.simulate_frames(3)
+	var subaru := runner.scene().get_node("World/Subaru") as Node2D
+	var emilia := runner.scene().get_node("World/Emilia") as Node2D
+	# All'arrivo (senza cutscene) si mette subito dietro di lui.
+	assert_float(emilia.global_position.distance_to(subaru.global_position)).is_less(40.0)
+	# Subaru va verso nord: lei lo segue, restando un po' indietro.
+	subaru.set("_scripted", true)
+	await subaru.walk_to(subaru.global_position + Vector2(0, -160), 200.0)
+	await runner.simulate_frames(40)
+	var gap := emilia.global_position.distance_to(subaru.global_position)
+	assert_float(gap).is_between(10.0, 60.0)
+	# E non fa da muro: il giocatore non ci sbatte contro.
+	assert_int(emilia.collision_layer).is_equal(0)
