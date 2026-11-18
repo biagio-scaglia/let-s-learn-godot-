@@ -163,3 +163,36 @@ func _on_archivista() -> void:
 			"...Aspetta. Quella che hai in tasca è già una lacrima d'ombra?",
 		] if Inventory.has(Inventory.TEAR) else [])
 		Game.set_flag(FlagKeys.PAGE_READ)
+
+
+# ---------- Il libro nero ----------
+
+func _on_black_book() -> void:
+	if Game.has_flag(FlagKeys.BOOK_READ):
+		black_book.override_lines = [
+			"Le pagine sono di nuovo vuote. Ma ora sai cosa c'era scritto.",
+			"\"Questa volta, portala via di qui.\"",
+		]
+		return
+	if not (Game.has_flag(FlagKeys.PAGE_READ) and Inventory.has(Inventory.PAGE) \
+			and Inventory.has(Inventory.TEAR)):
+		return   # le sue frasi normali, misteriose
+	black_book.override_lines = [
+		"Rimetti la pagina al suo posto. Combacia perfettamente, strappo per strappo.",
+		"La lacrima d'ombra scivola sulla carta... e l'inchiostro comincia a muoversi da solo.",
+		"\"Erbalta non invecchia. Erbalta ricomincia.\"",
+		"\"Ogni alba è la stessa alba. Chi vive qui la vive per sempre, e non se ne accorge.\"",
+		"\"Solo chi torna dalla morte ricorda.\"",
+		"\"Colui che guarda dorme nel bosco a nord, dove gli alberi non crescono. Finché i suoi occhi resteranno aperti, nessuno lascerà il villaggio.\"",
+		"Sotto, l'ultima riga. Con la tua calligrafia:",
+		"\"Questa volta, portala via di qui.\"",
+	]
+	Inventory.remove(Inventory.PAGE)
+	Inventory.remove(Inventory.TEAR)
+	_book_wakes()
+	await Dialogue.finished
+	Game.set_flag(FlagKeys.BOOK_READ)
+	Dialogue.start("Subaru", [
+		"...Questa è la mia calligrafia. Non c'è dubbio.",
+		"Devo dirlo a Emilia. Subito.",
+	])
