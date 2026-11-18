@@ -26,6 +26,8 @@ const FLED := "fled"
 
 const HERO := "hero"
 const ENEMY := "enemy"
+## Emilia, quando è nel party (vedi Game.emilia_in_party()).
+const ALLY := "ally"
 
 ## Le mosse di Subaru. "power" moltiplica il danno, "type" decide le debolezze,
 ## "cost" sono i punti tecnica (PT) che servono.
