@@ -170,6 +170,8 @@ func _ready() -> void:
 	_hero_home = hero.position
 	_enemy_home = enemy_sprite.position
 	_enemy_base_scale = enemy_sprite.scale
+	_enemy_shadow_scale = enemy_shadow.scale
+	_default_music = music.stream
 	# I comandi dicono cosa hai scelto; qui si decide cosa succede.
 	commands.setup(SKILLS, ATTACK, DEFEND_SP)
 	commands.skill_chosen.connect(_use_skill)
