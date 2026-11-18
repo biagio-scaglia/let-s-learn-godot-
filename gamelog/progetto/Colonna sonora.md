@@ -55,6 +55,10 @@ Una **voce sintetica**: un'onda a dente di sega (le corde vocali) che passa per 
 
 Tre voci insieme (una normale, una un'ottava sotto, una più acuta), una **modulazione ad anello** a 38 Hz che la rende un po' meno umana e un riverbero corto.
 
+## Bosco Senza Tempo
+
+`assets/music/forest_theme.wav`: re minore, 4/4, 58 BPM, 16 battute, 66 secondi in loop. Si apre con l'inizio del valzer del villaggio, ma storto (re-fa-mi-fa invece di do-fa-mi-fa): lo stesso posto, guardato male. Carillon con un'eco sottile un'ottava sopra, un bordone di re e la che non si ferma mai, accordi d'organo morbidi, soffi come respiri tra gli alberi e un battito lontano ogni due battute: lo stesso cuore del bordo del villaggio. Nella battuta 12 c'è un sol diesis, la nota che non dovrebbe esserci, con il carillon scordato. Riverbero lungo.
+
 ## Vedi anche
 
 - [[2026-11-17-biblioteca#La musica]] · [[2026-11-17-colonna-sonora]] · [[Audio]] · [[Sfx]]

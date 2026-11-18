@@ -79,6 +79,10 @@ Tutti i brani sono descritti in [[Colonna sonora]].
 
 I due loop (`assets/castle/castle_water.wav`, `castle_fire.wav`) sono sintetizzati come la musica: rumore filtrato che "respira" più qualche bolla per l'acqua, un fruscio basso più tanti clic brevissimi per il fuoco. Per non sentire il "clic" quando il loop ricomincia, la coda del suono è sfumata sopra l'inizio.
 
+## Suoni sparsi
+
+Nel [[Bosco Senza Tempo]] i corvi e i rami non stanno in un posto fisso: `forest_ambience.gd` crea ogni 5-12 secondi un `AudioStreamPlayer2D` nuovo, lo mette in un punto a caso attorno a Subaru, lo fa suonare e lo cancella quando ha finito (`finished.connect(queue_free)`). Così il bosco sembra pieno di cose, da tutte le parti.
+
 ## Vedi anche
 
 - [[Effetti visivi]]
