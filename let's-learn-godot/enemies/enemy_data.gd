@@ -13,7 +13,7 @@ extends Resource
 ## I punti scudo: ogni colpo su una debolezza ne toglie uno. A zero il nemico è
 ## "rotto": salta il turno e prende il doppio dei danni (vedi Battle).
 @export var shield := 2
-## I tipi di colpo che lo indeboliscono: "pugno", "calcio", "ombra".
+## I tipi di colpo che lo indeboliscono: "pugno", "calcio", "ombra", "ghiaccio".
 ## All'inizio il giocatore li vede come "?": li scopre colpendo.
 @export var weaknesses: Array[String] = []
 ## L'esperienza che dà quando viene sconfitto.
