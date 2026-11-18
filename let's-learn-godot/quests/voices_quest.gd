@@ -59,3 +59,39 @@ func _on_saggio() -> void:
 			"Sei stato da Lina? Casa col tetto rosso, a nord-ovest. Non puoi sbagliare.",
 			"Io resto qui, con i miei alberi. Ci facciamo compagnia.",
 		]
+
+
+# ---------- Emilia: il punto di riferimento ----------
+
+func _on_emilia() -> void:
+	if Game.has_flag(FlagKeys.ACT2_DONE):
+		emilia.override_lines = [
+			"Domani all'alba, il bosco a nord. Io ci sarò.",
+			"Non sparire, d'accordo? ...E non morire. Nemmeno per finta.",
+		]
+	elif Game.has_flag(FlagKeys.BOOK_READ):
+		_final_talk()
+	elif Game.has_flag(FlagKeys.PAGE_READ):
+		emilia.override_lines = [
+			"Uno Spettro a est della piazza? Stai attento, Subaru.",
+			"Colpiscilo dove gli fa più male, e se sei ferito usa le pozioni di Lina.",
+		] if not Inventory.has(Inventory.TEAR) else [
+			"Una lacrima d'ombra... è fredda solo a guardarla.",
+			"Portala al libro nero, insieme alla pagina. Io ti aspetto qui.",
+		]
+	elif Inventory.has(Inventory.PAGE):
+		emilia.override_lines = [
+			"Una pagina strappata? Fa' vedere... è scritta in una lingua antica.",
+			"Portala in biblioteca, la casa di pietra a nord-est. L'Archivista saprà leggerla.",
+		]
+	elif Game.has_flag(FlagKeys.SAGE_FORGETS):
+		emilia.override_lines = [
+			"Il Saggio non si ricorda da quanto tempo è qui? ...Che strano.",
+			"Prova a sentire Lina, come ti ha detto lui. Io tengo d'occhio la piazza.",
+		]
+	else:
+		emilia.override_lines = [
+			"Allora, Subaru? Hai già fatto un giro?",
+			"Comincerei dal Saggio: sta sempre vicino agli alberi, a est della piazza.",
+			"Se qualcuno sa qualcosa delle voci su Erbalta, è lui.",
+		]
