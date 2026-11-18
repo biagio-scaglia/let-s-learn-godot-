@@ -19,3 +19,14 @@ var _trail: PackedVector2Array = []
 var _needs_seed := true
 var _npc: Node2D
 var _player: Node2D
+
+
+func _ready() -> void:
+	_npc = get_parent() as Node2D
+	# Mentre segue non deve fare da muro: il giocatore a volte torna indietro.
+	if _npc is CollisionObject2D:
+		_npc.collision_layer = 0
+	_player = get_tree().get_first_node_in_group("player") as Node2D
+	# Dopo tutti i _ready (il livello ha già messo il giocatore al suo posto, e una
+	# cutscene avrebbe già detto di sé): se non c'è una regia, si mette dietro di lui.
+	_snap_if_free.call_deferred()
