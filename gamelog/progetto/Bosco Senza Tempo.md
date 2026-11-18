@@ -61,6 +61,22 @@ Tronchi, rovi, sassi e lapidi hanno una forma di collisione e un `y_sort_origin`
 
 `world/forest/thicket_eyes.gd` (`ThicketEyes`), 14 coppie sul bordo dei rovi. Ognuna si apre in un momento a caso (dissolvenza, poi socchiusa, poi aperta), sbatte le palpebre ogni 2-5 secondi, e quando Subaru arriva a meno di 90 pixel **si chiude di colpo** e svanisce. Si riapre dopo un po', solo se lui si è allontanato.
 
+## Gli occhi di pietra
+
+![[occhio_di_pietra.png|500]]
+
+Tre colonne di pietra con un occhio (`world/forest/stone_eye.tscn`, `StoneEye`), negli slarghi a ovest, a est e a sud. Ognuna:
+
+- **spazza** il terreno: un [[Tween]] in loop gira lo sguardo avanti e indietro di 60° attorno a una direzione (`base_angle`);
+- **vede** con un cono di 40° lungo 170 pixel ([[Angoli e coni di visione]]). Se vede Subaru: stridio, lampo rosso, dissolvenza, e lui si ritrova in un punto lontano (`respawn`) con 2 PS in meno (mai sotto 1). Emilia gli si rimette dietro (`snap_behind()` sul gruppo `followers`). La prima volta lei spiega il trucco;
+- **si chiude** se le arrivi alle spalle e premi E: la palpebra scende, l'energia viola viene risucchiata (particelle con accelerazione radiale negativa), la luce si spegne, la camera trema. Poi `forest_quest.gd` manda un globo viola fino alla nebbia, su una curva, e il bagliore corrispondente si chiude.
+
+Al primo occhio chiuso Emilia insegna le **Scaglie di gelo**; al terzo la nebbia (`FogGate`) si dissolve con un accordo maggiore. Ricordi: `occhio_chiuso:ovest/est/sud`, `gelo_sbloccato`, `occhio_visto`, `nebbia_vista`.
+
+## I nemici del bosco
+
+Cinque, tutti con il ghiaccio come debolezza: due **Occhi erranti**, due **Mani d'ombra** e il **Guardiano dei rovi**, che sorveglia l'occhio a sud. Gironzolano, come quelli del villaggio. Vedi [[Nemici]].
+
 ## I suoni
 
 | Suono | Come |
