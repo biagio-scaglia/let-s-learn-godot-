@@ -30,3 +30,11 @@ func load_progress() -> void:
 
 func gallery_unlocked() -> bool:
 	return story_finished
+
+
+## Chiamato dal finale: la Galleria si sblocca.
+func finish_story() -> void:
+	if story_finished:
+		return
+	story_finished = true
+	_save()
