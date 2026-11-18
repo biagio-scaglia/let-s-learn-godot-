@@ -95,3 +95,34 @@ book_id = "emilia"
 position = Vector2(672, 176)
 script = ExtResource("5_exhibit")
 book_id = "archivista"
+
+[node name="Melma" type="Node2D" parent="World"]
+position = Vector2(112, 304)
+script = ExtResource("5_exhibit")
+book_id = "melma"
+
+[node name="Spettro" type="Node2D" parent="World"]
+position = Vector2(240, 304)
+script = ExtResource("5_exhibit")
+book_id = "spettro"
+
+[node name="ManoOmbra" type="Node2D" parent="World"]
+position = Vector2(560, 304)
+script = ExtResource("5_exhibit")
+book_id = "mano_ombra"
+
+[node name="OcchioErrante" type="Node2D" parent="World"]
+position = Vector2(688, 304)
+script = ExtResource("5_exhibit")
+book_id = "occhio_errante"
+
+[node name="GuardianoRovi" type="Node2D" parent="World"]
+position = Vector2(176, 424)
+script = ExtResource("5_exhibit")
+book_id = "guardiano_rovi"
+
+[node name="ColuiCheGuarda" type="Node2D" parent="World"]
+position = Vector2(624, 440)
+script = ExtResource("5_exhibit")
+book_id = "colui_che_guarda"
+figure_scale = 0.75
