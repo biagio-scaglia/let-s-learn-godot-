@@ -61,3 +61,9 @@ func modify_damage(_skill: Dictionary, amount: int) -> int:
 	if battle.enemy_broken:
 		return amount   # accecato o rotto: non vede niente
 	return maxi(1, roundi(amount * SEEN_HIT))
+
+
+func on_hit(skill: Dictionary) -> void:
+	if charging and skill.type == "ombra":
+		_blind()
+	_check_phase()
