@@ -79,3 +79,18 @@ func no_flee_text() -> String:
 
 func ultimate_ready() -> bool:
 	return phase >= 3
+
+
+# ---------- Lo Sguardo ----------
+
+func _start_charge() -> void:
+	charging = true
+	battle._announce("Colui che guarda")
+	battle._enemy_pose(EnemyData.Pose.WINDUP)
+	Sfx.play(Sfx.GAZE_CHARGE)
+	battle.vfx.shake(3.0, 0.8)
+	battle.vfx.sparks(battle._enemy_center(), Color(1.0, 0.3, 0.4), 24, 160.0)
+	_start_pulse()
+	await battle._say("Colui che guarda spalanca l'occhio. Sta caricando lo Sguardo!")
+	if Game.remembers(MEMORY_GAZE):
+		await battle._say("Subaru: \"Lo so cosa succede adesso. Lo Shamac, subito!\"")
