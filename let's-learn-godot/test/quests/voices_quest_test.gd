@@ -37,3 +37,13 @@ func _library() -> GdUnitSceneRunner:
 	var runner := scene_runner("res://world/library.tscn")
 	await runner.simulate_frames(2)
 	return runner
+
+
+func test_il_saggio_non_ricorda() -> void:
+	var runner := await _village()
+	var saggio := runner.scene().get_node("World/Npc/Interactable") as Interactable
+	saggio.interacted.emit()
+	assert_bool(Game.has_flag(FlagKeys.SAGE_FORGETS)).is_true()
+	assert_str("\n".join(saggio.override_lines)).contains("Non me lo ricordo")
+	# La prima volta si presenta anche.
+	assert_str(saggio.override_lines[0]).contains("Io sono il Saggio")
