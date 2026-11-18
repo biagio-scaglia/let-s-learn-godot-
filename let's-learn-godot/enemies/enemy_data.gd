@@ -25,3 +25,27 @@ enum Pose { IDLE, IDLE_2, WINDUP, ATTACK, HURT }
 ## Con 5 celle sono le pose di Pose (respiro x2, carica, attacco, colpito);
 ## con 1 cella il nemico è un'immagine ferma.
 @export var texture: Texture2D
+## Quante celle ci sono nel foglio "texture".
+@export var frames := 1
+## L'oggetto (id dello zaino, vedi Inventory) che lascia quando viene sconfitto. "" = niente.
+@export var drop := ""
+
+
+## Ha tutte le pose per animarsi?
+func animated() -> bool:
+	return frames >= Pose.size()
+
+
+## Quanto è alta una cella, in pixel (16 se manca l'immagine, come nei test).
+func cell_size() -> float:
+	return float(texture.get_height()) if texture else 16.0
+
+
+## Solo la prima posa, per le icone (la barra dei turni in combattimento).
+func portrait() -> Texture2D:
+	if texture == null or frames <= 1:
+		return texture
+	var atlas := AtlasTexture.new()
+	atlas.atlas = texture
+	atlas.region = Rect2(0, 0, cell_size(), cell_size())
+	return atlas
