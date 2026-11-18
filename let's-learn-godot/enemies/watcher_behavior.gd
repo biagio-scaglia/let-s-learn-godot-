@@ -51,3 +51,7 @@ func take_turn() -> bool:
 		await _start_charge()
 		return true
 	return false
+
+
+func held_pose() -> int:
+	return EnemyData.Pose.WINDUP if charging else -1
