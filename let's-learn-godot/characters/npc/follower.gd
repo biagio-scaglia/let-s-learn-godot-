@@ -69,3 +69,11 @@ func _physics_process(delta: float) -> void:
 	_npc.global_position = _npc.global_position.move_toward(target, speed * delta)
 	if _npc.has_method("step"):
 		_npc.step(Facing.from_vector(to_target), delta)
+
+
+func _drop_crumb() -> void:
+	var here := _player.global_position
+	if _trail.is_empty() or _trail[-1].distance_to(here) >= CRUMB_STEP:
+		_trail.append(here)
+		if _trail.size() > MAX_CRUMBS:
+			_trail.remove_at(0)
