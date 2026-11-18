@@ -64,3 +64,13 @@ func _draw() -> void:
 	draw_rect(Rect2(-_half - 1, -7, _half * 2 + 2, 12), outline)
 	draw_rect(Rect2(-_half, -6, _half * 2, 10), stone)
 	draw_rect(Rect2(-_half, -6, _half * 2, 3), top)
+
+
+func _add_figure() -> void:
+	var book := GalleryBooks.entry(book_id)
+	if book_id == "subaru":
+		_add_statue(book)
+	elif QUIPS.has(book_id):
+		_add_npc(book)
+	else:
+		_add_monster()
