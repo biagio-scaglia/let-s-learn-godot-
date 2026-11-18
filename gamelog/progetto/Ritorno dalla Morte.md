@@ -88,6 +88,12 @@ Sono tutti [[Licenza CC0]], e ogni cartella ha il suo `License.txt`.
 | Glitch del ritorno | `assets/kenney_interface_sounds/` | "Interface Sounds" di Kenney |
 | Fumo e vortice | `assets/kenney_particle_pack/` | "Particle Pack" di Kenney, rimpiccioliti a 64 px |
 
+## Quello che Subaru ricorda
+
+Il Ritorno riporta indietro `Game.flags` (i ricordi del mondo), lo zaino e le statistiche. Due cose invece restano: `Game.deaths` (quante volte è morto) e, dal [[2026-11-18-colui-che-guarda|18 novembre]], `Game.memories`: le cose che Subaru ha **imparato morendo**. `Game.remember("…")` le scrive, `Game.remembers("…")` le legge; finiscono anche nel [[Salvataggio]].
+
+La prima è il punto debole di [[Colui che guarda]]: lo Shamac lo acceca mentre carica lo Sguardo. Chi muore contro di lui, al tentativo dopo lo sa già.
+
 ## Vedi anche
 
 - [[Game]] · [[Salvataggio]] · [[Rumore]] · [[Shader]] · [[2026-11-14-ritorno-dalla-morte]]
