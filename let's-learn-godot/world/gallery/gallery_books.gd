@@ -125,3 +125,22 @@ static func all_ids() -> Array[String]:
 	for book in CHARACTERS + MONSTERS:
 		ids.append(book.id)
 	return ids
+
+
+static func _with_stats(book: Dictionary) -> Dictionary:
+	var full := book.duplicate()
+	var data := Portraits.enemy_data(book.id)
+	if data == null:
+		return full
+	full["name"] = data.name
+	var weak: Array[String] = []
+	for w in data.weaknesses:
+		weak.append(HIT_NAMES.get(w, w))
+	full["stats"] = [
+		["PS", str(data.max_hp)],
+		["Attacco", str(data.attack)],
+		["Difesa", str(data.defense)],
+		["Scudo", str(data.shield)],
+		["Debole a", ", ".join(weak)],
+	]
+	return full
