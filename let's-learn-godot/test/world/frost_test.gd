@@ -48,3 +48,22 @@ func _escape() -> void:
 		Battle.flee_chance = 1.0
 		Battle.commands.flee_button.pressed.emit()
 		await _wait_turn()
+
+
+func test_senza_emilia_la_mossa_non_c_e() -> void:
+	Battle.start(load("res://enemies/occhio_errante.tres"))
+	await _wait_turn()
+	Battle.commands.open_skills()
+	assert_bool(Battle.commands.frost_button.visible).is_false()
+	Battle.commands.close_submenus()
+	await _escape()
+
+
+func test_dopo_l_insegnamento_di_emilia_c_e() -> void:
+	Game.set_flag(FlagKeys.ICE_UNLOCKED)
+	Battle.start(load("res://enemies/occhio_errante.tres"))
+	await _wait_turn()
+	Battle.commands.open_skills()
+	assert_bool(Battle.commands.frost_button.visible).is_true()
+	Battle.commands.close_submenus()
+	await _escape()
