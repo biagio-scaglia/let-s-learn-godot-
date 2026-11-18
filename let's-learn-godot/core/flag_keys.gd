@@ -23,6 +23,10 @@ const BOOK_READ := "libro_letto"
 ## Subaru l'ha raccontato a Emilia: fine dell'atto 2.
 const ACT2_DONE := "atto2_finito"
 
+# ---------- Atto 3: il Bosco Senza Tempo ----------
+## Subaru ed Emilia sono arrivati nel bosco (la cutscene d'arrivo è stata vista).
+const FOREST_ARRIVED := "bosco_arrivo"
+
 
 ## Quante volte si è parlato con un Interactable (uno per percorso nella scena).
 static func talked(node: Node) -> String:
