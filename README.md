@@ -35,6 +35,14 @@ Un piccolo RPG in pixel art fatto per **imparare Godot 4 un passo alla volta**: 
 
 Tutto comincia di notte, in un castello con un **tileset disegnato apposta**. Subaru ed Emilia attraversano il ponte levatoio tra torce che crepitano e scintille sull'acqua, e partono per Erbalta. Arrivano all'alba, insieme; lei si apposta in piazza, tu vai a parlare con la gente.
 
+### Atto 2: le voci di Erbalta
+
+![Subaru nel villaggio, con la Melma e lo Spettro; in alto l'obiettivo](gamelog/assets/nemici_nuovi.png)
+
+Da Erbalta arrivano voci strane: nessuno vuole più lasciare il villaggio. Il Saggio non ricorda da quanto tempo è lì, nel baule di Lina c'è una pagina strappata, l'Archivista la riconosce, lo Spettro custodisce una lacrima d'ombra… e il libro nero, alla fine, parla. In alto a sinistra l'obiettivo ti dice sempre dove andare, ed Emilia in piazza ti aspetta.
+
+I nemici sono disegnati apposta e **animati**: respirano, si caricano, attaccano e fanno una smorfia quando li colpisci.
+
 ### La biblioteca
 
 ![La biblioteca di notte: raggi di luna dalle finestre, candele, scaffali e l'Archivista](gamelog/assets/biblioteca_interno.png)
