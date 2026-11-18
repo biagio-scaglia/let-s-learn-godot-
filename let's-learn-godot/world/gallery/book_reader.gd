@@ -112,3 +112,11 @@ func _fill_stats(stats: Array) -> void:
 	for row in stats:
 		_stats.add_child(_ink_label(row[0] + ":", INK_SOFT))
 		_stats.add_child(_ink_label(row[1], INK))
+
+
+func _animate(target: float) -> void:
+	if _tween:
+		_tween.kill()
+	_tween = create_tween().set_parallel()
+	_tween.tween_property(_dim, "color:a", 0.6 * target, 0.2)
+	_tween.tween_property(_book, "modulate:a", target, 0.2)
