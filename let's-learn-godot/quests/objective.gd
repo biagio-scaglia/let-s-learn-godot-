@@ -40,4 +40,6 @@ static func current() -> String:
 		return OPEN_CHEST if Game.has_flag(FlagKeys.KEY_SHOWN) else BRING_KEY
 	if Game.has_flag(FlagKeys.KEY_QUEST_STARTED):
 		return FIND_KEY
-	return EXPLORE
+	if Game.has_flag(FlagKeys.SAGE_FORGETS):
+		return VISIT_LINA
+	return ASK_SAGE
