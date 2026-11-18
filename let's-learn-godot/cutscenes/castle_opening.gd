@@ -57,8 +57,8 @@ func _play(player: Node2D, emilia: Node2D) -> void:
 		"Da qualche giorno da Erbalta arrivano voci strane. Sembra che nessuno voglia più lasciare il villaggio.",
 		"Io resterò in piazza a tenere d'occhio le cose. Tu invece parlerai con la gente: sei bravo, in questo.",
 	])
-	await _say("Subaru", ["Bravissimo! Lascia fare a me, Emilia-tan!"])
-	await _say("Emilia", ["...Il \"-tan\" non serve, Subaru."])
+	await _say("Subaru", ["Bravissimo! Lascia fare a me, Emiliuccia!"])
+	await _say("Emilia", ["...\"Emiliuccia\"? Ma come ti viene in mente, Subaru?"])
 
 	# 4. Si rimettono in cammino verso sud, e la scena sfuma sul villaggio.
 	await _wait(0.3)
