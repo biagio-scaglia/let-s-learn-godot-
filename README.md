@@ -6,6 +6,8 @@ Un piccolo RPG in pixel art fatto per **imparare Godot 4 un passo alla volta**: 
 
 **Godot 4.7.2** · GDScript · pixel art · **la storia completa, dall'inizio ai titoli di coda** · **200 test** automatici con gdUnit4 · un diario di sviluppo in [Obsidian](gamelog/Gamelog.md)
 
+🎬 **[Guarda il trailer](docs/trailer.mp4)** (2:28): il filmato iniziale, il titolo, le battaglie, Colui che guarda e l'Alba di cristallo, il finale, i titoli di coda e la Galleria. Registrato dal gioco stesso con il Movie Maker di Godot.
+
 ---
 
 ## Cosa c'è
