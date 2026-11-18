@@ -55,8 +55,9 @@ const ALLY_ATTACK := "dardo"
 ## I PT di Emilia: pieni a ogni combattimento. Difendendosi ne recupera ALLY_DEFEND_SP.
 const ALLY_MAX_SP := 12
 const ALLY_DEFEND_SP := 3
-## Il foglio delle pose d'attacco di Emilia: 6 colonne x 4 righe; la riga 3 guarda a
-## sinistra (verso il nemico). Colonne: in piedi, pronta, carica, braccio teso, lancio, ritorno.
+## Il foglio delle pose d'attacco di Emilia: 6 colonne x 4 righe di celle 44x48; la riga 3
+## guarda a sinistra (verso il nemico). Colonne: in piedi, pronta, carica, braccio teso,
+## lancio, ritorno. Stessa densità di pixel del charset e di Subaru: si ingrandisce x3.
 const EMILIA_ATTACK := preload("res://characters/emilia/emilia_attack.png")
 const EMILIA_CHARSET := preload("res://characters/emilia/emilia_charset.png")
 const ALLY_ROW := 3
