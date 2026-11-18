@@ -26,6 +26,9 @@ Una [[Risorse personalizzate|risorsa personalizzata]] (`enemies/enemy_data.gd`),
 |---|---|---|---|---|---|---|---|---|
 | Melma verde | `melma.tres` | 14 | 5 | 1 | 2 | pugno, calcio | 10 | — |
 | Spettro | `spettro.tres` | 16 | 5 | 2 | 2 | calcio, ombra | 25 | Lacrima d'ombra ([[Atto 2]]) |
+| Occhio errante | `occhio_errante.tres` | 12 | 5 | 1 | 2 | pugno, ghiaccio | 12 | — |
+| Mano d'ombra | `mano_ombra.tres` | 18 | 6 | 2 | 2 | calcio, ghiaccio | 18 | — |
+| Guardiano dei rovi | `guardiano_rovi.tres` | 28 | 7 | 3 | 3 | ghiaccio, ombra | 35 | — |
 
 `shield` sono i punti scudo, `weaknesses` un `Array[String]` con i tipi di colpo che lo indeboliscono (`"pugno"`, `"calcio"`, `"ombra"`). Come funzionano: [[Combattimento#Scudi, debolezze e rottura]].
 
@@ -38,6 +41,10 @@ La melma è fatta per essere battuta al primo colpo d'occhio, e dà giusto l'esp
 Dal [[2026-11-18-atto-2]] i nemici sono **disegnati apposta** (prima erano tile di [[Tiny Dungeon]] da 16 px): fogli da 5 pose di 32×32, alla stessa scala di pixel di [[Subaru]] ed [[Emilia]].
 
 ![[nemici_pose.png|600]]
+
+![[atto3_grafica.png|600]]
+
+I tre del bosco (dall'alto): Occhio errante (ali d'ombra, si sporge con l'iride rossa), Mano d'ombra (esce dal terreno, un occhio nel palmo), Guardiano dei rovi (una palla di spine piena d'occhi, apre le fauci).
 
 | Posa (`EnemyData.Pose`) | Melma | Spettro |
 |---|---|---|
@@ -72,6 +79,10 @@ func _fight() -> void:
 		Inventory.add(data.drop)   # lo Spettro lascia la lacrima d'ombra
 	...svanisce e si toglie
 ```
+
+## Gironzolano
+
+Ogni 2,5-5,5 secondi un nemico fa qualche passo in una direzione a caso, al massimo 48 pixel da dove è nato (`wander_radius`), lentamente (`wander_speed`). Prima di muoversi chiede a Godot `test_move(global_transform, spostamento)`: se sbatterebbe contro un albero, un rovo, un muro o Subaru, resta fermo ([[Collisioni#Provare prima di muoversi]]). Sta fermo anche durante dialoghi, cutscene e battaglie, e quando Subaru gli è abbastanza vicino da parlarci. Guarda dove va (`flip_h`).
 
 ## Non ricompare (a meno che…)
 
