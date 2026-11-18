@@ -298,6 +298,31 @@ func _player_turn() -> void:
 	commands.show_menu(true)
 
 
+## Dopo Subaru tocca a Emilia (se è nel party), dopo Emilia al nemico.
+func _next_turn() -> void:
+	if turn == HERO and with_emilia:
+		_ally_turn()
+	else:
+		_enemy_turn()
+
+
+## Una scelta andata a vuoto: tocca di nuovo a chi stava scegliendo.
+func _same_turn_again() -> void:
+	if turn == ALLY:
+		_ally_turn()
+	else:
+		_player_turn()
+
+
+## Il turno di Emilia: stessi comandi, ma le sue mosse e i suoi PT.
+func _ally_turn() -> void:
+	turn = ALLY
+	_refresh_turns()
+	_ally_pose(AllyPose.READY)
+	commands.set_actor(ALLY, ally_sp, ALLY_ATTACK, ALLY_DEFEND_SP)
+	commands.show_menu(true)
+
+
 ## Subaru ha scelto: i comandi spariscono.
 func _act() -> void:
 	commands.show_menu(false)
