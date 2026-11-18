@@ -25,6 +25,15 @@ const NONE := ""
 
 
 static func current() -> String:
+	# Si parte dalla fine: il primo passo già fatto decide cosa viene dopo.
+	if Game.has_flag(FlagKeys.ACT2_DONE):
+		return FOREST
+	if Game.has_flag(FlagKeys.BOOK_READ):
+		return TELL_EMILIA
+	if Game.has_flag(FlagKeys.PAGE_READ):
+		return READ_BOOK if Inventory.has(Inventory.TEAR) else DEFEAT_SPECTRE
+	if Inventory.has(Inventory.PAGE):
+		return SHOW_PAGE
 	if Game.has_flag(FlagKeys.CHEST_OPEN):
 		return NONE
 	if Inventory.has(Inventory.KEY):
