@@ -68,6 +68,7 @@ func setup(stage_node: Control, hero_sprite: AnimatedSprite2D, enemy_sprite: Spr
 	_frames = {
 		"impact": _frames_from_sheet(IMPACT_SHEET, 24.0),
 		"slash": _frames_from_sheet(SLASH_SHEET, 26.0),
+		"frost": _frames_from_sheet(FROST_SHEET, 20.0),
 	}
 
 
