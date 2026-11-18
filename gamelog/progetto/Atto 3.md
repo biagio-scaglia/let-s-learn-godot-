@@ -28,7 +28,9 @@ Il finale del gioco, fatto **un pezzo alla volta** su richiesta dell'autore. Dop
 | Hai visto la nebbia (o chiuso un occhio) | Chiudi gli occhi di pietra (N/3) |
 | Nebbia aperta | Entra nella radura, in cima al bosco |
 | Colui che guarda sconfitto | Torna a Erbalta con Emilia |
-| Arrivati a Erbalta | Saluta gli abitanti di Erbalta |
+| Arrivati a Erbalta | Saluta gli abitanti di Erbalta (N/3) |
+| Salutati Saggio, Lina e Archivista | Parti con Emilia dal sentiero a sud |
+| Partiti | (nessuno: [[Titoli di coda]]) |
 
 ## Crediti
 
