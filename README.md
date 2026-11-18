@@ -204,6 +204,8 @@ Qualche voce da cui partire:
 - [Il combattimento](gamelog/progetto/Combattimento.md): turni, scudi, rottura e come è diviso il codice
 - [Gli effetti visivi](gamelog/progetto/Effetti%20visivi.md) e [gli shader](gamelog/concetti/Shader.md)
 - [Il congedo](gamelog/progetto/Congedo.md): finestre vere sul desktop, glitch, l'occhio che segue il mouse
+- [Il finale](gamelog/diario/2026-11-18-finale.md): saluti, partenza all'alba, titoli di coda, filmato iniziale e titolo nuovo
+- [La Galleria](gamelog/progetto/Galleria.md): vetrine costruite da codice e un libro fatto di StyleBox
 
 ## Crediti
 
