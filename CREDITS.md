@@ -31,7 +31,7 @@ I pacchetti sono stati scaricati da OpenGameArt ([Tiny Town](https://opengameart
 
 ## Personaggi di Re:Zero
 
-Subaru ed Emilia sono personaggi di *Re:Zero − Starting Life in Another World* (© Tappei Nagatsuki, Kadokawa). Le loro spritesheet (`characters/subaru/`, `characters/emilia/`) sono state fornite dall'autore del progetto e non sono nostre: le usiamo solo per imparare, in un progetto personale e non commerciale.
+Subaru ed Emilia sono personaggi di *Re:Zero − Starting Life in Another World* (© Tappei Nagatsuki, Kadokawa). Le loro spritesheet (`characters/subaru/`, `characters/emilia/`, compreso il foglio d'attacco `emilia-charset-attacco.jpg`, ripulito in `emilia_attack.png`) sono state fornite dall'autore del progetto e non sono nostre: le usiamo solo per imparare, in un progetto personale e non commerciale.
 
 ## Fatti da noi
 
