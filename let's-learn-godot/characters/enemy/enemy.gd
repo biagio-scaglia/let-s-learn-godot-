@@ -17,6 +17,11 @@ func _ready() -> void:
 		queue_free()   # già sconfitto
 		return
 	sprite.texture = data.texture
+	# Uno sprite da 16 px va ingrandito x2, uno da 32 px resta x1 (come Subaru ed Emilia).
+	sprite.hframes = maxi(1, data.frames)
+	var height := data.cell_size()
+	sprite.scale = Vector2.ONE * (MAP_HEIGHT / height)
+	sprite.offset = Vector2(0, -height / 2.0)
 	interactable.interacted.connect(_fight)
 
 	# Saltella sul posto: sale schiacciandosi un poco, e ricade.
