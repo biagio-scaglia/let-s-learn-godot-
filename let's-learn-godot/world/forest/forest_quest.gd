@@ -81,7 +81,7 @@ func _teach_combo() -> void:
 	var icon := AtlasTexture.new()
 	icon.atlas = preload("res://assets/ui/battle_icons.png")
 	icon.region = Rect2(ICE_ICON_INDEX * 16, 0, 16, 16)
-	Hud.show_message("Nuova abilità: Scaglie di gelo", icon)
+	Hud.show_message("Nuova abilità: Cristallo infranto", icon)
 	await get_tree().create_timer(1.2).timeout
 
 
