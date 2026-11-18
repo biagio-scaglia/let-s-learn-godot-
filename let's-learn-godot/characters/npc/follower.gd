@@ -30,3 +30,8 @@ func _ready() -> void:
 	# Dopo tutti i _ready (il livello ha già messo il giocatore al suo posto, e una
 	# cutscene avrebbe già detto di sé): se non c'è una regia, si mette dietro di lui.
 	_snap_if_free.call_deferred()
+
+
+func _snap_if_free() -> void:
+	if not Game.in_cutscene:
+		snap_behind()
