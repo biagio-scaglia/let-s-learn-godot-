@@ -154,3 +154,25 @@ func test_l_occhio_aperto_schiva_parte_dei_colpi() -> void:
 	assert_int(watcher.modify_damage({}, 10)).is_equal(10)
 	Battle.enemy_broken = false
 	await _finish_with_ultimate()
+
+
+func test_sotto_un_quarto_arriva_l_ultimate_e_vince() -> void:
+	Battle.start(BOSS)
+	await _wait_turn()
+	assert_bool(Battle.commands.ultimate_button.visible).is_false()
+	# Un colpo che lo porta sotto il 25%: al prossimo turno di Subaru c'è l'ultimate.
+	Battle.enemy_hp = ceili(BOSS.max_hp * 0.25) + 1
+	Battle.behavior.on_hit({"type": "pugno"})   # niente: ancora sopra il 25%
+	Battle.enemy_hp = int(BOSS.max_hp * 0.2)
+	Battle.behavior.on_hit({"type": "pugno"})
+	Battle.behavior.on_hit({"type": "pugno"})
+	assert_int((Battle.behavior as WatcherBehavior).phase).is_equal(3)
+	await _pass_turn()
+	await _pass_turn()
+	assert_bool(Battle.commands.ultimate_button.visible).is_true()
+	Battle.commands.ultimate_button.pressed.emit()
+	for i in 400:
+		if not Battle.is_active:
+			break
+		await await_millis(20)
+	assert_str(result).is_equal(Battle.WIN)
