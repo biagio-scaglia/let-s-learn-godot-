@@ -130,3 +130,16 @@ func _fade_music(seconds: float) -> void:
 	var music := get_parent().get_node_or_null("Music") as AudioStreamPlayer
 	if music:
 		create_tween().tween_property(music, "volume_db", -40.0, seconds)
+
+
+## La luce del mondo va all'arancio dell'alba e i raggi di sole si accendono forti.
+func _sunrise() -> void:
+	var tint := get_parent().get_node_or_null("Tint") as CanvasModulate
+	var rays := get_parent().get_node_or_null("Effects/SunRays") as ColorRect
+	if tint:
+		create_tween().tween_property(tint, "color", DAWN_TINT, 3.0).set_trans(Tween.TRANS_SINE)
+	if rays:
+		var mat := rays.material as ShaderMaterial
+		var from: float = mat.get_shader_parameter("intensity")
+		create_tween().tween_method(func(v: float): mat.set_shader_parameter("intensity", v),
+				from, DAWN_RAYS, 3.0).set_trans(Tween.TRANS_SINE)
