@@ -41,6 +41,10 @@ const SKILLS := {
 		"info": "Una nebbia nera avvolge il nemico. Tipo ombra."},
 	"carica": {"name": "Pugno caricato", "cost": 6, "power": 2.4, "type": "pugno",
 		"info": "Si concentra, poi colpisce con tutta la forza. Tipo pugno."},
+	"gelo": {"name": "Scaglie di gelo", "cost": 5, "power": 1.9, "type": "ghiaccio",
+		"info": "Una pioggia di scaglie di ghiaccio. Tipo ghiaccio."},
+	"dardo": {"name": "Dardo di gelo", "cost": 0, "power": 0.9, "type": "ghiaccio",
+		"info": "Emilia lancia una scheggia di ghiaccio. Tipo ghiaccio."},
 }
 ## Su una debolezza il danno cresce del 50%; a nemico rotto raddoppia.
 const WEAK_BONUS := 1.5
