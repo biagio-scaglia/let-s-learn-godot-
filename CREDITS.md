@@ -1,6 +1,6 @@
 # Crediti
 
-**Un gioco di Biagio Scaglia**: idea, direzione, scelte e scrittura del progetto.
+**Un gioco di Biagio Scaglia**: idea, direzione, scelte e scrittura del progetto. Lo dicono anche il filmato iniziale, il titolo e i titoli di coda del gioco.
 
 ## Asset esterni
 
