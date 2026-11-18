@@ -194,6 +194,10 @@ func start(data: EnemyData) -> String:
 	# Come in una cutscene: Subaru sulla mappa sta fermo e i menu non si aprono.
 	Game.in_cutscene = true
 	enemy = data
+	behavior = data.behavior.new() if data.behavior else null
+	enemy_attack_bonus = 0
+	_ultimate_used = false
+	music.stream = data.music if data.music else _default_music
 	enemy_hp = data.max_hp
 	enemy_shield = data.shield
 	enemy_broken = false
