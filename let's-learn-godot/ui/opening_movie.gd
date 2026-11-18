@@ -23,8 +23,10 @@ const SHADOW := Color(0.08, 0.02, 0.14)
 @onready var eye_holder: Node2D = %EyeHolder
 @onready var music: AudioStreamPlayer = %Music
 
-## Quando è cominciato il filmato (millisecondi da Time.get_ticks_msec).
-var _start := 0
+## Da quanti secondi va il filmato. È il tempo del gioco (sommato in _process), non
+## quello dell'orologio: così resta a tempo con la musica anche se il gioco rallenta,
+## o se lo si registra in un video con il Movie Maker di Godot.
+var _clock := 0.0
 ## True quando il filmato è finito o è stato saltato: chi aspetta smette.
 var _done := false
 var _camera_tween: Tween
@@ -54,7 +56,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _play() -> void:
-	_start = Time.get_ticks_msec()
+	_clock = 0.0
 	music.play()
 
 	# 0. Nero: chi presenta.
@@ -112,8 +114,12 @@ func _play() -> void:
 
 # ---------- Il tempo ----------
 
+func _process(delta: float) -> void:
+	_clock += delta
+
+
 func _elapsed() -> float:
-	return (Time.get_ticks_msec() - _start) / 1000.0
+	return _clock
 
 
 ## Aspetta il secondo "seconds" del filmato. Restituisce false se nel frattempo è
