@@ -152,3 +152,15 @@ func _add_lectern() -> void:
 	add_child(book)
 	# Nessuna frase: al segnale ci pensa il lettore di libri (BookReader).
 	book.interacted.connect(func(): book_opened.emit(book_id))
+
+
+## Il piedistallo e il leggio non si attraversano.
+func _add_body() -> void:
+	var body := StaticBody2D.new()
+	var shape := CollisionShape2D.new()
+	var rect := RectangleShape2D.new()
+	rect.size = Vector2(_half * 2 + 36, 12)
+	shape.shape = rect
+	shape.position = Vector2(18, -1)
+	body.add_child(shape)
+	add_child(body)
