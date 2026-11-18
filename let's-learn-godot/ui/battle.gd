@@ -424,6 +424,12 @@ func _do_kick(skill: Dictionary) -> void:
 ## si carica; poi scatta e lo manda in frantumi con il pugno caricato.
 func _do_shatter(skill: Dictionary) -> void:
 	hero.play("charge")
+	Sfx.play(Sfx.CHARGE)
+	var aura := vfx.aura()
+	_ally_pose(AllyPose.CHARGE)
+	vfx.sparks(_ally_hand(), BattleVfx.ICE_COLOR, 12, 80.0)
+	await _pause(0.35)
+	_ally_pose(AllyPose.RELEASE)
 	Sfx.play(Sfx.ICE_CAST)
 	flash.color = Color(0.55, 0.8, 1.0, 0.0)
 	create_tween().tween_property(flash, "color:a", 0.22, 0.4)
