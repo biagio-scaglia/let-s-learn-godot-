@@ -53,7 +53,7 @@ func test_tornati_a_erbalta_emilia_segue_subaru() -> void:
 	var emilia := runner.scene().get_node("World/Emilia") as Node2D
 	var subaru := runner.scene().get_node("World/Subaru") as Node2D
 	assert_float(emilia.global_position.distance_to(subaru.global_position)).is_less(40.0)
-	assert_str(Objective.current()).is_equal(Objective.GREET_VILLAGE)
+	assert_str(Objective.current()).is_equal(Objective.GREET_VILLAGE % 0)
 	# Niente nuova partenza per il bosco: Emilia ha frasi nuove.
 	var talk := runner.scene().get_node("World/Emilia/Interactable") as Interactable
 	talk.interacted.emit()
