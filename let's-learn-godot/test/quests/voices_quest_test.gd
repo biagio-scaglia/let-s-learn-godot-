@@ -47,3 +47,13 @@ func test_il_saggio_non_ricorda() -> void:
 	assert_str("\n".join(saggio.override_lines)).contains("Non me lo ricordo")
 	# La prima volta si presenta anche.
 	assert_str(saggio.override_lines[0]).contains("Io sono il Saggio")
+
+
+func test_emilia_indica_il_passo_giusto() -> void:
+	var runner := await _village()
+	var emilia := runner.scene().get_node("World/Emilia/Interactable") as Interactable
+	emilia.interacted.emit()
+	assert_str("\n".join(emilia.override_lines)).contains("Saggio")
+	Inventory.add(Inventory.PAGE)
+	emilia.interacted.emit()
+	assert_str("\n".join(emilia.override_lines)).contains("biblioteca")
