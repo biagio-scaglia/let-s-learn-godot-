@@ -121,6 +121,15 @@ func new_game() -> void:
 
 # ---------- Ritorno dalla Morte ----------
 
+## Subaru impara qualcosa che non dimenticherà, neanche tornando indietro.
+func remember(key: String) -> void:
+	memories[key] = true
+
+
+func remembers(key: String) -> bool:
+	return memories.get(key, false)
+
+
 ## Fissa il punto di ritorno qui e adesso. Lo chiamano la fine dell'intro,
 ## il salvataggio e "Continua".
 func set_checkpoint() -> void:
