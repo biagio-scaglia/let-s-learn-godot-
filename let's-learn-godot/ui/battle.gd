@@ -487,7 +487,7 @@ func _do_shatter(skill: Dictionary) -> void:
 ## La raffica delle Scaglie di gelo: le scaglie partono una dopo l'altra, l'ultima
 ## (più grande) chiude il nemico nel ghiaccio.
 func _frost_volley(shards: Array[Sprite2D], skill: Dictionary) -> void:
-	var target := enemy_sprite.position + Vector2(0, -36)
+	var target := _enemy_center()
 	for i in shards.size() - 1:
 		# Ogni scaglia mira a un punto un po' diverso del nemico.
 		var aim := target + Vector2(randf_range(-14, 14), randf_range(-22, 18))
