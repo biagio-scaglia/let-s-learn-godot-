@@ -224,3 +224,5 @@ emilia = NodePath("../World/Emilia/Interactable")
 script = ExtResource("24_voices")
 saggio = NodePath("../World/Npc/Interactable")
 emilia = NodePath("../World/Emilia/Interactable")
+
+[node name="Ending" parent="." instance=ExtResource("25_ending")]
