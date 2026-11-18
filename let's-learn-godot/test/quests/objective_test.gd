@@ -72,10 +72,10 @@ func test_letto_il_libro_si_torna_da_emilia() -> void:
 	assert_str(Objective.current()).is_equal(Objective.TELL_EMILIA)
 
 
-func test_a_fine_atto_il_bosco_a_nord() -> void:
+func test_a_fine_atto_si_parte_con_emilia() -> void:
 	Game.set_flag(FlagKeys.BOOK_READ)
 	Game.set_flag(FlagKeys.ACT2_DONE)
-	assert_str(Objective.current()).is_equal(Objective.FOREST)
+	assert_str(Objective.current()).is_equal(Objective.DEPART)
 
 
 func test_i_ricordi_avvisano_quando_cambiano() -> void:

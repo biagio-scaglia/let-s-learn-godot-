@@ -111,7 +111,7 @@ func test_raccontarlo_a_emilia_chiude_l_atto() -> void:
 		await _close_dialogue()
 	assert_bool(Game.has_flag(FlagKeys.ACT2_DONE)).is_true()
 	assert_bool(Game.in_cutscene).is_false()
-	assert_str(Objective.current()).is_equal(Objective.FOREST)
+	assert_str(Objective.current()).is_equal(Objective.DEPART)
 
 
 func test_lo_spettro_lascia_la_lacrima() -> void:
