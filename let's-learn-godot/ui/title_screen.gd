@@ -217,6 +217,27 @@ func _on_continue() -> void:
 	SaveSystem.continue_game()
 
 
+func _on_new_game() -> void:
+	_disable_menu()
+	await hands.seize(new_game_button)
+	Game.new_game()
+
+
+func _on_gallery() -> void:
+	if not Progress.gallery_unlocked():
+		# Chiusa: un "no" con la testa e un suggerimento.
+		Sfx.play(Sfx.BACK)
+		var x := gallery_button.position.x
+		var t := create_tween()
+		for dx in [5.0, -4.0, 3.0, 0.0]:
+			t.tween_property(gallery_button, "position:x", x + dx, 0.05)
+		Hud.show_message("Finisci la storia per aprire la Galleria", LOCK)
+		return
+	_disable_menu()
+	await hands.seize(gallery_button)
+	Game.open_gallery()
+
+
 ## "2026-11-13 10:42:05" → "13/11/2026 10:42"
 func _pretty_date(date: String) -> String:
 	var parts := date.split(" ")
