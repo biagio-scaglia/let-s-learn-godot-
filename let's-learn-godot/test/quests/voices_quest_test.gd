@@ -94,3 +94,21 @@ func test_pagina_e_lacrima_sul_libro_nero() -> void:
 	await runner.simulate_frames(1)
 	assert_bool(Game.has_flag(FlagKeys.BOOK_READ)).is_true()
 	assert_bool(Dialogue.is_active).is_true()   # Subaru commenta
+
+
+func test_raccontarlo_a_emilia_chiude_l_atto() -> void:
+	Game.set_flag(FlagKeys.BOOK_READ)
+	var runner := await _village()
+	var emilia := runner.scene().get_node("World/Emilia/Interactable") as Interactable
+	emilia.interacted.emit()
+	assert_bool(Game.in_cutscene).is_true()
+	# La prima battuta la direbbe il dialogo normale: qui la "chiudiamo" a mano.
+	Dialogue.finished.emit()
+	for i in 10:
+		if Game.has_flag(FlagKeys.ACT2_DONE):
+			break
+		await runner.simulate_frames(2)
+		await _close_dialogue()
+	assert_bool(Game.has_flag(FlagKeys.ACT2_DONE)).is_true()
+	assert_bool(Game.in_cutscene).is_false()
+	assert_str(Objective.current()).is_equal(Objective.FOREST)
