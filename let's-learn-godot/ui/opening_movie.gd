@@ -183,3 +183,15 @@ func _say(text: String, at: float, seconds: float) -> void:
 		return
 	narration.text = text
 	_show_text(narration, 0.0, seconds)
+
+
+## Fa comparire una scritta (salendo un poco), la tiene e la fa sparire.
+func _show_text(label: Label, delay: float, seconds: float) -> void:
+	var y := label.position.y
+	var t := create_tween()
+	t.tween_interval(delay)
+	t.tween_callback(func(): label.position.y = y + 6.0)
+	t.tween_property(label, "modulate:a", 1.0, 0.6)
+	t.parallel().tween_property(label, "position:y", y, 0.8).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	t.tween_interval(maxf(seconds - 1.2, 0.2))
+	t.tween_property(label, "modulate:a", 0.0, 0.6)
