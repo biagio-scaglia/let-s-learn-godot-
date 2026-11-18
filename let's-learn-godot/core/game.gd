@@ -9,6 +9,8 @@ extends Node
 
 const TITLE_SCENE := "res://ui/title_screen.tscn"
 const FIRST_LEVEL := "res://world/main.tscn"
+## La cutscene d'apertura di una partita nuova: la partenza dal castello, di notte.
+const OPENING_SCENE := "res://world/castle.tscn"
 
 ## Emesso quando cambia qualcosa che l'interfaccia deve sapere: un ricordo,
 ## una cutscene che comincia o finisce, una partita nuova o ripresa.
@@ -80,7 +82,8 @@ func can_open_menu() -> bool:
 
 # ---------- Partita e scene ----------
 
-## Comincia una partita nuova: dimentica tutto e va al primo livello.
+## Comincia una partita nuova: dimentica tutto e parte dal castello (la cutscene
+## d'apertura), che poi porta al primo livello.
 func new_game() -> void:
 	load_flags()
 	Inventory.reset()
@@ -88,7 +91,7 @@ func new_game() -> void:
 	spawn_position = null
 	checkpoint = {}
 	deaths = 0
-	change_scene(FIRST_LEVEL, "", "", false)
+	change_scene(OPENING_SCENE, "", "", false)
 
 
 # ---------- Ritorno dalla Morte ----------
