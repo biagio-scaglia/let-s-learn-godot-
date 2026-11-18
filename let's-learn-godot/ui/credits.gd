@@ -126,3 +126,23 @@ func _update_sky() -> void:
 	sky.color = (SKY[i] as Color).lerp(SKY[i + 1], k - i)
 	# Le stelle si spengono quando arriva il giorno.
 	stars.modulate.a = clampf(1.0 - k, 0.0, 1.0)
+
+
+# ---------- I nomi ----------
+
+func _build_list() -> void:
+	for row in CREDITS:
+		match row[0]:
+			"gap":
+				var gap := Control.new()
+				gap.custom_minimum_size.y = 36
+				list.add_child(gap)
+			"cast":
+				for book in GalleryBooks.CHARACTERS:
+					list.add_child(_portrait_row(book.id, book.name, book.role))
+			"monsters":
+				for book in GalleryBooks.MONSTERS:
+					var data := Portraits.enemy_data(book.id)
+					list.add_child(_portrait_row(book.id, data.name if data else book.id, book.role))
+			_:
+				list.add_child(_label(row[0], row[1]))
