@@ -46,3 +46,28 @@ func close_eye(id: String) -> void:
 	t.tween_callback(eye.hide)
 	create_tween().tween_property(glow, "energy", glow.energy * 0.7, 0.6)
 	_update_lines()
+
+
+## Tutti chiusi: la nebbia si apre. Si può aspettare con await.
+func dissolve() -> void:
+	Sfx.play(Sfx.FOG_DISSOLVE)
+	shape.set_deferred("disabled", true)
+	interactable.queue_free()
+	mist.explosiveness = 0.8
+	mist.initial_velocity_max = 90.0
+	mist.spread = 180.0
+	var t := create_tween()
+	t.tween_property(glow, "energy", 2.5, 0.4)
+	t.tween_property(glow, "energy", 0.0, 2.0)
+	t.parallel().tween_property(mist, "modulate:a", 0.0, 2.0)
+	await t.finished
+	queue_free()
+
+
+func _update_lines() -> void:
+	var left := FlagKeys.STONE_EYES.size() - FlagKeys.eyes_closed_count()
+	if left == FlagKeys.STONE_EYES.size():
+		return   # le frasi della scena: la prima volta che la vedi
+	var glows := "brilla un ultimo bagliore" if left == 1 else "brillano ancora %d bagliori" % left
+	interactable.lines = ["La nebbia viola è ancora qui. Dentro, %s." % glows]
+	interactable.repeat_lines = []
