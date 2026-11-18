@@ -150,3 +150,8 @@ func _backdrop(path: String, from: Vector2, to: Vector2, seconds: float) -> void
 		_camera_tween.kill()
 	_camera_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	_camera_tween.tween_property(camera, "position", to, seconds).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+
+func _clear_stage() -> void:
+	for child in stage.get_children():
+		child.queue_free()
