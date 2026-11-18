@@ -50,7 +50,12 @@ func _on_lina() -> void:
 
 func _on_chest() -> void:
 	if Game.has_flag(FlagKeys.CHEST_OPEN):
-		chest.override_lines = ["Il baule è vuoto."]
+		if _page_missing():
+			# Un salvataggio di prima dell'atto 2: la pagina non c'era ancora.
+			chest.override_lines = ["In fondo al baule, sotto la carta che lo fodera, c'è una pagina strappata."]
+			Dialogue.finished.connect(Inventory.add.bind(Inventory.PAGE), CONNECT_ONE_SHOT)
+		else:
+			chest.override_lines = ["Il baule è vuoto."]
 	elif Inventory.has(Inventory.KEY):
 		chest.override_lines = [
 			"La chiave gira nella serratura... clic!",
