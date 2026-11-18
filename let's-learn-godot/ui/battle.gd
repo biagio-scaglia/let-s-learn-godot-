@@ -493,7 +493,7 @@ func _frost_volley(shards: Array[Sprite2D], skill: Dictionary) -> void:
 
 ## Dove sta Emilia: alle spalle di Subaru, un po' più in alto.
 func _ally_home() -> Vector2:
-	return Vector2(_hero_home.x + 72.0, _hero_home.y - 4.0)
+	return Vector2(_hero_home.x + 88.0, _hero_home.y - 4.0)
 
 
 ## A inizio combattimento: Emilia in campo (nel party, con le pose d'attacco) oppure
