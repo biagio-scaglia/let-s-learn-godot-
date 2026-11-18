@@ -43,3 +43,10 @@ func test_una_partita_nuova_non_richiude_la_galleria() -> void:
 	Progress.finish_story()
 	Game.load_flags()   # come fa Game.new_game()
 	assert_bool(Progress.gallery_unlocked()).is_true()
+
+
+func test_vista_la_galleria_non_e_piu_nuova() -> void:
+	Progress.finish_story()
+	Progress.see_gallery()
+	Progress.load_progress()
+	assert_bool(Progress.gallery_seen).is_true()
