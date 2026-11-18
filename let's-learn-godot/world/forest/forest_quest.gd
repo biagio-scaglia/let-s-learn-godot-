@@ -83,3 +83,16 @@ func _teach_frost() -> void:
 	icon.region = Rect2(ICE_ICON_INDEX * 16, 0, 16, 16)
 	Hud.show_message("Nuova abilità: Scaglie di gelo", icon)
 	await get_tree().create_timer(1.2).timeout
+
+
+func _open_the_way() -> void:
+	Dialogue.start("Emilia", ["L'ultimo! Guarda, Subaru... la nebbia."])
+	await Dialogue.finished
+	if is_instance_valid(fog_gate):
+		await fog_gate.dissolve()
+	Dialogue.start("Subaru", [
+		"La radura è aperta.",
+		"...E qualcosa, là in fondo, si è appena svegliato. Lo sento.",
+	])
+	await Dialogue.finished
+	Game.set_checkpoint()
