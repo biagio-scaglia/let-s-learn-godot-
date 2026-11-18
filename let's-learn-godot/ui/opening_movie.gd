@@ -28,3 +28,15 @@ var _start := 0
 ## True quando il filmato è finito o è stato saltato: chi aspetta smette.
 var _done := false
 var _camera_tween: Tween
+
+
+func _ready() -> void:
+	camera.make_current()
+	black.color.a = 1.0
+	shade.color = Color(SHADOW, 0.0)
+	flash.color.a = 0.0
+	for label in [presents, narration]:
+		label.modulate.a = 0.0
+	skip_hint.modulate.a = 0.0
+	create_tween().tween_property(skip_hint, "modulate:a", 1.0, 1.0).set_delay(1.0)
+	_play()
