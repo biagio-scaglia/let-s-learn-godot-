@@ -123,3 +123,29 @@ func walk_to(point: Vector2, speed := 70.0) -> void:
 		_walk_anim = null
 	_scripted = false
 	face(facing)
+
+
+# ---------- Comandi per chi la fa camminare frame per frame (Follower) ----------
+
+## Quanto tempo ha camminato senza fermarsi: decide quale passo mostrare.
+var _step_time := 0.0
+
+
+## Un pezzetto di camminata verso "direction": avanza l'animazione dei passi.
+## Diversa da walk_to(): qui la posizione la cambia chi chiama, a ogni frame.
+func step(direction: String, delta: float) -> void:
+	_scripted = true
+	facing = direction
+	_step_time += delta
+	if charset:
+		var column: int = [1, 2, 3, 0][int(_step_time / 0.15) % 4]
+		sprite.frame = CHARSET_ROWS[facing] * 4 + column
+
+
+## Si ferma: torna in piedi e, se il giocatore è vicino, può di nuovo girarsi verso di lui.
+func stand() -> void:
+	if not _scripted:
+		return
+	_scripted = false
+	_step_time = 0.0
+	face(facing)
