@@ -74,9 +74,9 @@ func _teach_combo() -> void:
 		"Il ghiaccio si spezza, e l'ombra con lui.",
 	])
 	await Dialogue.finished
-	Dialogue.start("Subaru", ["Un attacco combinato con Emilia-tan?! ...Questo bosco comincia a piacermi."])
+	Dialogue.start("Subaru", ["Un attacco combinato con Emiliuccia?! ...Questo bosco comincia a piacermi."])
 	await Dialogue.finished
-	Game.set_flag(FlagKeys.ICE_UNLOCKED)
+	Game.set_flag(FlagKeys.COMBO_UNLOCKED)
 	Sfx.play(Sfx.SKILL_UNLOCK)
 	var icon := AtlasTexture.new()
 	icon.atlas = preload("res://assets/ui/battle_icons.png")
