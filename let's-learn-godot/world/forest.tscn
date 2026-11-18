@@ -28,6 +28,7 @@
 [ext_resource type="Resource" path="res://enemies/mano_ombra.tres" id="26_mano"]
 [ext_resource type="Resource" path="res://enemies/guardiano_rovi.tres" id="27_guardiano"]
 [ext_resource type="Script" path="res://world/forest/watcher_arena.gd" id="28_arena"]
+[ext_resource type="PackedScene" path="res://interactables/door.tscn" id="30_door"]
 [ext_resource type="Texture2D" path="res://assets/enemies/colui_che_guarda.png" id="29_watcher"]
 
 [sub_resource type="Gradient" id="light_falloff"]
@@ -292,6 +293,13 @@ data = ExtResource("26_mano")
 [node name="Guardiano" parent="World" instance=ExtResource("24_enemy")]
 position = Vector2(432, 784)
 data = ExtResource("27_guardiano")
+
+[node name="VillagePath" parent="World" instance=ExtResource("30_door")]
+position = Vector2(608, 1076)
+target_scene = "res://world/main.tscn"
+target_spawn = "ForestPath"
+size = Vector2(64, 16)
+required_flag = "guardiano_sconfitto"
 
 [node name="Emilia" parent="World" instance=ExtResource("4_npc")]
 position = Vector2(632, 930)
