@@ -99,7 +99,7 @@ shape = SubResource("wall_bottom")
 [node name="Lina" parent="World" instance=ExtResource("4_npc")]
 position = Vector2(272, 160)
 npc_name = "Lina"
-lines = PackedStringArray("Oh! Ciao! Non ti avevo sentito entrare.", "Io sono Lina. Il Saggio è mio nonno... sì, quello che guarda crescere gli alberi.", "Il baule in fondo è chiuso a chiave, e la chiave l'ho persa...", "Forse mi è caduta vicino alla staccionata, a ovest della piazza. Se la trovi, portamela!")
+lines = PackedStringArray("Oh! Ciao! Non ti avevo sentito entrare.", "Io sono Lina. Il Saggio è mio nonno... sì, quello che guarda crescere gli alberi.", "Ti manda il nonno? Allora vuoi vedere il baule della nonna, quello in fondo.", "Il guaio è che è chiuso a chiave, e la chiave l'ho persa...", "Forse mi è caduta vicino alla staccionata, a ovest della piazza. Se la trovi, portamela!")
 repeat_lines = PackedStringArray("Hai trovato la mia chiave? Credo di averla persa vicino alla staccionata, a ovest della piazza.")
 sprite_tile = 99
 
