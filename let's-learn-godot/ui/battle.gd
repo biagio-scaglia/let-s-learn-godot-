@@ -507,8 +507,8 @@ func _setup_ally() -> void:
 		emilia_sprite.texture = EMILIA_ATTACK
 		emilia_sprite.hframes = 6
 		emilia_sprite.vframes = 4
-		emilia_sprite.offset = Vector2(0, -28)
-		emilia_sprite.scale = Vector2(2.4, 2.4)
+		emilia_sprite.offset = Vector2(0, -24)
+		emilia_sprite.scale = Vector2(ALLY_SCALE, ALLY_SCALE)
 		emilia_sprite.modulate = Color.WHITE
 		emilia_sprite.position = _ally_home()
 		emilia_sprite.visible = true
