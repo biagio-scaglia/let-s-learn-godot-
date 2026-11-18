@@ -28,3 +28,20 @@ func _process(_delta: float) -> void:
 		return
 	if global_position.distance_to(_player.global_position) < shy_distance:
 		_close_fast()
+
+
+func _open() -> void:
+	if not is_inside_tree():
+		return
+	if _player and global_position.distance_to(_player.global_position) < shy_distance * 1.4:
+		get_tree().create_timer(1.5).timeout.connect(_open)   # c'è qualcuno: aspettano
+		return
+	_shut = false
+	_busy = true
+	var t := create_tween()
+	t.tween_property(self, "modulate:a", 1.0, 0.6)
+	t.tween_callback(func(): frame = Lids.HALF)
+	t.tween_interval(0.25)
+	t.tween_callback(func(): frame = Lids.OPEN)
+	t.tween_callback(func(): _busy = false)
+	t.tween_callback(_blink_later)
