@@ -105,3 +105,15 @@ const MONSTERS := [
 
 ## I nomi dei tipi di colpo, come li vede il giocatore.
 const HIT_NAMES := {"pugno": "Pugno", "calcio": "Calcio", "ombra": "Ombra", "ghiaccio": "Ghiaccio"}
+
+
+## Il libro con questo id, completo: per i mostri aggiunge nome e numeri da EnemyData.
+## Vuoto se non esiste.
+static func entry(id: String) -> Dictionary:
+	for book in CHARACTERS:
+		if book.id == id:
+			return book
+	for book in MONSTERS:
+		if book.id == id:
+			return _with_stats(book)
+	return {}
