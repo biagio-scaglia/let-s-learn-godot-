@@ -4,7 +4,7 @@ Un piccolo RPG in pixel art fatto per **imparare Godot 4 un passo alla volta**: 
 
 ![La schermata iniziale: una mano d'ombra afferra la voce scelta, e dal buio si aprono due occhi](docs/titolo.gif)
 
-**Godot 4.7.2** · GDScript · pixel art · **167 test** automatici con gdUnit4 · un diario di sviluppo in [Obsidian](gamelog/Gamelog.md)
+**Godot 4.7.2** · GDScript · pixel art · **168 test** automatici con gdUnit4 · un diario di sviluppo in [Obsidian](gamelog/Gamelog.md)
 
 ---
 
@@ -47,7 +47,7 @@ I nemici sono disegnati apposta e **animati**: respirano, si caricano, attaccano
 
 ![Subaru ed Emilia nel bosco morto all'alba: alberi spogli, nebbia, funghi viola e occhi tra i rovi](gamelog/assets/bosco_emilia_segue.png)
 
-All'alba, Subaru ed Emilia partono per il bosco a nord. Gli alberi non hanno foglie, la nebbia scorre tra i tronchi, i funghi brillano di viola, e tra i rovi degli occhi si aprono… e si chiudono di colpo se ti avvicini. Emilia ti segue passo passo e **combatte con te**: ha il suo turno, i suoi PT e le sue magie di ghiaccio. Per aprire la radura devi chiudere tre **occhi di pietra** che spazzano il terreno con un cono di luce: arrivaci alle spalle. E quando lei lancia le **Scaglie di gelo**, nevica. *(In lavorazione: un pezzo alla volta.)*
+All'alba, Subaru ed Emilia partono per il bosco a nord. Gli alberi non hanno foglie, la nebbia scorre tra i tronchi, i funghi brillano di viola, e tra i rovi degli occhi si aprono… e si chiudono di colpo se ti avvicini. Emilia ti segue passo passo e **combatte con te**: ha il suo turno, i suoi PT e le sue magie di ghiaccio. Per aprire la radura devi chiudere tre **occhi di pietra** che spazzano il terreno con un cono di luce: arrivaci alle spalle. Quando lei lancia le **Scaglie di gelo**, nevica; e insieme imparate il **Cristallo infranto**: lei ghiaccia, tu frantumi. *(In lavorazione: un pezzo alla volta.)*
 
 
 ![La biblioteca di notte: raggi di luna dalle finestre, candele, scaffali e l'Archivista](gamelog/assets/biblioteca_interno.png)
