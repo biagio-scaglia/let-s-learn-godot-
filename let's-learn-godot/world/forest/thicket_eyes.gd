@@ -60,7 +60,7 @@ func _blink_later() -> void:
 
 
 func _blink() -> void:
-	if _shut or _busy or not is_inside_tree():
+	if _shut or _busy or _staring or not is_inside_tree():
 		return
 	var t := create_tween()
 	t.tween_callback(func(): frame = Lids.HALF)
