@@ -245,6 +245,45 @@ lines = PackedStringArray("Una nebbia viola, fitta come un muro. Dentro, qualcos
 repeat_lines = PackedStringArray("La nebbia non si muove. I tre bagliori neanche.")
 prompt_height = 40.0
 
+
+[node name="StoneEyeOvest" parent="World" instance=ExtResource("21_stone_eye")]
+position = Vector2(208, 496)
+eye_id = "ovest"
+base_angle = 30.0
+respawn = Vector2(352, 592)
+
+[node name="StoneEyeEst" parent="World" instance=ExtResource("21_stone_eye")]
+position = Vector2(1040, 528)
+eye_id = "est"
+base_angle = 180.0
+respawn = Vector2(880, 600)
+
+[node name="StoneEyeSud" parent="World" instance=ExtResource("21_stone_eye")]
+position = Vector2(272, 784)
+eye_id = "sud"
+base_angle = 0.0
+respawn = Vector2(528, 880)
+
+[node name="OcchioErrante1" parent="World" instance=ExtResource("24_enemy")]
+position = Vector2(528, 336)
+data = ExtResource("25_occhio")
+
+[node name="OcchioErrante2" parent="World" instance=ExtResource("24_enemy")]
+position = Vector2(816, 656)
+data = ExtResource("25_occhio")
+
+[node name="ManoOmbra1" parent="World" instance=ExtResource("24_enemy")]
+position = Vector2(976, 400)
+data = ExtResource("26_mano")
+
+[node name="ManoOmbra2" parent="World" instance=ExtResource("24_enemy")]
+position = Vector2(528, 848)
+data = ExtResource("26_mano")
+
+[node name="Guardiano" parent="World" instance=ExtResource("24_enemy")]
+position = Vector2(432, 784)
+data = ExtResource("27_guardiano")
+
 [node name="Emilia" parent="World" instance=ExtResource("4_npc")]
 position = Vector2(632, 930)
 npc_name = "Emilia"
