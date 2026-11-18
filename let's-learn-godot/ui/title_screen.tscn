@@ -318,8 +318,21 @@ offset_bottom = -6.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_type_variation = &"HintLabel"
-text = "v0.1"
+text = "v1.0"
 horizontal_alignment = 2
+
+[node name="Credit" type="Label" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -24.0
+offset_right = 220.0
+offset_bottom = -6.0
+grow_vertical = 0
+theme_type_variation = &"HintLabel"
+text = "Un gioco di Biagio Scaglia"
 
 [node name="ShadowHands" type="Control" parent="UI"]
 unique_name_in_owner = true
