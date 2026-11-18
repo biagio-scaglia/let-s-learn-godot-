@@ -178,6 +178,7 @@ func _ready() -> void:
 	commands.potion_chosen.connect(_on_potion)
 	commands.defend_chosen.connect(_on_defend)
 	commands.flee_chosen.connect(_on_flee)
+	commands.ultimate_chosen.connect(_do_ultimate)
 	Stats.changed.connect(_update_hero_info)
 	vfx = BattleVfx.new()
 	vfx.name = "Vfx"
