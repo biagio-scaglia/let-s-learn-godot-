@@ -46,6 +46,8 @@ func _fight() -> void:
 	if result != Battle.WIN:
 		return   # fuggito: il nemico resta lì. Sconfitto: ci pensa il Ritorno dalla Morte
 	Game.set_flag(FlagKeys.defeated(self))
+	if data.drop != "":
+		Inventory.add(data.drop)   # l'avviso "Hai trovato…" compare da solo
 	interactable.queue_free()   # niente più nuvoletta né interazioni
 	var t := create_tween()
 	t.tween_property(self, "modulate:a", 0.0, 0.5)
