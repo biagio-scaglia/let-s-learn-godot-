@@ -86,3 +86,21 @@ var _finished := false
 var _can_leave := false
 ## La Galleria si è appena sbloccata? (Lo dice Progress prima che la tocchiamo.)
 var _new_gallery := false
+
+
+func _ready() -> void:
+	_new_gallery = not Progress.gallery_seen
+	Progress.finish_story()
+	_build_list()
+	final_card.modulate.a = 0.0
+	press.modulate.a = 0.0
+	unlocked.visible = _new_gallery
+	_plant_trees()
+	_walk_emilia()
+	music.play()
+	# La lista parte sotto lo schermo e deve uscire tutta in alto prima della fine.
+	await get_tree().process_frame   # le misure dei Label sono pronte solo dopo un frame
+	_total = music.stream.get_length()
+	var distance := scroller.size.y + list.size.y
+	_speed = distance / maxf(_total - FINAL_HOLD, 10.0)
+	list.position.y = scroller.size.y
