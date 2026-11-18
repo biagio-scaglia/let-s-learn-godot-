@@ -35,3 +35,22 @@ func modify_damage(_skill: Dictionary, amount: int) -> int:
 ## Un colpo è arrivato (danno fatto, debolezza e scudo già sistemati).
 func on_hit(_skill: Dictionary) -> void:
 	pass
+
+
+## La posa da tenere invece del respiro (una costante di EnemyData.Pose), o -1.
+func held_pose() -> int:
+	return -1
+
+
+## Si può scappare? E se no, cosa dice il gioco.
+func can_flee() -> bool:
+	return true
+
+
+func no_flee_text() -> String:
+	return "Non si scappa!"
+
+
+## L'ultimate di Subaru ed Emilia è pronta?
+func ultimate_ready() -> bool:
+	return false
