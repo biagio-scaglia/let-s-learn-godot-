@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" path="res://ui/options_menu.tscn" id="3_options"]
 [ext_resource type="Shader" path="res://effects/pause_blur.gdshader" id="4_blur"]
 [ext_resource type="Script" path="res://ui/shadow_hands.gd" id="5_hands"]
+[ext_resource type="Shader" path="res://effects/title_shine.gdshader" id="6_shine"]
 
 [sub_resource type="ShaderMaterial" id="bg_blur"]
 shader = ExtResource("4_blur")
