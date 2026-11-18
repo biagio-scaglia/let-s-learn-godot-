@@ -93,3 +93,17 @@ func _add_statue(book: Dictionary) -> void:
 	plate.repeat_lines = ["Lo sguardo di pietra fissa l'orizzonte. Quello vero non lo fa mai."]
 	plate.prompt_height = 60.0
 	add_child(plate)
+
+
+## Un personaggio vivo: il PNG del gioco, con due battute sue.
+func _add_npc(book: Dictionary) -> void:
+	var npc := NPC_SCENE.instantiate()
+	npc.npc_name = book.get("name", book_id)
+	if book_id == "emilia":
+		npc.charset = Portraits.EMILIA_CHARSET
+	else:
+		npc.sprite_tile = Portraits.DUNGEON_TILES[book_id]
+	npc.lines = PackedStringArray(QUIPS[book_id][0])
+	npc.repeat_lines = PackedStringArray(QUIPS[book_id][1])
+	npc.position.y = -6
+	add_child(npc)
