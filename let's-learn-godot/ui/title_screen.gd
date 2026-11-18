@@ -146,7 +146,66 @@ func _float_title(base_y: float) -> void:
 	t.tween_property(title, "position:y", base_y, 1.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 
-func _on_continue() -> void:
+## "Premi Invio" lampeggia finché non si preme qualcosa.
+func _wait_for_press() -> void:
+	_state = "press"
+	_press_tween = create_tween().set_loops()
+	_press_tween.tween_property(press_start, "modulate:a", 1.0, 0.7).set_trans(Tween.TRANS_SINE)
+	_press_tween.tween_property(press_start, "modulate:a", 0.25, 0.7).set_trans(Tween.TRANS_SINE)
+
+
+func _process(delta: float) -> void:
+	if options.visible or _state == "leaving":
+		return
+	_idle += delta
+	if _idle >= IDLE_SECONDS:
+		_state = "leaving"
+		Game.change_scene(Game.OPENING_MOVIE, "", "", false)
+
+
+func _input(event: InputEvent) -> void:
+	# Qualsiasi cosa tocchi il giocatore, il filmato non riparte.
+	if event is InputEventKey or event is InputEventMouseButton or event is InputEventJoypadButton:
+		_idle = 0.0
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if _state != "press":
+		return
+	var key: bool = event is InputEventKey and event.pressed and not event.echo
+	var click: bool = event is InputEventMouseButton and event.pressed
+	if key or click:
+		get_viewport().set_input_as_handled()
+		_open_menu()
+
+
+## Si apre la finestra del menu: si allarga un poco e le voci entrano una alla volta.
+func _open_menu() -> void:
+	_state = "menu"
+	Sfx.play(Sfx.CONFIRM)
+	_press_tween.kill()
+	var items := menu.get_children().filter(func(n): return n.visible)
+	for item in items:
+		item.modulate.a = 0.0
+	menu_panel.visible = true
+	menu_panel.modulate.a = 0.0
+	menu_panel.pivot_offset = menu_panel.size / 2.0
+	menu_panel.scale = Vector2(0.9, 0.9)
+	var t := create_tween()
+	t.tween_property(press_start, "modulate:a", 0.0, 0.15)
+	t.tween_property(menu_panel, "modulate:a", 1.0, 0.2)
+	t.parallel().tween_property(menu_panel, "scale", Vector2.ONE, 0.25).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	for item in items:
+		# La Galleria chiusa resta più trasparente.
+		t.tween_property(item, "modulate:a", 0.55 if item == gallery_button and not Progress.gallery_unlocked() else 1.0, 0.12)
+	t.tween_callback((continue_button if continue_button.visible else new_game_button).focus_silently)
+	t.tween_callback(hands.set_active.bind(true))
+
+
+# ---------- Le voci del menu ----------
+
+func _disable_menu() -> void:
+	# Niente doppi clic: il menu non risponde più.
 	for item in menu.get_children():
 		item.disabled = true
 	await hands.seize(continue_button)
