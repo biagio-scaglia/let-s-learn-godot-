@@ -21,3 +21,10 @@ func _ready() -> void:
 	_player = get_tree().get_first_node_in_group("player") as Node2D
 	# Ognuno si apre per conto suo, non tutti insieme.
 	get_tree().create_timer(randf_range(0.5, 4.0)).timeout.connect(_open)
+
+
+func _process(_delta: float) -> void:
+	if _player == null or _shut or _busy:
+		return
+	if global_position.distance_to(_player.global_position) < shy_distance:
+		_close_fast()
