@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://ui/opening_movie.gd" id="1_script"]
+[ext_resource type="AudioStream" path="res://assets/music/prologue_theme.wav" id="2_music"]
+
+[node name="OpeningMovie" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="Stage" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+process_callback = 0
