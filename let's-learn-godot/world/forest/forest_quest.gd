@@ -1,8 +1,8 @@
 extends Node
 ## La regia del Bosco Senza Tempo (atto 3, pezzo 2): ascolta gli occhi di pietra.
 ## - Ogni occhio chiuso spegne un bagliore nella nebbia, con un raggio che vola fin lì.
-## - Al primo occhio chiuso Emilia insegna a Subaru a chiamarla in battaglia:
-##   la mossa "Scaglie di gelo" (ricordo gelo_sbloccato).
+## - Al primo occhio chiuso Subaru ed Emilia inventano una mossa insieme:
+##   "Cristallo infranto" (ricordo cristallo_sbloccato).
 ## - Al terzo, la nebbia si dissolve e la radura è aperta.
 
 @export var fog_gate: FogGate
@@ -23,8 +23,8 @@ func _on_eye_closed(id: String, eye: StoneEye) -> void:
 		await _send_beam(eye.global_position + Vector2(0, -34), fog_gate.eye_position(id))
 		fog_gate.close_eye(id)
 	await get_tree().create_timer(0.5).timeout
-	if not Game.has_flag(FlagKeys.ICE_UNLOCKED):
-		await _teach_frost()
+	if not Game.has_flag(FlagKeys.COMBO_UNLOCKED):
+		await _teach_combo()
 	var count := FlagKeys.eyes_closed_count()
 	if count == FlagKeys.STONE_EYES.size():
 		await _open_the_way()
