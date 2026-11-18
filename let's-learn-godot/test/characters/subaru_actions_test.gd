@@ -47,9 +47,15 @@ func test_esulta_e_poi_torna_fermo() -> void:
 func test_raccogliere_la_chiave_lo_fa_esultare() -> void:
 	var key := runner.scene().get_node("World/Key") as Node2D
 	player.global_position = key.global_position + Vector2(0, 14)
-	await await_millis(150)   # il tempo di entrare nell'area dell'Interactable
-	runner.simulate_action_pressed("interact")
-	await await_millis(150)
+	# Qualche frame di fisica, contati e non a tempo: l'area dell'oggetto si accorge di Subaru.
+	await runner.simulate_frames(10)
+	# Il tasto E consegnato direttamente all'oggetto: simulato sulla finestra, a volte
+	# non arriva (dipende da quale finestra ha il focus mentre girano i test).
+	var press := InputEventAction.new()
+	press.action = "interact"
+	press.pressed = true
+	(key.get_node("Interactable") as Interactable)._unhandled_input(press)
+	await runner.simulate_frames(5)
 	assert_bool(Inventory.has(Inventory.KEY)).is_true()
 	assert_str(sprite.animation).is_equal("cheer")
 
