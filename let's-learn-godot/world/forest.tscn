@@ -20,6 +20,13 @@
 [ext_resource type="Script" path="res://characters/npc/follower.gd" id="18_follower"]
 [ext_resource type="PackedScene" path="res://interactables/interactable.tscn" id="19_interactable"]
 [ext_resource type="PackedScene" path="res://cutscenes/forest_arrival.tscn" id="20_arrival"]
+[ext_resource type="PackedScene" path="res://world/forest/stone_eye.tscn" id="21_stone_eye"]
+[ext_resource type="Script" path="res://world/forest/fog_gate.gd" id="22_fog_gate"]
+[ext_resource type="Script" path="res://world/forest/forest_quest.gd" id="23_quest"]
+[ext_resource type="PackedScene" path="res://characters/enemy/enemy.tscn" id="24_enemy"]
+[ext_resource type="Resource" path="res://enemies/occhio_errante.tres" id="25_occhio"]
+[ext_resource type="Resource" path="res://enemies/mano_ombra.tres" id="26_mano"]
+[ext_resource type="Resource" path="res://enemies/guardiano_rovi.tres" id="27_guardiano"]
 
 [sub_resource type="Gradient" id="light_falloff"]
 offsets = PackedFloat32Array(0, 1)
