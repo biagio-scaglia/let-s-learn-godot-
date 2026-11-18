@@ -63,3 +63,14 @@ func _blink() -> void:
 	t.tween_interval(0.05)
 	t.tween_callback(func(): frame = Lids.OPEN)
 	t.tween_callback(_blink_later)
+
+
+## Ti hanno visto avvicinarti: si chiudono, svaniscono, e si riapriranno più tardi.
+func _close_fast() -> void:
+	_shut = true
+	_busy = true
+	var t := create_tween()
+	t.tween_callback(func(): frame = Lids.SHUT)
+	t.tween_property(self, "modulate:a", 0.0, 0.25)
+	t.tween_callback(func(): _busy = false)
+	get_tree().create_timer(randf_range(4.0, 8.0)).timeout.connect(_open)
