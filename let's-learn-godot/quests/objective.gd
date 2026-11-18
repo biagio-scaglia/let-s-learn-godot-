@@ -32,6 +32,8 @@ const NONE := ""
 
 static func current() -> String:
 	# Si parte dalla fine: il primo passo già fatto decide cosa viene dopo.
+	if Game.has_flag(FlagKeys.BOSS_DEFEATED):
+		return BACK_HOME
 	if Game.has_flag(FlagKeys.FOREST_ARRIVED):
 		var closed := FlagKeys.eyes_closed_count()
 		if closed == FlagKeys.STONE_EYES.size():
