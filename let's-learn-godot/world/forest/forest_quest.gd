@@ -66,12 +66,12 @@ func _send_beam(from: Vector2, to: Vector2) -> void:
 	get_tree().create_timer(1.0).timeout.connect(orb.queue_free)
 
 
-## Emilia spiega la mossa nuova. Un carillon, l'avviso in alto, il ricordo.
-func _teach_frost() -> void:
+## Una mossa nuova, insieme: Emilia ghiaccia, Subaru frantuma. Carillon, avviso, ricordo.
+func _teach_combo() -> void:
 	Dialogue.start("Emilia", [
-		"Hai visto? Quando l'occhio si è chiuso, l'aria è diventata più fredda...",
-		"Queste ombre hanno paura del gelo. E il gelo è una cosa che so fare bene.",
-		"Facciamo così: quando combatti, chiamami. Io arrivo alle tue spalle e le colpisco con le mie scaglie di ghiaccio.",
+		"Hai visto? Quando l'occhio si è chiuso, si è irrigidito come pietra gelata...",
+		"Ho un'idea. Io chiudo un'ombra nel ghiaccio, e tu la colpisci con tutta la forza che hai.",
+		"Il ghiaccio si spezza, e l'ombra con lui.",
 	])
 	await Dialogue.finished
 	Dialogue.start("Subaru", ["Un attacco combinato con Emilia-tan?! ...Questo bosco comincia a piacermi."])
