@@ -34,7 +34,7 @@ Il finale del gioco, fatto **un pezzo alla volta** su richiesta dell'autore. Dop
 
 ## Crediti
 
-Il gioco è **di Biagio Scaglia**: nei titoli di coda (pezzo 4) e in `CREDITS.md`.
+Il gioco è **di Biagio Scaglia**: nei [[Titoli di coda]], nel [[Filmato iniziale]], nel titolo e in `CREDITS.md`.
 
 ## Vedi anche
 
