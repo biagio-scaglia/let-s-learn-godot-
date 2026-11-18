@@ -88,7 +88,8 @@ func set_actor(who: String, emilia_sp := 0, ally_attack := "dardo", ally_defend_
 	_help_for[attack_button] = _skills[_attack_id].info
 	for button: MenuItem in [kick_button, shamac_button, power_button]:
 		button.visible = not is_ally
-	frost_button.visible = is_ally or (Game.has_flag(FlagKeys.ICE_UNLOCKED) and not Game.emilia_in_party())
+	frost_button.visible = is_ally
+	shatter_button.visible = not is_ally and Game.has_flag(FlagKeys.COMBO_UNLOCKED) and Game.emilia_in_party()
 	_help_for[skills_button] = "Le magie di Emilia. Costano i suoi PT." if is_ally \
 		else "Le tecniche di Subaru. Costano punti tecnica (PT)."
 	_help_for[defend_button] = ("Una barriera di ghiaccio: il prossimo colpo a Subaru fa metà danno. Emilia recupera %d PT." % ally_defend_sp) if is_ally \
