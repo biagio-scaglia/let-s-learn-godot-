@@ -50,7 +50,8 @@ func test_con_la_chiave_il_baule_si_apre() -> void:
 	await _talk_to("World/Chest")
 	assert_bool(Game.has_flag(FlagKeys.CHEST_OPEN)).is_true()
 	assert_bool(Inventory.has(Inventory.KEY)).is_false()
-	assert_dict(Inventory.items).is_equal({Inventory.POTION: 2, Inventory.COIN: 5})
+	# Pozioni, monete e la pagina strappata: il primo indizio dell'atto 2.
+	assert_dict(Inventory.items).is_equal({Inventory.POTION: 2, Inventory.COIN: 5, Inventory.PAGE: 1})
 
 
 func test_parlare_con_lina_viene_ricordato() -> void:
