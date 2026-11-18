@@ -50,6 +50,7 @@ func snap_behind(offset := Vector2(-24, 14)) -> void:
 	if _player == null:
 		return
 	_npc.global_position = _player.global_position + offset
+	_npc.reset_physics_interpolation()
 	_seed()
 
 
