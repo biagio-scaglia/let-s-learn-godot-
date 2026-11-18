@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://effects/flicker.gd" id="7_flicker"]
 [ext_resource type="Shader" path="res://effects/vignette.gdshader" id="8_vignette"]
 [ext_resource type="AudioStream" uid="uid://chtvt617gtb62" path="res://assets/music/library_theme.wav" id="9_music"]
+[ext_resource type="Script" path="res://quests/voices_quest.gd" id="10_voices"]
 
 [sub_resource type="Gradient" id="light_falloff"]
 offsets = PackedFloat32Array(0, 1)
