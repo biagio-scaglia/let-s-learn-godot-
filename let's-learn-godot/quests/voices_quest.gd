@@ -182,7 +182,19 @@ func _then(speaker: String, lines: PackedStringArray) -> void:
 # ---------- L'Archivista ----------
 
 func _on_archivista() -> void:
-	if Game.has_flag(FlagKeys.BOOK_READ):
+	if Game.has_flag(FlagKeys.BOSS_DEFEATED):
+		archivista.override_lines = [
+			"Shh... ah, sei tu. Vieni, guarda. Ma piano.",
+			"Il libro nero. Stanotte le pagine hanno ricominciato a scriversi da sole.",
+			"È una storia nuova. Parla di un ragazzo che tornava dalla morte, e di una ragazza dai capelli d'argento.",
+			"Non so ancora come finisce. Le ultime pagine sono bianche.",
+			"...Credo che toccherà a voi scriverle. Andate. Io resto qui a leggere.",
+		] if not Game.has_flag(FlagKeys.greeted("archivista")) else [
+			"Una pagina nuova, proprio adesso: \"All'alba, partirono dal sentiero a sud.\"",
+			"Non fatemi aspettare troppo il capitolo dopo.",
+		]
+		Game.set_flag(FlagKeys.greeted("archivista"))
+	elif Game.has_flag(FlagKeys.BOOK_READ):
 		archivista.override_lines = [
 			"Il libro ti ha parlato, vero? L'ho sentito. Le pagine frusciavano come foglie.",
 			"Io resto qui coi miei libri. Qualcuno deve ricordare, anche se nessuno legge.",
