@@ -36,3 +36,29 @@ func _play_until(runner: GdUnitSceneRunner, done: Callable) -> void:
 		await runner.simulate_frames(3, 30)
 		if Dialogue.is_active:
 			await Dialogue._close()
+
+
+func test_l_occhio_vede_solo_davanti_a_se() -> void:
+	var runner := await _forest()
+	var eye := runner.scene().get_node("World/StoneEyeOvest") as StoneEye
+	eye._sweep_tween.kill()
+	eye.gaze.rotation_degrees = 0.0   # guarda a destra
+	var origin := eye.gaze.global_position
+	assert_bool(eye.sees(origin + Vector2(100, 0))).is_true()
+	assert_bool(eye.sees(origin + Vector2(-100, 0))).is_false()   # alle spalle
+	assert_bool(eye.sees(origin + Vector2(0, 100))).is_false()    # di lato
+	assert_bool(eye.sees(origin + Vector2(400, 0))).is_false()    # troppo lontano
+
+
+func test_chiudere_un_occhio_insegna_il_gelo() -> void:
+	var runner := await _forest()
+	var eye := runner.scene().get_node("World/StoneEyeOvest") as StoneEye
+	eye.interactable.interacted.emit()
+	await _play_until(runner, func(): return Game.has_flag(FlagKeys.ICE_UNLOCKED) and not Game.in_cutscene)
+	assert_bool(Game.has_flag(FlagKeys.eye_closed("ovest"))).is_true()
+	assert_bool(Game.has_flag(FlagKeys.ICE_UNLOCKED)).is_true()
+	assert_bool(eye.is_closed).is_true()
+	assert_str(Objective.current()).is_equal(Objective.CLOSE_EYES % 1)
+	# Il bagliore corrispondente nella nebbia si è spento.
+	var gate := runner.scene().get_node("World/FogGate")
+	assert_bool(gate.get_node("EyeOvest").visible).is_false()
