@@ -37,6 +37,7 @@ Indice dei concetti di Godot incontrati finora. Ogni concetto ha la sua nota, co
 - [[Segnali]]: avvisi tra nodi
 - [[Costanti]]: nomi al posto delle stringhe scritte a mano
 - [[Enum]]: nomi per una lista di numeri, come le pose di un nemico
+- [[Angoli e coni di visione]]: chi vede cosa, `angle_difference`
 - [[Responsabilità]]: un compito per script, e chi conosce chi
 - [[Test con gdUnit4]]: script che provano il gioco al posto tuo
 - [[Plugin]]: addon che aggiungono nodi e strumenti all'editor (Dialogue Manager, Phantom Camera, Beehave)
