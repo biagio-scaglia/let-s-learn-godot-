@@ -35,6 +35,8 @@ const NONE := ""
 
 static func current() -> String:
 	# Si parte dalla fine: il primo passo già fatto decide cosa viene dopo.
+	if Game.has_flag(FlagKeys.GAME_FINISHED):
+		return NONE
 	if Game.has_flag(FlagKeys.HOME_AGAIN):
 		return GREET_VILLAGE
 	if Game.has_flag(FlagKeys.BOSS_DEFEATED):
