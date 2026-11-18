@@ -62,3 +62,12 @@ func test_il_saggio_saluta_e_se_ne_ricorda() -> void:
 	# La seconda volta parla della partenza.
 	saggio.interacted.emit()
 	assert_str("\n".join(saggio.override_lines)).contains("sentiero a sud")
+
+
+func test_l_archivista_legge_la_storia_nuova() -> void:
+	var runner := scene_runner("res://world/library.tscn")
+	await runner.simulate_frames(2)
+	var archivista := runner.scene().get_node("World/Archivista/Interactable") as Interactable
+	archivista.interacted.emit()
+	assert_bool(Game.has_flag(FlagKeys.greeted("archivista"))).is_true()
+	assert_str("\n".join(archivista.override_lines)).contains("storia nuova")
