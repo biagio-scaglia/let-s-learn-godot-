@@ -59,7 +59,6 @@ const ALLY_DEFEND_SP := 3
 ## guarda a sinistra (verso il nemico). Colonne: in piedi, pronta, carica, braccio teso,
 ## lancio, ritorno. Stessa densità di pixel del charset e di Subaru: si ingrandisce x3.
 const EMILIA_ATTACK := preload("res://characters/emilia/emilia_attack.png")
-const EMILIA_CHARSET := preload("res://characters/emilia/emilia_charset.png")
 const ALLY_ROW := 3
 enum AllyPose { STAND, READY, CHARGE, REACH, RELEASE, RETURN }
 ## Su una debolezza il danno cresce del 50%; a nemico rotto raddoppia.
