@@ -179,3 +179,41 @@ tile_set = ExtResource("2_tiles")
 [node name="Bottom" type="CollisionShape2D" parent="World/Bounds"]
 position = Vector2(640, 1120)
 shape = SubResource("bounds_h")
+
+[node name="FogGate" type="StaticBody2D" parent="World"]
+position = Vector2(672.0, 272)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/FogGate"]
+shape = SubResource("gate_shape")
+
+[node name="Mist" type="CPUParticles2D" parent="World/FogGate"]
+material = SubResource("additive")
+amount = 40
+lifetime = 2.5
+preprocess = 2.5
+emission_shape = 3
+emission_rect_extents = Vector2(128.0, 10)
+direction = Vector2(0, -1)
+spread = 30.0
+gravity = Vector2(0, -6)
+initial_velocity_min = 4.0
+initial_velocity_max = 14.0
+scale_amount_min = 2.0
+scale_amount_max = 5.0
+color_ramp = SubResource("mist_fade")
+
+[node name="Glow" type="PointLight2D" parent="World/FogGate"]
+color = Color(0.7, 0.4, 1, 1)
+energy = 1.1
+texture = SubResource("light_tex")
+texture_scale = 2.4
+script = ExtResource("8_flicker")
+amount = 0.3
+speed = 0.8
+
+[node name="Interactable" parent="World/FogGate" instance=ExtResource("19_interactable")]
+position = Vector2(0, 16)
+speaker = "Nebbia viola"
+lines = PackedStringArray("Una nebbia viola, fitta come un muro. Dentro, qualcosa respira.", "Ci sono dei bagliori, nella nebbia... tre. Come tre occhi aperti.", "Forse, se si chiudessero, la nebbia se ne andrebbe.")
+repeat_lines = PackedStringArray("La nebbia non si muove. I tre bagliori neanche.")
+prompt_height = 40.0
