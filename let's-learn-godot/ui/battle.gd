@@ -735,12 +735,12 @@ func _on_potion() -> void:
 	_act()
 	if not Inventory.has(Inventory.POTION):
 		await _say("Non hai pozioni.")
-		_player_turn()   # non hai fatto niente: il turno è ancora tuo
+		_same_turn_again()   # non hai fatto niente: il turno è ancora tuo
 		return
 	var healed := Inventory.use(Inventory.POTION)
 	if healed == 0:
 		await _say("Sei già in piena forma.")
-		_player_turn()
+		_same_turn_again()
 		return
 	_announce("Pozione")
 	Sfx.play(Sfx.HEAL)
