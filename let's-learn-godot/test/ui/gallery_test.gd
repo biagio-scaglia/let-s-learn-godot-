@@ -40,3 +40,18 @@ func test_i_mostri_prendono_i_numeri_dal_loro_file() -> void:
 
 func test_un_libro_che_non_esiste_e_vuoto() -> void:
 	assert_bool(GalleryBooks.entry("nessuno").is_empty()).is_true()
+
+
+func test_nella_galleria_c_e_una_vetrina_per_ogni_libro() -> void:
+	var runner := scene_runner(Game.GALLERY_SCENE)
+	await runner.simulate_frames(2)
+	var ids: Array[String] = []
+	for node in runner.scene().find_children("*", "Node2D"):
+		if node is Exhibit:
+			ids.append(node.book_id)
+	ids.sort()
+	var expected := GalleryBooks.all_ids()
+	expected.sort()
+	assert_array(ids).is_equal(expected)
+	# Entrare nella Galleria la segna come vista (non più "Nuova!").
+	assert_bool(Progress.gallery_seen).is_true()
