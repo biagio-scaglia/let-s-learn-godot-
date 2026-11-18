@@ -57,3 +57,12 @@ func test_emilia_indica_il_passo_giusto() -> void:
 	Inventory.add(Inventory.PAGE)
 	emilia.interacted.emit()
 	assert_str("\n".join(emilia.override_lines)).contains("biblioteca")
+
+
+func test_l_archivista_legge_la_pagina() -> void:
+	Inventory.add(Inventory.PAGE)
+	var runner := await _library()
+	var archivista := runner.scene().get_node("World/Archivista/Interactable") as Interactable
+	archivista.interacted.emit()
+	assert_bool(Game.has_flag(FlagKeys.PAGE_READ)).is_true()
+	assert_str("\n".join(archivista.override_lines)).contains("Spettro")
