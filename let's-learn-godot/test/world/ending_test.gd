@@ -90,3 +90,13 @@ func test_prima_del_boss_niente_finale() -> void:
 	Game.load_flags({FlagKeys.INTRO_SEEN: true})
 	var runner := await _village()
 	assert_object(runner.scene().get_node_or_null("Ending")).is_null()
+
+
+func test_senza_saluti_emilia_ferma_subaru() -> void:
+	var runner := await _village()
+	var subaru := runner.scene().get_node("World/Subaru") as Node2D
+	subaru.global_position = Vector2(656, 690)
+	await runner.simulate_frames(3)
+	assert_bool(Dialogue.is_active).is_true()
+	assert_bool(Game.in_cutscene).is_false()
+	assert_bool(Game.has_flag(FlagKeys.GAME_FINISHED)).is_false()
