@@ -25,3 +25,12 @@ const DAWN_RAYS := 0.9
 var _player: Node2D
 ## Emilia ha già detto "prima salutiamo tutti": non lo ripete finché Subaru non esce dalla zona.
 var _warned := false
+
+
+func _ready() -> void:
+	_player = get_tree().get_first_node_in_group("player") as Node2D
+	# Niente finale nello sfondo del titolo (niente Subaru) o prima del boss.
+	if _player == null or not Game.has_flag(FlagKeys.BOSS_DEFEATED) \
+			or Game.has_flag(FlagKeys.GAME_FINISHED):
+		queue_free()
+		return
