@@ -751,7 +751,7 @@ func _on_potion() -> void:
 	await _pause(message_time * 0.6)
 	announce_box.visible = false
 	_idle()
-	_enemy_turn()   # curarsi costa il turno
+	_next_turn()   # curarsi costa il turno
 
 
 ## Difendersi: metà danno al prossimo colpo, e qualche PT di ritorno.
