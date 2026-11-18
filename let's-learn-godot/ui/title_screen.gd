@@ -87,7 +87,33 @@ func _pan_camera() -> void:
 	t.tween_property(camera, "position", PAN_FROM, PAN_SECONDS).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 
-## Entrata: il titolo scende dall'alto, poi sottotitolo e voci del menu una alla volta.
+## Il bagliore dietro al titolo respira piano.
+func _pulse_glow() -> void:
+	var t := create_tween().set_loops()
+	t.tween_property(glow, "modulate:a", 0.55, 2.2).set_trans(Tween.TRANS_SINE)
+	t.tween_property(glow, "modulate:a", 1.0, 2.2).set_trans(Tween.TRANS_SINE)
+
+
+## La Galleria: col lucchetto finché la storia non è finita, con "Nuova!" la prima volta.
+func _setup_gallery_button() -> void:
+	if not Progress.gallery_unlocked():
+		gallery_button.icon = LOCK
+		gallery_button.modulate = Color(1, 1, 1, 0.55)
+		return
+	if not Progress.gallery_seen:
+		var badge := Label.new()
+		badge.text = "Nuova!"
+		badge.theme_type_variation = &"SubtitleLabel"
+		badge.position = Vector2(gallery_button.get_minimum_size().x + 6, 6)
+		gallery_button.add_child(badge)
+		# Saltella per farsi notare.
+		var t := badge.create_tween().set_loops()
+		t.tween_property(badge, "position:y", 2.0, 0.4).set_trans(Tween.TRANS_SINE)
+		t.tween_property(badge, "position:y", 6.0, 0.4).set_trans(Tween.TRANS_SINE)
+
+
+# ---------- Entrata: titolo, poi "Premi Invio" ----------
+
 func _intro() -> void:
 	var title_y := title.position.y
 	title.position.y = title_y - 28
