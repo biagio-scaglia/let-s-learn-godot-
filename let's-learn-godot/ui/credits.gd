@@ -146,3 +146,26 @@ func _build_list() -> void:
 					list.add_child(_portrait_row(book.id, data.name if data else book.id, book.role))
 			_:
 				list.add_child(_label(row[0], row[1]))
+
+
+func _label(style: String, text: String) -> Label:
+	var label := Label.new()
+	label.text = text
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	label.custom_minimum_size.x = COLUMN
+	match style:
+		"title":
+			label.theme_type_variation = &"TitleLabel"
+		"by":
+			label.theme_type_variation = &"SubtitleLabel"
+		"header":
+			label.theme_type_variation = &"SubtitleLabel"
+			# Un po' di spazio sopra ogni sezione.
+			label.custom_minimum_size.y = 34
+			label.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
+		"small":
+			label.theme_type_variation = &"HintLabel"
+		_:
+			_outline(label)
+	return label
