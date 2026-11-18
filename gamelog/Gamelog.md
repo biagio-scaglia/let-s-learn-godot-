@@ -47,6 +47,7 @@ Diario del progetto: cosa è stato fatto, perché, e cosa ho imparato di Godot s
 | 2026-11-17 | [[2026-11-17-congedo-v3\|Lei accanto, le mani che strappano, l'occhio che ti segue]] | Funzionante |
 | 2026-11-17 | [[2026-11-17-biblioteca\|La biblioteca di Erbalta]] | Funzionante |
 | 2026-11-17 | [[2026-11-17-colonna-sonora\|La colonna sonora: Erbalta, il combattimento e una risata]] | Funzionante |
+| 2026-11-18 | [[2026-11-18-castello\|La partenza dalla Rocca d'Argento]] | Funzionante |
 
 ## Il progetto
 
