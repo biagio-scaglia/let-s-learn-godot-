@@ -247,14 +247,6 @@ func _pretty_date(date: String) -> String:
 	return "%s/%s/%s %s" % [d[2], d[1], d[0], parts[1].left(5)]
 
 
-func _on_new_game() -> void:
-	# Niente doppi clic: il menu non risponde più.
-	for item in menu.get_children():
-		item.disabled = true
-	await hands.seize(new_game_button)
-	Game.new_game()
-
-
 func _on_options() -> void:
 	hands.set_active(false)
 	_show_title_texts(false)
