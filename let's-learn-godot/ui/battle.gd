@@ -621,6 +621,50 @@ func _end(result: String) -> void:
 		ReturnByDeath.die()
 
 
+# ---------- Le pose del nemico (vedi EnemyData.Pose) ----------
+
+## Respiro: le due pose di riposo si alternano, finché una posa "speciale" non le ferma.
+func _start_enemy_breathing() -> void:
+	_stop_enemy_breathing()
+	_enemy_posing = false
+	if not enemy.animated():
+		return
+	_enemy_breath = create_tween().set_loops()
+	for pose in [EnemyData.Pose.IDLE, EnemyData.Pose.IDLE_2]:
+		_enemy_breath.tween_callback(_breathe.bind(pose))
+		_enemy_breath.tween_interval(0.45)
+
+
+func _stop_enemy_breathing() -> void:
+	if _enemy_breath:
+		_enemy_breath.kill()
+		_enemy_breath = null
+
+
+func _breathe(pose: int) -> void:
+	if not _enemy_posing:
+		enemy_sprite.frame = pose
+
+
+## Mette il nemico in una posa (carica, attacco, colpito) e ferma il respiro.
+func _enemy_pose(pose: int) -> void:
+	if enemy == null or not enemy.animated():
+		return
+	_enemy_posing = true
+	enemy_sprite.frame = pose
+
+
+## Torna a respirare; se è rotto (stordito) resta con la smorfia di dolore.
+func _enemy_rest() -> void:
+	if enemy == null or not enemy.animated() or not is_active:
+		return
+	if enemy_broken or enemy_hp == 0:
+		enemy_sprite.frame = EnemyData.Pose.HURT
+		return
+	_enemy_posing = false
+	enemy_sprite.frame = EnemyData.Pose.IDLE
+
+
 ## Ridisegna la barra dei turni in alto (vedi battle_turn_bar.gd).
 func _refresh_turns() -> void:
 	turn_bar.refresh(turn, _enemy_stun, enemy.texture)
