@@ -409,6 +409,46 @@ position = Vector2(1072, 748)
 texture = ExtResource("6_eyes")
 script = ExtResource("7_eyes_script")
 
+[node name="Watcher" type="Node2D" parent="." node_paths=PackedStringArray("dawn", "fog", "rays")]
+script = ExtResource("28_arena")
+dawn = NodePath("../Dawn")
+fog = NodePath("../Fog")
+rays = NodePath("../Effects/PaleRays")
+
+[node name="Glow" type="PointLight2D" parent="Watcher"]
+position = Vector2(672, 110)
+color = Color(0.7, 0.35, 1, 1)
+texture = SubResource("light_tex")
+texture_scale = 4.0
+
+[node name="Aura" type="CPUParticles2D" parent="Watcher"]
+material = SubResource("additive")
+position = Vector2(672, 110)
+emitting = false
+amount = 50
+lifetime = 1.6
+emission_shape = 2
+emission_sphere_radius = 60.0
+gravity = Vector2(0, -30)
+initial_velocity_min = 5.0
+initial_velocity_max = 25.0
+scale_amount_min = 2.0
+scale_amount_max = 5.0
+color_ramp = SubResource("arena_fade")
+
+[node name="Eye" type="Sprite2D" parent="Watcher"]
+position = Vector2(672, 110)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("29_watcher")
+hframes = 5
+frame = 4
+
+[node name="Trigger" type="Area2D" parent="Watcher"]
+position = Vector2(672, 200)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Watcher/Trigger"]
+shape = SubResource("arena_shape")
+
 [node name="Fog" type="ColorRect" parent="."]
 material = SubResource("fog_mat")
 offset_right = 1280.0
