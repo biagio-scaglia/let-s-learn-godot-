@@ -45,3 +45,12 @@ const QUIPS := {
 
 ## Mezza larghezza del piedistallo, in pixel.
 var _half := 18.0
+
+
+func _ready() -> void:
+	y_sort_enabled = true
+	_half = 14.0 + 8.0 * figure_scale
+	queue_redraw()
+	_add_figure()
+	_add_lectern()
+	_add_body()
