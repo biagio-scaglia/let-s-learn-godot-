@@ -13,6 +13,10 @@ const FIRST_LEVEL := "res://world/main.tscn"
 const OPENING_SCENE := "res://world/castle.tscn"
 ## Atto 3: il bosco a nord, dove dorme Colui che guarda.
 const FOREST_SCENE := "res://world/forest.tscn"
+## Il filmato iniziale: parte all'avvio, prima del titolo.
+const OPENING_MOVIE := "res://ui/opening_movie.tscn"
+## La Galleria, che si apre nel titolo dopo aver finito la storia (vedi Progress).
+const GALLERY_SCENE := "res://world/gallery.tscn"
 
 ## Emesso quando cambia qualcosa che l'interfaccia deve sapere: un ricordo,
 ## una cutscene che comincia o finisce, una partita nuova o ripresa.
