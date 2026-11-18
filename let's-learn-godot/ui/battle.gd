@@ -366,6 +366,9 @@ func _use_skill(id: String) -> void:
 		Sfx.play(Sfx.BACK)
 		commands.say("Non hai abbastanza PT.")
 		return
+	if skill.has("ally_cost"):
+		ally_sp -= skill.ally_cost
+		_update_ally_info()
 	_act()
 	_announce(skill.name)
 	match id:
