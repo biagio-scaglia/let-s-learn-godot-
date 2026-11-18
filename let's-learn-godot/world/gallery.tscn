@@ -55,3 +55,18 @@ initial_velocity_max = 6.0
 scale_amount_min = 1.0
 scale_amount_max = 2.0
 color_ramp = SubResource("dust_fade")
+
+[node name="World" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Objects" type="TileMapLayer" parent="World"]
+y_sort_enabled = true
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray(0, 0, 1, 0, 1, 0, 0, 0, 2, 0, 1, 0, 0, 0, 2, 0, 1, 0, 0, 0, 4, 0, 1, 0, 0, 0, 23, 0, 1, 0, 0, 0, 2, 0, 1, 0, 0, 0, 24, 0, 1, 0, 0, 0, 4, 0, 1, 0, 0, 0, 1, 0, 2, 0, 0, 0, 2, 0, 2, 0, 0, 0, 2, 0, 2, 0, 0, 0, 4, 0, 2, 0, 0, 0, 23, 0, 2, 0, 0, 0, 2, 0, 2, 0, 0, 0, 24, 0, 2, 0, 0, 0, 4, 0, 2, 0, 0, 0, 1, 0, 3, 0, 0, 0, 7, 0, 4, 0, 0, 0, 24, 0, 3, 0, 0, 0, 7, 0, 4, 0, 0, 0, 11, 0, 8, 0, 0, 0, 5, 0, 4, 0, 0, 0, 14, 0, 8, 0, 0, 0, 5, 0, 4, 0, 0, 0, 3, 0, 11, 0, 0, 0, 1, 0, 4, 0, 0, 0, 22, 0, 11, 0, 0, 0, 1, 0, 4, 0, 0, 0, 11, 0, 12, 0, 0, 0, 5, 0, 4, 0, 0, 0, 14, 0, 12, 0, 0, 0, 5, 0, 4, 0, 0, 0, 1, 0, 14, 0, 0, 0, 7, 0, 4, 0, 0, 0, 9, 0, 14, 0, 0, 0, 4, 0, 4, 0, 0, 0, 16, 0, 14, 0, 0, 0, 1, 0, 5, 0, 0, 0, 24, 0, 14, 0, 0, 0, 7, 0, 4, 0, 0, 0)
+tile_set = ExtResource("2_tiles")
+
+[node name="Bounds" type="StaticBody2D" parent="World"]
+
+[node name="Doorway" type="CollisionShape2D" parent="World/Bounds"]
+position = Vector2(416, 520)
+shape = SubResource("doorway_block")
