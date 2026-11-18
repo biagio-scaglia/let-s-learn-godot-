@@ -217,3 +217,12 @@ func _panel(rect: Rect2, fill: Color, border: Color, border_width: int) -> Panel
 	panel.size = rect.size
 	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	return panel
+
+
+## Una scritta "a inchiostro": colore scuro, senza il bordo dei Label del gioco.
+func _ink_label(text: String, color: Color) -> Label:
+	var label := Label.new()
+	label.text = text
+	label.add_theme_color_override("font_color", color)
+	label.add_theme_constant_override("outline_size", 0)
+	return label
