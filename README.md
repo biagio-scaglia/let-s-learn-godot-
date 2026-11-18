@@ -29,6 +29,25 @@ Un piccolo RPG in pixel art fatto per **imparare Godot 4 un passo alla volta**: 
 </tr>
 </table>
 
+### Il filmato iniziale e il titolo
+
+<table>
+<tr>
+<td width="50%"><img src="gamelog/assets/filmato_castello.png" alt="Il filmato iniziale: la Rocca d'Argento di notte, con la voce narrante"></td>
+<td width="50%"><img src="gamelog/assets/filmato_bosco.png" alt="Il filmato iniziale: il bosco a nord che si fa buio"></td>
+</tr>
+<tr>
+<td colspan="2">All'avvio parte un <b>filmato</b> con la sua musica: la Rocca d'Argento di notte, Erbalta di giorno che a poco a poco si spegne, il bosco a nord dove <i>qualcosa non chiude mai gli occhi</i>. Un colpo, un occhio che si apre nel buio, e una riga del libro nero. È fatto con le scene vere del gioco, senza Subaru, e qualsiasi tasto lo salta.</td>
+</tr>
+<tr>
+<td><img src="gamelog/assets/titolo_premi_invio.png" alt="Il titolo con il riflesso di luce e Premi Invio"></td>
+<td><img src="gamelog/assets/titolo_menu.png" alt="Il menu del titolo nella sua finestra, con la Galleria nuova"></td>
+</tr>
+<tr>
+<td colspan="2">Poi il <b>titolo</b>: un riflesso di luce attraversa "Erbalta" (uno shader), un bagliore respira dietro le lettere, un ornamento dorato si allarga sotto. <i>Premi Invio</i> e il menu si apre nella sua finestra, voce per voce. La <b>Galleria</b> resta chiusa col lucchetto finché non finisci la storia. Se non tocchi niente per un po', riparte il filmato.</td>
+</tr>
+</table>
+
 ### La Rocca d'Argento
 
 ![Di notte, Subaru ed Emilia escono dal portone del castello: torce, braci e riflessi sul fossato](gamelog/assets/castello_torce.png)
