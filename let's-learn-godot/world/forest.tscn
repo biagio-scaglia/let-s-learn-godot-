@@ -451,4 +451,8 @@ volume_db = -6.0
 script = ExtResource("17_ambience")
 sounds = Array[AudioStream]([ExtResource("15_crow"), ExtResource("16_creak"), ExtResource("16_creak")])
 
+[node name="ForestQuest" type="Node" parent="." node_paths=PackedStringArray("fog_gate")]
+script = ExtResource("23_quest")
+fog_gate = NodePath("../World/FogGate")
+
 [node name="ForestArrival" parent="." instance=ExtResource("20_arrival")]
