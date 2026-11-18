@@ -1295,7 +1295,13 @@ func _dash_to_enemy(time: float) -> void:
 
 ## Dove arriva il colpo: sul lato destro del nemico, a mezza altezza.
 func _impact_point() -> Vector2:
-	return enemy_sprite.position + Vector2(24, -40)
+	return _enemy_center() + Vector2(24.0 * enemy.battle_scale, 0)
+
+
+## Il centro del corpo del nemico (per un boss grande è più in alto).
+func _enemy_center() -> Vector2:
+	var s: float = enemy.battle_scale if enemy else 1.0
+	return enemy_sprite.position + Vector2(0, -40.0 * s)
 
 
 ## Aspetta che l'animazione di Subaru arrivi al frame "index" (quello del colpo).
