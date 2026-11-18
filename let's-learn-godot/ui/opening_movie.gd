@@ -160,3 +160,9 @@ func _clear_stage() -> void:
 ## Stacco: dal nero all'immagine, e dall'immagine al nero.
 func _cut_in(seconds: float) -> void:
 	create_tween().tween_property(black, "color:a", 0.0, seconds)
+
+
+func _cut_out(seconds: float) -> void:
+	var t := create_tween()
+	t.tween_property(black, "color:a", 1.0, seconds)
+	await t.finished
