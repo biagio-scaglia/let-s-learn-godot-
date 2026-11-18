@@ -39,7 +39,7 @@ func _process(_delta: float) -> void:
 
 
 func _open() -> void:
-	if not is_inside_tree():
+	if not is_inside_tree() or _done:
 		return
 	if _player and global_position.distance_to(_player.global_position) < shy_distance * 1.4:
 		get_tree().create_timer(1.5).timeout.connect(_open)   # c'è qualcuno: aspettano
