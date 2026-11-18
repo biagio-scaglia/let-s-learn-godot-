@@ -560,6 +560,15 @@ text = "Pugno caricato"
 script = ExtResource("3_item")
 cursor_texture = ExtResource("6_hand")
 
+[node name="Frost" type="Button" parent="Screen/SkillWindow/Box"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Scaglie di gelo"
+script = ExtResource("3_item")
+cursor_texture = ExtResource("6_hand")
+
 [node name="ItemWindow" type="PanelContainer" parent="Screen"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 0)
