@@ -32,7 +32,9 @@ Lo script **non** sta dentro Lina o il baule: li **ascolta**. Quando interagisci
 |---|---|---|
 | Senza chiave | Le sue frasi normali (dove l'ha persa) | "È chiuso a chiave." |
 | Con la chiave | "La mia chiave!…" | "La chiave gira nella serratura… clic!" e si apre |
-| Baule aperto | "Ti sono piaciute le pozioni?" | "Il baule è vuoto." |
+| Baule aperto | La pagina strappata: "chiedi in biblioteca" | "Il baule è vuoto." |
+
+Dal [[2026-11-18-atto-2]] nel baule c'è anche la **pagina strappata**: la missione è un passo dell'[[Atto 2]].
 
 Il baule si apre **quando il dialogo finisce**: la missione si collega al segnale `Dialogue.finished` una volta sola (`CONNECT_ONE_SHOT`), poi:
 

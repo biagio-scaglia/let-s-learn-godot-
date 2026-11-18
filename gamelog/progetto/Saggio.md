@@ -41,6 +41,7 @@ Npc (StaticBody2D)              + npc.gd: aspetto e comportamento
 |---|---|
 | La prima volta | Benvenuto, si presenta, consiglia di correre con Shift |
 | Dalla seconda volta | "Ancora qui?…", ti manda a leggere il [[Cartello]] e a salutare sua nipote [[Lina]] |
+| [[Atto 2]] | Si accorge di non ricordare da quanto tempo guarda gli stessi alberi, e ti manda dal baule di Lina. Le sue frasi le sceglie `VoicesQuest`, che lo fa anche presentare la prima volta |
 
 ## Riutilizzabile
 

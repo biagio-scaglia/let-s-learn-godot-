@@ -18,3 +18,5 @@ La nipote del [[Saggio]]. Vive nella [[Casa di Lina]].
 ![[lina.png|500]]
 
 Il Saggio, dalla seconda conversazione, ti consiglia di andarla a trovare.
+
+Nell'[[Atto 2]] è il nonno a mandarti da lei: nel baule della nonna, sotto pozioni e monete, c'è una **pagina strappata** dal libro nero. Lina non l'aveva mai vista, e ti manda in biblioteca.
