@@ -103,3 +103,12 @@ func _show_page() -> void:
 	_page_number.text = "%d / %d" % [_page + 1, maxi(_pages.size(), 1)]
 	_prev.modulate.a = 1.0 if _page > 0 else 0.0
 	_next.modulate.a = 1.0 if _page < _pages.size() - 1 else 0.0
+
+
+func _fill_stats(stats: Array) -> void:
+	for child in _stats.get_children():
+		child.queue_free()
+	_stats.visible = not stats.is_empty()
+	for row in stats:
+		_stats.add_child(_ink_label(row[0] + ":", INK_SOFT))
+		_stats.add_child(_ink_label(row[1], INK))
