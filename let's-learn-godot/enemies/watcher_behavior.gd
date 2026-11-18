@@ -94,3 +94,25 @@ func _start_charge() -> void:
 	await battle._say("Colui che guarda spalanca l'occhio. Sta caricando lo Sguardo!")
 	if Game.remembers(MEMORY_GAZE):
 		await battle._say("Subaru: \"Lo so cosa succede adesso. Lo Shamac, subito!\"")
+
+
+func _fire_gaze() -> void:
+	charging = false
+	_stop_pulse()
+	battle._announce("Sguardo")
+	battle._enemy_pose(EnemyData.Pose.ATTACK)
+	Sfx.play(Sfx.GAZE_BEAM)
+	var from: Vector2 = battle._enemy_center()
+	var to: Vector2 = battle.hero.position + Vector2(0, -60)
+	battle.vfx.beam(from, to, Color(1.0, 0.25, 0.35), 48.0, 0.9)
+	battle.flash.color = Color(1.0, 0.2, 0.3, 0.55)
+	battle.create_tween().tween_property(battle.flash, "color:a", 0.0, 0.7)
+	battle.vfx.shake(12.0, 0.7)
+	var dealt := ceili(Stats.max_hp * GAZE_RATIO)
+	if battle.defending:
+		dealt = ceili(dealt / 2.0)
+	Stats.take_damage(dealt)
+	battle.hero.play("stagger")
+	battle._hit(battle.hero, dealt, -140.0, Sfx.HIT, Color(1.0, 0.45, 0.5), 44)
+	await battle._pause(1.0)
+	battle._enemy_rest()
