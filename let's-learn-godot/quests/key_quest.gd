@@ -3,7 +3,8 @@ extends Node
 ##
 ## 1. Lina ha perso la chiave del baule (vicino alla staccionata, nel villaggio).
 ## 2. Se torni da lei con la chiave, ti ringrazia e ti dice di aprire il baule.
-## 3. Il baule, con la chiave, si apre: dentro pozioni e monete.
+## 3. Il baule, con la chiave, si apre: dentro pozioni, monete e una pagina strappata
+##    dal libro nero della biblioteca (il primo indizio vero dell'atto 2, vedi Objective).
 ##
 ## Lo script non sta dentro Lina o il baule: li "ascolta" (segnale interacted) e
 ## decide cosa dicono, in base a zaino e ricordi (Inventory, Game.flags).
