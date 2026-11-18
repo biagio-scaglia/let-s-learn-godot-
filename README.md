@@ -155,4 +155,6 @@ Qualche voce da cui partire:
 
 ## Crediti
 
+**Un gioco di Biagio Scaglia.**
+
 Tileset, font, suoni e particelle di [Kenney](https://www.kenney.nl) (CC0), più qualche suono di altri autori: tutto è elencato in [CREDITS.md](CREDITS.md). Subaru ed Emilia sono personaggi di *Re:Zero* (© Tappei Nagatsuki, Kadokawa): sono usati solo per imparare, in un progetto personale e non commerciale. Gli effetti, le icone, le mani, gli occhi e le figure d'ombra sono disegnati da noi.
