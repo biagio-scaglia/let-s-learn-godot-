@@ -35,6 +35,7 @@ func save_game() -> bool:
 	config.set_value("partita", "ricordi", Game.flags)
 	config.set_value("partita", "zaino", Inventory.items)
 	config.set_value("partita", "morti", Game.deaths)
+	config.set_value("partita", "memorie", Game.memories)
 	config.set_value("partita", "statistiche", Stats.to_dict())
 	# Salvare fissa anche il punto di ritorno.
 	Game.set_checkpoint()
