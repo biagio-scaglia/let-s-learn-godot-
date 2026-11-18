@@ -35,3 +35,11 @@ func _ready() -> void:
 func _snap_if_free() -> void:
 	if not Game.in_cutscene:
 		snap_behind()
+
+
+## Mette il PNG subito dietro al giocatore (all'arrivo in una scena, dopo una morte…).
+func snap_behind(offset := Vector2(-24, 14)) -> void:
+	if _player == null:
+		return
+	_npc.global_position = _player.global_position + offset
+	_seed()
