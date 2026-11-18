@@ -8,6 +8,15 @@ extends StaticBody2D
 ## Quanto è alto un nemico sulla mappa, in pixel, qualunque sia la grandezza dello sprite.
 const MAP_HEIGHT := 32.0
 
+## Quanto può allontanarsi dal punto dove è nato, quando gironzola (0 = sta fermo).
+@export var wander_radius := 48.0
+## Velocità quando gironzola, in pixel al secondo: lenta, non insegue nessuno.
+@export var wander_speed := 26.0
+
+## Il punto dove è nato: gironzola sempre lì attorno.
+var _home := Vector2.ZERO
+var _wander_tween: Tween
+
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var interactable: Interactable = $Interactable
 
