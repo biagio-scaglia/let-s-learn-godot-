@@ -995,6 +995,10 @@ func _on_defend() -> void:
 func _on_flee() -> void:
 	_act()
 	_announce("Fuga")
+	if behavior and not behavior.can_flee():
+		await _say(behavior.no_flee_text())
+		_next_turn()
+		return
 	if rng.randf() < flee_chance:
 		var t := create_tween()
 		t.tween_property(hero, "position:x", _hero_home.x + 260.0, 0.35).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
