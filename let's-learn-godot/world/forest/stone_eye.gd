@@ -75,3 +75,12 @@ func _physics_process(_delta: float) -> void:
 		return
 	if sees(_player.global_position + Vector2(0, -16)):
 		_caught()
+
+
+## Il punto è dentro il cono? (abbastanza vicino e nella direzione in cui guarda)
+func sees(point: Vector2) -> bool:
+	var to_point := point - gaze.global_position
+	if to_point.length() > sight:
+		return false
+	var off := absf(angle_difference(gaze.global_rotation, to_point.angle()))
+	return off < deg_to_rad(cone / 2.0)
