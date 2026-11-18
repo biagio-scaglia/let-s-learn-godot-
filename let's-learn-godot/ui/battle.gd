@@ -329,9 +329,31 @@ func _act() -> void:
 	commands.close_submenus()
 
 
-## Attacca e le abilità: spende i PT, fa la mossa, poi tocca al nemico.
+## Attacca e le abilità: spende i PT, fa la mossa, poi tocca al prossimo.
+## Se è il turno di Emilia, sono le sue mosse e i suoi PT.
 func _use_skill(id: String) -> void:
 	var skill: Dictionary = SKILLS[id]
+	if turn == ALLY:
+		if ally_sp < skill.cost:
+			Sfx.play(Sfx.BACK)
+			commands.say("Emilia non ha abbastanza PT.")
+			return
+		ally_sp -= skill.cost
+		_update_ally_info()
+		_act()
+		_announce("Emilia: " + skill.name)
+		if id == "gelo":
+			await _ally_frost(skill)
+		else:
+			await _ally_dart(skill)
+		await _pause(message_time * 0.5)
+		announce_box.visible = false
+		_ally_pose(AllyPose.STAND)
+		if enemy_hp == 0:
+			_victory()
+		else:
+			_next_turn()
+		return
 	if not Stats.spend_sp(skill.cost):
 		Sfx.play(Sfx.BACK)
 		commands.say("Non hai abbastanza PT.")
