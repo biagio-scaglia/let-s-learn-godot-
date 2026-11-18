@@ -52,6 +52,7 @@ Diario del progetto: cosa è stato fatto, perché, e cosa ho imparato di Godot s
 | 2026-11-18 | [[2026-11-18-icona\|L'icona, e il port per mobile]] | Funzionante |
 | 2026-11-18 | [[2026-11-18-bosco\|Atto 3: il Bosco Senza Tempo]] | Funzionante |
 | 2026-11-18 | [[2026-11-18-occhi-e-gelo\|Atto 3: gli occhi di pietra ed Emilia nel party]] | Funzionante |
+| 2026-11-18 | [[2026-11-18-interpolazione\|Lo scatto della camera e l'interpolazione della fisica]] | Funzionante |
 
 ## Il progetto
 
