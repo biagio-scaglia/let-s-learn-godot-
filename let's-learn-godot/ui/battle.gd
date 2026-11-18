@@ -542,7 +542,9 @@ func _enemy_turn() -> void:
 		vfx.shake(3.0, 0.2)
 		vfx.impact(hero.position + Vector2(-24, -40), 2.0)
 	_hit(hero, dealt, -128.0, Sfx.HIT, Color.WHITE, 32)
-	create_tween().tween_property(enemy_sprite, "position:x", _enemy_home.x, 0.25)
+	var back := create_tween()
+	back.tween_property(enemy_sprite, "position:x", _enemy_home.x, 0.25)
+	back.tween_callback(_enemy_rest)
 	await _pause(message_time * 0.6)
 	announce_box.visible = false
 	if Stats.hp == 0:
