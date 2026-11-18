@@ -83,3 +83,16 @@ func _unhandled_input(event: InputEvent) -> void:
 	else:
 		return
 	get_viewport().set_input_as_handled()
+
+
+## Sfoglia avanti (+1) o indietro (-1): la pagina di destra sparisce e ricompare.
+func _turn(direction: int) -> void:
+	var page := clampi(_page + direction, 0, _pages.size() - 1)
+	if page == _page:
+		return
+	_page = page
+	Sfx.play(Sfx.MOVE)
+	var t := create_tween()
+	t.tween_property(_text, "modulate:a", 0.0, 0.08)
+	t.tween_callback(_show_page)
+	t.tween_property(_text, "modulate:a", 1.0, 0.15)
