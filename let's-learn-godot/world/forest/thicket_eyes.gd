@@ -12,6 +12,10 @@ enum Lids { OPEN, HALF, SHUT }
 var _player: Node2D
 var _shut := true
 var _busy := false
+## Spalancati da Colui che guarda: non si chiudono più se ti avvicini.
+var _staring := false
+## Chiusi per sempre (Colui che guarda è stato sconfitto).
+var _done := false
 
 
 func _ready() -> void:
