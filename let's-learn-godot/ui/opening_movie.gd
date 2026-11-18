@@ -40,3 +40,14 @@ func _ready() -> void:
 	skip_hint.modulate.a = 0.0
 	create_tween().tween_property(skip_hint, "modulate:a", 1.0, 1.0).set_delay(1.0)
 	_play()
+
+
+## Qualsiasi tasto (o clic) salta il filmato.
+func _unhandled_input(event: InputEvent) -> void:
+	if _done:
+		return
+	var key: bool = event is InputEventKey and event.pressed and not event.echo
+	var click: bool = event is InputEventMouseButton and event.pressed
+	if key or click:
+		get_viewport().set_input_as_handled()
+		_finish()
