@@ -878,6 +878,8 @@ func _strike(skill: Dictionary, sound: String) -> void:
 	if enemy_broken:
 		multiplier *= BREAK_BONUS
 	amount = maxi(1, roundi(amount * multiplier))
+	if behavior:
+		amount = behavior.modify_damage(skill, amount)
 	enemy_hp = maxi(0, enemy_hp - amount)
 
 	var color := Color.WHITE
