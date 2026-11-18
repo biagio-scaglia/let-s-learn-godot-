@@ -518,12 +518,6 @@ func _setup_ally() -> void:
 		_ally_breath.tween_property(emilia_sprite, "scale", Vector2(ALLY_SCALE * 1.02, ALLY_SCALE * 0.97), 0.9).set_trans(Tween.TRANS_SINE)
 		_ally_breath.tween_property(emilia_sprite, "scale", Vector2(ALLY_SCALE, ALLY_SCALE), 0.9).set_trans(Tween.TRANS_SINE)
 	else:
-		emilia_sprite.texture = EMILIA_CHARSET
-		emilia_sprite.hframes = 4
-		emilia_sprite.vframes = 4
-		emilia_sprite.frame = 4
-		emilia_sprite.offset = Vector2(0, -24)
-		emilia_sprite.scale = Vector2(2.6, 2.6)
 		emilia_sprite.visible = false
 	_update_ally_info()
 
