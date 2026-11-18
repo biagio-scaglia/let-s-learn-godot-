@@ -32,7 +32,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if _player == null or _shut or _busy:
+	if _player == null or _shut or _busy or _staring:
 		return
 	if global_position.distance_to(_player.global_position) < shy_distance:
 		_close_fast()
