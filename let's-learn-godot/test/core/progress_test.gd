@@ -23,3 +23,8 @@ func after_test() -> void:
 func _remove_file() -> void:
 	if FileAccess.file_exists(TEST_PATH):
 		DirAccess.remove_absolute(TEST_PATH)
+
+
+func test_all_inizio_la_galleria_e_chiusa() -> void:
+	assert_bool(Progress.gallery_unlocked()).is_false()
+	assert_bool(Progress.gallery_seen).is_false()
