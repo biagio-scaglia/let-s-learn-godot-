@@ -92,6 +92,21 @@ func test_cristallo_infranto_costa_a_tutti_e_due_e_colpisce() -> void:
 	await _escape()
 
 
+func test_senza_pt_di_emilia_la_combinata_non_parte() -> void:
+	Game.set_flag(FlagKeys.FOREST_ARRIVED)
+	Game.set_flag(FlagKeys.COMBO_UNLOCKED)
+	Battle.start(_tough_enemy())
+	await _wait_turn()
+	Battle.ally_sp = 1
+	var sp := Stats.sp
+	Battle.commands.shatter_button.pressed.emit()
+	await await_millis(50)
+	# Niente PT spesi, il turno è ancora di Subaru.
+	assert_int(Stats.sp).is_equal(sp)
+	assert_str(Battle.turn).is_equal(Battle.HERO)
+	await _escape()
+
+
 func test_i_nemici_del_bosco_temono_il_ghiaccio() -> void:
 	for id in ["occhio_errante", "mano_ombra", "guardiano_rovi"]:
 		var data := load("res://enemies/%s.tres" % id) as EnemyData
@@ -110,7 +125,6 @@ func test_il_ghiaccio_ha_la_sua_icona() -> void:
 
 func test_nel_party_emilia_ha_il_suo_turno() -> void:
 	Game.set_flag(FlagKeys.FOREST_ARRIVED)   # da qui Emilia è nel party
-	Game.set_flag(FlagKeys.ICE_UNLOCKED)
 	Battle.start(_tough_enemy())
 	await _wait_turn()
 	assert_bool(Battle.with_emilia).is_true()
