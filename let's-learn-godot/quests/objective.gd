@@ -38,7 +38,10 @@ static func current() -> String:
 	if Game.has_flag(FlagKeys.GAME_FINISHED):
 		return NONE
 	if Game.has_flag(FlagKeys.HOME_AGAIN):
-		return GREET_VILLAGE
+		var greeted := FlagKeys.greeted_count()
+		if greeted == FlagKeys.VILLAGERS.size():
+			return LEAVE_SOUTH
+		return GREET_VILLAGE % greeted
 	if Game.has_flag(FlagKeys.BOSS_DEFEATED):
 		return BACK_HOME
 	if Game.has_flag(FlagKeys.FOREST_ARRIVED):
