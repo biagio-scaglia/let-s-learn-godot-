@@ -901,6 +901,8 @@ func _strike(skill: Dictionary, sound: String) -> void:
 			vfx.bump(enemy_info.shield_icon)
 			if enemy_shield == 0:
 				_break()
+	if behavior:
+		behavior.on_hit(skill)
 
 
 ## Il nemico è rotto: scudo in frantumi, salta il prossimo turno.
