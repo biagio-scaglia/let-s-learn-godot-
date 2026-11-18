@@ -5,6 +5,9 @@ extends StaticBody2D
 
 @export var data: EnemyData
 
+## Quanto è alto un nemico sulla mappa, in pixel, qualunque sia la grandezza dello sprite.
+const MAP_HEIGHT := 32.0
+
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var interactable: Interactable = $Interactable
 
