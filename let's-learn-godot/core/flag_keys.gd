@@ -26,8 +26,8 @@ const ACT2_DONE := "atto2_finito"
 # ---------- Atto 3: il Bosco Senza Tempo ----------
 ## Subaru ed Emilia sono arrivati nel bosco (la cutscene d'arrivo è stata vista).
 const FOREST_ARRIVED := "bosco_arrivo"
-## Emilia ha insegnato a Subaru a chiamarla in battaglia: la mossa "Scaglie di gelo".
-const ICE_UNLOCKED := "gelo_sbloccato"
+## Subaru ed Emilia hanno imparato la mossa combinata "Cristallo infranto".
+const COMBO_UNLOCKED := "cristallo_sbloccato"
 ## Un occhio di pietra ha visto Subaru almeno una volta (Emilia ha spiegato il trucco).
 const EYE_SEEN := "occhio_visto"
 ## Subaru ha guardato la nebbia viola: sa dei tre bagliori.
