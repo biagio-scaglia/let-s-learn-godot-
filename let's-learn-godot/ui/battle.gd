@@ -409,6 +409,206 @@ func _do_kick(skill: Dictionary) -> void:
 	await hero.animation_finished
 
 
+## Scaglie di gelo: lo schermo si fa azzurro e nevica, Emilia arriva alle spalle di
+## Subaru, sopra di lei nascono sette scaglie che partono una dopo l'altra; l'ultima
+## chiude il nemico in un blocco di ghiaccio che va in frantumi.
+func _do_frost(skill: Dictionary) -> void:
+	hero.play("charge")
+	Sfx.play(Sfx.ICE_CAST)
+	flash.color = Color(0.55, 0.8, 1.0, 0.0)
+	create_tween().tween_property(flash, "color:a", 0.22, 0.4)
+	var snow := vfx.snowfall()
+	var emilia_home := Vector2(_hero_home.x + 72.0, _hero_home.y - 8.0)
+	await vfx.emilia_appears(emilia_sprite, emilia_home)
+	var shards := vfx.ice_shards(emilia_home + Vector2(-40, -80), FROST_SHARDS)
+	await _pause(0.55)
+	await _frost_volley(shards, skill)
+	snow.emitting = false
+	get_tree().create_timer(3.0).timeout.connect(snow.queue_free)
+	var back := create_tween().set_parallel()
+	back.tween_property(flash, "color:a", 0.0, 0.5)
+	await vfx.emilia_leaves(emilia_sprite)
+
+
+## La raffica di scaglie (per Subaru che chiama Emilia o per Emilia nel party):
+## partono una dopo l'altra, l'ultima più grande chiude il nemico nel ghiaccio.
+func _frost_volley(shards: Array[Sprite2D], skill: Dictionary) -> void:
+	var target := enemy_sprite.position + Vector2(0, -36)
+	for i in shards.size() - 1:
+		# Ogni scaglia mira a un punto un po' diverso del nemico.
+		var aim := target + Vector2(randf_range(-14, 14), randf_range(-22, 18))
+		vfx.fire_shard(shards[i], aim, 0.22, _on_shard_hit.bind(aim))
+		await _pause(0.08)
+	await _pause(0.25)
+	# L'ultima, più grande e più lenta: è quella che fa il danno.
+	var last := shards[-1]
+	create_tween().tween_property(last, "scale", Vector2(4.0, 4.0), 0.2)
+	await _pause(0.2)
+	vfx.fire_shard(last, target, 0.18, func(): pass)
+	await _pause(0.18)
+	_hit_stop(0.12)
+	_strike(skill, Sfx.ICE_SHATTER)
+	vfx.ice_block(enemy_sprite.position)
+	vfx.shockwave_at(target, 0.7)
+	vfx.shake(6.0, 0.35)
+	vfx.frost_burst(target, 3.5)
+	var cold := create_tween()
+	cold.tween_property(enemy_sprite, "modulate", Color(0.6, 0.85, 1.3), 0.1)
+	await _pause(0.75)
+	create_tween().tween_property(enemy_sprite, "modulate", _enemy_color(), 0.6)
+
+
+# ---------- Emilia nel party ----------
+
+## Dove sta Emilia: alle spalle di Subaru, un po' più in alto.
+func _ally_home() -> Vector2:
+	return Vector2(_hero_home.x + 72.0, _hero_home.y - 4.0)
+
+
+## A inizio combattimento: Emilia in campo (nel party, con le pose d'attacco) oppure
+## nascosta, pronta a "essere chiamata" con il charset normale.
+func _setup_ally() -> void:
+	with_emilia = Game.emilia_in_party()
+	ally_sp = ALLY_MAX_SP
+	ally_row.visible = with_emilia
+	ally_bar.visible = with_emilia
+	_stop_ally_breathing()
+	if with_emilia:
+		emilia_sprite.texture = EMILIA_ATTACK
+		emilia_sprite.hframes = 6
+		emilia_sprite.vframes = 4
+		emilia_sprite.offset = Vector2(0, -28)
+		emilia_sprite.scale = Vector2(2.4, 2.4)
+		emilia_sprite.modulate = Color.WHITE
+		emilia_sprite.position = _ally_home()
+		emilia_sprite.visible = true
+		_ally_pose(AllyPose.STAND)
+		# Respira piano, come i PNG sulla mappa.
+		_ally_breath = create_tween().set_loops()
+		_ally_breath.tween_property(emilia_sprite, "scale", Vector2(2.45, 2.34), 0.9).set_trans(Tween.TRANS_SINE)
+		_ally_breath.tween_property(emilia_sprite, "scale", Vector2(2.4, 2.4), 0.9).set_trans(Tween.TRANS_SINE)
+	else:
+		emilia_sprite.texture = EMILIA_CHARSET
+		emilia_sprite.hframes = 4
+		emilia_sprite.vframes = 4
+		emilia_sprite.frame = 4
+		emilia_sprite.offset = Vector2(0, -24)
+		emilia_sprite.scale = Vector2(2.6, 2.6)
+		emilia_sprite.visible = false
+	_update_ally_info()
+
+
+func _stop_ally_breathing() -> void:
+	if _ally_breath:
+		_ally_breath.kill()
+		_ally_breath = null
+
+
+func _ally_pose(pose: int) -> void:
+	if with_emilia:
+		emilia_sprite.frame = ALLY_ROW * 6 + pose
+
+
+func _update_ally_info() -> void:
+	if not with_emilia:
+		return
+	ally_sp_label.text = "%d/%d" % [ally_sp, ALLY_MAX_SP]
+	ally_bar.max_value = ALLY_MAX_SP
+	if is_active:
+		create_tween().tween_property(ally_bar, "value", ally_sp, 0.3)
+	else:
+		ally_bar.value = ally_sp
+
+
+## Il ritratto di Emilia per la barra dei turni: la testa della prima posa.
+func _ally_portrait() -> Texture2D:
+	var face := AtlasTexture.new()
+	face.atlas = EMILIA_ATTACK
+	face.region = Rect2(ALLY_ROW * 0 + 12, ALLY_ROW * 56 + 2, 26, 26)
+	return face
+
+
+## Dardo di gelo: carica, braccio teso, una scheggia sola che vola e si frantuma.
+func _ally_dart(skill: Dictionary) -> void:
+	_ally_pose(AllyPose.CHARGE)
+	Sfx.play(Sfx.ICE_HIT)
+	vfx.sparks(_ally_hand(), BattleVfx.ICE_COLOR, 8, 60.0)
+	await _pause(0.3)
+	_ally_pose(AllyPose.REACH)
+	await _pause(0.12)
+	_ally_pose(AllyPose.RELEASE)
+	var shard: Sprite2D = vfx.ice_shards(_ally_hand(), 1)[0]
+	shard.position = _ally_hand()
+	await _pause(0.1)
+	var target := enemy_sprite.position + Vector2(0, -36)
+	vfx.fire_shard(shard, target, 0.2, func(): pass)
+	await _pause(0.2)
+	_hit_stop(0.06)
+	_strike(skill, Sfx.ICE_HIT)
+	vfx.frost_burst(target, 2.2)
+	vfx.sparks(target, BattleVfx.ICE_COLOR, 12, 160.0)
+	await _pause(0.3)
+	_ally_pose(AllyPose.RETURN)
+	await _pause(0.2)
+
+
+## Scaglie di gelo lanciate da Emilia in persona: si carica (neve, scintille),
+## tende il braccio, e le scaglie partono dalla sua mano.
+func _ally_frost(skill: Dictionary) -> void:
+	_ally_pose(AllyPose.CHARGE)
+	Sfx.play(Sfx.ICE_CAST)
+	flash.color = Color(0.55, 0.8, 1.0, 0.0)
+	create_tween().tween_property(flash, "color:a", 0.22, 0.4)
+	var snow := vfx.snowfall()
+	vfx.glow(emilia_sprite, Color(1.4, 1.7, 2.0))
+	vfx.sparks(_ally_hand(), BattleVfx.ICE_COLOR, 16, 90.0)
+	await _pause(0.45)
+	_ally_pose(AllyPose.REACH)
+	var shards := vfx.ice_shards(_ally_hand() + Vector2(-50, -40), FROST_SHARDS)
+	await _pause(0.5)
+	_ally_pose(AllyPose.RELEASE)
+	await _frost_volley(shards, skill)
+	snow.emitting = false
+	get_tree().create_timer(3.0).timeout.connect(snow.queue_free)
+	create_tween().tween_property(flash, "color:a", 0.0, 0.5)
+	_ally_pose(AllyPose.RETURN)
+	await _pause(0.3)
+
+
+## Una barriera di ghiaccio davanti a Subaru: il prossimo colpo fa metà danno,
+## ed Emilia recupera qualche PT.
+func _ally_defend() -> void:
+	defending = true
+	_announce("Emilia: Barriera")
+	Sfx.play(Sfx.GUARD)
+	_ally_pose(AllyPose.READY)
+	hero_status.visible = true
+	vfx.glow(hero, Color(0.7, 1.1, 1.8))
+	vfx.glow(emilia_sprite, Color(0.7, 1.1, 1.8))
+	vfx.sparks(hero.position + Vector2(-30, -40), BattleVfx.ICE_COLOR, 14, 90.0)
+	var before := ally_sp
+	ally_sp = mini(ALLY_MAX_SP, ally_sp + ALLY_DEFEND_SP)
+	_update_ally_info()
+	if ally_sp > before:
+		vfx.pop_number(emilia_sprite.position, "+%d PT" % (ally_sp - before), Color(0.5, 0.78, 1.0), -140.0, 24)
+	await _pause(message_time * 0.6)
+	announce_box.visible = false
+	_ally_pose(AllyPose.STAND)
+
+
+## Dove sta la mano di Emilia quando tende il braccio (da lì partono le scaglie).
+func _ally_hand() -> Vector2:
+	return emilia_sprite.position + Vector2(-34, -70)
+
+
+## Una scaglia (non l'ultima) arriva: brina, un tintinnio, una scossa piccola.
+func _on_shard_hit(point: Vector2) -> void:
+	Sfx.play(Sfx.ICE_HIT)
+	vfx.frost_burst(point, 1.6)
+	vfx.sparks(point, BattleVfx.ICE_COLOR, 6, 120.0)
+	vfx.shake(1.5, 0.08)
+
+
 ## Shamac: Subaru si accuccia, lo schermo si scurisce e una nebbia nera avvolge il nemico.
 func _do_shamac(skill: Dictionary) -> void:
 	hero.play("charge")
