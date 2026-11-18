@@ -38,9 +38,11 @@ point_count = 3
 script = ExtResource("1_script")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+process_callback = 0
 position_smoothing_enabled = false
 
 [node name="UI" type="CanvasLayer" parent="."]
+physics_interpolation_mode = 2
 layer = 6
 
 [node name="BackgroundBlur" type="ColorRect" parent="UI"]
