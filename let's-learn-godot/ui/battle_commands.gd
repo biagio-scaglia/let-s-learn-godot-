@@ -121,10 +121,11 @@ func say(text: String) -> void:
 func open_skills() -> void:
 	for button: MenuItem in _skill_buttons:
 		var cost: int = _skills[_skill_buttons[button]].cost
-		button.modulate = Color.WHITE if Stats.sp >= cost else Color(0.55, 0.55, 0.65)
+		button.modulate = Color.WHITE if current_sp() >= cost else Color(0.55, 0.55, 0.65)
 	skill_window.visible = true
-	kick_button.focus_silently()
-	show_help(kick_button)
+	var first: MenuItem = frost_button if actor == "ally" else kick_button
+	first.focus_silently()
+	show_help(first)
 
 
 ## Il sottomenu "Oggetti". Esc torna ai comandi.
