@@ -43,9 +43,22 @@ var checkpoint := {}
 var deaths := 0
 
 
+## Gli autoload che sono interfaccia (sullo schermo, animati a ogni frame): fuori
+## dall'interpolazione della fisica, che serve solo al mondo che si muove.
+const SCREEN_AUTOLOADS := ["Dialogue", "Fade", "Pause", "ReturnByDeath", "Hud", "InventoryMenu", "Battle", "Farewell"]
+
+
 func _ready() -> void:
 	# Deve funzionare anche a gioco in pausa ("Torna al titolo" dal menu di pausa).
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	_screen_without_interpolation.call_deferred()   # dopo: alcuni autoload arrivano dopo Game
+
+
+func _screen_without_interpolation() -> void:
+	for autoload in SCREEN_AUTOLOADS:
+		var node := get_tree().root.get_node_or_null(autoload)
+		if node:
+			node.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF
 
 
 # ---------- Ricordi ----------
