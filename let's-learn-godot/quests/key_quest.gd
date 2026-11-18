@@ -73,3 +73,9 @@ func _open_chest() -> void:
 	Sfx.play(Sfx.CHEST_OPEN)
 	Inventory.add(Inventory.POTION, 2)
 	Inventory.add(Inventory.COIN, 5)
+	Inventory.add(Inventory.PAGE)
+
+
+## Baule aperto ma niente pagina, né in mano né già letta: c'è ancora da prenderla.
+func _page_missing() -> bool:
+	return not Inventory.has(Inventory.PAGE) and not Game.has_flag(FlagKeys.PAGE_READ) 		and not Game.has_flag(FlagKeys.BOOK_READ)
