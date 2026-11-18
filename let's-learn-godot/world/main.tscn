@@ -21,6 +21,7 @@
 [ext_resource type="Resource" path="res://enemies/spettro.tres" id="22_spettro"]
 [ext_resource type="AudioStream" uid="uid://du71ahnhmark3" path="res://assets/music/village_theme.wav" id="23_music"]
 [ext_resource type="Script" path="res://quests/voices_quest.gd" id="24_voices"]
+[ext_resource type="PackedScene" path="res://cutscenes/ending.tscn" id="25_ending"]
 
 [sub_resource type="ShaderMaterial" id="vignette_mat"]
 shader = ExtResource("4_vignette")
