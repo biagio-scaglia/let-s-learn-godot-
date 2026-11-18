@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://items/item.gd" id="1_item"]
+[ext_resource type="Texture2D" path="res://assets/items/lacrima.png" id="2_icon"]
+
+[resource]
+script = ExtResource("1_item")
+id = "lacrima"
+name = "Lacrima d'ombra"
+description = "Una goccia viola e fredda, dura come vetro. Lo Spettro l'ha lasciata cadere."
+icon = ExtResource("2_icon")
