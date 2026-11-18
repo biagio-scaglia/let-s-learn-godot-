@@ -19,6 +19,7 @@ config/windows_native_icon="res://assets/icon/icon.ico"
 [autoload]
 
 Settings="*res://core/settings.gd"
+Progress="*res://core/progress.gd"
 Sfx="*res://core/sfx.gd"
 Stats="*res://core/stats.gd"
 Inventory="*res://core/inventory.gd"
