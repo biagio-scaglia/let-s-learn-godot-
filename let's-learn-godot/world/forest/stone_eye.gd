@@ -84,3 +84,37 @@ func sees(point: Vector2) -> bool:
 		return false
 	var off := absf(angle_difference(gaze.global_rotation, to_point.angle()))
 	return off < deg_to_rad(cone / 2.0)
+
+
+## Ti ha visto: lampo, stridio, Subaru respinto indietro con un po' di danno.
+func _caught() -> void:
+	_busy = true
+	Game.in_cutscene = true
+	Sfx.play(Sfx.EYE_ALERT)
+	sprite.modulate = Color(1.8, 0.5, 0.6)
+	cone_shape.color = Color(2.0, 0.6, 0.6)
+	var t := create_tween()
+	t.tween_property(_player, "modulate", Color(1.6, 0.4, 0.6), 0.08)
+	t.tween_property(_player, "modulate", Color.WHITE, 0.25)
+	await Fade.fade_out()
+	_player.global_position = respawn
+	_player.face(Facing.DOWN)
+	if Stats.hp > sight_damage:
+		Stats.take_damage(sight_damage)
+	get_tree().call_group("followers", "snap_behind")
+	var camera := _player.get_node_or_null("Camera2D") as Camera2D
+	if camera:
+		camera.reset_smoothing()
+	sprite.modulate = Color.WHITE
+	cone_shape.color = Color.WHITE
+	await Fade.fade_in()
+	Game.in_cutscene = false
+	# La prima volta Emilia spiega il trucco.
+	if not Game.has_flag(FlagKeys.EYE_SEEN):
+		Game.set_flag(FlagKeys.EYE_SEEN)
+		Dialogue.start("Emilia", [
+			"Subaru! Ti ha visto.",
+			"Guarda la luce che fa: gira avanti e indietro. Avvicinati quando guarda dall'altra parte.",
+		])
+		await Dialogue.finished
+	_busy = false
