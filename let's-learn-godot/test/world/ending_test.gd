@@ -84,3 +84,9 @@ func test_lina_saluta_e_regala_due_pozioni() -> void:
 	# Una volta sola: la seconda volta niente pozioni.
 	lina.interacted.emit()
 	assert_str("\n".join(lina.override_lines)).contains("Promesso")
+
+
+func test_prima_del_boss_niente_finale() -> void:
+	Game.load_flags({FlagKeys.INTRO_SEEN: true})
+	var runner := await _village()
+	assert_object(runner.scene().get_node_or_null("Ending")).is_null()
