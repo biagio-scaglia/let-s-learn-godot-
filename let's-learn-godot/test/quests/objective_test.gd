@@ -1,4 +1,4 @@
-# Test dell'obiettivo: il testo giusto per ogni momento della missione della chiave.
+# Test dell'obiettivo: il testo giusto per ogni passo dell'atto 2 ("Le voci di Erbalta").
 extends GdUnitTestSuite
 
 
@@ -11,8 +11,13 @@ func after_test() -> void:
 	before_test()
 
 
-func test_all_inizio_si_esplora() -> void:
-	assert_str(Objective.current()).is_equal(Objective.EXPLORE)
+func test_all_inizio_si_va_dal_saggio() -> void:
+	assert_str(Objective.current()).is_equal(Objective.ASK_SAGE)
+
+
+func test_dopo_il_saggio_si_va_da_lina() -> void:
+	Game.set_flag(FlagKeys.SAGE_FORGETS)
+	assert_str(Objective.current()).is_equal(Objective.VISIT_LINA)
 
 
 func test_dopo_aver_parlato_con_lina_si_cerca_la_chiave() -> void:
