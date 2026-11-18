@@ -32,6 +32,8 @@ const COMBO_UNLOCKED := "cristallo_sbloccato"
 const EYE_SEEN := "occhio_visto"
 ## Subaru ha guardato la nebbia viola: sa dei tre bagliori.
 const FOG_SEEN := "nebbia_vista"
+## Colui che guarda è stato sconfitto: gli occhi del bosco sono chiusi.
+const BOSS_DEFEATED := "guardiano_sconfitto"
 ## I tre occhi di pietra del bosco (vedi StoneEye): ognuno ha il suo ricordo.
 const STONE_EYES: Array[String] = ["ovest", "est", "sud"]
 
