@@ -28,5 +28,5 @@ func fade_in(seconds := -1.0) -> void:
 ## Dall'immagine al nero. "seconds" < 0 vuol dire: usa la durata normale.
 func fade_out(seconds := -1.0) -> void:
 	var t := create_tween()
-	t.tween_property(rect, "color:a", 1.0, duration).set_trans(Tween.TRANS_SINE)
+	t.tween_property(rect, "color:a", 1.0, duration if seconds < 0 else seconds).set_trans(Tween.TRANS_SINE)
 	await t.finished
