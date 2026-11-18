@@ -52,7 +52,7 @@ func _play(player: Node2D, emilia: Node2D) -> void:
 		"Ecco, siamo fuori. Il villaggio di Erbalta è a sud, oltre il bosco.",
 		"Se camminiamo tutta la notte, arriveremo all'alba.",
 	])
-	await _say("Subaru", ["Una gita al chiaro di luna con Emilia-tan! E... cosa ci andiamo a fare, esattamente?"])
+	await _say("Subaru", ["Una gita al chiaro di luna con Emiliuccia! E... cosa ci andiamo a fare, esattamente?"])
 	await _say("Emilia", [
 		"Da qualche giorno da Erbalta arrivano voci strane. Sembra che nessuno voglia più lasciare il villaggio.",
 		"Io resterò in piazza a tenere d'occhio le cose. Tu invece parlerai con la gente: sei bravo, in questo.",
