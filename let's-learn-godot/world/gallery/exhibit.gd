@@ -107,3 +107,28 @@ func _add_npc(book: Dictionary) -> void:
 	npc.repeat_lines = PackedStringArray(QUIPS[book_id][1])
 	npc.position.y = -6
 	add_child(npc)
+
+
+## Un mostro: lo sprite del suo foglio, che alterna le due pose di riposo.
+func _add_monster() -> void:
+	var data := Portraits.enemy_data(book_id)
+	if data == null:
+		return
+	var shadow := Sprite2D.new()
+	shadow.texture = SHADOW
+	shadow.position.y = -6
+	shadow.scale = Vector2.ONE * figure_scale
+	add_child(shadow)
+	var sprite := Sprite2D.new()
+	sprite.texture = data.texture
+	sprite.hframes = maxi(data.frames, 1)
+	sprite.scale = Vector2.ONE * figure_scale
+	sprite.offset = Vector2(0, -data.cell_size() / 2.0)   # i piedi sul piedistallo
+	sprite.position.y = -6
+	add_child(sprite)
+	if data.animated():
+		var t := create_tween().set_loops()
+		t.tween_callback(func(): sprite.frame = EnemyData.Pose.IDLE)
+		t.tween_interval(0.5)
+		t.tween_callback(func(): sprite.frame = EnemyData.Pose.IDLE_2)
+		t.tween_interval(0.5)
