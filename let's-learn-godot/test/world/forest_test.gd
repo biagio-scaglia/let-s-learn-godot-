@@ -93,3 +93,13 @@ func test_gli_occhi_nei_rovi_si_chiudono_se_ti_avvicini() -> void:
 	subaru.global_position = eyes.global_position + Vector2(0, 30)
 	await runner.simulate_frames(30)
 	assert_int(eyes.frame).is_equal(ThicketEyes.Lids.SHUT)
+
+
+func test_a_fine_atto_2_emilia_porta_nel_bosco() -> void:
+	Game.set_flag(FlagKeys.BOOK_READ)
+	var runner := scene_runner("res://world/main.tscn")
+	await runner.simulate_frames(2)
+	var emilia := runner.scene().get_node("World/Emilia/Interactable") as Interactable
+	emilia.interacted.emit()
+	assert_bool(Game.in_cutscene).is_true()
+	assert_str("\n".join(emilia.override_lines)).contains("Andiamo")
