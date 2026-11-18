@@ -305,6 +305,8 @@ func _intro() -> void:
 	vfx.landing_dust(enemy_sprite.position)
 	vfx.shake(2.0, 0.15)
 	await _say("%s appare!" % enemy.name)
+	if behavior:
+		await behavior.after_intro()
 	_player_turn()
 
 
