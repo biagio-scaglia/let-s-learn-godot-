@@ -123,3 +123,30 @@ func _at(seconds: float) -> bool:
 	if left > 0.0:
 		await get_tree().create_timer(left).timeout
 	return not _done and is_inside_tree()
+
+
+# ---------- Le inquadrature ----------
+
+## Mette sul palco una scena del gioco (senza Subaru, senza la sua musica, senza
+## camere sue) e fa scorrere la camera da "from" a "to" in "seconds" secondi.
+func _backdrop(path: String, from: Vector2, to: Vector2, seconds: float) -> void:
+	_clear_stage()
+	var scene: Node = load(path).instantiate()
+	for node in scene.find_children("*", "CharacterBody2D"):
+		if node.is_in_group("player"):
+			node.get_parent().remove_child(node)
+			node.free()
+	for node in scene.find_children("*", "AudioStreamPlayer"):
+		if node.name == "Music":   # la musica è quella del filmato
+			node.get_parent().remove_child(node)
+			node.free()
+	for node in scene.find_children("*", "Camera2D"):
+		node.enabled = false
+	stage.add_child(scene)
+	camera.make_current()
+	camera.position = from
+	camera.reset_physics_interpolation()
+	if _camera_tween:
+		_camera_tween.kill()
+	_camera_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
+	_camera_tween.tween_property(camera, "position", to, seconds).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
