@@ -298,6 +298,7 @@ script = ExtResource("18_follower")
 position = Vector2(598, 930)
 
 [node name="Camera2D" type="Camera2D" parent="World/Subaru"]
+process_callback = 0
 limit_left = 0
 limit_top = 0
 limit_right = 1280
