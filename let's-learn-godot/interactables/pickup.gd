@@ -21,7 +21,7 @@ func _ready() -> void:
 	interactable.interacted.connect(_pick_up)
 
 	# Fluttua su e giù, e l'ombra si stringe quando l'oggetto è più in alto.
-	var t := create_tween().set_loops()
+	var t := create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS).set_loops()
 	t.tween_property(icon, "position:y", icon.position.y - 4.0, 0.8).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	t.parallel().tween_property(shadow, "scale", shadow.scale * 0.8, 0.8).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	t.tween_property(icon, "position:y", icon.position.y, 0.8).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
@@ -41,7 +41,7 @@ func _pick_up() -> void:
 	sparkles.amount = 16
 	sparkles.explosiveness = 1.0
 	sparkles.restart()
-	var t := create_tween().set_parallel()
+	var t := create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS).set_parallel()
 	t.tween_property(icon, "position:y", icon.position.y - 24.0, 0.4).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	t.tween_property(icon, "scale", icon.scale * 1.5, 0.4)
 	t.tween_property(icon, "modulate:a", 0.0, 0.4)
