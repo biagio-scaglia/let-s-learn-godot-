@@ -4,7 +4,7 @@ Un piccolo RPG in pixel art fatto per **imparare Godot 4 un passo alla volta**: 
 
 ![La schermata iniziale: una mano d'ombra afferra la voce scelta, e dal buio si aprono due occhi](docs/titolo.gif)
 
-**Godot 4.7.2** · GDScript · pixel art · **141 test** automatici con gdUnit4 · un diario di sviluppo in [Obsidian](gamelog/Gamelog.md)
+**Godot 4.7.2** · GDScript · pixel art · **149 test** automatici con gdUnit4 · un diario di sviluppo in [Obsidian](gamelog/Gamelog.md)
 
 ---
 
