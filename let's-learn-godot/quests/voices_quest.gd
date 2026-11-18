@@ -53,6 +53,9 @@ func _on_saggio() -> void:
 			"Ragazzo! Ragazzo, guarda!",
 			"Gli alberi... stanotte sono cresciuti. Tutti quanti. Di un palmo!",
 			"Non succedeva da... da quando? Non lo so. Ma me lo ricorderò, questo. Me lo ricorderò.",
+		] if not Game.has_flag(FlagKeys.greeted("saggio")) else [
+			"Partite? Allora andate dal sentiero a sud, all'alba. È da lì che si va nel mondo.",
+			"E tornate, eh. Voglio farvi vedere quanto sono cresciuti, i miei alberi.",
 		]
 	elif Game.has_flag(FlagKeys.ACT2_DONE):
 		saggio.override_lines = [
