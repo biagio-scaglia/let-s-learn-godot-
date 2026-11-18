@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://cutscenes/intro.gd" id="1_script"]
 
 [node name="Intro" type="CanvasLayer"]
+physics_interpolation_mode = 2
 layer = 10
 script = ExtResource("1_script")
 

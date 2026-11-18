@@ -45,6 +45,9 @@ func _play(player: Node2D) -> void:
 
 	player.global_position = START
 	player.face(Facing.UP)
+	player.reset_physics_interpolation()
+	if emilia:
+		emilia.reset_physics_interpolation()
 	# La camera deve partire già su Subaru, senza scivolare dal centro della mappa.
 	var camera := player.get_node("Camera2D") as Camera2D
 	camera.reset_smoothing.call_deferred()
