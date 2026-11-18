@@ -118,3 +118,13 @@ func test_lo_spettro_lascia_la_lacrima() -> void:
 	var spettro := load("res://enemies/spettro.tres") as EnemyData
 	assert_str(spettro.drop).is_equal(Inventory.TEAR)
 	assert_bool(Inventory.ITEMS.has(spettro.drop)).is_true()
+
+
+func test_i_nemici_nuovi_sono_alti_come_prima() -> void:
+	var runner := await _village()
+	for name in ["Melma", "Spettro"]:
+		var enemy := runner.scene().get_node("World/" + name)
+		var sprite := enemy.get_node("Sprite2D") as Sprite2D
+		var height := sprite.texture.get_height() * sprite.scale.y
+		# Saltella e si schiaccia un poco: va bene un pixel in più o in meno.
+		assert_float(height).is_equal_approx(32.0, 3.0)
