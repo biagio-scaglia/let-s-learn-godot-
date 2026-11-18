@@ -222,6 +222,13 @@ func _on_archivista() -> void:
 # ---------- Il libro nero ----------
 
 func _on_black_book() -> void:
+	if Game.has_flag(FlagKeys.BOSS_DEFEATED):
+		black_book.override_lines = [
+			"L'inchiostro è nero e lucido, come appena steso. Le pagine sono piene.",
+			"L'ultima riga, con la tua calligrafia, è cambiata:",
+			"\"Questa volta, ce l'hai fatta.\"",
+		]
+		return
 	if Game.has_flag(FlagKeys.BOOK_READ):
 		black_book.override_lines = [
 			"Le pagine sono di nuovo vuote. Ma ora sai cosa c'era scritto.",
