@@ -132,3 +132,23 @@ func _add_monster() -> void:
 		t.tween_interval(0.5)
 		t.tween_callback(func(): sprite.frame = EnemyData.Pose.IDLE_2)
 		t.tween_interval(0.5)
+
+
+## Il leggio a destra del piedistallo, con il libro da leggere.
+func _add_lectern() -> void:
+	var lectern := Sprite2D.new()
+	var tex := AtlasTexture.new()
+	tex.atlas = LIBRARY_TILES
+	tex.region = LECTERN_REGION
+	lectern.texture = tex
+	lectern.scale = Vector2(2, 2)          # come le tile della biblioteca
+	lectern.offset = Vector2(0, -8)        # la base del leggio sull'origine
+	lectern.position = Vector2(_half + 16, 4)
+	add_child(lectern)
+	var book := INTERACTABLE.instantiate() as Interactable
+	book.speaker = "Libro"
+	book.prompt_height = 40.0
+	book.position = lectern.position
+	add_child(book)
+	# Nessuna frase: al segnale ci pensa il lettore di libri (BookReader).
+	book.interacted.connect(func(): book_opened.emit(book_id))
