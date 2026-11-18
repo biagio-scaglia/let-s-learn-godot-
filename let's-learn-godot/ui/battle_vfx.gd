@@ -349,3 +349,118 @@ func _fade_ramp() -> Gradient:
 	ramp.set_color(0, Color.WHITE)
 	ramp.set_color(1, Color(1, 1, 1, 0))
 	return ramp
+
+
+# ---------- Ghiaccio (Scaglie di gelo, con Emilia) ----------
+
+## Un fiocco di gelo che esplode: raggi a sei punte che si allargano e svaniscono.
+func frost_burst(pos: Vector2, size: float) -> void:
+	_play("frost", pos, size, rng.randf_range(0.0, PI / 3.0))
+
+
+## Neve su tutta la scena, finché chi l'ha chiesta non la spegne (emitting = false).
+func snowfall() -> CPUParticles2D:
+	var p := CPUParticles2D.new()
+	p.amount = 60
+	p.lifetime = 2.6
+	p.preprocess = 0.6
+	p.texture = SNOWFLAKE
+	p.emission_shape = CPUParticles2D.EMISSION_SHAPE_RECTANGLE
+	p.emission_rect_extents = Vector2(330, 10)
+	p.direction = Vector2(-0.3, 1)
+	p.spread = 15.0
+	p.gravity = Vector2(0, 30)
+	p.initial_velocity_min = 40.0
+	p.initial_velocity_max = 90.0
+	p.angular_velocity_min = -120.0
+	p.angular_velocity_max = 120.0
+	p.scale_amount_min = 0.6
+	p.scale_amount_max = 1.4
+	p.color_ramp = _fade_ramp()
+	p.material = _additive()
+	p.position = Vector2(0, -190)
+	stage.add_child(p)
+	return p
+
+
+## Emilia arriva alle spalle di Subaru: scivola dentro dal bordo, avvolta da una luce
+## fredda e da qualche scintilla di brina. Si aspetta con await.
+func emilia_appears(emilia: Sprite2D, home: Vector2) -> void:
+	emilia.visible = true
+	emilia.position = home + Vector2(60, 0)
+	emilia.modulate = Color(1.6, 1.9, 2.2, 0.0)
+	var t := create_tween().set_parallel()
+	t.tween_property(emilia, "position", home, 0.35).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	t.tween_property(emilia, "modulate", Color(1.15, 1.25, 1.4, 1.0), 0.35)
+	sparks(home + Vector2(0, -60), ICE_COLOR, 14, 110.0)
+	await t.finished
+
+
+func emilia_leaves(emilia: Sprite2D) -> void:
+	var t := create_tween().set_parallel()
+	t.tween_property(emilia, "modulate:a", 0.0, 0.4)
+	t.tween_property(emilia, "position:x", emilia.position.x + 40.0, 0.4)
+	await t.finished
+	emilia.visible = false
+
+
+## Le scaglie compaiono a ventaglio sopra "center", una dopo l'altra, e brillano.
+func ice_shards(center: Vector2, count: int) -> Array[Sprite2D]:
+	var shards: Array[Sprite2D] = []
+	for i in count:
+		var s := Sprite2D.new()
+		s.texture = ICE_SHARD
+		s.material = _additive()
+		var a := lerpf(-2.6, -0.55, i / maxf(1.0, count - 1.0))   # un arco sopra la testa
+		s.position = center + Vector2.from_angle(a) * Vector2(70, 46)
+		s.rotation = PI   # punte verso sinistra, verso il nemico
+		s.scale = Vector2.ZERO
+		stage.add_child(s)
+		var t := create_tween()
+		t.tween_interval(i * 0.05)
+		t.tween_property(s, "scale", Vector2(2.4, 2.4), 0.18).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		shards.append(s)
+	return shards
+
+
+## Una scaglia parte verso "target" lasciando una scia di brina; all'arrivo chiama on_hit.
+func fire_shard(shard: Sprite2D, target: Vector2, time: float, on_hit: Callable) -> void:
+	shard.rotation = (target - shard.position).angle()
+	var trail := CPUParticles2D.new()
+	trail.amount = 16
+	trail.lifetime = 0.25
+	trail.local_coords = false
+	trail.gravity = Vector2.ZERO
+	trail.spread = 180.0
+	trail.initial_velocity_max = 15.0
+	trail.scale_amount_min = 1.5
+	trail.scale_amount_max = 2.5
+	trail.color = ICE_COLOR
+	trail.color_ramp = _fade_ramp()
+	shard.add_child(trail)
+	var t := create_tween()
+	t.tween_property(shard, "position", target, time).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	t.tween_callback(on_hit)
+	t.tween_callback(shard.queue_free)
+
+
+## Il nemico chiuso in un blocco di ghiaccio, che poi va in frantumi.
+func ice_block(feet: Vector2) -> void:
+	var b := Sprite2D.new()
+	b.texture = ICE_BLOCK
+	b.position = feet + Vector2(0, -44)
+	b.scale = Vector2(0.2, 0.2)
+	b.modulate = Color(1, 1, 1, 0.0)
+	stage.add_child(b)
+	var t := create_tween()
+	t.tween_property(b, "scale", Vector2(2.4, 2.4), 0.12).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	t.parallel().tween_property(b, "modulate:a", 1.0, 0.12)
+	t.tween_interval(0.45)
+	t.tween_callback(func():
+		var shards := sparks(b.position, ICE_COLOR, 34, 320.0)
+		shards.scale_amount_min = 3.0
+		shards.scale_amount_max = 6.0
+		frost_burst(b.position, 4.0))
+	t.tween_property(b, "scale", Vector2(2.9, 2.9), 0.1)
+	t.parallel().tween_property(b, "modulate:a", 0.0, 0.1)
+	t.tween_callback(b.queue_free)
