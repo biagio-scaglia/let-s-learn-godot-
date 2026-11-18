@@ -73,20 +73,19 @@ func test_dopo_il_primo_occhio_c_e_la_combinata() -> void:
 	await _escape()
 
 
-func test_le_scaglie_colpiscono_e_scoprono_la_debolezza() -> void:
-	Game.set_flag(FlagKeys.ICE_UNLOCKED)
+func test_cristallo_infranto_costa_a_tutti_e_due_e_colpisce() -> void:
+	Game.set_flag(FlagKeys.FOREST_ARRIVED)
+	Game.set_flag(FlagKeys.COMBO_UNLOCKED)
 	var guardian := load("res://enemies/guardiano_rovi.tres") as EnemyData
 	Battle.start(guardian)
 	await _wait_turn()
 	var sp := Stats.sp
-	Battle.commands.frost_button.pressed.emit()
-	# Emilia compare durante la mossa...
-	await await_millis(600)
-	assert_bool(Battle.emilia_sprite.visible).is_true()
+	Battle.commands.shatter_button.pressed.emit()
+	await await_millis(100)
 	await _wait_turn()
-	# ...e alla fine se ne va.
-	assert_bool(Battle.emilia_sprite.visible).is_false()
-	assert_int(Stats.sp).is_equal(sp - Battle.SKILLS.gelo.cost)
+	var skill: Dictionary = Battle.SKILLS.cristallo
+	assert_int(Stats.sp).is_equal(sp - skill.cost)
+	assert_int(Battle.ally_sp).is_equal(Battle.ALLY_MAX_SP - skill.ally_cost)
 	assert_int(Battle.enemy_hp).is_less(guardian.max_hp)
 	assert_bool(Battle.revealed.has("ghiaccio")).is_true()
 	assert_int(Battle.enemy_shield).is_equal(guardian.shield - 1)
