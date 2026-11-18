@@ -68,3 +68,10 @@ func _build_cone() -> void:
 		colors.append(Color(0.6, 0.3, 1.0, 0.0))
 	cone_shape.polygon = points
 	cone_shape.vertex_colors = colors
+
+
+func _physics_process(_delta: float) -> void:
+	if is_closed or _busy or _player == null or not Game.player_can_move():
+		return
+	if sees(_player.global_position + Vector2(0, -16)):
+		_caught()
