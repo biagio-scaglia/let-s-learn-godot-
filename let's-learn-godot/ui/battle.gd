@@ -915,8 +915,8 @@ func _break() -> void:
 	flash.color = Color(0.85, 0.95, 1.0, 0.75)
 	create_tween().tween_property(flash, "color:a", 0.0, 0.35)
 	vfx.shake(7.0, 0.35)
-	vfx.shockwave_at(enemy_sprite.position + Vector2(0, -40), 0.6)
-	var shards := vfx.sparks(enemy_sprite.position + Vector2(0, -40), Color(0.7, 0.85, 1.0), 30, 280.0)
+	vfx.shockwave_at(_enemy_center(), 0.6)
+	var shards := vfx.sparks(_enemy_center(), Color(0.7, 0.85, 1.0), 30, 280.0)
 	shards.scale_amount_min = 3.0
 	shards.scale_amount_max = 5.0
 	# La scritta salta fuori, grande, poi torna alla misura giusta e svanisce.
