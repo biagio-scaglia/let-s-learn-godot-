@@ -159,6 +159,11 @@ func start(data: EnemyData) -> String:
 	turn = HERO
 
 	enemy_sprite.texture = data.texture
+	enemy_sprite.hframes = maxi(1, data.frames)
+	enemy_sprite.frame = 0
+	var height := data.cell_size()
+	_enemy_scale = _enemy_base_scale * (16.0 / height)
+	enemy_sprite.offset = Vector2(0, -height / 2.0)   # i piedi restano sulla posizione
 	enemy_sprite.modulate = Color.WHITE
 	enemy_sprite.scale = _enemy_scale
 	enemy_sprite.rotation = 0.0
