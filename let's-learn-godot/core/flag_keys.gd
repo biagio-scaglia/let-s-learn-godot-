@@ -13,6 +13,16 @@ const KEY_QUEST_STARTED := "missione_chiave"
 ## Hai mostrato la chiave a Lina, che ti ha detto di aprire il baule.
 const KEY_SHOWN := "chiave_mostrata"
 
+# ---------- Atto 2: le voci di Erbalta ----------
+## Il Saggio ha ammesso di non ricordare da quanto tempo è a Erbalta.
+const SAGE_FORGETS := "saggio_dimentica"
+## L'Archivista ha letto la pagina strappata e ha parlato dello Spettro.
+const PAGE_READ := "pagina_letta"
+## Pagina e lacrima sul libro nero: Subaru conosce la verità su Erbalta.
+const BOOK_READ := "libro_letto"
+## Subaru l'ha raccontato a Emilia: fine dell'atto 2.
+const ACT2_DONE := "atto2_finito"
+
 
 ## Quante volte si è parlato con un Interactable (uno per percorso nella scena).
 static func talked(node: Node) -> String:
