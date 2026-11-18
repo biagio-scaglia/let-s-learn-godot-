@@ -26,3 +26,11 @@ func _show_place_name() -> void:
 	t.tween_property(place_name, "modulate:a", 1.0, 0.6)
 	t.tween_interval(2.4)
 	t.tween_property(place_name, "modulate:a", 0.0, 0.8)
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	# Esc: si torna al titolo (il libro aperto lo chiude il lettore, prima di noi).
+	if event.is_action_pressed("pause") and Game.player_can_move():
+		get_viewport().set_input_as_handled()
+		Sfx.play(Sfx.BACK)
+		Game.change_scene(Game.TITLE_SCENE, "", "", false)
