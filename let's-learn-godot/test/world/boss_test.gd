@@ -88,3 +88,23 @@ func test_da_colui_che_guarda_non_si_scappa() -> void:
 	assert_int(Battle.enemy_hp).is_equal(hp)
 	Battle.flee_chance = 0.5
 	await _finish_with_ultimate()
+
+
+func test_lo_sguardo_si_carica_e_poi_colpisce_forte() -> void:
+	Battle.start(BOSS)
+	await _wait_turn()
+	# Turno 1: attacco normale. Turno 2: carica.
+	await _pass_turn()
+	await _pass_turn()
+	await _pass_turn()
+	await _pass_turn()
+	assert_bool((Battle.behavior as WatcherBehavior).charging).is_true()
+	assert_int(Battle.enemy_sprite.frame).is_equal(EnemyData.Pose.WINDUP)
+	# Al turno dopo parte lo Sguardo: con la difesa toglie metà del 70%.
+	var hp := Stats.hp
+	await _pass_turn()
+	await _pass_turn()
+	assert_bool((Battle.behavior as WatcherBehavior).charging).is_false()
+	var expected := ceili(ceili(Stats.max_hp * WatcherBehavior.GAZE_RATIO) / 2.0)
+	assert_int(hp - Stats.hp).is_equal(expected)
+	await _finish_with_ultimate()
