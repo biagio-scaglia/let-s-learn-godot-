@@ -110,3 +110,41 @@ sprite_frames = ExtResource("2_frames")
 animation = &"walk_right"
 autoplay = "walk_right"
 offset = Vector2(0, -24)
+
+[node name="FinalCard" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 70.0
+offset_bottom = 250.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_constants/separation = 6
+
+[node name="End" type="Label" parent="FinalCard"]
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+text = "Fine"
+horizontal_alignment = 1
+
+[node name="By" type="Label" parent="FinalCard"]
+layout_mode = 2
+theme_type_variation = &"SubtitleLabel"
+text = "Un gioco di Biagio Scaglia"
+horizontal_alignment = 1
+
+[node name="Unlocked" type="Label" parent="FinalCard"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.1, 0.05, 0.12, 1)
+theme_override_constants/outline_size = 5
+text = "Nel titolo si è aperta la Galleria."
+horizontal_alignment = 1
+
+[node name="Press" type="Label" parent="FinalCard"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"HintLabel"
+text = "Premi Invio per tornare al titolo"
+horizontal_alignment = 1
