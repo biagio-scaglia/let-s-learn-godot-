@@ -587,7 +587,7 @@ func _ally_dart(skill: Dictionary) -> void:
 	var shard: Sprite2D = vfx.ice_shards(_ally_hand(), 1)[0]
 	shard.position = _ally_hand()
 	await _pause(0.1)
-	var target := enemy_sprite.position + Vector2(0, -36)
+	var target := _enemy_center()
 	vfx.fire_shard(shard, target, 0.2, func(): pass)
 	await _pause(0.2)
 	_hit_stop(0.06)
