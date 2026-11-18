@@ -22,6 +22,14 @@ func _show_bars_now() -> void:
 	bottom_bar.offset_top = -BAR_HEIGHT
 
 
+## Le bande nere entrano dai bordi (il contrario di _hide_bars).
+func _show_bars() -> void:
+	var t := create_tween().set_parallel().set_trans(Tween.TRANS_SINE)
+	t.tween_property(top_bar, "offset_bottom", BAR_HEIGHT, 0.6)
+	t.tween_property(bottom_bar, "offset_top", -BAR_HEIGHT, 0.6)
+	await t.finished
+
+
 func _hide_bars() -> void:
 	var t := create_tween().set_parallel().set_trans(Tween.TRANS_SINE)
 	t.tween_property(top_bar, "offset_bottom", 0.0, 0.4)
