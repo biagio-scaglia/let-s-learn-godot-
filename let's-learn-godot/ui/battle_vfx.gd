@@ -12,6 +12,12 @@ const SLASH_SHEET := preload("res://assets/effects/vfx_slash.png")
 const HIT_FLASH := preload("res://effects/hit_flash.gdshader")
 const SHOCKWAVE := preload("res://effects/shockwave.gdshader")
 const SMOKE := preload("res://assets/kenney_particle_pack/smoke_04.png")
+## Il ghiaccio di Emilia (Scaglie di gelo).
+const FROST_SHEET := preload("res://assets/effects/frost_burst.png")
+const ICE_SHARD := preload("res://assets/effects/ice_shard.png")
+const ICE_BLOCK := preload("res://assets/effects/ice_block.png")
+const SNOWFLAKE := preload("res://assets/effects/snowflake.png")
+const ICE_COLOR := Color(0.65, 0.9, 1.0)
 
 ## Dove si disegnano gli effetti (il palco del combattimento) e la sua posizione
 ## normale, a cui torna dopo una scossa.
