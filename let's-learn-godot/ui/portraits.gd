@@ -25,3 +25,9 @@ static func of(id: String) -> Texture2D:
 		return _region(DUNGEON, Rect2((tile % 12) * 16, floori(tile / 12.0) * 16, 16, 16))
 	var enemy := enemy_data(id)
 	return enemy.portrait() if enemy else null
+
+
+## I dati di un nemico dal nome del file (es. "spettro" → enemies/spettro.tres).
+static func enemy_data(id: String) -> EnemyData:
+	var path := "res://enemies/%s.tres" % id
+	return load(path) as EnemyData if ResourceLoader.exists(path) else null
