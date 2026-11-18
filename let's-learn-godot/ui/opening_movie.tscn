@@ -58,3 +58,70 @@ grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[node name="Presents" type="Label" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"SubtitleLabel"
+text = "Biagio Scaglia presenta"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Narration" type="Label" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -84.0
+offset_right = -40.0
+offset_bottom = -44.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.98, 0.94, 0.85, 1)
+theme_override_colors/font_outline_color = Color(0.08, 0.04, 0.1, 1)
+theme_override_constants/outline_size = 6
+text = "..."
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 3
+
+[node name="Flash" type="ColorRect" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0.96, 1, 0)
+
+[node name="SkipHint" type="Label" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -26.0
+offset_right = -10.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_type_variation = &"HintLabel"
+text = "Un tasto qualsiasi: salta"
+horizontal_alignment = 2
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_music")
+volume_db = -4.0
