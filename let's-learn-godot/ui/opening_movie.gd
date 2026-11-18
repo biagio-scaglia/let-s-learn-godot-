@@ -108,3 +108,9 @@ func _play() -> void:
 	_say("\"Questa volta, portala via di qui.\"", 32.8, 3.4)
 	if not await _at(36.6): return
 	_finish()
+
+
+# ---------- Il tempo ----------
+
+func _elapsed() -> float:
+	return (Time.get_ticks_msec() - _start) / 1000.0
