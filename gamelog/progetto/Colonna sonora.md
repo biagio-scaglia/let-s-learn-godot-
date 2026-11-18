@@ -59,6 +59,19 @@ Tre voci insieme (una normale, una un'ottava sotto, una più acuta), una **modul
 
 `assets/music/forest_theme.wav`: re minore, 4/4, 58 BPM, 16 battute, 66 secondi in loop. Si apre con l'inizio del valzer del villaggio, ma storto (re-fa-mi-fa invece di do-fa-mi-fa): lo stesso posto, guardato male. Carillon con un'eco sottile un'ottava sopra, un bordone di re e la che non si ferma mai, accordi d'organo morbidi, soffi come respiri tra gli alberi e un battito lontano ogni due battute: lo stesso cuore del bordo del villaggio. Nella battuta 12 c'è un sol diesis, la nota che non dovrebbe esserci, con il carillon scordato. Riverbero lungo.
 
+## Colui che guarda
+
+`assets/music/boss_theme.wav`: mi minore, 140 BPM, 32 battute, 55 secondi in loop, in quattro sezioni da otto battute.
+
+| Sezione | Cosa si sente |
+|---|---|
+| Ingresso | Organo da chiesa, basso distorto in crome (mi-mi-fa-mi), batteria a metà tempo |
+| Coro | Voci sintetiche che cantano "aah" (le formanti della risata del game over, intonate), batteria piena |
+| Pausa | Niente basso: il carillon suona l'inizio del valzer del villaggio, in minore e storto, sul battito del cuore |
+| Finale | Tutto insieme, il coro a tre voci, la grancassa raddoppiata |
+
+Con il tema, sei suoni: lo Sguardo che si carica (un ronzio che sale, con il battito), il raggio (un fischio che scende e un boato), il ruggito (voci grosse con modulazione ad anello), lo stacco dei ritratti, la lancia di cristallo (tintinnii che salgono) e l'alba (esplosione, vetri, poi un accordo maggiore d'organo e pianoforte).
+
 ## Vedi anche
 
 - [[2026-11-17-biblioteca#La musica]] · [[2026-11-17-colonna-sonora]] · [[Audio]] · [[Sfx]]
