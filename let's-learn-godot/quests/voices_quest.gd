@@ -135,3 +135,31 @@ func _final_talk() -> void:
 func _then(speaker: String, lines: PackedStringArray) -> void:
 	await Dialogue.finished
 	Dialogue.start(speaker, lines)
+
+
+# ---------- L'Archivista ----------
+
+func _on_archivista() -> void:
+	if Game.has_flag(FlagKeys.BOOK_READ):
+		archivista.override_lines = [
+			"Il libro ti ha parlato, vero? L'ho sentito. Le pagine frusciavano come foglie.",
+			"Io resto qui coi miei libri. Qualcuno deve ricordare, anche se nessuno legge.",
+		]
+	elif Game.has_flag(FlagKeys.PAGE_READ):
+		archivista.override_lines = [
+			"La lacrima d'ombra... ce l'hai. Mettila sul libro nero, insieme alla pagina.",
+		] if Inventory.has(Inventory.TEAR) else [
+			"Lo Spettro vive a est della piazza, dove l'aria si fa fredda.",
+			"Il calcio gli fa male, dicono i libri. E qualcosa di più scuro ancora.",
+		]
+	elif Inventory.has(Inventory.PAGE):
+		archivista.override_lines = [
+			"Shh! ...Oh. Cos'hai lì?",
+			"Questa pagina... viene dal libro nero. Ma è impossibile: quel libro è sempre stato vuoto.",
+			"C'è scritto: \"Colui che guarda non dorme mai. Il suo occhio piange solo quando lo Spettro cade.\"",
+			"Lo Spettro vive a est della piazza. Se lo sconfiggi, forse lascerà cadere quella lacrima.",
+			"Pagina e lacrima, insieme, sul libro nero. Allora, forse, il libro parlerà.",
+		] + ([
+			"...Aspetta. Quella che hai in tasca è già una lacrima d'ombra?",
+		] if Inventory.has(Inventory.TEAR) else [])
+		Game.set_flag(FlagKeys.PAGE_READ)
