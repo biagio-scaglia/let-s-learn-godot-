@@ -124,3 +124,22 @@ func test_lo_shamac_mentre_carica_lo_acceca() -> void:
 	# Subaru non lo dimenticherà più.
 	assert_bool(Game.remembers(WatcherBehavior.MEMORY_GAZE)).is_true()
 	await _finish_with_ultimate()
+
+
+func test_il_ricordo_sopravvive_al_ritorno_dalla_morte() -> void:
+	Game.remember(WatcherBehavior.MEMORY_GAZE)
+	Game.set_flag(FlagKeys.BOOK_READ)
+	Game.checkpoint = {"scene": Game.FIRST_LEVEL, "position": Vector2.ZERO, "facing": Facing.DOWN,
+		"flags": {}, "inventory": {}, "stats": Stats.to_dict()}
+	# Il mondo torna indietro: i ricordi del mondo spariscono, quelli di Subaru no.
+	Game.load_flags(Game.checkpoint.flags)
+	assert_bool(Game.has_flag(FlagKeys.BOOK_READ)).is_false()
+	assert_bool(Game.remembers(WatcherBehavior.MEMORY_GAZE)).is_true()
+
+
+func test_ricordandolo_la_debolezza_e_gia_scoperta() -> void:
+	Game.remember(WatcherBehavior.MEMORY_GAZE)
+	Battle.start(BOSS)
+	await _wait_turn()
+	assert_bool(Battle.revealed.has("ombra")).is_true()
+	await _finish_with_ultimate()
