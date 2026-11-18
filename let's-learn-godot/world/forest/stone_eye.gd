@@ -149,3 +149,22 @@ func _close() -> void:
 	_busy = false
 	Game.in_cutscene = false
 	closed.emit(eye_id)
+
+
+func _shake_camera() -> void:
+	var camera := _player.get_node_or_null("Camera2D") as Camera2D if _player else null
+	if camera == null:
+		return
+	var t := create_tween()
+	for i in 6:
+		t.tween_property(camera, "offset", Vector2(randf_range(-4, 4), randf_range(-3, 3)), 0.04)
+	t.tween_property(camera, "offset", Vector2.ZERO, 0.05)
+
+
+## Già chiuso (lo ricorda Game.flags): niente cono, niente luce.
+func _show_closed() -> void:
+	is_closed = true
+	sprite.frame = Lids.SHUT
+	gaze.visible = false
+	glow.energy = 0.0
+	interactable.lines = ["L'occhio è chiuso. La pietra è fredda, come se dormisse."]
