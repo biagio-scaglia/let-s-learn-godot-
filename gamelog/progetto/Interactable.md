@@ -46,3 +46,8 @@ Il segnale `interacted` avvisa quando il giocatore interagisce. Chi lo ascolta p
 - Baule e libreria della [[Casa di Lina]] (da soli)
 
 È una [[Classi globali|classe globale]]: `class_name Interactable`.
+
+## Chi risponde, se sono tanti
+
+Se Subaru è vicino a più cose insieme, a E risponde **una sola**: prima chi non ha `low_priority`, poi la più vicina (`_is_first_choice()`), e la nuvoletta compare solo su quella. `low_priority` ce l'ha chi segue Subaru (Emilia nel [[Bosco Senza Tempo]]): è sempre lì accanto, e senza questa regola premere E davanti a un nemico faceva partire il dialogo con lei invece del combattimento.
+
