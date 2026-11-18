@@ -11,6 +11,8 @@ const TITLE_SCENE := "res://ui/title_screen.tscn"
 const FIRST_LEVEL := "res://world/main.tscn"
 ## La cutscene d'apertura di una partita nuova: la partenza dal castello, di notte.
 const OPENING_SCENE := "res://world/castle.tscn"
+## Atto 3: il bosco a nord, dove dorme Colui che guarda.
+const FOREST_SCENE := "res://world/forest.tscn"
 
 ## Emesso quando cambia qualcosa che l'interfaccia deve sapere: un ricordo,
 ## una cutscene che comincia o finisce, una partita nuova o ripresa.
