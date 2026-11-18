@@ -47,7 +47,7 @@ func _ready() -> void:
 	prompt.position.y = -prompt_height
 
 	# La nuvoletta sale e scende.
-	var bob := create_tween().set_loops()
+	var bob := create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS).set_loops()
 	bob.tween_property(prompt, "position:y", -prompt_height - 3.0, 0.45).set_trans(Tween.TRANS_SINE)
 	bob.tween_property(prompt, "position:y", -prompt_height, 0.45).set_trans(Tween.TRANS_SINE)
 
