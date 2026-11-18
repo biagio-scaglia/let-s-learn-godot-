@@ -26,12 +26,15 @@ const CROSS_FOREST := "Attraversa il Bosco Senza Tempo"
 const CLOSE_EYES := "Chiudi gli occhi di pietra (%d/3)"
 const ENTER_CLEARING := "Entra nella radura, in cima al bosco"
 const BACK_HOME := "Torna a Erbalta con Emilia"
+const GREET_VILLAGE := "Saluta gli abitanti di Erbalta"
 ## Nessun obiettivo: il riquadro sparisce.
 const NONE := ""
 
 
 static func current() -> String:
 	# Si parte dalla fine: il primo passo già fatto decide cosa viene dopo.
+	if Game.has_flag(FlagKeys.HOME_AGAIN):
+		return GREET_VILLAGE
 	if Game.has_flag(FlagKeys.BOSS_DEFEATED):
 		return BACK_HOME
 	if Game.has_flag(FlagKeys.FOREST_ARRIVED):
