@@ -17,7 +17,7 @@ Il finale del gioco, fatto **un pezzo alla volta** su richiesta dell'autore. Dop
 | 1 | La partenza e il [[Bosco Senza Tempo]]: mappa, Emilia che segue, atmosfera | ✅ [[2026-11-18-bosco]] |
 | 2 | Il percorso: tre nemici nuovi, l'enigma dei tre occhi di pietra, Emilia nel party (Scaglie di gelo) e la mossa combinata Cristallo infranto | ✅ [[2026-11-18-occhi-e-gelo]] |
 | 3 | [[Colui che guarda]]: il boss, lo Sguardo, il trucco del [[Ritorno dalla Morte]] e l'ultimate Alba di cristallo | ✅ [[2026-11-18-colui-che-guarda]] |
-| 4 | Il finale: gli occhi si chiudono, il bordo del villaggio smette di uccidere, l'uscita a sud all'alba, i titoli di coda | iniziato: si torna a Erbalta (sentiero in fondo al bosco, aperto solo dopo il boss; il bordo non uccide più; Emilia segue Subaru). Mancano il finale e i titoli di coda |
+| 4 | Il finale: gli occhi si chiudono, il bordo del villaggio smette di uccidere, l'uscita a sud all'alba, i titoli di coda | ✅ [[2026-11-18-finale]] |
 
 ## Obiettivi
 
