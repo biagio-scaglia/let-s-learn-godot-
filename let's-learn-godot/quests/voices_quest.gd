@@ -128,6 +128,24 @@ func _final_talk() -> void:
 	Game.set_checkpoint()
 
 
+## Inizio dell'atto 3: Emilia è pronta, si parte per il bosco a nord.
+func _depart() -> void:
+	emilia.override_lines = [
+		"Ci hai pensato bene? Una volta nel bosco, non so se potremo tornare indietro.",
+		"...Va bene. Anch'io sono pronta.",
+		"Andiamo, Subaru. Prima che il sole sia alto.",
+	]
+	Game.in_cutscene = true
+	# Un collegamento, non un await: se la scena sparisce prima (un test, un cambio di
+	# scena), Godot lo scollega da solo e nessuno ci porta nel bosco per sbaglio.
+	Dialogue.finished.connect(_go_to_forest, CONNECT_ONE_SHOT)
+
+
+func _go_to_forest() -> void:
+	# Niente punto d'arrivo: nel bosco parte la cutscene dell'arrivo.
+	Game.change_scene(Game.FOREST_SCENE, "", "", false)
+
+
 ## Aspetta che il dialogo in corso finisca, poi fa parlare qualcun altro.
 func _then(speaker: String, lines: PackedStringArray) -> void:
 	await Dialogue.finished
