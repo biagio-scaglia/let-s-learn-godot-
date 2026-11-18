@@ -141,3 +141,23 @@ func _check_phase() -> void:
 	if phase == 2 and ratio <= 0.25:
 		phase = 3
 		_pending = "L'occhio trema. Subaru ed Emilia si guardano: è il momento!"
+
+
+## Un velo rosso che pulsa su tutta la scena, come un battito.
+func _start_pulse() -> void:
+	_red = ColorRect.new()
+	_red.color = Color(0.8, 0.0, 0.1, 0.0)
+	_red.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_red.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	battle.screen.add_child(_red)
+	_pulse = battle.create_tween().set_loops()
+	_pulse.tween_property(_red, "color:a", 0.22, 0.45).set_trans(Tween.TRANS_SINE)
+	_pulse.tween_property(_red, "color:a", 0.05, 0.45).set_trans(Tween.TRANS_SINE)
+
+
+func _stop_pulse() -> void:
+	if _pulse:
+		_pulse.kill()
+		_pulse = null
+	if is_instance_valid(_red):
+		_red.queue_free()
