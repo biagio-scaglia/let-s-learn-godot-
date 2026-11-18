@@ -37,3 +37,9 @@ func test_finire_la_storia_apre_la_galleria_per_sempre() -> void:
 	Progress.story_finished = false
 	Progress.load_progress()
 	assert_bool(Progress.gallery_unlocked()).is_true()
+
+
+func test_una_partita_nuova_non_richiude_la_galleria() -> void:
+	Progress.finish_story()
+	Game.load_flags()   # come fa Game.new_game()
+	assert_bool(Progress.gallery_unlocked()).is_true()
