@@ -136,3 +136,37 @@ func test_nel_party_emilia_ha_il_suo_turno() -> void:
 	assert_int(Battle.enemy_hp).is_less(hp)
 	assert_bool(Battle.revealed.has("ghiaccio")).is_true()
 	await _escape()
+
+
+func test_la_barriera_di_emilia_rida_pt() -> void:
+	Game.set_flag(FlagKeys.FOREST_ARRIVED)
+	Battle.start(_tough_enemy())
+	await _wait_turn()
+	Battle.commands.defend_button.pressed.emit()   # Subaru si difende
+	await await_millis(100)
+	await _wait_turn()
+	Battle.ally_sp = 2
+	Battle.commands.defend_button.pressed.emit()   # Emilia alza la barriera
+	await await_millis(100)
+	await _wait_turn()
+	assert_int(Battle.ally_sp).is_equal(2 + Battle.ALLY_DEFEND_SP)
+	await _escape()
+
+
+func test_senza_party_emilia_non_c_e() -> void:
+	Battle.start(_tough_enemy())
+	await _wait_turn()
+	assert_bool(Battle.with_emilia).is_false()
+	assert_bool(Battle.emilia_sprite.visible).is_false()
+	assert_bool(Battle.ally_row.visible).is_false()
+	await _escape()
+
+
+func _tough_enemy() -> EnemyData:
+	var data := EnemyData.new()
+	data.name = "Fantoccio di ghiaccio"
+	data.max_hp = 200
+	data.attack = 1
+	data.shield = 3
+	data.weaknesses = ["ghiaccio"]
+	return data
