@@ -1029,6 +1029,11 @@ func _enemy_turn() -> void:
 		_recover()
 		await _say("%s si riprende." % enemy.name)
 
+	if behavior:
+		var handled: bool = await behavior.take_turn()
+		if handled:
+			_after_enemy_action()
+			return
 	_announce(enemy.name)
 	var dealt := Stats.damage(enemy.attack, Stats.defense, rng.randi_range(-1, 1))
 	if defending:
