@@ -55,3 +55,21 @@ func test_nella_galleria_c_e_una_vetrina_per_ogni_libro() -> void:
 	assert_array(ids).is_equal(expected)
 	# Entrare nella Galleria la segna come vista (non più "Nuova!").
 	assert_bool(Progress.gallery_seen).is_true()
+
+
+func test_il_libro_si_apre_e_si_chiude() -> void:
+	var runner := scene_runner(Game.GALLERY_SCENE)
+	await runner.simulate_frames(2)
+	var reader := runner.scene().get_node("Reader") as BookReader
+	var exhibit := runner.scene().get_node("World/EmiliaBook") as Exhibit
+	exhibit.book_opened.emit("emilia")
+	assert_bool(reader.is_open).is_true()
+	assert_bool(Game.in_cutscene).is_true()   # Subaru resta fermo mentre legge
+	assert_str(reader._name.text).is_equal("Emilia")
+	reader._turn(1)
+	assert_int(reader._page).is_equal(1)
+	reader._turn(-1)
+	reader._turn(-1)
+	assert_int(reader._page).is_equal(0)      # non si va prima della prima pagina
+	await reader.close()
+	assert_bool(Game.in_cutscene).is_false()
