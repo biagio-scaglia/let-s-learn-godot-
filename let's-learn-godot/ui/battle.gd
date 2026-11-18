@@ -289,6 +289,7 @@ func _intro() -> void:
 
 func _player_turn() -> void:
 	turn = HERO
+	commands.set_actor(HERO)
 	if defending:
 		defending = false
 		hero_status.visible = false
