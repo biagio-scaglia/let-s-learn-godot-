@@ -73,3 +73,13 @@ func test_il_libro_si_apre_e_si_chiude() -> void:
 	assert_int(reader._page).is_equal(0)      # non si va prima della prima pagina
 	await reader.close()
 	assert_bool(Game.in_cutscene).is_false()
+
+
+func test_i_titoli_di_coda_sbloccano_la_galleria() -> void:
+	var runner := scene_runner("res://ui/credits.tscn")
+	await runner.simulate_frames(3)
+	assert_bool(Progress.gallery_unlocked()).is_true()
+	var texts := []
+	for label in runner.scene().find_children("*", "Label"):
+		texts.append(label.text)
+	assert_array(texts).contains(["Un gioco di Biagio Scaglia"])
