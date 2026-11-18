@@ -112,3 +112,9 @@ func test_raccontarlo_a_emilia_chiude_l_atto() -> void:
 	assert_bool(Game.has_flag(FlagKeys.ACT2_DONE)).is_true()
 	assert_bool(Game.in_cutscene).is_false()
 	assert_str(Objective.current()).is_equal(Objective.FOREST)
+
+
+func test_lo_spettro_lascia_la_lacrima() -> void:
+	var spettro := load("res://enemies/spettro.tres") as EnemyData
+	assert_str(spettro.drop).is_equal(Inventory.TEAR)
+	assert_bool(Inventory.ITEMS.has(spettro.drop)).is_true()
