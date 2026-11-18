@@ -233,6 +233,8 @@ func start(data: EnemyData) -> String:
 	commands.show_menu(false)
 	_refresh_turns()
 
+	if behavior:
+		behavior.setup(self)
 	visible = true
 	vfx.stage_home = stage.position
 	_start_music()
