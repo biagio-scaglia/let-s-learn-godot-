@@ -28,3 +28,12 @@ func _remove_file() -> void:
 func test_all_inizio_la_galleria_e_chiusa() -> void:
 	assert_bool(Progress.gallery_unlocked()).is_false()
 	assert_bool(Progress.gallery_seen).is_false()
+
+
+func test_finire_la_storia_apre_la_galleria_per_sempre() -> void:
+	Progress.finish_story()
+	assert_bool(Progress.gallery_unlocked()).is_true()
+	# "Per sempre": rileggendo il file (come a un nuovo avvio) è ancora aperta.
+	Progress.story_finished = false
+	Progress.load_progress()
+	assert_bool(Progress.gallery_unlocked()).is_true()
