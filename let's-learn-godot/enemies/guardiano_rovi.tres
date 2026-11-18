@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://enemies/enemy_data.gd" id="1_data"]
+[ext_resource type="Texture2D" path="res://assets/enemies/guardiano_rovi.png" id="2_look"]
+
+[resource]
+script = ExtResource("1_data")
+name = "Guardiano dei rovi"
+max_hp = 28
+attack = 7
+defense = 3
+shield = 3
+weaknesses = Array[String](["ghiaccio", "ombra"])
+xp = 35
+texture = ExtResource("2_look")
+frames = 5
