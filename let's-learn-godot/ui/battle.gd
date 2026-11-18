@@ -358,6 +358,10 @@ func _use_skill(id: String) -> void:
 		else:
 			_next_turn()
 		return
+	if skill.get("ally_cost", 0) > ally_sp:
+		Sfx.play(Sfx.BACK)
+		commands.say("Emilia non ha abbastanza PT.")
+		return
 	if not Stats.spend_sp(skill.cost):
 		Sfx.play(Sfx.BACK)
 		commands.say("Non hai abbastanza PT.")
