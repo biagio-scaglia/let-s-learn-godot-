@@ -72,7 +72,7 @@ Il danno: `Stats.damage(attacco, difesa, tiro)` (vedi [[Statistiche#La formula d
 | Nemico | Scudo | Debolezze |
 |---|---|---|
 | Melma verde | 2 | pugno, calcio |
-| Spettro | 3 | calcio, ombra |
+| Spettro | 2 | calcio, ombra |
 
 | Scelta | Costa il turno? |
 |---|---|
@@ -80,6 +80,22 @@ Il danno: `Stats.damage(attacco, difesa, tiro)` (vedi [[Statistiche#La formula d
 | Un'abilità senza abbastanza PT | **No**: suono di "indietro" e "Non hai abbastanza PT." in basso |
 | Oggetti → Pozione | Sì. Ma **no** se non ne hai o sei in piena forma. Esc torna ai comandi |
 | Fuggi | Solo se fallisce |
+
+## Le pose del nemico
+
+![[spettro_battaglia.png|500]]
+
+Se il foglio del nemico ha le 5 pose ([[Nemici#L'aspetto]]):
+
+| Momento | Posa |
+|---|---|
+| In attesa | Respira: un [[Tween]] in loop alterna `IDLE` e `IDLE_2` ogni 0,45 s |
+| Il suo turno | `WINDUP` mentre indietreggia di 14 px, poi `ATTACK` mentre scatta verso Subaru |
+| Lo colpisci | `HURT` per 0,3 s, poi torna a respirare |
+| Rotto (stordito) | Resta in `HURT` finché non si riprende |
+| Sconfitto | `HURT` mentre si scioglie |
+
+`_enemy_pose(posa)` mette una posa e alza `_enemy_posing`, così il respiro non la sovrascrive; `_enemy_rest()` la abbassa. Le pose hanno un nome grazie a un [[Enum]].
 
 ## Come finisce
 
