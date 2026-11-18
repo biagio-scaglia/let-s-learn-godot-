@@ -21,6 +21,13 @@ const GUARD := "guard"
 const CHARGE := "charge"
 const SHAMAC := "shamac"
 const BATTLE_START := "battle_start"
+const ICE_CAST := "ice_cast"
+const ICE_HIT := "ice_hit"
+const ICE_SHATTER := "ice_shatter"
+const SKILL_UNLOCK := "skill_unlock"
+const EYE_CLOSE := "eye_close"
+const EYE_ALERT := "eye_alert"
+const FOG_DISSOLVE := "fog_dissolve"
 
 ## Nome del suono → [file, volume in decibel].
 const SOUNDS := {
