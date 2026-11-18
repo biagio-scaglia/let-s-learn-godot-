@@ -267,6 +267,9 @@ func _intro() -> void:
 	enter.tween_property(screen, "modulate:a", 1.0, 0.2)
 	enter.tween_property(enemy_sprite, "position:x", _enemy_home.x, 0.4)
 	enter.tween_property(hero, "position:x", _hero_home.x, 0.4)
+	if with_emilia:
+		emilia_sprite.position.x = _ally_home().x + 260.0
+		enter.tween_property(emilia_sprite, "position:x", _ally_home().x, 0.45)
 	enter.tween_property(turn_bar, "position:y", bar_y, 0.35).set_delay(0.15)
 	enter.tween_property(party, "position:x", party_x, 0.35).set_delay(0.15)
 	# Le bande si aprono con un'onda d'urto dal centro; i due arrivano come
