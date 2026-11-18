@@ -155,3 +155,22 @@ func _defeated(player: Node2D) -> void:
 	Game.in_cutscene = false
 	Game.set_checkpoint()
 	queue_free()
+
+
+## Respira: due pose di riposo che si alternano, come in battaglia.
+func _breathe() -> void:
+	_breath = create_tween().set_loops()
+	_breath.tween_callback(func(): eye.frame = EnemyData.Pose.IDLE)
+	_breath.tween_interval(0.5)
+	_breath.tween_callback(func(): eye.frame = EnemyData.Pose.IDLE_2)
+	_breath.tween_interval(0.5)
+
+
+func _shake(camera: Camera2D, seconds: float) -> void:
+	if camera == null:
+		return
+	var base := camera.offset
+	var t := create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
+	for i in int(seconds / 0.05):
+		t.tween_property(camera, "offset", base + Vector2(randf_range(-6, 6), randf_range(-5, 5)), 0.05)
+	t.tween_property(camera, "offset", base, 0.05)
