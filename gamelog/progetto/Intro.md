@@ -17,12 +17,16 @@ La [[Cutscene]] d'apertura (`cutscenes/intro.tscn`, [[Istanza]] dentro la [[Mapp
 
 ## Cosa succede
 
-1. Schermo nero: si sentono solo i passi di [[Subaru]].
+Viene subito dopo la cutscene della [[Rocca d'Argento]]: Subaru ed [[Emilia]] hanno camminato tutta la notte.
+
+![[intro_con_emilia.png|500]]
+
+1. Schermo nero: si sentono solo i passi di [[Subaru]] ed Emilia.
 2. L'immagine compare piano ([[Dissolvenza]] di 1,8 secondi), con le **bande nere** da film.
 3. **Sorge il sole:** la luce del mondo passa dal blu all'arancio al giorno, e i [[Effetti visivi|raggi di sole]] si accendono forti e poi si calmano.
-4. Subaru sale dal sentiero a sud fino alla piazza.
+4. Subaru ed Emilia salgono insieme dal sentiero a sud fino alla piazza.
 5. Compare il nome del luogo, **Villaggio di Erbalta**, mentre si guarda a sinistra, a destra, poi verso di noi.
-6. Le bande spariscono e pensa ad alta voce: *"...Dove sono finito?"*
+6. Le bande spariscono. Emilia dice che resterà in piazza a guardare chi entra e chi esce, e che Subaru deve parlare con gli abitanti; poi va al suo posto e si gira verso di noi.
 7. Il giocatore riprende i comandi.
 
 ## Com'è fatta
@@ -35,6 +39,8 @@ Intro (CanvasLayer 10, intro.gd)
     ├── Name (Label)
     └── Line (ColorRect)    ← la linea dorata
 ```
+
+`intro.gd` scrive `extends Cutscene`: bande nere, nome del luogo e attese li prende dalla classe base (vedi [[Ereditarietà]]).
 
 Nel `_ready()` decide se partire. **Non** parte quando:
 

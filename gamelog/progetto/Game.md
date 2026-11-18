@@ -33,7 +33,7 @@ L'[[Autoload]] **`Game`** (`core/game.gd`): lo **stato della partita** che deve 
 - Il segnale **`state_changed`**: avvisa quando cambia un ricordo o comincia/finisce una cutscene. Lo ascolta l'[[Obiettivo]].
 - `player_can_move()`: no durante un dialogo, un cambio di scena o una [[Cutscene]]. La usano [[Subaru]] e gli [[Interactable]].
 - `can_open_menu()`: la **sola** regola per aprire il [[Menu di pausa]] e lo [[Zaino]]. Solo in un livello, quando il giocatore potrebbe muoversi e il gioco non è già in [[Pausa]].
-- `new_game()`: dimentica tutto (ricordi, zaino, punto di ritorno, morti) e va al villaggio.
+- `new_game()`: dimentica tutto (ricordi, zaino, punto di ritorno, morti) e va alla [[Rocca d'Argento]] (`OPENING_SCENE`), che poi porta al villaggio (`FIRST_LEVEL`).
 - `set_checkpoint()`, `return_to_checkpoint()`: fissare il punto di ritorno e tornarci. Vedi [[Ritorno dalla Morte]].
 - `change_scene(path, spawn, facing)`: suono della porta, [[Dissolvenza]] al nero, [[Cambio di scena]], dissolvenza dal nero. Aspetta il segnale `scene_changed` per sapere quando la nuova scena è pronta. Il giocatore resta fermo (`changing_scene`) finché lo schermo non si è schiarito.
 

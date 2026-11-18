@@ -25,11 +25,17 @@ Un personaggio con cui parlare, nella piazza della [[Mappa principale]], a sud-o
 | Parla | [[Interactable]] e [[Finestra di dialogo]] |
 | Stessa scala di pixel di Subaru | Sprite a ×1, niente ingrandimenti; da [[2026-11-12-subaru-v2\|Subaru v2]] anche la stessa grandezza |
 
+## Camminare nelle cutscene
+
+Da [[2026-11-18-castello]] anche i PNG con un charset sanno camminare: `walk_to(punto, velocità)` e `face(direzione)`, gli stessi nomi di [[Subaru]]. La camminata è un [[Tween]] sulla posizione più un Tween in loop che passa le 4 colonne della riga del charset (un passo ogni 0,15 s). Mentre una [[Cutscene]] è in corso Emilia non si gira più da sola verso Subaru.
+
+Nella storia parte con Subaru dalla [[Rocca d'Argento]], arriva con lui a Erbalta e **si apposta in piazza** (vedi [[Intro]]).
+
 ## Cosa dice
 
 | Quando | Frasi |
 |---|---|
-| La prima volta | Saluta Subaru, parla del villaggio e di [[Lina]] |
+| La prima volta | Chiede a Subaru se ha già fatto un giro, parla del villaggio e di [[Lina]] |
 | Dalla seconda volta | Propone di riposarsi in piazza |
 
 ## Da sapere
