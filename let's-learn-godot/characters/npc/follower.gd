@@ -49,3 +49,23 @@ func snap_behind(offset := Vector2(-24, 14)) -> void:
 func _seed() -> void:
 	_trail = [_npc.global_position, _player.global_position]
 	_needs_seed = false
+
+
+func _physics_process(delta: float) -> void:
+	if _player == null or not active or Game.in_cutscene:
+		_needs_seed = true
+		return
+	if _needs_seed:
+		_seed()
+	_drop_crumb()
+	var target := _point_behind()
+	var to_target := target - _npc.global_position
+	if to_target.length() < 1.0:
+		if _npc.has_method("stand"):
+			_npc.stand()
+		return
+	# Più è lontano, più si affretta: così non resta indietro quando Subaru corre.
+	var speed := maxf(70.0, to_target.length() * 5.0)
+	_npc.global_position = _npc.global_position.move_toward(target, speed * delta)
+	if _npc.has_method("step"):
+		_npc.step(Facing.from_vector(to_target), delta)
