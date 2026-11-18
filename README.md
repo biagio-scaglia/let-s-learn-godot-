@@ -66,7 +66,40 @@ I nemici sono disegnati apposta e **animati**: respirano, si caricano, attaccano
 
 ![Subaru ed Emilia nel bosco morto all'alba: alberi spogli, nebbia, funghi viola e occhi tra i rovi](gamelog/assets/bosco_emilia_segue.png)
 
-All'alba, Subaru ed Emilia partono per il bosco a nord. Gli alberi non hanno foglie, la nebbia scorre tra i tronchi, i funghi brillano di viola, e tra i rovi degli occhi si aprono… e si chiudono di colpo se ti avvicini. Emilia ti segue passo passo e **combatte con te**: ha il suo turno, i suoi PT e le sue magie di ghiaccio. Per aprire la radura devi chiudere tre **occhi di pietra** che spazzano il terreno con un cono di luce: arrivaci alle spalle. Quando lei lancia le **Scaglie di gelo**, nevica; e insieme imparate il **Cristallo infranto**: lei ghiaccia, tu frantumi. In cima al bosco ti aspetta **Colui che guarda**: un occhio enorme fatto di mani d'ombra, con il suo tema. Il suo Sguardo ti ucciderà, probabilmente. Ma Subaru ricorda… e quando l'occhio trema, lui ed Emilia scatenano l'**Alba di cristallo**. *(Manca il finale: in lavorazione.)*
+All'alba, Subaru ed Emilia partono per il bosco a nord. Gli alberi non hanno foglie, la nebbia scorre tra i tronchi, i funghi brillano di viola, e tra i rovi degli occhi si aprono… e si chiudono di colpo se ti avvicini. Emilia ti segue passo passo e **combatte con te**: ha il suo turno, i suoi PT e le sue magie di ghiaccio. Per aprire la radura devi chiudere tre **occhi di pietra** che spazzano il terreno con un cono di luce: arrivaci alle spalle. Quando lei lancia le **Scaglie di gelo**, nevica; e insieme imparate il **Cristallo infranto**: lei ghiaccia, tu frantumi. In cima al bosco ti aspetta **Colui che guarda**: un occhio enorme fatto di mani d'ombra, con il suo tema. Il suo Sguardo ti ucciderà, probabilmente. Ma Subaru ricorda… e quando l'occhio trema, lui ed Emilia scatenano l'**Alba di cristallo**.
+
+### Il finale
+
+<table>
+<tr>
+<td width="50%"><img src="gamelog/assets/finale_saggio.png" alt="Il Saggio corre a salutare Subaru ed Emilia in fondo al sentiero a sud"></td>
+<td width="50%"><img src="gamelog/assets/finale_alba.png" alt="All'alba, Subaru ed Emilia lasciano Erbalta: Un giorno nuovo"></td>
+</tr>
+</table>
+
+Tornati a Erbalta, il villaggio è diverso: gli alberi del Saggio sono cresciuti di un palmo in una notte, Lina ha sentito il nonno dire *"domani sarà diverso"*, e il libro nero dell'Archivista ha ricominciato a scriversi da solo. Saluta tutti, poi vai in fondo al **sentiero a sud**: è l'intro al contrario. Il Saggio arriva di corsa a salutarvi, sorge il sole, e Subaru ed Emilia se ne vanno da dove erano arrivati. *Un giorno nuovo.*
+
+### I titoli di coda
+
+<table>
+<tr>
+<td width="50%"><img src="gamelog/assets/titoli_di_coda.png" alt="I titoli di coda: Erbalta, un gioco di Biagio Scaglia, sotto Subaru ed Emilia camminano"></td>
+<td width="50%"><img src="gamelog/assets/titoli_fine.png" alt="Fine: un gioco di Biagio Scaglia"></td>
+</tr>
+</table>
+
+I nomi scorrono al ritmo di una **musica nuova**, *Un giorno nuovo* (il valzer del villaggio, finalmente senza ombre, che alla fine sale di tono). Sotto, Subaru ed Emilia camminano lungo una strada, gli alberi scorrono, e il cielo passa dalla notte all'alba al mattino. Il cast ha i ritratti di tutti i personaggi e i mostri. Tenendo premuto Invio vanno più veloci.
+
+### La Galleria
+
+<table>
+<tr>
+<td width="50%"><img src="gamelog/assets/galleria.png" alt="La Galleria: statue e personaggi su piedistalli, ognuno con un leggio"></td>
+<td width="50%"><img src="gamelog/assets/galleria_libro_boss.png" alt="Il libro di Colui che guarda: ritratto, numeri e storia"></td>
+</tr>
+</table>
+
+Finita la storia, nel titolo si apre la **Galleria**: una sala della biblioteca dove comandi Subaru tra tutti i personaggi e i mostri del gioco. Emilia, il Saggio, Lina e l'Archivista sono lì (e hanno qualcosa da dire), Subaru c'è come statua, i mostri respirano sui loro piedistalli. Accanto a ognuno un **leggio con un libro**: si apre con E e si sfoglia con le frecce. Ritratto, chi è, e per i mostri i numeri veri (PS, attacco, difesa, scudo, debolezze). Resta aperta per sempre, anche ricominciando da capo.
 
 
 ![La biblioteca di notte: raggi di luna dalle finestre, candele, scaffali e l'Archivista](gamelog/assets/biblioteca_interno.png)
