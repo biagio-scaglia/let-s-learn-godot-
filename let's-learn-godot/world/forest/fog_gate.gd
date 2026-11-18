@@ -27,3 +27,22 @@ func _ready() -> void:
 
 func _eye(id: String) -> Sprite2D:
 	return get_node("Eye" + id.capitalize()) as Sprite2D
+
+
+## Dove sta il bagliore di un occhio (lì arriva il raggio dell'occhio di pietra).
+func eye_position(id: String) -> Vector2:
+	return _eye(id).global_position
+
+
+## Il bagliore si chiude: palpebra, un lampo, poi svanisce.
+func close_eye(id: String) -> void:
+	var eye := _eye(id)
+	var t := create_tween()
+	t.tween_callback(func(): eye.frame = 1)
+	t.tween_interval(0.15)
+	t.tween_callback(func(): eye.frame = 2)
+	t.tween_property(eye, "modulate", Color(2, 2, 2, 1), 0.08)
+	t.tween_property(eye, "modulate:a", 0.0, 0.4)
+	t.tween_callback(eye.hide)
+	create_tween().tween_property(glow, "energy", glow.energy * 0.7, 0.6)
+	_update_lines()
