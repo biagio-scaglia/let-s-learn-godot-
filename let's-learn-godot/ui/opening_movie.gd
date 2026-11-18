@@ -195,3 +195,14 @@ func _show_text(label: Label, delay: float, seconds: float) -> void:
 	t.parallel().tween_property(label, "position:y", y, 0.8).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	t.tween_interval(maxf(seconds - 1.2, 0.2))
 	t.tween_property(label, "modulate:a", 0.0, 0.6)
+
+
+# ---------- Fine ----------
+
+## Il filmato è finito (o saltato): al titolo.
+func _finish() -> void:
+	if _done:
+		return
+	_done = true
+	create_tween().tween_property(music, "volume_db", -40.0, Fade.duration)
+	Game.change_scene(Game.TITLE_SCENE, "", "", false)
