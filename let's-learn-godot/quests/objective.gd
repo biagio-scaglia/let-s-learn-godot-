@@ -8,7 +8,8 @@ class_name Objective
 ## Saggio → Lina e la sua chiave → il baule (la pagina) → l'Archivista → lo Spettro
 ## (la lacrima) → il libro nero → Emilia.
 
-const EXPLORE := "Esplora il villaggio"
+const ASK_SAGE := "Chiedi al Saggio delle voci strane"
+const VISIT_LINA := "Vai da Lina, nella casa col tetto rosso"
 const FIND_KEY := "Trova la chiave di Lina, a ovest della piazza"
 const BRING_KEY := "Porta la chiave a Lina"
 const OPEN_CHEST := "Apri il baule di Lina"
