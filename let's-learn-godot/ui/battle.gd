@@ -496,8 +496,7 @@ func _ally_home() -> Vector2:
 	return Vector2(_hero_home.x + 88.0, _hero_home.y - 4.0)
 
 
-## A inizio combattimento: Emilia in campo (nel party, con le pose d'attacco) oppure
-## nascosta, pronta a "essere chiamata" con il charset normale.
+## A inizio combattimento: Emilia in campo (nel party, con le pose d'attacco) oppure no.
 func _setup_ally() -> void:
 	with_emilia = Game.emilia_in_party()
 	ally_sp = ALLY_MAX_SP
