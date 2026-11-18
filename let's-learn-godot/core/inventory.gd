@@ -8,6 +8,9 @@ extends Node
 const KEY := "chiave"
 const POTION := "pozione"
 const COIN := "moneta"
+## Atto 2: la pagina del baule di Lina e quello che lascia lo Spettro.
+const PAGE := "pagina"
+const TEAR := "lacrima"
 
 ## Tutti gli oggetti del gioco, per id.
 const ITEMS := {
