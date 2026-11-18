@@ -24,7 +24,7 @@ Riempire il [[Bosco Senza Tempo]]: nemici nuovi, l'enigma che apre la radura, e 
 
 1. Nel bosco, guarda la **nebbia viola** in cima al sentiero: l'obiettivo diventa *Chiudi gli occhi di pietra (0/3)*.
 2. Negli slarghi ai lati ci sono tre **occhi di pietra**: spazzano il terreno con un cono di luce. Se ti vedono, un lampo ti rimanda indietro (e costa 2 PS). Arriva alle loro spalle e premi E.
-3. Al primo occhio chiuso Emilia ti insegna le **Scaglie di gelo**: "Nuova abilità".
+3. Al primo occhio chiuso Subaru ed Emilia inventano una mossa insieme: **Cristallo infranto**. "Nuova abilità".
 4. Combatti: Emilia è **nel party**, con il suo turno, i suoi PT e le sue mosse (Dardo di gelo, Scaglie di gelo, Barriera).
 5. Chiudi tutti e tre gli occhi: la nebbia si dissolve. *Entra nella radura* (il boss è il pezzo 3).
 
@@ -63,3 +63,13 @@ Riempire il [[Bosco Senza Tempo]]: nemici nuovi, l'enigma che apre la radura, e 
 
 - [[Angoli e coni di visione]]: `angle_difference`, `Vector2.from_angle`
 - Provare un movimento prima di farlo → [[Collisioni#Provare prima di muoversi]]
+
+## Aggiornamento: Emilia più coerente, e una mossa combinata
+
+Dopo la prima prova l'autore ha notato due cose.
+
+- **Gli sprite di Emilia stonavano.** In battaglia era ingrandita ×2,4 (una scala non intera: pixel di grandezze diverse) mentre Subaru è ×3, e il foglio d'attacco aveva colori suoi. Rifatto: celle 44×48 (Emilia alta ~45 pixel, come sulla mappa), **la stessa palette del suo charset** (ogni colore portato al più vicino, tranne l'azzurro del ghiaccio), il contorno scuro di 1 pixel, e ingrandimento **×3 intero** come Subaru. Un errore lungo la strada: il test "è ghiaccio?" guardava solo il blu, e il viola di Emilia (che ha tanto blu) diventava azzurro. Il ghiaccio vero ha il **verde sopra il rosso**: con questa regola non si confondono più.
+- **Sbloccare le Scaglie di gelo non aveva senso**, perché Emilia nel party le ha già. Ora le Scaglie sono sue fin dal primo combattimento, e il primo occhio chiuso insegna una mossa **nuova e combinata**: *Cristallo infranto* (Subaru, 4 PT + 4 PT di Emilia): lei chiude il nemico in un blocco di ghiaccio, lui lo manda in frantumi con il pugno caricato. Tolta la vecchia versione in cui Subaru "chiamava" Emilia, che non poteva più capitare.
+- **Emiliuccia.** Subaru non dice più "Emilia-tan": dice "Emiliuccia". E lei gli chiede come gli sia venuto in mente.
+
+![[cristallo_infranto.png|500]]
