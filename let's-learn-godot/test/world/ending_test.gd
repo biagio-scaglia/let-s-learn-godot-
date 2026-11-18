@@ -71,3 +71,16 @@ func test_l_archivista_legge_la_storia_nuova() -> void:
 	archivista.interacted.emit()
 	assert_bool(Game.has_flag(FlagKeys.greeted("archivista"))).is_true()
 	assert_str("\n".join(archivista.override_lines)).contains("storia nuova")
+
+
+func test_lina_saluta_e_regala_due_pozioni() -> void:
+	var runner := scene_runner("res://world/house.tscn")
+	await runner.simulate_frames(2)
+	var lina := runner.scene().get_node("World/Lina/Interactable") as Interactable
+	lina.interacted.emit()
+	assert_bool(Game.has_flag(FlagKeys.greeted("lina"))).is_true()
+	Dialogue.finished.emit()   # il regalo arriva a fine dialogo
+	assert_int(Inventory.items.get(Inventory.POTION, 0)).is_equal(2)
+	# Una volta sola: la seconda volta niente pozioni.
+	lina.interacted.emit()
+	assert_str("\n".join(lina.override_lines)).contains("Promesso")
