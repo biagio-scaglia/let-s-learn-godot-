@@ -18,5 +18,10 @@ extends Resource
 @export var weaknesses: Array[String] = []
 ## L'esperienza che dà quando viene sconfitto.
 @export var xp := 5
-## Il suo aspetto (16x16).
+## Le pose, nell'ordine in cui stanno nel foglio (texture con "frames" celle in fila).
+enum Pose { IDLE, IDLE_2, WINDUP, ATTACK, HURT }
+
+## Il suo aspetto: celle quadrate (16x16 o 32x32) in fila, con i piedi in basso.
+## Con 5 celle sono le pose di Pose (respiro x2, carica, attacco, colpito);
+## con 1 cella il nemico è un'immagine ferma.
 @export var texture: Texture2D
