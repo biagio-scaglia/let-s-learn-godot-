@@ -167,7 +167,7 @@ Nelle opzioni si regolano volume e schermo intero, e vengono ricordati. Dopo ave
 
 ## Test
 
-I test sono in `let's-learn-godot/test/` e usano [gdUnit4](https://github.com/godot-gdunit-labs/gdUnit4): **111** in tutto, dalle regole del combattimento al congedo.
+I test sono in `let's-learn-godot/test/` e usano [gdUnit4](https://github.com/godot-gdunit-labs/gdUnit4): **200** in tutto, dalle regole del combattimento al congedo, al finale e alla Galleria.
 
 - **Nell'editor:** pannello *GdUnit* → ▶.
 - **Da terminale**, nella cartella `let's-learn-godot`:
