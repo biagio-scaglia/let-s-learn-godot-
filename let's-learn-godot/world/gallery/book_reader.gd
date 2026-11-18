@@ -36,3 +36,25 @@ func _ready() -> void:
 	layer = 7
 	_build()
 	visible = false
+
+
+## Apre il libro con questo id (vedi GalleryBooks).
+func open(book_id: String) -> void:
+	var book := GalleryBooks.entry(book_id)
+	if book.is_empty():
+		return
+	_portrait.texture = Portraits.of(book_id)
+	_name.text = book.get("name", book_id)
+	_role.text = book.get("role", "")
+	_fill_stats(book.get("stats", []))
+	_pages = book.get("pages", [])
+	_page = 0
+	_show_page()
+	is_open = true
+	visible = true
+	Game.in_cutscene = true   # Subaru resta fermo mentre legge
+	Sfx.play(Sfx.CONFIRM)
+	_book.pivot_offset = BOOK_SIZE / 2.0
+	_book.scale = Vector2(0.9, 0.9)
+	_animate(1.0)
+	_tween.parallel().tween_property(_book, "scale", Vector2.ONE, 0.25).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
