@@ -27,6 +27,10 @@ Come l'abbiamo ottenuta dall'originale: [[2026-11-12-subaru]].
 
 Un formato molto diffuso per i personaggi è il [[Charset]] di RPG Maker, usato da [[Emilia]].
 
+## Su uno Sprite2D
+
+Non serve sempre un [[AnimatedSprite2D]]: uno `Sprite2D` con `hframes = 5` (colonne) e `vframes = 1` (righe) divide l'immagine in celle, e `frame = 2` mostra la terza. È quello che fanno i [[Nemici]] con le loro pose; le cambia il codice (un [[Tween]] per il respiro, il [[Combattimento]] per le altre). Le pose hanno un nome con un [[Enum]].
+
 ## Vedi anche
 
 - [[Pixel art]] · [[SpriteFrames]] · [[AtlasTexture]]
