@@ -1,6 +1,10 @@
 extends Node2D
 ## La schermata iniziale: il villaggio vero sullo sfondo, una camera che scorre piano,
-## il titolo che scende e il menu che compare voce per voce.
+## il titolo che scende con un riflesso di luce, e "Premi Invio". Premuto Invio,
+## il menu si apre in una finestra e le voci compaiono una alla volta.
+##
+## La Galleria è nel menu fin dall'inizio, ma chiusa col lucchetto finché la storia
+## non è finita (Progress). Se nessuno tocca niente per IDLE_SECONDS, riparte il filmato.
 
 ## La camera va avanti e indietro tra questi due punti del villaggio.
 const PAN_FROM := Vector2(430, 300)
