@@ -104,3 +104,16 @@ func _ready() -> void:
 	var distance := scroller.size.y + list.size.y
 	_speed = distance / maxf(_total - FINAL_HOLD, 10.0)
 	list.position.y = scroller.size.y
+
+
+func _process(delta: float) -> void:
+	var fast := Input.is_action_pressed("interact") or Input.is_action_pressed("ui_accept")
+	var step := delta * (FAST_FORWARD if fast and not _finished else 1.0)
+	_time += step   # la musica invece non accelera: cambia solo il ritmo dei nomi
+	_update_sky()
+	_scroll_trees(step)
+	if _finished:
+		return
+	list.position.y -= _speed * step
+	if list.position.y + list.size.y < 0.0:
+		_show_final_card()
