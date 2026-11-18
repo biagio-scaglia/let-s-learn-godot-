@@ -898,6 +898,7 @@ func _end(result: String) -> void:
 	visible = false
 	is_active = false
 	_stop_enemy_breathing()
+	_stop_ally_breathing()
 	enemy_shadow.modulate.a = 1.0
 	flash.color = Color(1, 1, 1, 0)
 	vfx.reset()
