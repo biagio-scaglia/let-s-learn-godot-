@@ -123,3 +123,10 @@ func _wave(saggio: Node2D) -> void:
 	t.tween_property(saggio, "position:y", y - 4.0, 0.15).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	t.tween_property(saggio, "position:y", y, 0.15).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	t.tween_interval(0.5)
+
+
+## La musica del villaggio si spegne piano: restano i passi.
+func _fade_music(seconds: float) -> void:
+	var music := get_parent().get_node_or_null("Music") as AudioStreamPlayer
+	if music:
+		create_tween().tween_property(music, "volume_db", -40.0, seconds)
