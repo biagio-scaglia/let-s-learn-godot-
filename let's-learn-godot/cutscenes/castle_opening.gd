@@ -44,10 +44,10 @@ func _play(player: Node2D, emilia: Node2D) -> void:
 	emilia.walk_to(EMILIA_STOP, SPEED)
 	await player.walk_to(SUBARU_STOP, SPEED)
 
-	# 3. Due parole alla luce delle torce.
-	await _wait(0.4)
+	# 3. Via le bande (coprirebbero la finestra di dialogo), poi due parole alla luce delle torce.
 	emilia.face(Facing.LEFT)
 	player.face(Facing.RIGHT)
+	await _hide_bars()
 	await _say("Emilia", [
 		"Ecco, siamo fuori. Il villaggio di Erbalta è a sud, oltre il bosco.",
 		"Se camminiamo tutta la notte, arriveremo all'alba.",
