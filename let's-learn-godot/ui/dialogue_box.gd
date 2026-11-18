@@ -48,6 +48,7 @@ func start(speaker: String, lines: PackedStringArray) -> void:
 
 
 func _show_line() -> void:
+	_stop_typing()
 	text_label.text = _lines[_index]
 	text_label.visible_characters = 0
 	_stop_arrow()
