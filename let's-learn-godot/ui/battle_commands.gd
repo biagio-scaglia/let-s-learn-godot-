@@ -73,6 +73,31 @@ func setup(skills: Dictionary, attack: String, defend_sp: int) -> void:
 		button.focus_entered.connect(show_help.bind(button))
 
 
+## Chi sceglie adesso. Subaru: le sue mosse (le Scaglie di gelo solo se Emilia le ha
+## insegnate e NON è nel party: altrimenti sono sue). Emilia: Dardo di gelo al posto
+## di Attacca, e tra le abilità solo le Scaglie di gelo, pagate con i suoi PT.
+func set_actor(who: String, emilia_sp := 0, ally_attack := "dardo", ally_defend_sp := 3) -> void:
+	actor = who
+	ally_sp = emilia_sp
+	var is_ally := who == "ally"
+	_attack_id = ally_attack if is_ally else _hero_attack
+	attack_button.text = _skills[_attack_id].name if is_ally else "Attacca"
+	_help_for[attack_button] = _skills[_attack_id].info
+	for button: MenuItem in [kick_button, shamac_button, power_button]:
+		button.visible = not is_ally
+	frost_button.visible = is_ally or (Game.has_flag(FlagKeys.ICE_UNLOCKED) and not Game.emilia_in_party())
+	_help_for[skills_button] = "Le magie di Emilia. Costano i suoi PT." if is_ally \
+		else "Le tecniche di Subaru. Costano punti tecnica (PT)."
+	_help_for[defend_button] = ("Una barriera di ghiaccio: il prossimo colpo a Subaru fa metà danno. Emilia recupera %d PT." % ally_defend_sp) if is_ally \
+		else ("Para: il prossimo colpo fa metà danno. Recuperi %d PT." % _defend_sp)
+	_help_for[items_button] = "Emilia dà un oggetto a Subaru." if is_ally else "Usa un oggetto dello zaino."
+
+
+## I PT di chi sta scegliendo.
+func current_sp() -> int:
+	return ally_sp if actor == "ally" else Stats.sp
+
+
 ## Mostra (o nasconde) i comandi e la descrizione. Mostrandoli, si parte da Attacca.
 func show_menu(shown: bool) -> void:
 	visible = shown
