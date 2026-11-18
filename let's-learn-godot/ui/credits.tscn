@@ -65,3 +65,48 @@ offset_right = 210.0
 offset_bottom = 400.0
 grow_horizontal = 2
 theme_override_constants/separation = 4
+
+[node name="Road" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Ground" type="ColorRect" parent="Road"]
+offset_top = 320.0
+offset_right = 640.0
+offset_bottom = 360.0
+mouse_filter = 2
+color = Color(0.13, 0.2, 0.15, 1)
+
+[node name="Path" type="ColorRect" parent="Road"]
+offset_top = 324.0
+offset_right = 640.0
+offset_bottom = 336.0
+mouse_filter = 2
+color = Color(0.36, 0.27, 0.2, 1)
+
+[node name="Trees" type="Node2D" parent="Road"]
+unique_name_in_owner = true
+
+[node name="EmiliaShadow" type="Sprite2D" parent="Road"]
+position = Vector2(274, 331)
+texture = ExtResource("4_shadow")
+
+[node name="Emilia" type="Sprite2D" parent="Road"]
+unique_name_in_owner = true
+position = Vector2(274, 332)
+texture = ExtResource("3_emilia")
+offset = Vector2(0, -24)
+hframes = 4
+vframes = 4
+frame = 8
+
+[node name="SubaruShadow" type="Sprite2D" parent="Road"]
+position = Vector2(306, 333)
+texture = ExtResource("4_shadow")
+
+[node name="Subaru" type="AnimatedSprite2D" parent="Road"]
+unique_name_in_owner = true
+position = Vector2(306, 334)
+sprite_frames = ExtResource("2_frames")
+animation = &"walk_right"
+autoplay = "walk_right"
+offset = Vector2(0, -24)
