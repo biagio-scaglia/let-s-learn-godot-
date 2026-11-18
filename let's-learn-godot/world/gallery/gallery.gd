@@ -16,3 +16,13 @@ func _ready() -> void:
 		if exhibit is Exhibit:
 			exhibit.book_opened.connect(reader.open)
 	_show_place_name()
+
+
+## Il nome della sala compare in alto, resta un po' e sparisce.
+func _show_place_name() -> void:
+	place_name.modulate.a = 0.0
+	var t := create_tween()
+	t.tween_interval(0.6)
+	t.tween_property(place_name, "modulate:a", 1.0, 0.6)
+	t.tween_interval(2.4)
+	t.tween_property(place_name, "modulate:a", 0.0, 0.8)
