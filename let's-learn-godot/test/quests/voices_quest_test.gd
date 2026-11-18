@@ -66,3 +66,13 @@ func test_l_archivista_legge_la_pagina() -> void:
 	archivista.interacted.emit()
 	assert_bool(Game.has_flag(FlagKeys.PAGE_READ)).is_true()
 	assert_str("\n".join(archivista.override_lines)).contains("Spettro")
+
+
+func test_senza_la_lacrima_il_libro_resta_muto() -> void:
+	Game.set_flag(FlagKeys.PAGE_READ)
+	Inventory.add(Inventory.PAGE)
+	var runner := await _library()
+	var book := runner.scene().get_node("World/BlackBook") as Interactable
+	book.interacted.emit()
+	assert_array(Array(book.override_lines)).is_empty()
+	assert_bool(Inventory.has(Inventory.PAGE)).is_true()
