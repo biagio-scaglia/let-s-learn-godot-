@@ -51,6 +51,9 @@ Indice dei concetti di Godot incontrati finora. Ogni concetto ha la sua nota, co
 - [[Await]]: aspettare senza bloccare il gioco
 - [[Cutscene]]: una regia scritta in codice, il giocatore guarda
 - [[ConfigFile]]: salvare le impostazioni su file
+- [[Progressi permanenti]]: quello che resta anche dopo una partita nuova (la Galleria)
+- [[Interfaccia da codice]]: pannelli e scritte creati in GDScript
+- [[Disegnare con _draw]]: forme disegnate dal codice
 - [[Input Map]]: azioni e tasti
 - [[Eventi di input]]: `_unhandled_input` e tasti "usati"
 
