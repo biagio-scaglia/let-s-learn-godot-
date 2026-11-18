@@ -66,8 +66,8 @@ Collisioni e Y-sort sono in `world/library_tileset.tres`: muri pieni, base delle
 
 | Cosa | Dove | Di cosa parla |
 |---|---|---|
-| Archivista | Vicino alla scrivania | Si presenta; avverte di non toccare il libro nero |
-| Libro nero | Leggio in alto | Una frase scritta con la tua calligrafia |
+| Archivista | Vicino alla scrivania | Si presenta; avverte di non toccare il libro nero. Nell'[[Atto 2]] legge la pagina strappata e ti manda dallo Spettro |
+| Libro nero | Leggio in alto | Una frase scritta con la tua calligrafia. Con pagina e lacrima, la verità su Erbalta ([[Atto 2]]) |
 | Scaffali | I quattro blocchi | Storia di Erbalta, zuppe di funghi, bestiario, poesie |
 | Mappamondo, mappa, finestra, scrivania | — | Piccoli dettagli strani |
 

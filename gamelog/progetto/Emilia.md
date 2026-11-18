@@ -31,6 +31,10 @@ Da [[2026-11-18-castello]] anche i PNG con un charset sanno camminare: `walk_to(
 
 Nella storia parte con Subaru dalla [[Rocca d'Argento]], arriva con lui a Erbalta e **si apposta in piazza** (vedi [[Intro]]).
 
+## Il punto di riferimento
+
+Nell'[[Atto 2]] Emilia resta in piazza e, a ogni passo, ti dice dove andare (le sue frasi le sceglie `VoicesQuest`). Alla fine Subaru le racconta quello che ha letto nel libro nero, in una conversazione a due voci, e decidono di partire all'alba per il bosco a nord.
+
 ## Cosa dice
 
 | Quando | Frasi |
