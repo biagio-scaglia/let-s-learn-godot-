@@ -57,7 +57,7 @@ func _add_village_background() -> void:
 
 
 func _pan_camera() -> void:
-	var t := create_tween().set_loops()
+	var t := create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS).set_loops()
 	t.tween_property(camera, "position", PAN_TO, PAN_SECONDS).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	t.tween_property(camera, "position", PAN_FROM, PAN_SECONDS).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
