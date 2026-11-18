@@ -41,6 +41,18 @@ Nel [[Bosco Senza Tempo]] Emilia cammina dietro a [[Subaru]]. Lo fa un nodo figl
 
 Mentre segue ha `collision_layer = 0`: non fa da muro. Durante una cutscene si ferma, e quando riparte la scia ricomincia da capo (altrimenti correrebbe verso punti vecchi). Arrivando nel bosco da un salvataggio o dopo una morte, si mette subito dietro di lui.
 
+## Le pose d'attacco
+
+![[emilia_attacco.png|500]]
+
+L'autore ha fornito un secondo foglio, `emilia-charset-attacco.jpg`: 6 × 4 pose (in piedi, pronta, carica, braccio teso, lancio delle schegge, ritorno), su quattro righe; l'ultima guarda a sinistra, verso i nemici. Era un JPG ingrandito, con lo sfondo bianco: per usarlo come pixel art è stato ripulito con uno script Python usa e getta.
+
+1. Ogni cella (400 × 448) diventa 50 × 56 pixel: per ogni pixel nuovo si prende il colore **mediano** del blocco originale (la mediana ignora le sbavature del JPG).
+2. Lo sfondo si toglie con un riempimento che parte dai bordi. I capelli però sono quasi bianchi, e lo sfondo ci "entrava" dalle fessure tra le ciocche: prima si allarga di poco tutto ciò che è colorato (le fessure si chiudono), si riempie, poi lo sfondo ricresce di pochi pixel per riprendere il bordo vero.
+3. I colori si riducono a 40: niente rumore.
+
+Risultato: `characters/emilia/emilia_attack.png`, usato in battaglia quando Emilia è nel party ([[Combattimento#Emilia nel party]]).
+
 ## Il punto di riferimento
 
 Nell'[[Atto 2]] Emilia resta in piazza e, a ogni passo, ti dice dove andare (le sue frasi le sceglie `VoicesQuest`). Alla fine Subaru le racconta quello che ha letto nel libro nero, in una conversazione a due voci, e decidono di partire all'alba per il bosco a nord. Quando le riparli, si parte: è l'inizio dell'[[Atto 3]].
