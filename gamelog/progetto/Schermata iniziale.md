@@ -63,3 +63,21 @@ Dal [[2026-11-17-mani-d-ombra|17 novembre]], come se una strega nel buio non ti 
 ![[mani_trascinata.png|400]]
 
 È tutto in due script: `ui/shadow_hand.gd` (una mano con il braccio) e `ui/shadow_hands.gd` (chi decide quando e dove). Il nodo `UI/ShadowHands` sta sopra al menu e alle scritte, sotto le [[Opzioni]].
+
+## Il titolo nuovo
+
+Dal [[2026-11-18-finale|18 novembre]]:
+
+![[titolo_premi_invio.png|400]] ![[titolo_menu.png|400]]
+
+| Cosa | Come |
+|---|---|
+| Prima il [[Filmato iniziale]] | È la scena principale; al titolo ci si arriva da lì |
+| Un **riflesso di luce** attraversa "Erbalta" ogni 5 secondi | `effects/title_shine.gdshader`, vedi [[Shader#Riflesso sul titolo]] |
+| Un **bagliore** dietro le lettere che respira | Un `TextureRect` con un gradiente radiale e il blend additivo |
+| Un **ornamento** dorato sotto il titolo, che si allarga dal centro | Due linee e due rombi (`ColorRect` ruotati di 45°) |
+| **Premi Invio**, che lampeggia | Le voci compaiono solo dopo: lo stato `_state` va da "intro" a "press" a "menu" |
+| Il menu in una **finestra** | Lo stile `BattleWindow` del [[Combattimento]], voci a 24 px, sotto luogo e data del salvataggio |
+| **Galleria** | Col lucchetto (`assets/ui/lock.png`) finché la storia non è finita: scuote la testa e dice perché. Poi "Nuova!" che saltella. Vedi [[Galleria]] |
+| In basso | "Un gioco di Biagio Scaglia", i comandi, la versione (**v1.0**) |
+| 45 secondi senza toccare niente | Riparte il filmato |
