@@ -46,7 +46,7 @@ func _ready() -> void:
 
 	# Saltella sul posto: sale schiacciandosi un poco, e ricade.
 	var base := sprite.scale
-	var hop := create_tween().set_loops()
+	var hop := create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS).set_loops()
 	hop.tween_property(sprite, "position:y", -5.0, 0.35).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	hop.parallel().tween_property(sprite, "scale", base * Vector2(0.94, 1.08), 0.35)
 	hop.tween_property(sprite, "position:y", 0.0, 0.35).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
@@ -76,7 +76,7 @@ func step_towards(target: Vector2) -> bool:
 	sprite.flip_h = motion.x < 0.0   # guarda dove va
 	if _wander_tween:
 		_wander_tween.kill()
-	_wander_tween = create_tween()
+	_wander_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	_wander_tween.tween_property(self, "global_position", target, motion.length() / wander_speed) 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	return true
 
