@@ -55,3 +55,16 @@ func _ready() -> void:
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	_sweep_tween.tween_property(gaze, "rotation_degrees", base_angle - sweep, sweep_time) \
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+
+## Il cono di luce: un ventaglio di punti, chiaro vicino all'occhio e trasparente in fondo.
+func _build_cone() -> void:
+	var points := PackedVector2Array([Vector2.ZERO])
+	var colors := PackedColorArray([Color(0.8, 0.5, 1.0, 0.45)])
+	var steps := 10
+	for i in steps + 1:
+		var a := deg_to_rad(-cone / 2.0 + cone * i / steps)
+		points.append(Vector2.from_angle(a) * sight)
+		colors.append(Color(0.6, 0.3, 1.0, 0.0))
+	cone_shape.polygon = points
+	cone_shape.vertex_colors = colors
