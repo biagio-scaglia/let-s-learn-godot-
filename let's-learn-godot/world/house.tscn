@@ -133,6 +133,7 @@ chest = NodePath("../World/Chest")
 objects = NodePath("../World/Objects")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+process_callback = 0
 position = Vector2(192, 144)
 
 [node name="Spawns" type="Node2D" parent="."]
