@@ -109,6 +109,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _close() -> void:
 	_closing = true
+	_stop_typing()
 	_stop_arrow()
 	var t := create_tween().set_parallel()
 	t.tween_property(box, "modulate:a", 0.0, 0.12)
