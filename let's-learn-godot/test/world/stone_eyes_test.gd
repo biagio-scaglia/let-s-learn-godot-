@@ -90,3 +90,24 @@ func test_tornando_a_nebbia_aperta_non_c_e_piu() -> void:
 		Game.set_flag(FlagKeys.eye_closed(id))
 	var runner := await _forest()
 	assert_object(runner.scene().get_node_or_null("World/FogGate")).is_null()
+
+
+func test_se_l_occhio_ti_vede_torni_indietro() -> void:
+	Stats.hp = Stats.max_hp
+	var runner := await _forest()
+	var eye := runner.scene().get_node("World/StoneEyeSud") as StoneEye
+	var subaru := runner.scene().get_node("World/Subaru") as Node2D
+	eye._sweep_tween.kill()
+	eye.gaze.rotation_degrees = 0.0
+	subaru.global_position = eye.gaze.global_position + Vector2(90, 16)
+	await _play_until(runner, func(): return Game.has_flag(FlagKeys.EYE_SEEN) and not Game.in_cutscene)
+	assert_vector(subaru.global_position).is_equal(eye.respawn)
+	assert_int(Stats.hp).is_equal(Stats.max_hp - eye.sight_damage)
+
+
+func test_gli_obiettivi_del_bosco() -> void:
+	assert_str(Objective.current()).is_equal(Objective.CROSS_FOREST)
+	Game.set_flag(FlagKeys.FOG_SEEN)
+	assert_str(Objective.current()).is_equal(Objective.CLOSE_EYES % 0)
+	Game.set_flag(FlagKeys.eye_closed("sud"))
+	assert_str(Objective.current()).is_equal(Objective.CLOSE_EYES % 1)
