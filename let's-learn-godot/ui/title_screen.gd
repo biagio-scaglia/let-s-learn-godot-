@@ -257,11 +257,12 @@ func _on_options_closed() -> void:
 	_show_title_texts(true)
 	hands.set_active(true)
 	options_button.focus_silently()
+	_idle = 0.0
 
 
 ## Nasconde (o mostra) titolo, menu e scritte, per lasciare spazio alle opzioni.
 func _show_title_texts(on: bool) -> void:
-	menu.visible = on
+	menu_panel.visible = on
 	var t := create_tween().set_parallel()
-	for node in [title, subtitle, footer, version, save_info]:
+	for node in [title, glow, subtitle, ornament, footer, version, credit]:
 		t.tween_property(node, "modulate:a", 1.0 if on else 0.0, 0.15)
