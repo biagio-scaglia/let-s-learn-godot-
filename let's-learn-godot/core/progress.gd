@@ -12,3 +12,7 @@ var path := "user://progressi.cfg"
 var story_finished := false
 ## La Galleria è stata vista dopo lo sblocco (finché è false, nel titolo è "Nuova!").
 var gallery_seen := false
+
+
+func _ready() -> void:
+	load_progress()
