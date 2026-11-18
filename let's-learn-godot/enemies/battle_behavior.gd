@@ -25,3 +25,13 @@ func after_intro() -> void:
 ## Battle salta l'attacco normale), false per l'attacco normale. Si può aspettare.
 func take_turn() -> bool:
 	return false
+
+
+## Il danno di un colpo di Subaru o di Emilia, prima che arrivi: lo può cambiare.
+func modify_damage(_skill: Dictionary, amount: int) -> int:
+	return amount
+
+
+## Un colpo è arrivato (danno fatto, debolezza e scudo già sistemati).
+func on_hit(_skill: Dictionary) -> void:
+	pass
