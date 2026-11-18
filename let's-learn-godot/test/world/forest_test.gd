@@ -103,3 +103,27 @@ func test_a_fine_atto_2_emilia_porta_nel_bosco() -> void:
 	emilia.interacted.emit()
 	assert_bool(Game.in_cutscene).is_true()
 	assert_str("\n".join(emilia.override_lines)).contains("Andiamo")
+
+
+func test_davanti_a_un_nemico_e_non_parla_emilia() -> void:
+	Game.set_flag(FlagKeys.FOREST_ARRIVED)
+	var runner := scene_runner(Game.FOREST_SCENE)
+	await runner.simulate_frames(3)
+	var subaru := runner.scene().get_node("World/Subaru") as Node2D
+	var emilia := runner.scene().get_node("World/Emilia/Interactable") as Interactable
+	var enemy := runner.scene().get_node("World/OcchioErrante1")
+	enemy.wander_radius = 0.0
+	# Subaru davanti al nemico, Emilia (che lo segue) subito dietro di lui.
+	subaru.global_position = enemy.global_position + Vector2(0, 24)
+	runner.scene().get_node("World/Emilia").global_position = subaru.global_position + Vector2(0, 18)
+	await runner.simulate_frames(6)
+	var fight := enemy.get_node("Interactable") as Interactable
+	assert_object(fight.player).is_not_null()
+	assert_object(emilia.player).is_not_null()
+	assert_bool(fight._is_first_choice()).is_true()
+	assert_bool(emilia._is_first_choice()).is_false()
+	# Lontano da tutto il resto, con Emilia si parla come sempre.
+	subaru.global_position = Vector2(598, 930)
+	runner.scene().get_node("World/Emilia").global_position = subaru.global_position + Vector2(0, 18)
+	await runner.simulate_frames(6)
+	assert_bool(emilia._is_first_choice()).is_true()
