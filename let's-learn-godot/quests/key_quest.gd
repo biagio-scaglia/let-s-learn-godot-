@@ -25,7 +25,23 @@ func _ready() -> void:
 
 
 func _on_lina() -> void:
-	if Game.has_flag(FlagKeys.BOOK_READ):
+	if Game.has_flag(FlagKeys.BOSS_DEFEATED):
+		if Game.has_flag(FlagKeys.greeted("lina")):
+			lina.override_lines = [
+				"Promesso, eh? Tornate. E portatemi qualcosa da fuori!",
+			]
+		else:
+			lina.override_lines = [
+				"Subaru! Stamattina il nonno ha detto una cosa stranissima.",
+				"Ha detto: \"Domani sarà diverso.\" Non l'aveva mai detto. Mai!",
+				"...Siete stati voi, vero? Nel bosco. Non so cosa avete fatto, ma grazie.",
+				"Ve ne andate? Allora prendi queste. La nonna diceva: \"Chi parte non deve partire a mani vuote.\"",
+				"E promettimi che tornerete. Voglio sentire tutta la storia.",
+			]
+			# Il regalo arriva quando il dialogo finisce (una volta sola).
+			Dialogue.finished.connect(Inventory.add.bind(Inventory.POTION, 2), CONNECT_ONE_SHOT)
+		Game.set_flag(FlagKeys.greeted("lina"))
+	elif Game.has_flag(FlagKeys.BOOK_READ):
 		lina.override_lines = [
 			"Il nonno dice che domani sarà un giorno come gli altri.",
 			"...Lo dice tutte le mattine. Prima non ci avevo mai fatto caso.",
