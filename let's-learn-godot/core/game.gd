@@ -123,6 +123,15 @@ func new_game() -> void:
 	change_scene(OPENING_SCENE, "", "", false)
 
 
+## Entra nella Galleria: non è una partita, quindi niente ricordi, zaino o punto di ritorno.
+func open_gallery() -> void:
+	load_flags({FlagKeys.INTRO_SEEN: true})
+	Inventory.reset()
+	spawn_position = null
+	checkpoint = {}
+	change_scene(GALLERY_SCENE, "", "", false)
+
+
 # ---------- Ritorno dalla Morte ----------
 
 ## Subaru impara qualcosa che non dimenticherà, neanche tornando indietro.
