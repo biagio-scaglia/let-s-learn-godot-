@@ -32,7 +32,10 @@ func _on_lina() -> void:
 		]
 	elif Game.has_flag(FlagKeys.CHEST_OPEN):
 		lina.override_lines = [
-			"Ti sono piaciute le pozioni? Erano del nonno: dice che fanno miracoli.",
+			"Una pagina strappata, nel baule della nonna? Non l'avevo mai vista.",
+			"La nonna diceva sempre: \"I libri che nessuno legge sono quelli che ricordano di più.\"",
+			"Se vuoi sapere da che libro viene, chiedi in biblioteca. L'Archivista sa tutto dei libri.",
+			"Ah, e le pozioni usale, eh! Il nonno dice che fanno miracoli.",
 		]
 	elif Inventory.has(Inventory.KEY):
 		lina.override_lines = [
