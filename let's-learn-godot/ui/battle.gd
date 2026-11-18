@@ -588,7 +588,7 @@ func _ally_frost(skill: Dictionary) -> void:
 	vfx.sparks(_ally_hand(), BattleVfx.ICE_COLOR, 16, 90.0)
 	await _pause(0.45)
 	_ally_pose(AllyPose.REACH)
-	var shards := vfx.ice_shards(_ally_hand() + Vector2(-50, -40), FROST_SHARDS)
+	var shards := vfx.ice_shards(_ally_hand() + Vector2(-90, -24), FROST_SHARDS)
 	await _pause(0.5)
 	_ally_pose(AllyPose.RELEASE)
 	await _frost_volley(shards, skill)
