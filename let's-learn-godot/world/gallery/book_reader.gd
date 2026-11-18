@@ -202,3 +202,18 @@ func _build() -> void:
 	hint.position = Vector2(0, BOOK_SIZE.y + 4)
 	hint.size = Vector2(BOOK_SIZE.x, 20)
 	_book.add_child(hint)
+
+
+## Un rettangolo pieno col bordo (StyleBoxFlat), alla posizione e misura date.
+func _panel(rect: Rect2, fill: Color, border: Color, border_width: int) -> Panel:
+	var panel := Panel.new()
+	var style := StyleBoxFlat.new()
+	style.bg_color = fill
+	style.border_color = border
+	style.set_border_width_all(border_width)
+	style.set_corner_radius_all(3)
+	panel.add_theme_stylebox_override("panel", style)
+	panel.position = rect.position
+	panel.size = rect.size
+	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	return panel
