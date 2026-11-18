@@ -46,6 +46,19 @@ const SKILLS := {
 	"dardo": {"name": "Dardo di gelo", "cost": 0, "power": 0.9, "type": "ghiaccio",
 		"info": "Emilia lancia una scheggia di ghiaccio. Tipo ghiaccio."},
 }
+## Quante scaglie lancia Emilia: tutte fanno scena, l'ultima fa il danno.
+const FROST_SHARDS := 7
+## La mossa base di Emilia nel party (il suo "Attacca").
+const ALLY_ATTACK := "dardo"
+## I PT di Emilia: pieni a ogni combattimento. Difendendosi ne recupera ALLY_DEFEND_SP.
+const ALLY_MAX_SP := 12
+const ALLY_DEFEND_SP := 3
+## Il foglio delle pose d'attacco di Emilia: 6 colonne x 4 righe; la riga 3 guarda a
+## sinistra (verso il nemico). Colonne: in piedi, pronta, carica, braccio teso, lancio, ritorno.
+const EMILIA_ATTACK := preload("res://characters/emilia/emilia_attack.png")
+const EMILIA_CHARSET := preload("res://characters/emilia/emilia_charset.png")
+const ALLY_ROW := 3
+enum AllyPose { STAND, READY, CHARGE, REACH, RELEASE, RETURN }
 ## Su una debolezza il danno cresce del 50%; a nemico rotto raddoppia.
 const WEAK_BONUS := 1.5
 const BREAK_BONUS := 2.0
