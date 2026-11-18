@@ -58,3 +58,13 @@ func open(book_id: String) -> void:
 	_book.scale = Vector2(0.9, 0.9)
 	_animate(1.0)
 	_tween.parallel().tween_property(_book, "scale", Vector2.ONE, 0.25).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
+
+func close() -> void:
+	is_open = false
+	Sfx.play(Sfx.BACK)
+	_animate(0.0)
+	await _tween.finished
+	visible = false
+	Game.in_cutscene = false
+	closed.emit()
