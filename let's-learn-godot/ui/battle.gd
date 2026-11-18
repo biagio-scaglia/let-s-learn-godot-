@@ -648,6 +648,172 @@ func _ally_hand() -> Vector2:
 	return emilia_sprite.position + Vector2(-36, -78)
 
 
+# ---------- L'ultimate: Alba di cristallo ----------
+
+const ULTIMATE_NAME := "Alba di cristallo"
+
+
+func _ultimate_ready() -> bool:
+	return behavior != null and with_emilia and not _ultimate_used and behavior.ultimate_ready()
+
+
+## Subaru ed Emilia, insieme. Buio, i due ritratti che entrano dai lati, un anello di
+## scaglie attorno al nemico e una lancia di cristallo enorme; Subaru si carica d'ombra
+## e parte con lei. L'impatto: lampi, onde d'urto, il cristallo che esplode, e una luce
+## d'alba che riempie lo schermo. Il nemico non si rialza.
+func _do_ultimate() -> void:
+	_ultimate_used = true
+	_act()
+	commands.ultimate_button.visible = false
+	_announce(ULTIMATE_NAME)
+	var music_db := music.volume_db
+	create_tween().tween_property(music, "volume_db", music_db - 14.0, 0.4)
+	# 1. Il buio, e i due ritratti.
+	Sfx.play(Sfx.ULT_CUTIN)
+	flash.color = Color(0, 0, 0, 0)
+	create_tween().tween_property(flash, "color:a", 0.6, 0.25)
+	await _cut_in()
+	# 2. Emilia: un anello di cristallo attorno al nemico. Subaru: l'ombra.
+	var target := _enemy_center()
+	_ally_pose(AllyPose.CHARGE)
+	hero.play("charge")
+	Sfx.play(Sfx.ULT_CRYSTAL)
+	Sfx.play(Sfx.CHARGE)
+	var snow := vfx.snowfall()
+	var aura := vfx.aura()
+	aura.color = Color(0.75, 0.45, 1.0)
+	vfx.mist(hero.position + Vector2(0, -30))
+	vfx.glow(emilia_sprite, Color(1.5, 1.8, 2.2))
+	var ring := vfx.ring_shards(target, 110.0 * enemy.battle_scale * 0.6, 12)
+	var zoom := create_tween()
+	zoom.tween_property(stage, "scale", Vector2(1.08, 1.08), 1.0).set_trans(Tween.TRANS_SINE)
+	create_tween().tween_property(flash, "color:a", 0.35, 0.6)
+	await _pause(1.0)
+	# 3. La lancia di cristallo nasce dalla mano di Emilia.
+	_ally_pose(AllyPose.REACH)
+	var spear := Sprite2D.new()
+	spear.texture = BattleVfx.ICE_SHARD
+	spear.position = _ally_hand() + Vector2(-20, -30)
+	spear.rotation = (target - spear.position).angle()
+	spear.scale = Vector2.ZERO
+	spear.material = CanvasItemMaterial.new()
+	(spear.material as CanvasItemMaterial).blend_mode = CanvasItemMaterial.BLEND_MODE_ADD
+	stage.add_child(spear)
+	var grow := create_tween()
+	grow.tween_property(spear, "scale", Vector2(8.0, 6.0), 0.35).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	await _pause(0.45)
+	# 4. Partono insieme.
+	_ally_pose(AllyPose.RELEASE)
+	aura.emitting = false
+	_dash_to_enemy(0.14)
+	Sfx.play(Sfx.SWING)
+	hero.play("power_punch")
+	vfx.fire_shard(spear, target, 0.16, func(): pass)
+	for s in ring:
+		vfx.fire_shard(s, target, 0.16, func(): pass)
+	await _pause(0.16)
+	# 5. L'impatto.
+	_hit_stop(0.3)
+	Sfx.play(Sfx.ULT_FINALE)
+	Sfx.play(Sfx.ICE_SHATTER)
+	flash.color = Color(1, 1, 1, 1)
+	var light := create_tween()
+	light.tween_property(flash, "color", Color(1.0, 0.86, 0.55, 0.7), 0.35)
+	light.tween_property(flash, "color:a", 0.0, 1.8).set_trans(Tween.TRANS_SINE)
+	vfx.shake(16.0, 0.9)
+	for i in 3:
+		get_tree().create_timer(i * 0.18).timeout.connect(vfx.shockwave_at.bind(target, 0.8 + i * 0.4))
+	vfx.frost_burst(target, 7.0)
+	vfx.ice_block(enemy_sprite.position, 0.25)
+	for c in [BattleVfx.ICE_COLOR, Color(0.8, 0.5, 1.0), Color(1.0, 0.85, 0.45)]:
+		var burst := vfx.sparks(target, c, 50, 420.0)
+		burst.scale_amount_min = 3.0
+		burst.scale_amount_max = 7.0
+	var dealt := enemy_hp
+	enemy_hp = 0
+	vfx.pop_number(target, str(maxi(dealt, 1)), Color(1.0, 0.86, 0.4), -40.0, 56)
+	snow.emitting = false
+	get_tree().create_timer(3.0).timeout.connect(snow.queue_free)
+	get_tree().create_timer(1.0).timeout.connect(aura.queue_free)
+	await _pause(1.5)
+	create_tween().tween_property(stage, "scale", Vector2.ONE, 0.4).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	create_tween().tween_property(music, "volume_db", music_db, 0.8)
+	announce_box.visible = false
+	_ally_pose(AllyPose.STAND)
+	create_tween().tween_property(hero, "position:x", _hero_home.x, 0.3)
+	_idle()
+	_victory()
+
+
+## Le due strisce con i ritratti: Subaru entra da sinistra, Emilia da destra, in mezzo
+## il nome della mossa che rimbalza. Poi escono. Si aspetta con await.
+func _cut_in() -> void:
+	# Figlio della battaglia, aggiunto per ultimo: sta SOPRA il velo nero (flash).
+	var layer := Control.new()
+	layer.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(layer)
+	var view := get_viewport().get_visible_rect().size
+	layer.size = view
+	var w := view.x
+	var mid := view.y / 2.0
+	var panels: Array[Control] = []
+	for side in [0, 1]:
+		var panel := ColorRect.new()
+		panel.color = Color(0.45, 0.12, 0.2, 0.92) if side == 0 else Color(0.18, 0.4, 0.72, 0.92)
+		panel.size = Vector2(w, 62)
+		panel.position = Vector2(-w if side == 0 else w, mid - 70 if side == 0 else mid + 8)
+		panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		var edge := ColorRect.new()
+		edge.color = Color(1.0, 0.84, 0.4)
+		edge.size = Vector2(w, 2)
+		edge.position = Vector2(0, 0 if side == 0 else 60)
+		panel.add_child(edge)
+		var face := TextureRect.new()
+		face.texture = turn_bar.hero_portrait if side == 0 else _ally_portrait()
+		face.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		face.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		face.size = Vector2(58, 58)
+		face.position = Vector2(40 if side == 0 else w - 98, 2)
+		panel.add_child(face)
+		var who := Label.new()
+		who.text = "SUBARU" if side == 0 else "EMILIA"
+		who.add_theme_font_size_override("font_size", 28)
+		who.add_theme_color_override("font_color", Color(1, 0.95, 0.85))
+		who.add_theme_color_override("font_outline_color", Color(0.1, 0.05, 0.12))
+		who.add_theme_constant_override("outline_size", 6)
+		who.position = Vector2(110 if side == 0 else w - 240, 14)
+		panel.add_child(who)
+		layer.add_child(panel)
+		panels.append(panel)
+	var title := Label.new()
+	title.text = ULTIMATE_NAME.to_upper()
+	title.add_theme_font_size_override("font_size", 40)
+	title.add_theme_color_override("font_color", Color(1.0, 0.88, 0.45))
+	title.add_theme_color_override("font_outline_color", Color(0.15, 0.05, 0.2))
+	title.add_theme_constant_override("outline_size", 10)
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	title.size = Vector2(w, 50)
+	title.position = Vector2(0, mid - 34)
+	title.pivot_offset = Vector2(w / 2.0, 25)
+	title.scale = Vector2(2.5, 2.5)
+	title.modulate.a = 0.0
+	layer.add_child(title)
+	var t := create_tween().set_parallel()
+	t.tween_property(panels[0], "position:x", 0.0, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	t.tween_property(panels[1], "position:x", 0.0, 0.25).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	t.tween_property(title, "scale", Vector2.ONE, 0.3).set_delay(0.2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	t.tween_property(title, "modulate:a", 1.0, 0.2).set_delay(0.2)
+	await t.finished
+	vfx.shake(5.0, 0.25)
+	await _pause(1.0)
+	var out := create_tween().set_parallel()
+	out.tween_property(panels[0], "position:x", w, 0.22).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	out.tween_property(panels[1], "position:x", -w, 0.22).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	out.tween_property(title, "modulate:a", 0.0, 0.2)
+	await out.finished
+	layer.queue_free()
+
+
 ## Una scaglia (non l'ultima) arriva: brina, un tintinnio, una scossa piccola.
 func _on_shard_hit(point: Vector2) -> void:
 	Sfx.play(Sfx.ICE_HIT)
