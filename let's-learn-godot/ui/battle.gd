@@ -200,6 +200,7 @@ func start(data: EnemyData) -> String:
 	hero.modulate = Color.WHITE
 	hero.flip_h = true   # le azioni guardano a destra: qui Subaru guarda il nemico, a sinistra
 	_start_enemy_breathing()
+	_setup_ally()
 	_idle()
 	_update_hero_info()
 	hero_bar.value = Stats.hp
