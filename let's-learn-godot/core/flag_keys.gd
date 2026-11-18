@@ -39,6 +39,22 @@ const HOME_AGAIN := "ritorno_a_erbalta"
 ## I tre occhi di pietra del bosco (vedi StoneEye): ognuno ha il suo ricordo.
 const STONE_EYES: Array[String] = ["ovest", "est", "sud"]
 
+# ---------- Il finale ----------
+## Gli abitanti da salutare prima di partire: il Saggio, Lina e l'Archivista.
+const VILLAGERS: Array[String] = ["saggio", "lina", "archivista"]
+## Subaru ed Emilia sono partiti dal sentiero a sud: la storia è finita.
+const GAME_FINISHED := "gioco_finito"
+
+
+## Un abitante salutato dopo il boss ("saggio", "lina" o "archivista").
+static func greeted(who: String) -> String:
+	return "salutato:" + who
+
+
+## Quanti abitanti sono stati salutati.
+static func greeted_count() -> int:
+	return VILLAGERS.filter(func(who): return Game.has_flag(greeted(who))).size()
+
 
 ## Un occhio di pietra chiuso ("ovest", "est" o "sud").
 static func eye_closed(id: String) -> String:
