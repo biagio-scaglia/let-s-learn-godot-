@@ -164,10 +164,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	show_help(back_to)
 
 
-## Il costo in PT, allineato a destra dentro la voce.
-func _add_cost_label(button: MenuItem, cost: int) -> void:
+## Il costo in PT, allineato a destra dentro la voce ("4+4 PT" se pagano in due).
+func _add_cost_label(button: MenuItem, skill: Dictionary) -> void:
 	var label := Label.new()
-	label.text = "%d PT" % cost
+	label.text = "%d PT" % skill.cost if not skill.has("ally_cost") else "%d+%d PT" % [skill.cost, skill.ally_cost]
 	label.theme_type_variation = &"HintLabel"
 	label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
