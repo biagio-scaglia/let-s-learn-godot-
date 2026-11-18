@@ -202,3 +202,32 @@ func _portrait_row(id: String, title: String, role: String) -> Control:
 	text.add_child(role_label)
 	row.add_child(text)
 	return row
+
+
+# ---------- La strada in basso ----------
+
+## Gli alberi lungo la strada (da Tiny Town): quelli piccoli stanno dietro, quelli
+## grandi (scala 2) davanti, e scorrono più veloci: sembra che ci sia profondità.
+func _plant_trees() -> void:
+	var town := preload("res://assets/kenney_tiny_town/tilemap_packed.png")
+	var regions := [Rect2(64, 0, 16, 32), Rect2(48, 0, 16, 32), Rect2(80, 0, 16, 16), Rect2(64, 32, 16, 16)]
+	var rng := RandomNumberGenerator.new()
+	rng.seed = 7   # sempre gli stessi alberi
+	for i in 14:
+		var tree := Sprite2D.new()
+		var tex := AtlasTexture.new()
+		tex.atlas = town
+		tex.region = regions[rng.randi() % regions.size()]
+		tree.texture = tex
+		tree.centered = false
+		tree.offset = Vector2(-8, -tex.region.size.y)   # i piedi dell'albero sull'origine
+		var front := i % 3 == 0
+		tree.scale = Vector2.ONE * (2.0 if front else 1.0)
+		tree.position = Vector2(rng.randf_range(0, 680), 360.0 if front else 322.0)
+		if not front:
+			tree.modulate = Color(0.75, 0.75, 0.85)   # lontani: un po' sbiaditi
+		trees.add_child(tree)
+	# Quelli davanti si disegnano sopra Subaru ed Emilia.
+	for tree in trees.get_children():
+		if tree.scale.x > 1.0:
+			tree.z_index = 1
