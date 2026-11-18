@@ -430,6 +430,7 @@ func _break() -> void:
 	t.tween_property(break_label, "modulate:a", 0.0, 0.3)
 	t.tween_callback(break_label.hide)
 	# Il nemico rotto barcolla, si inclina e diventa più scuro.
+	_enemy_pose(EnemyData.Pose.HURT)
 	var wobble := create_tween()
 	wobble.tween_property(enemy_sprite, "rotation", -0.25, 0.15)
 	wobble.tween_property(enemy_sprite, "modulate", _enemy_color(), 0.2)
