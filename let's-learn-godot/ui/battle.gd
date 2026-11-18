@@ -431,19 +431,34 @@ func _do_shatter(skill: Dictionary) -> void:
 	await _pause(0.35)
 	_ally_pose(AllyPose.RELEASE)
 	Sfx.play(Sfx.ICE_CAST)
-	flash.color = Color(0.55, 0.8, 1.0, 0.0)
-	create_tween().tween_property(flash, "color:a", 0.22, 0.4)
-	var snow := vfx.snowfall()
-	var emilia_home := Vector2(_hero_home.x + 72.0, _hero_home.y - 8.0)
-	await vfx.emilia_appears(emilia_sprite, emilia_home)
-	var shards := vfx.ice_shards(emilia_home + Vector2(-40, -80), FROST_SHARDS)
-	await _pause(0.55)
-	await _frost_volley(shards, skill)
-	snow.emitting = false
-	get_tree().create_timer(3.0).timeout.connect(snow.queue_free)
-	var back := create_tween().set_parallel()
-	back.tween_property(flash, "color:a", 0.0, 0.5)
-	await vfx.emilia_leaves(emilia_sprite)
+	var target := enemy_sprite.position + Vector2(0, -36)
+	vfx.frost_burst(target, 3.0)
+	vfx.ice_block(enemy_sprite.position, 0.9)   # resta intero finché Subaru non arriva
+	create_tween().tween_property(enemy_sprite, "modulate", Color(0.6, 0.85, 1.3), 0.15)
+	var zoom := create_tween()
+	zoom.tween_property(stage, "scale", Vector2(1.06, 1.06), 0.6).set_trans(Tween.TRANS_SINE)
+	await _pause(0.6)
+	aura.emitting = false
+	get_tree().create_timer(1.0).timeout.connect(aura.queue_free)
+	_ally_pose(AllyPose.RETURN)
+	_dash_to_enemy(0.1)
+	Sfx.play(Sfx.SWING)
+	hero.play("power_punch")
+	await _until_frame(1)
+	_hit_stop(0.14)
+	_strike(skill, Sfx.ICE_SHATTER)
+	flash.color = Color(0.8, 0.95, 1.0, 0.75)
+	create_tween().tween_property(flash, "color:a", 0.0, 0.35)
+	vfx.shake(10.0, 0.45)
+	vfx.impact(_impact_point(), 4.0)
+	vfx.shockwave_at(_impact_point(), 0.6)
+	var shards := vfx.sparks(_impact_point(), BattleVfx.ICE_COLOR, 40, 340.0)
+	shards.scale_amount_min = 3.0
+	shards.scale_amount_max = 6.0
+	create_tween().tween_property(stage, "scale", Vector2.ONE, 0.3).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	create_tween().tween_property(enemy_sprite, "modulate", _enemy_color(), 0.6)
+	await hero.animation_finished
+	_ally_pose(AllyPose.STAND)
 
 
 ## La raffica di scaglie (per Subaru che chiama Emilia o per Emilia nel party):
