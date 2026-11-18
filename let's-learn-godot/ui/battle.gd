@@ -800,6 +800,11 @@ func _hit(target: Node2D, amount: int, height: float, sound: String, color: Colo
 	t.tween_property(target, "position:x", x, 0.05)
 	var rest := _enemy_color() if target == enemy_sprite else Color.WHITE
 	t.parallel().tween_property(target, "modulate", rest, 0.15)
+	if target == enemy_sprite:
+		# Una smorfia di dolore, poi torna a respirare.
+		_enemy_pose(EnemyData.Pose.HURT)
+		t.tween_interval(0.3)
+		t.tween_callback(_enemy_rest)
 	vfx.pop_number(Vector2(x, target.position.y), str(amount), color, height, font_size)
 
 
