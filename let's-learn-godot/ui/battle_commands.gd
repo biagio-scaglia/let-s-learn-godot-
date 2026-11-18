@@ -9,6 +9,8 @@ signal skill_chosen(id: String)
 signal potion_chosen
 signal defend_chosen
 signal flee_chosen
+## L'ultimate di Subaru ed Emilia (contro un boss, quando è pronta).
+signal ultimate_chosen
 
 @onready var menu: Control = %Menu
 @onready var attack_button: MenuItem = %Attack
