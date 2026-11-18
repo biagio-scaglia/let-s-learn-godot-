@@ -22,6 +22,9 @@ var _player: Node2D
 
 
 func _ready() -> void:
+	# Così chi sposta di colpo il giocatore (un occhio che lo respinge...) può
+	# chiamare snap_behind() su tutti quelli che lo seguono.
+	add_to_group("followers")
 	_npc = get_parent() as Node2D
 	# Mentre segue non deve fare da muro: il giocatore a volte torna indietro.
 	if _npc is CollisionObject2D:
