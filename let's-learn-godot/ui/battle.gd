@@ -1035,7 +1035,7 @@ func _enemy_turn() -> void:
 			_after_enemy_action()
 			return
 	_announce(enemy.name)
-	var dealt := Stats.damage(enemy.attack, Stats.defense, rng.randi_range(-1, 1))
+	var dealt := Stats.damage(enemy.attack + enemy_attack_bonus, Stats.defense, rng.randi_range(-1, 1))
 	if defending:
 		dealt = maxi(1, ceili(dealt / 2.0))
 	# Si carica (indietreggia un poco), poi scatta verso Subaru, colpisce, torna al suo posto.
