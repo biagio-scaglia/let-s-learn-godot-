@@ -87,3 +87,17 @@ func test_le_scaglie_colpiscono_e_scoprono_la_debolezza() -> void:
 	assert_bool(Battle.revealed.has("ghiaccio")).is_true()
 	assert_int(Battle.enemy_shield).is_equal(guardian.shield - 1)
 	await _escape()
+
+
+func test_i_nemici_del_bosco_temono_il_ghiaccio() -> void:
+	for id in ["occhio_errante", "mano_ombra", "guardiano_rovi"]:
+		var data := load("res://enemies/%s.tres" % id) as EnemyData
+		assert_bool(data.weaknesses.has("ghiaccio")).is_true()
+		assert_bool(data.animated()).is_true()
+		assert_int(data.texture.get_width()).is_equal(32 * data.frames)
+
+
+func test_il_ghiaccio_ha_la_sua_icona() -> void:
+	assert_bool(BattleEnemyInfo.TYPE_ICONS.has("ghiaccio")).is_true()
+	var icons := load("res://assets/ui/battle_icons.png") as Texture2D
+	assert_int(icons.get_width()).is_greater_equal((BattleEnemyInfo.TYPE_ICONS.ghiaccio + 1) * 16)
