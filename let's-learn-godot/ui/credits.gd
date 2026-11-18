@@ -264,3 +264,9 @@ func _show_final_card() -> void:
 	t.tween_callback(func(): _can_leave = true)
 	# "Premi Invio" lampeggia piano.
 	t.tween_callback(_blink_press)
+
+
+func _blink_press() -> void:
+	var t := create_tween().set_loops()
+	t.tween_property(press, "modulate:a", 0.35, 0.9).set_trans(Tween.TRANS_SINE)
+	t.tween_property(press, "modulate:a", 1.0, 0.9).set_trans(Tween.TRANS_SINE)
