@@ -82,6 +82,8 @@ func step_towards(target: Vector2) -> bool:
 
 
 func _fight() -> void:
+	if _wander_tween:
+		_wander_tween.kill()   # niente passi a metà durante il combattimento
 	var result: String = await Battle.start(data)
 	if result != Battle.WIN:
 		return   # fuggito: il nemico resta lì. Sconfitto: ci pensa il Ritorno dalla Morte
