@@ -79,10 +79,17 @@ func _on_saggio() -> void:
 
 func _on_emilia() -> void:
 	if Game.has_flag(FlagKeys.BOSS_DEFEATED):
-		emilia.override_lines = [
-			"Erbalta sembra la stessa... ma l'aria è diversa. Più leggera.",
-			"Andiamo a vedere come stanno tutti. Il Saggio, Lina, l'Archivista.",
-		]
+		if FlagKeys.greeted_count() == FlagKeys.VILLAGERS.size():
+			emilia.override_lines = [
+				"Hai salutato tutti? ...Anch'io. Il Saggio mi ha regalato una ghianda. Dice che è di un albero nuovo.",
+				"Allora andiamo, Subaru. Dal sentiero a sud, come quando siamo arrivati.",
+			]
+		else:
+			emilia.override_lines = [
+				"Erbalta sembra la stessa... ma l'aria è diversa. Più leggera.",
+				"Andiamo a vedere come stanno tutti. Il Saggio, Lina, l'Archivista.",
+				"Poi, quando sei pronto, partiamo. Dal sentiero a sud.",
+			]
 		return
 	if Game.has_flag(FlagKeys.ACT2_DONE):
 		_depart()
