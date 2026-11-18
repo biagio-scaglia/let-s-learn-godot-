@@ -18,6 +18,7 @@ signal ultimate_chosen
 @onready var items_button: MenuItem = %Items
 @onready var defend_button: MenuItem = %Defend
 @onready var flee_button: MenuItem = %Flee
+@onready var ultimate_button: MenuItem = %Ultimate
 @onready var skill_window: Control = %SkillWindow
 @onready var kick_button: MenuItem = %Kick
 @onready var shamac_button: MenuItem = %Shamac
