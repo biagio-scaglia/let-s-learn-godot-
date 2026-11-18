@@ -781,6 +781,8 @@ func _on_flee() -> void:
 	if rng.randf() < flee_chance:
 		var t := create_tween()
 		t.tween_property(hero, "position:x", _hero_home.x + 260.0, 0.35).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+		if with_emilia:
+			t.parallel().tween_property(emilia_sprite, "position:x", _ally_home().x + 260.0, 0.35).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 		await _say("Sei scappato!")
 		_end(FLED)
 	else:
