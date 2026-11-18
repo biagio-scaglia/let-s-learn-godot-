@@ -20,3 +20,11 @@ func after_test() -> void:
 		DirAccess.remove_absolute(TEST_PROGRESS)
 	Progress.path = _real_progress
 	Progress.load_progress()
+
+
+func test_ogni_libro_ha_ritratto_nome_e_pagine() -> void:
+	for id in GalleryBooks.all_ids():
+		var book := GalleryBooks.entry(id)
+		assert_str(book.get("name", "")).override_failure_message("nome mancante: " + id).is_not_empty()
+		assert_bool(book.get("pages", []).is_empty()).override_failure_message("pagine mancanti: " + id).is_false()
+		assert_object(Portraits.of(id)).override_failure_message("ritratto mancante: " + id).is_not_null()
