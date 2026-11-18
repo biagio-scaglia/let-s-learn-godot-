@@ -129,3 +129,9 @@ func _final_talk() -> void:
 	Game.in_cutscene = false
 	# Fine dell'atto: da qui si riparte dopo un Ritorno dalla Morte.
 	Game.set_checkpoint()
+
+
+## Aspetta che il dialogo in corso finisca, poi fa parlare qualcun altro.
+func _then(speaker: String, lines: PackedStringArray) -> void:
+	await Dialogue.finished
+	Dialogue.start(speaker, lines)
