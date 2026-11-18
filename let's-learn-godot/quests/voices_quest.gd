@@ -65,10 +65,7 @@ func _on_saggio() -> void:
 
 func _on_emilia() -> void:
 	if Game.has_flag(FlagKeys.ACT2_DONE):
-		emilia.override_lines = [
-			"Domani all'alba, il bosco a nord. Io ci sarò.",
-			"Non sparire, d'accordo? ...E non morire. Nemmeno per finta.",
-		]
+		_depart()
 	elif Game.has_flag(FlagKeys.BOOK_READ):
 		_final_talk()
 	elif Game.has_flag(FlagKeys.PAGE_READ):
