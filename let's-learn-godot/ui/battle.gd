@@ -548,7 +548,7 @@ func _update_ally_info() -> void:
 func _ally_portrait() -> Texture2D:
 	var face := AtlasTexture.new()
 	face.atlas = EMILIA_ATTACK
-	face.region = Rect2(ALLY_ROW * 0 + 12, ALLY_ROW * 56 + 2, 26, 26)
+	face.region = Rect2(10, ALLY_ROW * 48 + 1, 24, 24)
 	return face
 
 
