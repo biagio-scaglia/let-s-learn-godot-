@@ -14,7 +14,7 @@
 | [Interface Sounds](https://opengameart.org/content/interface-sounds) (glitch_002) | [Kenney](https://www.kenney.nl) | [CC0 1.0](http://creativecommons.org/publicdomain/zero/1.0/) | `let's-learn-godot/assets/kenney_interface_sounds/` |
 | [Heartbeat sounds](https://opengameart.org/content/heartbeat-sounds) (convertiti a WAV 16 bit) | bart (OpenGameArt) | [CC0 1.0](http://creativecommons.org/publicdomain/zero/1.0/) | `let's-learn-godot/assets/heartbeat_bart/` |
 
-Il tileset della biblioteca (`let's-learn-godot/assets/library/`) invece è nostro: disegnato per questo progetto, con la palette di Tiny Dungeon. Anche tutta la musica (`let's-learn-godot/assets/music/`: biblioteca, villaggio, combattimento, game over, la risata e il bosco) è nostra: composta e sintetizzata per questo progetto. Lo stesso vale per i tileset del castello e del bosco, i nemici, gli occhi di pietra, gli effetti del ghiaccio, l'icona e i suoni (acqua, fuoco, vento, corvo, ghiaccio, occhi).
+Il tileset della biblioteca (`let's-learn-godot/assets/library/`) invece è nostro: disegnato per questo progetto, con la palette di Tiny Dungeon. Anche tutta la musica (`let's-learn-godot/assets/music/`: biblioteca, villaggio, combattimento, game over, la risata, il bosco, il boss, il prologo del filmato iniziale e *Un giorno nuovo* dei titoli di coda) è nostra: composta e sintetizzata per questo progetto. Lo stesso vale per i tileset del castello e del bosco, i nemici, gli occhi di pietra, gli effetti del ghiaccio, l'icona e i suoni (acqua, fuoco, vento, corvo, ghiaccio, occhi).
 
 Con la licenza CC0 gli asset si possono usare liberamente, anche in progetti commerciali, e citare l'autore non è obbligatorio. Lo citiamo lo stesso.
 
