@@ -108,7 +108,7 @@ Una casa di pietra a nord-est del villaggio, con un **tileset disegnato apposta*
 
 ### Colonna sonora
 
-Tutta originale, sintetizzata nota per nota: un valzer per il villaggio (che si spegne quando ti avvicini al bordo), un carillon in re minore per la biblioteca, un tema di battaglia, e per il game over il tema del villaggio rotto e stonato. Con una risata.
+Tutta originale, sintetizzata nota per nota: un valzer per il villaggio (che si spegne quando ti avvicini al bordo), un carillon in re minore per la biblioteca, un tema di battaglia, e per il game over il tema del villaggio rotto e stonato. Con una risata. Poi il bosco, il boss, il **prologo** del filmato iniziale (notte, villaggio, il bosco che si scorda, un colpo) e **Un giorno nuovo** per i titoli di coda.
 
 ### Combattimenti a turni
 
