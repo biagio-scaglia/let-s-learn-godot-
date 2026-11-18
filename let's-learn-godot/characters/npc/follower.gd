@@ -30,6 +30,11 @@ func _ready() -> void:
 	if _npc is CollisionObject2D:
 		_npc.collision_layer = 0
 	_player = get_tree().get_first_node_in_group("player") as Node2D
+	# Sempre accanto al giocatore: se c'è altro con cui interagire (un nemico, un
+	# cartello), E va a quello, non a chi segue.
+	var talk := _npc.get_node_or_null("Interactable") as Interactable
+	if talk:
+		talk.low_priority = true
 	# Dopo tutti i _ready (il livello ha già messo il giocatore al suo posto, e una
 	# cutscene avrebbe già detto di sé): se non c'è una regia, si mette dietro di lui.
 	_snap_if_free.call_deferred()
