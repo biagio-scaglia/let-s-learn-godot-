@@ -454,7 +454,7 @@ func _do_shatter(skill: Dictionary) -> void:
 	await _pause(0.35)
 	_ally_pose(AllyPose.RELEASE)
 	Sfx.play(Sfx.ICE_CAST)
-	var target := enemy_sprite.position + Vector2(0, -36)
+	var target := _enemy_center()
 	vfx.frost_burst(target, 3.0)
 	vfx.ice_block(enemy_sprite.position, 0.9)   # resta intero finché Subaru non arriva
 	create_tween().tween_property(enemy_sprite, "modulate", Color(0.6, 0.85, 1.3), 0.15)
