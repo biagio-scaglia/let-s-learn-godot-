@@ -24,3 +24,38 @@ func _ready() -> void:
 			[archivista, _on_archivista], [black_book, _on_black_book]]:
 		if pair[0]:
 			pair[0].interacted.connect(pair[1])
+
+
+# ---------- Il Saggio ----------
+
+func _on_saggio() -> void:
+	if not Game.has_flag(FlagKeys.SAGE_FORGETS):
+		var hello: PackedStringArray = [
+			"Oh, un volto nuovo! Benvenuto a Erbalta. Io sono il Saggio: passo le giornate a guardare crescere gli alberi.",
+			"Se hai fretta, tieni premuto Shift per correre... ma qui nessuno ha fretta.",
+		] if saggio.times == 0 else []
+		saggio.override_lines = hello + PackedStringArray([
+			"Voci strane? Su Erbalta? Ah! Qui non succede mai niente, ragazzo.",
+			"Ogni giorno è uguale a quello prima. Gli stessi alberi, alti uguale...",
+			"...Uguale. Proprio uguale.",
+			"Da quanto tempo li guardo crescere? Ieri. L'altro ieri. Prima ancora...",
+			"Che strano. Non me lo ricordo.",
+			"Il cartello della piazza l'ha scritto mio nonno. O l'ho scritto io? Che testa...",
+			"Senti, va' da mia nipote Lina, nella casa col tetto rosso. Nel baule di sua nonna c'è tutta la storia della famiglia.",
+		])
+		Game.set_flag(FlagKeys.SAGE_FORGETS)
+	elif Game.has_flag(FlagKeys.ACT2_DONE):
+		saggio.override_lines = [
+			"Il bosco a nord? Non ci va nessuno, ragazzo. Non ci è mai andato nessuno.",
+			"...Però, se ci vai, guarda se gli alberi lassù crescono. Io non li ho mai visti crescere.",
+		]
+	elif Game.has_flag(FlagKeys.BOOK_READ):
+		saggio.override_lines = [
+			"Hai la faccia di chi ha letto qualcosa che non doveva.",
+			"Non dirmelo. Se è una cosa triste, preferisco dimenticarla. Mi riesce bene.",
+		]
+	else:
+		saggio.override_lines = [
+			"Sei stato da Lina? Casa col tetto rosso, a nord-ovest. Non puoi sbagliare.",
+			"Io resto qui, con i miei alberi. Ci facciamo compagnia.",
+		]
