@@ -50,7 +50,7 @@ func _ready() -> void:
 		_show_closed()
 		return
 	gaze.rotation_degrees = base_angle - sweep
-	_sweep_tween = create_tween().set_loops()
+	_sweep_tween = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS).set_loops()
 	_sweep_tween.tween_property(gaze, "rotation_degrees", base_angle + sweep, sweep_time) \
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	_sweep_tween.tween_property(gaze, "rotation_degrees", base_angle - sweep, sweep_time) \
@@ -98,6 +98,7 @@ func _caught() -> void:
 	t.tween_property(_player, "modulate", Color.WHITE, 0.25)
 	await Fade.fade_out()
 	_player.global_position = respawn
+	_player.reset_physics_interpolation()
 	_player.face(Facing.DOWN)
 	if Stats.hp > sight_damage:
 		Stats.take_damage(sight_damage)
@@ -155,7 +156,7 @@ func _shake_camera() -> void:
 	var camera := _player.get_node_or_null("Camera2D") as Camera2D if _player else null
 	if camera == null:
 		return
-	var t := create_tween()
+	var t := create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	for i in 6:
 		t.tween_property(camera, "offset", Vector2(randf_range(-4, 4), randf_range(-3, 3)), 0.04)
 	t.tween_property(camera, "offset", Vector2.ZERO, 0.05)
