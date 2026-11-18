@@ -114,3 +114,12 @@ func _play() -> void:
 
 func _elapsed() -> float:
 	return (Time.get_ticks_msec() - _start) / 1000.0
+
+
+## Aspetta il secondo "seconds" del filmato. Restituisce false se nel frattempo è
+## stato saltato: chi chiama deve smettere (return).
+func _at(seconds: float) -> bool:
+	var left := seconds - _elapsed()
+	if left > 0.0:
+		await get_tree().create_timer(left).timeout
+	return not _done and is_inside_tree()
