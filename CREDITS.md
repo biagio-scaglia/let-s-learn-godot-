@@ -37,4 +37,4 @@ Subaru ed Emilia sono personaggi di *Re:Zero − Starting Life in Another World*
 
 Ombre, icone e il suono del testo in `let's-learn-godot/assets/effects/` sono stati generati da uno script Python (`tools/genera_effetti.py`, poi rimosso: resta nella cronologia di git).
 
-I suoni del combattimento (`hit.wav`, `heal.wav`, `level_up.wav`), la cornice delle finestre (`assets/ui/window_battle.png`), la manina (`assets/ui/cursor_hand.png`) e gli effetti `assets/effects/vfx_impact.png`, `vfx_slash.png`, `shadow_hand.png`, `watching_eyes.png`, `watcher_tall.png`, `watcher_tall_eyes.png`, `big_eye_*.png` e `assets/ui/dialog_warning.png` sono stati fatti da noi con script Python usa e getta.
+I suoni del combattimento (`hit.wav`, `heal.wav`, `level_up.wav`), la cornice delle finestre (`assets/ui/window_battle.png`), la manina (`assets/ui/cursor_hand.png`) e gli effetti `assets/effects/vfx_impact.png`, `vfx_slash.png`, `shadow_hand.png`, `watching_eyes.png`, `watcher_tall.png`, `watcher_tall_eyes.png`, `big_eye_*.png` e `assets/ui/dialog_warning.png` e `assets/ui/lock.png` (il lucchetto della Galleria) sono stati fatti da noi con script Python usa e getta.
