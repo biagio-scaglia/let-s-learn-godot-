@@ -167,7 +167,7 @@ func _breathe() -> void:
 
 
 func _shake(camera: Camera2D, seconds: float) -> void:
-	if camera == null:
+	if camera == null or not Settings.screen_shake:
 		return
 	var base := camera.offset
 	var t := create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)

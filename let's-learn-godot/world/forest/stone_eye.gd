@@ -154,7 +154,7 @@ func _close() -> void:
 
 func _shake_camera() -> void:
 	var camera := _player.get_node_or_null("Camera2D") as Camera2D if _player else null
-	if camera == null:
+	if camera == null or not Settings.screen_shake:
 		return
 	var t := create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
 	for i in 6:

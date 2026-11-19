@@ -37,6 +37,7 @@ func _ready() -> void:
 	black.color.a = 1.0
 	shade.color = Color(SHADOW, 0.0)
 	flash.color.a = 0.0
+	flash.self_modulate.a = Settings.flash_amount()   # accessibilità: lampi attenuati
 	for label in [presents, narration]:
 		label.modulate.a = 0.0
 	skip_hint.modulate.a = 0.0

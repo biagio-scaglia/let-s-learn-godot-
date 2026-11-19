@@ -160,6 +160,10 @@ func bump(control: Control) -> void:
 
 ## Scuote la scena: tanti piccoli spostamenti casuali che si smorzano.
 func shake(strength: float, time: float) -> void:
+	# Accessibilità: con lo scuotimento spento nelle opzioni, niente.
+	strength *= Settings.shake_amount()
+	if strength <= 0.0:
+		return
 	var t := create_tween()
 	var steps := int(time / 0.03)
 	for i in steps:
