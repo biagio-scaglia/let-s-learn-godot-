@@ -146,7 +146,7 @@ offset_right = 200.0
 offset_bottom = 126.0
 grow_horizontal = 2
 theme_type_variation = &"SubtitleLabel"
-text = "let's learn godot"
+text = "Un'alba ancora"
 horizontal_alignment = 1
 
 [node name="Ornament" type="Control" parent="UI"]
@@ -318,7 +318,7 @@ offset_bottom = -6.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_type_variation = &"HintLabel"
-text = "v1.0"
+text = "v1.1"
 horizontal_alignment = 2
 
 [node name="Credit" type="Label" parent="UI"]
