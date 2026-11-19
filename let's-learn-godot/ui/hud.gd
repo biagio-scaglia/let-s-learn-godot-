@@ -38,7 +38,7 @@ func _ready() -> void:
 
 ## "Hai trovato: Pozione rossa x2"
 func show_item(item: Item, amount := 1) -> void:
-	var text := "Hai trovato: " + item.name
+	var text := tr("Hai trovato: %s") % tr(item.name)
 	if amount > 1:
 		text += " x%d" % amount
 	show_message(text, item.icon)

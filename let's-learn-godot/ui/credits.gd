@@ -139,11 +139,11 @@ func _build_list() -> void:
 				list.add_child(gap)
 			"cast":
 				for book in GalleryBooks.CHARACTERS:
-					list.add_child(_portrait_row(book.id, book.name, book.role))
+					list.add_child(_portrait_row(book.id, tr(book.name), tr(book.role)))
 			"monsters":
 				for book in GalleryBooks.MONSTERS:
 					var data := Portraits.enemy_data(book.id)
-					list.add_child(_portrait_row(book.id, data.name if data else book.id, book.role))
+					list.add_child(_portrait_row(book.id, tr(data.name) if data else book.id, tr(book.role)))
 			_:
 				list.add_child(_label(row[0], row[1]))
 

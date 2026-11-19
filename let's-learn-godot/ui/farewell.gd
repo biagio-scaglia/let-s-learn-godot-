@@ -96,23 +96,28 @@ static func name_from_login(login: String) -> String:
 	for separator in [".", "_", "-", " ", "@"]:
 		first = first.get_slice(separator, 0)
 	if first.is_empty():
-		return "straniero"
+		return _t("straniero")
 	return first.left(1).to_upper() + first.substr(1).to_lower()
+
+
+## tr() per le funzioni static (che non hanno un nodo su cui chiamarlo).
+static func _t(text: String) -> String:
+	return str(TranslationServer.translate(text))
 
 
 ## La frase d'addio. Sceglie la più "personale" che può.
 static func goodbye_line(who: String, deaths: int, hour: int, minute: int, minutes_played: int, in_game_over: bool) -> String:
 	if in_game_over:
-		return "Scappi proprio adesso, %s?" % who
+		return _t("Scappi proprio adesso, %s?") % who
 	if hour < 5:
-		return "Sono le %d:%02d, %s. Dovresti dormire." % [hour, minute, who]
+		return _t("Sono le %d:%02d, %s. Dovresti dormire.") % [hour, minute, who]
 	if minutes_played < 2:
-		return "Te ne vai già, %s?" % who
+		return _t("Te ne vai già, %s?") % who
 	if deaths == 1:
-		return "Sei morto una volta. Tornerai, %s." % who
+		return _t("Sei morto una volta. Tornerai, %s.") % who
 	if deaths > 1:
-		return "Sei morto %d volte. Tornerai, %s." % [deaths, who]
-	return "Ci rivedremo, %s." % who
+		return _t("Sei morto %d volte. Tornerai, %s.") % [deaths, who]
+	return _t("Ci rivedremo, %s.") % who
 
 
 # ---------- Il congedo ----------
@@ -175,7 +180,7 @@ func _corrupt() -> void:
 	var t := create_tween()
 	t.tween_method(_set_glitch, 0.9, 0.2, 0.4 * speed)
 	t.tween_property(message, "visible_ratio", 0.0, 0.3 * speed)
-	t.tween_callback(func() -> void: message.text = "%s... sei sicuro?" % user_name)
+	t.tween_callback(func() -> void: message.text = tr("%s... sei sicuro?") % user_name)
 	t.tween_property(message, "visible_ratio", 1.0, 0.9 * speed)
 	_flicker_no()
 	await t.finished
@@ -196,7 +201,7 @@ func _flicker_no() -> void:
 
 ## Hai detto no: si calma, ti lascia restare, e il gioco torna com'era.
 func _stay() -> void:
-	message.text = "...Bene. Resta con me, %s." % user_name
+	message.text = tr("...Bene. Resta con me, %s.") % user_name
 	message.visible_ratio = 1.0
 	yes_button.disabled = true
 	no_button.disabled = true

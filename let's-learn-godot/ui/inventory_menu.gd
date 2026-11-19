@@ -81,8 +81,8 @@ func _on_slot_focused(index: int) -> void:
 		item_name.text = ""
 		item_description.text = "Lo zaino è vuoto." if _ids.is_empty() else ""
 	else:
-		item_name.text = Inventory.item(id).name
-		item_description.text = Inventory.item(id).description
+		item_name.text = tr(Inventory.item(id).name)
+		item_description.text = tr(Inventory.item(id).description)
 
 
 ## Usa l'oggetto di una casella. Le regole stanno in Inventory.use(): qui si decide
@@ -96,7 +96,7 @@ func _use(index: int) -> void:
 		Sfx.play(Sfx.HEAL)
 		# Lo zaino è cambiato: la casella ora può contenere un altro oggetto, o niente.
 		_on_slot_focused(index)
-		item_description.text = "Hai recuperato %d punti salute." % healed
+		item_description.text = tr("Hai recuperato %d punti salute.") % healed
 	elif Inventory.item(id).heal > 0:
 		item_description.text = "Sei già in piena forma."
 	else:
@@ -104,7 +104,7 @@ func _use(index: int) -> void:
 
 
 func _refresh_hint() -> void:
-	hint.text = "PS %d/%d  ·  Invio per usare  ·  Tab per chiudere" % [Stats.hp, Stats.max_hp]
+	hint.text = tr("PS %d/%d  ·  Invio per usare  ·  Tab per chiudere") % [Stats.hp, Stats.max_hp]
 
 
 func _unhandled_input(event: InputEvent) -> void:

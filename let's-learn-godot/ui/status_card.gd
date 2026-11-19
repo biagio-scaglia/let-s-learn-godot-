@@ -21,14 +21,14 @@ func _ready() -> void:
 
 
 func refresh() -> void:
-	level.text = "Livello %d" % Stats.level
+	level.text = tr("Livello %d") % Stats.level
 	hp_bar.max_value = Stats.max_hp
 	hp_bar.value = Stats.hp
-	hp.text = "PS %d/%d" % [Stats.hp, Stats.max_hp]
+	hp.text = tr("PS %d/%d") % [Stats.hp, Stats.max_hp]
 	sp_bar.max_value = Stats.max_sp
 	sp_bar.value = Stats.sp
-	sp.text = "PT %d/%d" % [Stats.sp, Stats.max_sp]
-	attack.text = "Attacco %d" % Stats.attack
-	defense.text = "Difesa %d" % Stats.defense
-	xp.text = "Esp. %d/%d" % [Stats.xp, Stats.xp_to_next()]
-	deaths.text = "Morti %d" % Game.deaths
+	sp.text = tr("PT %d/%d") % [Stats.sp, Stats.max_sp]
+	attack.text = tr("Attacco %d") % Stats.attack
+	defense.text = tr("Difesa %d") % Stats.defense
+	xp.text = tr("Esp. %d/%d") % [Stats.xp, Stats.xp_to_next()]
+	deaths.text = tr("Morti %d") % Game.deaths
