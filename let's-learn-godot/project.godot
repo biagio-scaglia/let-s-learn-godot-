@@ -10,7 +10,9 @@ config_version=5
 
 [application]
 
-config/name="let's learn godot"
+config/name="Erbalta"
+config/description="Un piccolo RPG in pixel art: Subaru ed Emilia, un villaggio che ricomincia ogni alba e qualcosa nel bosco che guarda."
+config/version="1.1"
 run/main_scene="res://ui/opening_movie.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://assets/icon/icon.png"
@@ -107,6 +109,11 @@ inventory={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://locale/en.po")
+locale/fallback="it"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
@@ -115,6 +122,7 @@ common/physics_interpolation=true
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method.web="gl_compatibility"
 rendering_device/driver.windows="d3d12"
 environment/defaults/default_clear_color=Color(0.07, 0.05, 0.09, 1)
 2d/snap/snap_2d_transforms_to_pixel=true
