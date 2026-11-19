@@ -43,6 +43,8 @@ func _ready() -> void:
 	title_button.pressed.connect(_on_title)
 	# Anche da morto si può uscire: con il congedo, che qui ha una frase sua.
 	quit_button.pressed.connect(Farewell.leave)
+	# Sul web (itch.io, Game Jolt) non si esce: si chiude la scheda del browser.
+	quit_button.visible = not OS.has_feature("web")
 	_reset()
 
 
@@ -106,7 +108,7 @@ func die() -> void:
 
 
 func _shake(camera: Camera2D) -> void:
-	if camera == null:
+	if camera == null or not Settings.screen_shake:
 		return
 	var t := create_tween()
 	for i in 8:
@@ -116,7 +118,7 @@ func _shake(camera: Camera2D) -> void:
 
 
 func _show_panel() -> void:
-	count.text = "Morte n. %d" % Game.deaths
+	count.text = tr("Morte n. %d") % Game.deaths
 	# Qualcuno ride. Poi, piano, entra il tema del game over (in loop).
 	laugh.play()
 	game_over_music.volume_db = -40.0

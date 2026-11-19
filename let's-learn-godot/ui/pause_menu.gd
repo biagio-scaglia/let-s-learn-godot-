@@ -27,6 +27,8 @@ func _ready() -> void:
 	options_button.pressed.connect(_open_options)
 	title_button.pressed.connect(_back_to_title)
 	quit_button.pressed.connect(Farewell.leave)
+	# Sul web (itch.io, Game Jolt) non si esce: si chiude la scheda del browser.
+	quit_button.visible = not OS.has_feature("web")
 	options.closed.connect(_on_options_closed)
 
 

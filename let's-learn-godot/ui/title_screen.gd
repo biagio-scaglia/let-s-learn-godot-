@@ -52,13 +52,15 @@ func _ready() -> void:
 	continue_button.visible = not info.is_empty()
 	save_info.visible = not info.is_empty()
 	if not info.is_empty():
-		save_info.text = "%s\n%s" % [info.luogo, _pretty_date(info.data)]
+		save_info.text = "%s\n%s" % [tr(info.luogo), _pretty_date(info.data)]
 	_setup_gallery_button()
 	continue_button.pressed.connect(_on_continue)
 	new_game_button.pressed.connect(_on_new_game)
 	gallery_button.pressed.connect(_on_gallery)
 	options_button.pressed.connect(_on_options)
 	quit_button.pressed.connect(Farewell.leave)
+	# Sul web (itch.io, Game Jolt) non si esce: si chiude la scheda del browser.
+	quit_button.visible = not OS.has_feature("web")
 	options.closed.connect(_on_options_closed)
 	# Qualcuno nel buio afferra la voce che scegli.
 	hands.watch(menu.get_children())
