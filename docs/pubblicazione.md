@@ -88,9 +88,8 @@ butler push build/windows   <utente>/erbalta:windows
 > Click **More info → Run anyway**.
 >
 > **About this project**
-> Erbalta is a learning project: I made it to learn Godot 4, working with an AI assistant
-> (Claude) for code, writing, music and pixel art. I designed it, directed it, tested it
-> and played it. The full dev diary (in Italian) is on GitHub:
+> Erbalta is a learning project: I made it to learn Godot 4.
+> The full dev diary (in Italian) is on GitHub:
 > https://github.com/biagio-scaglia/let-s-learn-godot-
 >
 > Made with Godot 4.7. Tiles, font and some sounds by Kenney (CC0).
