@@ -34,7 +34,7 @@ msgid "Se camminiamo tutta la notte, arriveremo all'alba."
 msgstr "If we walk all night, we'll get there by dawn."
 
 msgid "Una gita al chiaro di luna con Emiliuccia! E... cosa ci andiamo a fare, esattamente?"
-msgstr "A moonlit stroll with Emiliuccia! And... what are we going there for, exactly?"
+msgstr "A moonlit stroll with Emilia-tan! And... what are we going there for, exactly?"
 
 msgid "Da qualche giorno da Erbalta arrivano voci strane. Sembra che nessuno voglia più lasciare il villaggio."
 msgstr "For a few days now, strange rumors have been coming from Erbalta. It seems nobody wants to leave the village anymore."
@@ -43,10 +43,10 @@ msgid "Io resterò in piazza a tenere d'occhio le cose. Tu invece parlerai con l
 msgstr "I'll stay in the square and keep an eye on things. You'll talk to the people: you're good at that."
 
 msgid "Bravissimo! Lascia fare a me, Emiliuccia!"
-msgstr "Leave it to me, Emiliuccia!"
+msgstr "Leave it to me, Emilia-tan!"
 
 msgid "...\"Emiliuccia\"? Ma come ti viene in mente, Subaru?"
-msgstr "...\"Emiliuccia\"? Where do you even come up with these, Subaru?"
+msgstr "...\"Emilia-tan\"? Where do you even come up with these, Subaru?"
 
 msgid "Aspetta, Subaru. Prima di partire salutiamo tutti."
 msgstr "Wait, Subaru. Let's say goodbye to everyone before we go."
@@ -73,7 +73,7 @@ msgid "Ah! Allora sbrigatevi: adesso crescono."
 msgstr "Ha! Then hurry back: they grow now."
 
 msgid "Allora... andiamo, Emiliuccia?"
-msgstr "So... shall we go, Emiliuccia?"
+msgstr "So... shall we go, Emilia-tan?"
 
 msgid "Andiamo. ...Subaru?"
 msgstr "Let's go. ...Subaru?"
@@ -840,6 +840,9 @@ msgstr "%s... are you sure?"
 msgid "Sì"
 msgstr "Yes"
 
+msgid "Clicca o premi un tasto per iniziare"
+msgstr "Click or press a key to start"
+
 msgid "straniero"
 msgstr "stranger"
 
@@ -1102,7 +1105,7 @@ msgid "Il ghiaccio si spezza, e l'ombra con lui."
 msgstr "The ice shatters, and the shadow with it."
 
 msgid "Un attacco combinato con Emiliuccia?! ...Questo bosco comincia a piacermi."
-msgstr "A combo attack with Emiliuccia?! ...I'm starting to like these woods."
+msgstr "A combo attack with Emilia-tan?! ...I'm starting to like these woods."
 
 msgid "Nuova abilità: Cristallo infranto"
 msgstr "New skill: Shattered Crystal"
@@ -1222,7 +1225,7 @@ msgid "Ha un potere che non ha mai chiesto: quando muore torna indietro, all'ult
 msgstr "He has a power he never asked for: when he dies, he goes back to the last point of return. The world forgets. He doesn't."
 
 msgid "In battaglia usa pugni, calci e un'ombra che non sa spiegare. Chiama Emilia \"Emiliuccia\": lei fa finta di arrabbiarsi."
-msgstr "In battle he uses punches, kicks and a shadow he can't explain. He calls Emilia \"Emiliuccia\": she pretends to be annoyed."
+msgstr "In battle he uses punches, kicks and a shadow he can't explain. He calls Emilia \"Emilia-tan\": she pretends to be annoyed."
 
 msgid "La ragazza dai capelli d'argento"
 msgstr "The Silver-Haired Girl"
