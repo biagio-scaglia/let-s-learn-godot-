@@ -1,10 +1,10 @@
-# Let's learn Godot — *Erbalta*
+# *Erbalta* — un'alba ancora
 
 Un piccolo RPG in pixel art fatto per **imparare Godot 4 un passo alla volta**: un villaggio da esplorare, dialoghi, una missione, combattimenti a turni con scudi e debolezze, la morte che ti riporta indietro… e qualcuno, nel buio, che non vuole lasciarti andare.
 
 ![La schermata iniziale: una mano d'ombra afferra la voce scelta, e dal buio si aprono due occhi](docs/titolo.gif)
 
-**Godot 4.7.2** · GDScript · pixel art · **la storia completa, dall'inizio ai titoli di coda** · **200 test** automatici con gdUnit4 · un diario di sviluppo in [Obsidian](gamelog/Gamelog.md)
+**Godot 4.7.2** · GDScript · pixel art · **la storia completa, dall'inizio ai titoli di coda** · **in inglese e in italiano** · **204 test** automatici con gdUnit4 · un diario di sviluppo in [Obsidian](gamelog/Gamelog.md)
 
 🎬 **[Guarda il trailer](docs/trailer.mp4)** (2:28): il filmato iniziale, il titolo, le battaglie, Colui che guarda e l'Alba di cristallo, il finale, i titoli di coda e la Galleria. Registrato dal gioco stesso con il Movie Maker di Godot.
 
@@ -165,11 +165,11 @@ Quando esci, la finestra del gioco sparisce e sul desktop compare una finestra d
 | Esc | Menu di pausa (riprendi, salva, opzioni, torna al titolo, esci) |
 | Tab o I | Zaino (Invio usa l'oggetto selezionato) |
 
-Nelle opzioni si regolano volume e schermo intero, e vengono ricordati. Dopo aver salvato, nel titolo compare *Continua*. Il filmato iniziale si salta con un tasto qualsiasi; nella Galleria Esc riporta al titolo.
+Nelle opzioni si regolano volume, schermo intero, **lingua** (English di default, o Italiano), **velocità del testo** e due opzioni di **accessibilità**: lo scuotimento dello schermo si può spegnere e i lampi a tutto schermo si possono attenuare. Tutto viene ricordato. Dopo aver salvato, nel titolo compare *Continua*. Il filmato iniziale si salta con un tasto qualsiasi; nella Galleria Esc riporta al titolo.
 
 ## Test
 
-I test sono in `let's-learn-godot/test/` e usano [gdUnit4](https://github.com/godot-gdunit-labs/gdUnit4): **200** in tutto, dalle regole del combattimento al congedo, al finale e alla Galleria.
+I test sono in `let's-learn-godot/test/` e usano [gdUnit4](https://github.com/godot-gdunit-labs/gdUnit4): **204** in tutto, dalle regole del combattimento al congedo, al finale, alla Galleria e alla traduzione (`settings_test` controlla che ogni frase di `en.po` abbia gli stessi `%s`/`%d` dell'italiano).
 
 - **Nell'editor:** pannello *GdUnit* → ▶.
 - **Da terminale**, nella cartella `let's-learn-godot`:
@@ -179,6 +179,25 @@ test.cmd --godot_binary C:\percorso\Godot_v4.7.2-stable_win64.exe
 ```
 
 (oppure imposta la variabile d'ambiente `GODOT_BIN` e lancia solo `test.cmd`). I report vanno in `reports/`.
+
+## Lingue
+
+Il gioco è scritto in italiano: le scene e gli script contengono le frasi originali. La traduzione inglese sta in `let's-learn-godot/locale/en.po` (formato gettext: `msgid` è l'italiano, `msgstr` l'inglese), registrata in *Impostazioni progetto → Localizzazione*.
+
+- Le **Label** e i **Button** si traducono da soli (*auto translate*).
+- Le frasi composte usano `tr()` prima di riempire i segnaposto: `tr("%s appare!") % tr(enemy.name)`.
+- I dialoghi passano da `Dialogue.start()`, che chiama `tr()` su ogni riga.
+- La lingua di riserva (*fallback*) è l'italiano: se una frase non è tradotta, si vede quella originale.
+
+## Pubblicare (itch.io, Game Jolt)
+
+Il progetto ha i preset di esportazione **Windows** e **Web** (`export_presets.cfg`). Con i template di esportazione installati:
+
+```
+export.cmd C:\percorso\Godot_v4.7.2-stable_win64.exe
+```
+
+crea `build/Erbalta-windows.zip` e `build/Erbalta-web.zip`. La versione web usa il renderer *Compatibility* e non usa i thread, quindi gira su itch.io e Game Jolt senza impostazioni speciali. I passi per caricarli e i testi della pagina (inglese e italiano) sono in [docs/pubblicazione.md](docs/pubblicazione.md).
 
 ## Com'è fatto
 
@@ -193,7 +212,8 @@ test.cmd --godot_binary C:\percorso\Godot_v4.7.2-stable_win64.exe
 | `let's-learn-godot/test/` | I test: `core/` e `quests/` (unitari), `world/`, `characters/` e `ui/` (di scena) |
 | `let's-learn-godot/addons/` | gdUnit4 per i test; Dialogue Manager, Phantom Camera e Beehave, installati per i prossimi passi |
 | `gamelog/` | Il diario di sviluppo, un vault di Obsidian |
-| `docs/` | Le GIF di questo README |
+| `let's-learn-godot/locale/` | La traduzione inglese (`en.po`) |
+| `docs/` | Le GIF di questo README, il trailer, la guida alla pubblicazione |
 | `sorgenti/` | I file di partenza, prima della pulizia |
 
 ## Il diario di sviluppo
