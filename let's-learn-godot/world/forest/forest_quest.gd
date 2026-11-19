@@ -29,7 +29,7 @@ func _on_eye_closed(id: String, eye: StoneEye) -> void:
 	if count == FlagKeys.STONE_EYES.size():
 		await _open_the_way()
 	else:
-		Dialogue.start("Emilia", ["Uno in meno. Ne restano %d." % (FlagKeys.STONE_EYES.size() - count)])
+		Dialogue.start("Emilia", [tr("Uno in meno. Ne restano %d.") % (FlagKeys.STONE_EYES.size() - count)])
 		await Dialogue.finished
 	Game.in_cutscene = false
 

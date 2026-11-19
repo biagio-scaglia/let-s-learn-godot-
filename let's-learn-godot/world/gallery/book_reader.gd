@@ -44,8 +44,8 @@ func open(book_id: String) -> void:
 	if book.is_empty():
 		return
 	_portrait.texture = Portraits.of(book_id)
-	_name.text = book.get("name", book_id)
-	_role.text = book.get("role", "")
+	_name.text = tr(book.get("name", book_id))
+	_role.text = tr(book.get("role", ""))
 	_fill_stats(book.get("stats", []))
 	_pages = book.get("pages", [])
 	_page = 0

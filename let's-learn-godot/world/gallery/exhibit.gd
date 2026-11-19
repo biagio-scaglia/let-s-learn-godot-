@@ -87,7 +87,7 @@ func _add_statue(book: Dictionary) -> void:
 	var plate := INTERACTABLE.instantiate() as Interactable
 	plate.speaker = "Statua"
 	plate.lines = [
-		"Una statua di Subaru, in posa eroica. Sulla base: \"%s\"." % book.get("role", ""),
+		tr("Una statua di Subaru, in posa eroica. Sulla base: \"%s\".") % tr(book.get("role", "")),
 		"...Mi somiglia un sacco. Bel lavoro, chiunque sia stato.",
 	]
 	plate.repeat_lines = ["Lo sguardo di pietra fissa l'orizzonte. Quello vero non lo fa mai."]

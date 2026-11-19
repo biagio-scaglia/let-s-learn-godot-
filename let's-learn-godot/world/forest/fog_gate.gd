@@ -68,6 +68,6 @@ func _update_lines() -> void:
 	var left := FlagKeys.STONE_EYES.size() - FlagKeys.eyes_closed_count()
 	if left == FlagKeys.STONE_EYES.size():
 		return   # le frasi della scena: la prima volta che la vedi
-	var glows := "brilla un ultimo bagliore" if left == 1 else "brillano ancora %d bagliori" % left
-	interactable.lines = ["La nebbia viola è ancora qui. Dentro, %s." % glows]
+	var glows := tr("brilla un ultimo bagliore") if left == 1 else tr("brillano ancora %d bagliori") % left
+	interactable.lines = [tr("La nebbia viola è ancora qui. Dentro, %s.") % glows]
 	interactable.repeat_lines = []

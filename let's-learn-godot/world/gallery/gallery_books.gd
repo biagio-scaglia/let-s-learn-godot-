@@ -135,7 +135,7 @@ static func _with_stats(book: Dictionary) -> Dictionary:
 	full["name"] = data.name
 	var weak: Array[String] = []
 	for w in data.weaknesses:
-		weak.append(HIT_NAMES.get(w, w))
+		weak.append(str(TranslationServer.translate(HIT_NAMES.get(w, w))))
 	full["stats"] = [
 		["PS", str(data.max_hp)],
 		["Attacco", str(data.attack)],

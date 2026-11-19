@@ -41,7 +41,7 @@ static func current() -> String:
 		var greeted := FlagKeys.greeted_count()
 		if greeted == FlagKeys.VILLAGERS.size():
 			return LEAVE_SOUTH
-		return GREET_VILLAGE % greeted
+		return str(TranslationServer.translate(GREET_VILLAGE)) % greeted
 	if Game.has_flag(FlagKeys.BOSS_DEFEATED):
 		return BACK_HOME
 	if Game.has_flag(FlagKeys.FOREST_ARRIVED):
@@ -50,7 +50,7 @@ static func current() -> String:
 			return ENTER_CLEARING
 		# Finché non ha visto la nebbia (o chiuso un occhio), basta attraversare il bosco.
 		if closed > 0 or Game.has_flag(FlagKeys.FOG_SEEN):
-			return CLOSE_EYES % closed
+			return str(TranslationServer.translate(CLOSE_EYES)) % closed
 		return CROSS_FOREST
 	if Game.has_flag(FlagKeys.ACT2_DONE):
 		return DEPART
