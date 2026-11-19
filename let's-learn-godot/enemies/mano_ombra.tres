@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_data")
 name = "Mano d'ombra"
-max_hp = 18
-attack = 6
+max_hp = 28
+attack = 7
 defense = 2
 shield = 2
 weaknesses = Array[String](["calcio", "ghiaccio"])
