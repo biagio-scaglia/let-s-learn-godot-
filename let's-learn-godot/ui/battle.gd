@@ -191,6 +191,8 @@ func start(data: EnemyData) -> String:
 	if is_active:
 		return ""
 	is_active = true
+	# Accessibilità: i lampi a tutto schermo si attenuano se il giocatore lo chiede.
+	flash.self_modulate.a = Settings.flash_amount()
 	# Come in una cutscene: Subaru sulla mappa sta fermo e i menu non si aprono.
 	Game.in_cutscene = true
 	enemy = data
@@ -304,7 +306,7 @@ func _intro() -> void:
 	vfx.landing_dust(hero.position)
 	vfx.landing_dust(enemy_sprite.position)
 	vfx.shake(2.0, 0.15)
-	await _say("%s appare!" % enemy.name)
+	await _say(tr("%s appare!") % tr(enemy.name))
 	if behavior:
 		await behavior.after_intro()
 	_player_turn()
@@ -368,7 +370,7 @@ func _use_skill(id: String) -> void:
 		ally_sp -= skill.cost
 		_update_ally_info()
 		_act()
-		_announce("Emilia: " + skill.name)
+		_announce(tr("Emilia: %s") % tr(skill.name))
 		if id == "gelo":
 			await _ally_frost(skill)
 		else:
@@ -536,24 +538,38 @@ func _setup_ally() -> void:
 		emilia_sprite.position = _ally_home()
 		emilia_sprite.visible = true
 		_ally_pose(AllyPose.STAND)
-		# Respira piano, come i PNG sulla mappa.
-		_ally_breath = create_tween().set_loops()
-		_ally_breath.tween_property(emilia_sprite, "scale", Vector2(ALLY_SCALE * 1.02, ALLY_SCALE * 0.97), 0.9).set_trans(Tween.TRANS_SINE)
-		_ally_breath.tween_property(emilia_sprite, "scale", Vector2(ALLY_SCALE, ALLY_SCALE), 0.9).set_trans(Tween.TRANS_SINE)
 	else:
 		emilia_sprite.visible = false
 	_update_ally_info()
 
 
+## Respira piano, come i PNG sulla mappa: solo in piedi, e di un pixel solo
+## (la cella è alta 48). Con 0.97 perdeva righe e sembrava più bassa di Subaru.
+func _start_ally_breathing() -> void:
+	if _ally_breath:
+		return
+	var base := Vector2(ALLY_SCALE, ALLY_SCALE)
+	_ally_breath = create_tween().set_loops()
+	_ally_breath.tween_property(emilia_sprite, "scale", base * Vector2(1.0 + 1.0 / 44.0, 1.0 - 1.0 / 48.0), 0.9).set_trans(Tween.TRANS_SINE)
+	_ally_breath.tween_property(emilia_sprite, "scale", base, 0.9).set_trans(Tween.TRANS_SINE)
+
+
+## Ferma il respiro e la rimette alla sua altezza vera.
 func _stop_ally_breathing() -> void:
 	if _ally_breath:
 		_ally_breath.kill()
 		_ally_breath = null
+	emilia_sprite.scale = Vector2(ALLY_SCALE, ALLY_SCALE)
 
 
 func _ally_pose(pose: int) -> void:
 	if with_emilia:
 		emilia_sprite.frame = ALLY_ROW * 6 + pose
+		# Durante un attacco niente respiro: le pose restano alte quanto la cella.
+		if pose == AllyPose.STAND:
+			_start_ally_breathing()
+		else:
+			_stop_ally_breathing()
 
 
 func _update_ally_info() -> void:
@@ -637,7 +653,7 @@ func _ally_defend() -> void:
 	ally_sp = mini(ALLY_MAX_SP, ally_sp + ALLY_DEFEND_SP)
 	_update_ally_info()
 	if ally_sp > before:
-		vfx.pop_number(emilia_sprite.position, "+%d PT" % (ally_sp - before), Color(0.5, 0.78, 1.0), -140.0, 24)
+		vfx.pop_number(emilia_sprite.position, tr("+%d PT") % (ally_sp - before), Color(0.5, 0.78, 1.0), -140.0, 24)
 	await _pause(message_time * 0.6)
 	announce_box.visible = false
 	_ally_pose(AllyPose.STAND)
@@ -986,7 +1002,7 @@ func _on_defend() -> void:
 	vfx.glow(hero, Color(0.6, 0.85, 1.6))
 	var restored := Stats.restore_sp(DEFEND_SP)
 	if restored > 0:
-		vfx.pop_number(hero.position, "+%d PT" % restored, Color(0.5, 0.78, 1.0), -128.0, 24)
+		vfx.pop_number(hero.position, tr("+%d PT") % restored, Color(0.5, 0.78, 1.0), -128.0, 24)
 	await _pause(message_time * 0.6)
 	announce_box.visible = false
 	_next_turn()
@@ -1023,11 +1039,11 @@ func _enemy_turn() -> void:
 			var t := create_tween()
 			t.tween_property(enemy_sprite, "rotation", 0.25, 0.15)
 			t.tween_property(enemy_sprite, "rotation", -0.25, 0.15)
-			await _say("%s è stordito!" % enemy.name)
+			await _say(tr("%s è stordito!") % tr(enemy.name))
 			_player_turn()
 			return
 		_recover()
-		await _say("%s si riprende." % enemy.name)
+		await _say(tr("%s si riprende.") % tr(enemy.name))
 
 	if behavior:
 		var handled: bool = await behavior.take_turn()
@@ -1090,14 +1106,14 @@ func _victory() -> void:
 	await t.finished
 	hero.play("cheer")
 	var levels := Stats.gain_xp(enemy.xp)
-	var text := "Esperienza  +%d" % enemy.xp
+	var text := tr("Esperienza  +%d") % enemy.xp
 	if levels > 0:
 		Sfx.play(Sfx.LEVEL_UP)
 		vfx.level_up_burst()
-		text += "\nLivello %d!  Salute, PT, attacco e difesa aumentano." % Stats.level
+		text += tr("\nLivello %d!  Salute, PT, attacco e difesa aumentano.") % Stats.level
 	else:
 		Sfx.play(Sfx.CONFIRM)
-		text += "\nAl prossimo livello: %d" % (Stats.xp_to_next() - Stats.xp)
+		text += tr("\nAl prossimo livello: %d") % (Stats.xp_to_next() - Stats.xp)
 	results_text.text = text
 	results.visible = true
 	results.modulate.a = 0.0
@@ -1213,7 +1229,7 @@ func _reveal(kind: String) -> void:
 
 ## Il nome dell'azione nella striscia in alto, senza aspettare.
 func _announce(text: String) -> void:
-	message.text = text
+	message.text = tr(text)   # i nomi (abilità, nemici) arrivano in italiano
 	message.visible_ratio = 1.0
 	announce_box.visible = true
 
@@ -1262,7 +1278,7 @@ func _idle() -> void:
 
 
 func _update_hero_info() -> void:
-	hero_level.text = "Lv %d" % Stats.level
+	hero_level.text = tr("Lv %d") % Stats.level
 	hero_hp.text = "%d/%d" % [Stats.hp, Stats.max_hp]
 	hero_sp.text = "%d/%d" % [Stats.sp, Stats.max_sp]
 	var color := HP_OK

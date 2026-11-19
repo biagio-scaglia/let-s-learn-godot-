@@ -20,7 +20,7 @@ const TYPE_ICONS := {"pugno": 1, "calcio": 2, "ombra": 3, "ghiaccio": 6}
 
 ## Un nemico nuovo: il nome e una casella per ogni debolezza.
 func show_enemy(data: EnemyData, revealed: Array[String]) -> void:
-	enemy_name.text = data.name
+	enemy_name.text = tr(data.name)
 	modulate.a = 1.0
 	for child in weakness_row.get_children():
 		child.queue_free()

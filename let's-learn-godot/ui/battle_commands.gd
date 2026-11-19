@@ -68,7 +68,7 @@ func setup(skills: Dictionary, attack: String, defend_sp: int) -> void:
 		attack_button: skills[attack].info,
 		skills_button: "Le tecniche di Subaru. Costano punti tecnica (PT).",
 		items_button: "Usa un oggetto dello zaino.",
-		defend_button: "Para: il prossimo colpo fa metà danno. Recuperi %d PT." % defend_sp,
+		defend_button: tr("Para: il prossimo colpo fa metà danno. Recuperi %d PT.") % defend_sp,
 		flee_button: "Prova a scappare. Non sempre ci si riesce.",
 		ultimate_button: "Subaru ed Emilia, insieme, con tutto quello che hanno. Una volta sola.",
 		potion_button: "",
@@ -97,8 +97,8 @@ func set_actor(who: String, emilia_sp := 0, ally_attack := "dardo", ally_defend_
 	shatter_button.visible = not is_ally and Game.has_flag(FlagKeys.COMBO_UNLOCKED) and Game.emilia_in_party()
 	_help_for[skills_button] = "Le magie di Emilia. Costano i suoi PT." if is_ally \
 		else "Le tecniche di Subaru. Costano punti tecnica (PT)."
-	_help_for[defend_button] = ("Una barriera di ghiaccio: il prossimo colpo a Subaru fa metà danno. Emilia recupera %d PT." % ally_defend_sp) if is_ally \
-		else ("Para: il prossimo colpo fa metà danno. Recuperi %d PT." % _defend_sp)
+	_help_for[defend_button] = (tr("Una barriera di ghiaccio: il prossimo colpo a Subaru fa metà danno. Emilia recupera %d PT.") % ally_defend_sp) if is_ally \
+		else (tr("Para: il prossimo colpo fa metà danno. Recuperi %d PT.") % _defend_sp)
 	_help_for[items_button] = "Emilia dà un oggetto a Subaru." if is_ally else "Usa un oggetto dello zaino."
 
 
@@ -145,8 +145,8 @@ func open_skills() -> void:
 ## Il sottomenu "Oggetti". Esc torna ai comandi.
 func open_items() -> void:
 	var count: int = Inventory.items.get(Inventory.POTION, 0)
-	potion_button.text = "Pozione   x%d" % count
-	_help_for[potion_button] = "Rimette %d PS." % Inventory.item(Inventory.POTION).heal if count > 0 else "Non ne hai."
+	potion_button.text = tr("Pozione   x%d") % count
+	_help_for[potion_button] = tr("Rimette %d PS.") % Inventory.item(Inventory.POTION).heal if count > 0 else "Non ne hai."
 	item_window.visible = true
 	potion_button.focus_silently()
 	show_help(potion_button)
@@ -172,7 +172,7 @@ func _unhandled_input(event: InputEvent) -> void:
 ## Il costo in PT, allineato a destra dentro la voce ("4+4 PT" se pagano in due).
 func _add_cost_label(button: MenuItem, skill: Dictionary) -> void:
 	var label := Label.new()
-	label.text = "%d PT" % skill.cost if not skill.has("ally_cost") else "%d+%d PT" % [skill.cost, skill.ally_cost]
+	label.text = tr("%d PT") % skill.cost if not skill.has("ally_cost") else tr("%d+%d PT") % [skill.cost, skill.ally_cost]
 	label.theme_type_variation = &"HintLabel"
 	label.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
