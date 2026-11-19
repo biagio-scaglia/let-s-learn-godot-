@@ -7,6 +7,8 @@ var _real_progress: String
 
 
 func before_test() -> void:
+	# Questi test leggono i testi del gioco: in italiano, la lingua in cui sono scritti.
+	TranslationServer.set_locale("it")
 	_real_progress = Progress.path
 	Progress.path = TEST_PROGRESS
 	Progress.load_progress()
@@ -15,6 +17,7 @@ func before_test() -> void:
 
 
 func after_test() -> void:
+	TranslationServer.set_locale(Settings.language)
 	Game.in_cutscene = false
 	if FileAccess.file_exists(TEST_PROGRESS):
 		DirAccess.remove_absolute(TEST_PROGRESS)

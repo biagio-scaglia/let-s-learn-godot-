@@ -7,12 +7,15 @@ var _real_progress: String
 
 
 func before_test() -> void:
+	# Questi test leggono i testi del gioco: in italiano, la lingua in cui sono scritti.
+	TranslationServer.set_locale("it")
 	_real_progress = Progress.path
 	Progress.path = TEST_PROGRESS
 	_clean_state()
 
 
 func after_test() -> void:
+	TranslationServer.set_locale(Settings.language)
 	if Dialogue.is_active:
 		await Dialogue._close()
 	_clean_state()

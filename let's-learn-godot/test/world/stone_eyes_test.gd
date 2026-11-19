@@ -3,10 +3,13 @@ extends GdUnitTestSuite
 
 
 func before_test() -> void:
+	# Questi test leggono i testi del gioco: in italiano, la lingua in cui sono scritti.
+	TranslationServer.set_locale("it")
 	_clean_state()
 
 
 func after_test() -> void:
+	TranslationServer.set_locale(Settings.language)
 	for i in 10:
 		if Dialogue.is_active:
 			await Dialogue._close()

@@ -6,6 +6,8 @@ var quit_called := 0
 
 
 func before_test() -> void:
+	# Questi test leggono i testi del gioco: in italiano, la lingua in cui sono scritti.
+	TranslationServer.set_locale("it")
 	quit_called = 0
 	Farewell.separate_window = false
 	Farewell.speed = 0.05
@@ -14,6 +16,7 @@ func before_test() -> void:
 
 
 func after_test() -> void:
+	TranslationServer.set_locale(Settings.language)
 	Farewell._close_window()
 	Farewell.leaving = false
 	Farewell.separate_window = true
