@@ -20,16 +20,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -180.0
-offset_top = -86.0
-offset_right = 180.0
-offset_bottom = 80.0
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 146.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBox" type="VBoxContainer" parent="Panel"]
 layout_mode = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 8
 
 [node name="Header" type="Label" parent="Panel/VBox"]
 layout_mode = 2
@@ -45,7 +45,7 @@ layout_mode = 2
 theme_override_constants/separation = 12
 
 [node name="VolumeLabel" type="Label" parent="Panel/VBox/VolumeRow"]
-custom_minimum_size = Vector2(96, 0)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 text = "Volume"
 
@@ -69,6 +69,54 @@ horizontal_alignment = 2
 unique_name_in_owner = true
 layout_mode = 2
 text = "Schermo intero"
+
+[node name="LanguageRow" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="LanguageLabel" type="Label" parent="Panel/VBox/LanguageRow"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Lingua"
+
+[node name="Language" type="Button" parent="Panel/VBox/LanguageRow"]
+unique_name_in_owner = true
+auto_translate_mode = 2
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+text = "< English >"
+
+[node name="TextSpeedRow" type="HBoxContainer" parent="Panel/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="TextSpeedLabel" type="Label" parent="Panel/VBox/TextSpeedRow"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Velocità testo"
+
+[node name="TextSpeed" type="Button" parent="Panel/VBox/TextSpeedRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+text = "< Normale >"
+
+[node name="Accessibility" type="Label" parent="Panel/VBox"]
+layout_mode = 2
+theme_type_variation = &"HintLabel"
+text = "Accessibilità"
+
+[node name="Shake" type="CheckBox" parent="Panel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Scuotimento dello schermo"
+
+[node name="Flashes" type="CheckBox" parent="Panel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Lampi attenuati"
 
 [node name="Separator2" type="HSeparator" parent="Panel/VBox"]
 layout_mode = 2
