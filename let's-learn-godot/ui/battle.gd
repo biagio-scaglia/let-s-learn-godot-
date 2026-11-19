@@ -802,7 +802,7 @@ func _cut_in() -> void:
 		layer.add_child(panel)
 		panels.append(panel)
 	var title := Label.new()
-	title.text = ULTIMATE_NAME.to_upper()
+	title.text = tr(ULTIMATE_NAME).to_upper()   # tradotto prima: "ALBA DI..." non è una chiave
 	title.add_theme_font_size_override("font_size", 40)
 	title.add_theme_color_override("font_color", Color(1.0, 0.88, 0.45))
 	title.add_theme_color_override("font_outline_color", Color(0.15, 0.05, 0.2))
