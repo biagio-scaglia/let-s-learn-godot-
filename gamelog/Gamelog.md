@@ -55,6 +55,7 @@ Diario del progetto: cosa è stato fatto, perché, e cosa ho imparato di Godot s
 | 2026-11-18 | [[2026-11-18-interpolazione\|Lo scatto della camera e l'interpolazione della fisica]] | Funzionante |
 | 2026-11-18 | [[2026-11-18-colui-che-guarda\|Atto 3: Colui che guarda]] | Funzionante |
 | 2026-11-18 | [[2026-11-18-finale\|Il finale, i titoli di coda, il filmato e la Galleria]] | Funzionante |
+| 2026-11-19 | [[2026-11-19-lingue\|Emilia alta giusta, inglese e italiano, pronto per itch.io]] | Funzionante |
 
 ## Il progetto
 
