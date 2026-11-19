@@ -30,6 +30,9 @@ var facing := Facing.DOWN
 var _scripted := false
 ## Il Tween della camminata dei piedi (i frame del charset), per fermarlo all'arrivo.
 var _walk_anim: Tween
+## Il Tween del respiro (solo da fermo) e la scala "vera" dello sprite.
+var _breathe: Tween
+var _base_scale := Vector2.ONE
 
 
 func _ready() -> void:
@@ -42,14 +45,35 @@ func _ready() -> void:
 	interactable.lines = lines
 	interactable.repeat_lines = repeat_lines
 
-	# Respiro: lo sprite si schiaccia appena e torna, all'infinito.
-	# Si deforma dai piedi perché l'origine dello sprite è in basso.
-	var base := sprite.scale
-	var breathe := create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS).set_loops()
-	breathe.tween_property(sprite, "scale", base * Vector2(1.03, 0.96), 0.9) \
+	_base_scale = sprite.scale
+	_start_breathing()
+
+
+## Respiro: lo sprite si schiaccia appena e torna, all'infinito.
+## Si deforma dai piedi perché l'origine dello sprite è in basso.
+## Solo da fermo: chi cammina non respira così (Subaru non lo fa), se no l'altezza
+## "balla" a ogni passo. Con un charset (celle alte 48 pixel) si schiaccia di un pixel
+## solo: con 0.96 perdeva due righe e accanto a Subaru sembrava più bassa.
+func _start_breathing() -> void:
+	if _breathe:
+		return
+	var squash := Vector2(1.03, 0.96)
+	if charset:
+		var cell := charset.get_size() / 4.0
+		squash = Vector2(1.0 + 1.0 / cell.x, 1.0 - 1.0 / cell.y)
+	_breathe = create_tween().set_process_mode(Tween.TWEEN_PROCESS_PHYSICS).set_loops()
+	_breathe.tween_property(sprite, "scale", _base_scale * squash, 0.9) \
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	breathe.tween_property(sprite, "scale", base, 0.9) \
+	_breathe.tween_property(sprite, "scale", _base_scale, 0.9) \
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+
+## Ferma il respiro e rimette lo sprite alla sua altezza vera.
+func _stop_breathing() -> void:
+	if _breathe:
+		_breathe.kill()
+		_breathe = null
+	sprite.scale = _base_scale
 
 
 func _use_charset() -> void:
@@ -105,6 +129,7 @@ func face(direction: String) -> void:
 ## come Subaru.walk_to(). Le 4 colonne della riga del charset sono i passi.
 func walk_to(point: Vector2, speed := 70.0) -> void:
 	_scripted = true
+	_stop_breathing()
 	face(Facing.from_vector(point - global_position))
 	if charset:
 		var row: int = CHARSET_ROWS[facing] * 4
@@ -123,6 +148,7 @@ func walk_to(point: Vector2, speed := 70.0) -> void:
 		_walk_anim = null
 	_scripted = false
 	face(facing)
+	_start_breathing()
 
 
 # ---------- Comandi per chi la fa camminare frame per frame (Follower) ----------
@@ -135,6 +161,7 @@ var _step_time := 0.0
 ## Diversa da walk_to(): qui la posizione la cambia chi chiama, a ogni frame.
 func step(direction: String, delta: float) -> void:
 	_scripted = true
+	_stop_breathing()
 	facing = direction
 	_step_time += delta
 	if charset:
@@ -149,3 +176,4 @@ func stand() -> void:
 	_scripted = false
 	_step_time = 0.0
 	face(facing)
+	_start_breathing()
