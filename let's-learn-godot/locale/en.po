@@ -1,0 +1,1523 @@
+# Erbalta - traduzione inglese.
+# msgid: il testo italiano, come scritto nelle scene e negli script.
+# msgstr: la traduzione inglese. Se manca, il gioco mostra l'italiano.
+msgid ""
+msgstr ""
+"Language: en\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgid "Hai trovato…"
+msgstr "You found…"
+
+msgid "Villaggio di Erbalta"
+msgstr "Erbalta Village"
+
+msgid "Casa di Lina"
+msgstr "Lina's House"
+
+msgid "Biblioteca"
+msgstr "Library"
+
+msgid "Bosco Senza Tempo"
+msgstr "Timeless Wood"
+
+msgid "Rocca d'Argento"
+msgstr "Silver Keep"
+
+msgid "Un giorno nuovo"
+msgstr "A New Day"
+
+msgid "Ecco, siamo fuori. Il villaggio di Erbalta è a sud, oltre il bosco."
+msgstr "There, we're out. The village of Erbalta is to the south, past the woods."
+
+msgid "Se camminiamo tutta la notte, arriveremo all'alba."
+msgstr "If we walk all night, we'll get there by dawn."
+
+msgid "Una gita al chiaro di luna con Emiliuccia! E... cosa ci andiamo a fare, esattamente?"
+msgstr "A moonlit stroll with Emiliuccia! And... what are we going there for, exactly?"
+
+msgid "Da qualche giorno da Erbalta arrivano voci strane. Sembra che nessuno voglia più lasciare il villaggio."
+msgstr "For a few days now, strange rumors have been coming from Erbalta. It seems nobody wants to leave the village anymore."
+
+msgid "Io resterò in piazza a tenere d'occhio le cose. Tu invece parlerai con la gente: sei bravo, in questo."
+msgstr "I'll stay in the square and keep an eye on things. You'll talk to the people: you're good at that."
+
+msgid "Bravissimo! Lascia fare a me, Emiliuccia!"
+msgstr "Leave it to me, Emiliuccia!"
+
+msgid "...\"Emiliuccia\"? Ma come ti viene in mente, Subaru?"
+msgstr "...\"Emiliuccia\"? Where do you even come up with these, Subaru?"
+
+msgid "Aspetta, Subaru. Prima di partire salutiamo tutti."
+msgstr "Wait, Subaru. Let's say goodbye to everyone before we go."
+
+msgid "Il Saggio, Lina e l'Archivista. Non possiamo andarcene senza una parola."
+msgstr "The Sage, Lina and the Archivist. We can't leave without a word."
+
+msgid "Saggio"
+msgstr "Sage"
+
+msgid "Fiuu... Alla mia età non si corre. Ma volevo vedervi partire."
+msgstr "Phew... At my age, one doesn't run. But I wanted to see you off."
+
+msgid "Lina vi saluta. E l'Archivista dice che non vede l'ora di leggere il capitolo dopo."
+msgstr "Lina says goodbye. And the Archivist says she can't wait to read the next chapter."
+
+msgid "Grazie di tutto, Saggio. Torneremo, promesso."
+msgstr "Thank you for everything, Sage. We'll be back, I promise."
+
+msgid "E quando torniamo voglio vedere quegli alberi più alti di me!"
+msgstr "And when we come back, I want to see those trees taller than me!"
+
+msgid "Ah! Allora sbrigatevi: adesso crescono."
+msgstr "Ha! Then hurry back: they grow now."
+
+msgid "Allora... andiamo, Emiliuccia?"
+msgstr "So... shall we go, Emiliuccia?"
+
+msgid "Andiamo. ...Subaru?"
+msgstr "Let's go. ...Subaru?"
+
+msgid "Mh?"
+msgstr "Hm?"
+
+msgid "Grazie. Per esserti ricordato. Di tutto."
+msgstr "Thank you. For remembering. All of it."
+
+msgid "...È la cosa che mi riesce meglio."
+msgstr "...It's what I do best."
+
+msgid "Gli alberi... non hanno nemmeno una foglia."
+msgstr "The trees... they don't have a single leaf."
+
+msgid "E non si sente niente. Né il vento tra i rami, né un uccello."
+msgstr "And there's no sound. No wind in the branches, no birds."
+
+msgid "...A parte quello. Grazie, corvo. Molto rassicurante."
+msgstr "...Except that one. Thanks, crow. Very reassuring."
+
+msgid "Restiamo vicini, d'accordo? Io ti seguo: tu guarda dove metti i piedi."
+msgstr "Let's stay close, okay? I'll follow you: you watch your step."
+
+msgid "E se vedi degli occhi tra i rovi... non fissarli troppo a lungo."
+msgstr "And if you see eyes in the brambles... don't stare at them for too long."
+
+msgid "Bosco Senza Tempo, eh? Speriamo almeno che abbia un'uscita."
+msgstr "The Timeless Wood, huh? Let's hope it at least has an exit."
+
+msgid "Erbalta... Vediamo se qualcuno sa dirmi qualcosa."
+msgstr "Erbalta... Let's see if anyone can tell me something."
+
+msgid "Eccoci: il villaggio di Erbalta. Sembra così tranquillo..."
+msgstr "Here we are: the village of Erbalta. It looks so peaceful..."
+
+msgid "Io mi apposto qui, in piazza. Da qui vedo chi entra e chi esce."
+msgstr "I'll stay here, in the square. From here I can see who comes and goes."
+
+msgid "Tu fai un giro e parla con gli abitanti. Se scopri qualcosa, vieni a dirmelo!"
+msgstr "You take a look around and talk to the villagers. If you find anything out, come and tell me!"
+
+msgid "Agli ordini! Il vecchio Subaru non ti deluderà."
+msgstr "Yes, ma'am! Good old Subaru won't let you down."
+
+msgid "...Allora. Da dove comincio?"
+msgstr "...So. Where do I start?"
+
+msgid "Non si scappa!"
+msgstr "There's no escape!"
+
+msgid "Subaru ricorda: quando carica lo Sguardo, lo Shamac lo acceca!"
+msgstr "Subaru remembers: when it charges the Gaze, Shamac blinds it!"
+
+msgid "Non si scappa da Colui che guarda."
+msgstr "There's no escaping He Who Watches."
+
+msgid "Colui che guarda"
+msgstr "He Who Watches"
+
+msgid "Colui che guarda spalanca l'occhio. Sta caricando lo Sguardo!"
+msgstr "He Who Watches opens its eye wide. It's charging the Gaze!"
+
+msgid "Subaru: \"Lo so cosa succede adesso. Lo Shamac, subito!\""
+msgstr "Subaru: \"I know what happens next. Shamac, now!\""
+
+msgid "Sguardo"
+msgstr "Gaze"
+
+msgid "ACCECATO!"
+msgstr "BLINDED!"
+
+msgid "Le mani d'ombra si moltiplicano. Colui che guarda è furioso!"
+msgstr "The shadow hands multiply. He Who Watches is furious!"
+
+msgid "L'occhio trema. Subaru ed Emilia si guardano: è il momento!"
+msgstr "The eye trembles. Subaru and Emilia look at each other: this is it!"
+
+msgid "Chiave"
+msgstr "Key"
+
+msgid "Una vecchia chiave di ferro. Apre il baule di Lina."
+msgstr "An old iron key. It opens Lina's chest."
+
+msgid "Lacrima d'ombra"
+msgstr "Shadow Tear"
+
+msgid "Una goccia viola e fredda, dura come vetro. Lo Spettro l'ha lasciata cadere."
+msgstr "A cold purple drop, hard as glass. The Specter dropped it."
+
+msgid "Moneta d'oro"
+msgstr "Gold Coin"
+
+msgid "Brilla ancora. Chissà cosa si potrà comprare a Erbalta..."
+msgstr "Still shiny. Who knows what it can buy in Erbalta..."
+
+msgid "Pagina strappata"
+msgstr "Torn Page"
+
+msgid "Una pagina ingiallita, strappata da un libro. L'inchiostro sembra fresco."
+msgstr "A yellowed page, torn from a book. The ink looks fresh."
+
+msgid "Pozione rossa"
+msgstr "Red Potion"
+
+msgid "La ricetta segreta del nonno di Lina. Rimette 12 punti salute."
+msgstr "Lina's grandpa's secret recipe. Restores 12 health points."
+
+msgid "Melma verde"
+msgstr "Green Slime"
+
+msgid "Spettro"
+msgstr "Specter"
+
+msgid "Mano d'ombra"
+msgstr "Shadow Hand"
+
+msgid "Occhio errante"
+msgstr "Wandering Eye"
+
+msgid "Guardiano dei rovi"
+msgstr "Bramble Warden"
+
+msgid "...Ancora quello sguardo, ragazzo."
+msgstr "...That look again, boy."
+
+msgid "Qualunque cosa tu stia cercando là fuori, non vale la tua vita."
+msgstr "Whatever you're looking for out there, it isn't worth your life."
+
+msgid "...Aspetta. Hai una faccia strana, ragazzo. Come chi ha visto qualcosa che non doveva."
+msgstr "...Wait. You look strange, boy. Like someone who's seen something he shouldn't have."
+
+msgid "Dammi retta: non allontanarti dal villaggio. Oltre i confini c'è qualcosa che non perdona."
+msgstr "Listen to me: don't stray from the village. Beyond the borders there's something that doesn't forgive."
+
+msgid "...Subaru? Sei pallido come un fantasma. È successo qualcosa?"
+msgstr "...Subaru? You're pale as a ghost. Did something happen?"
+
+msgid "Se non vuoi dirmelo, va bene. Ma io sono qui, d'accordo?"
+msgstr "If you don't want to tell me, that's fine. But I'm here, okay?"
+
+msgid "Promesso, eh? Tornate. E portatemi qualcosa da fuori!"
+msgstr "You promised, okay? Come back. And bring me something from outside!"
+
+msgid "Subaru! Stamattina il nonno ha detto una cosa stranissima."
+msgstr "Subaru! Grandpa said the strangest thing this morning."
+
+msgid "Ha detto: \"Domani sarà diverso.\" Non l'aveva mai detto. Mai!"
+msgstr "He said: \"Tomorrow will be different.\" He'd never said that. Never!"
+
+msgid "...Siete stati voi, vero? Nel bosco. Non so cosa avete fatto, ma grazie."
+msgstr "...It was you two, wasn't it? In the woods. I don't know what you did, but thank you."
+
+msgid "Ve ne andate? Allora prendi queste. La nonna diceva: \"Chi parte non deve partire a mani vuote.\""
+msgstr "You're leaving? Then take these. Grandma used to say: \"Nobody should leave empty-handed.\""
+
+msgid "E promettimi che tornerete. Voglio sentire tutta la storia."
+msgstr "And promise me you'll come back. I want to hear the whole story."
+
+msgid "Il nonno dice che domani sarà un giorno come gli altri."
+msgstr "Grandpa says tomorrow will be a day like any other."
+
+msgid "...Lo dice tutte le mattine. Prima non ci avevo mai fatto caso."
+msgstr "...He says it every morning. I'd never noticed before."
+
+msgid "Una pagina strappata, nel baule della nonna? Non l'avevo mai vista."
+msgstr "A torn page, in Grandma's chest? I've never seen it before."
+
+msgid "La nonna diceva sempre: \"I libri che nessuno legge sono quelli che ricordano di più.\""
+msgstr "Grandma always said: \"The books nobody reads are the ones that remember the most.\""
+
+msgid "Se vuoi sapere da che libro viene, chiedi in biblioteca. L'Archivista sa tutto dei libri."
+msgstr "If you want to know which book it's from, ask at the library. The Archivist knows everything about books."
+
+msgid "Ah, e le pozioni usale, eh! Il nonno dice che fanno miracoli."
+msgstr "Oh, and use those potions, okay? Grandpa says they work miracles."
+
+msgid "La mia chiave! L'hai trovata tu?"
+msgstr "My key! You found it?"
+
+msgid "Grazie, Subaru! Apri pure il baule: quello che c'è dentro è tuo."
+msgstr "Thank you, Subaru! Go ahead and open the chest: whatever's inside is yours."
+
+msgid "In fondo al baule, sotto la carta che lo fodera, c'è una pagina strappata."
+msgstr "At the bottom of the chest, under the lining paper, there's a torn page."
+
+msgid "Il baule è vuoto."
+msgstr "The chest is empty."
+
+msgid "La chiave gira nella serratura... clic!"
+msgstr "The key turns in the lock... click!"
+
+msgid "Dentro ci sono due pozioni rosse e qualche moneta d'oro..."
+msgstr "Inside are two red potions and a few gold coins..."
+
+msgid "...e, sul fondo, una pagina strappata. L'inchiostro sembra ancora fresco."
+msgstr "...and, at the bottom, a torn page. The ink still looks fresh."
+
+msgid "Chiedi al Saggio delle voci strane"
+msgstr "Ask the Sage about the strange rumors"
+
+msgid "Vai da Lina, nella casa col tetto rosso"
+msgstr "Visit Lina, in the house with the red roof"
+
+msgid "Trova la chiave di Lina, a ovest della piazza"
+msgstr "Find Lina's key, west of the square"
+
+msgid "Porta la chiave a Lina"
+msgstr "Bring the key to Lina"
+
+msgid "Apri il baule di Lina"
+msgstr "Open Lina's chest"
+
+msgid "Guarda meglio nel baule di Lina"
+msgstr "Take a closer look in Lina's chest"
+
+msgid "Porta la pagina strappata all'Archivista"
+msgstr "Bring the torn page to the Archivist"
+
+msgid "Sconfiggi lo Spettro, a est della piazza"
+msgstr "Defeat the Specter, east of the square"
+
+msgid "Leggi il libro nero, in biblioteca"
+msgstr "Read the black book, in the library"
+
+msgid "Racconta tutto a Emilia, in piazza"
+msgstr "Tell Emilia everything, in the square"
+
+msgid "Parla con Emilia quando sei pronto a partire"
+msgstr "Talk to Emilia when you're ready to leave"
+
+msgid "Attraversa il Bosco Senza Tempo"
+msgstr "Cross the Timeless Wood"
+
+msgid "Chiudi gli occhi di pietra (%d/3)"
+msgstr "Close the stone eyes (%d/3)"
+
+msgid "Entra nella radura, in cima al bosco"
+msgstr "Enter the clearing at the top of the woods"
+
+msgid "Torna a Erbalta con Emilia"
+msgstr "Return to Erbalta with Emilia"
+
+msgid "Saluta gli abitanti di Erbalta (%d/3)"
+msgstr "Say goodbye to the people of Erbalta (%d/3)"
+
+msgid "Parti con Emilia dal sentiero a sud"
+msgstr "Leave with Emilia by the south path"
+
+msgid "Oh, un volto nuovo! Benvenuto a Erbalta. Io sono il Saggio: passo le giornate a guardare crescere gli alberi."
+msgstr "Oh, a new face! Welcome to Erbalta. I'm the Sage: I spend my days watching the trees grow."
+
+msgid "Se hai fretta, tieni premuto Shift per correre... ma qui nessuno ha fretta."
+msgstr "If you're in a hurry, hold Shift to run... but nobody's in a hurry around here."
+
+msgid "Voci strane? Su Erbalta? Ah! Qui non succede mai niente, ragazzo."
+msgstr "Strange rumors? About Erbalta? Ha! Nothing ever happens here, boy."
+
+msgid "Ogni giorno è uguale a quello prima. Gli stessi alberi, alti uguale..."
+msgstr "Every day is the same as the one before. The same trees, just as tall..."
+
+msgid "...Uguale. Proprio uguale."
+msgstr "...The same. Exactly the same."
+
+msgid "Da quanto tempo li guardo crescere? Ieri. L'altro ieri. Prima ancora..."
+msgstr "How long have I been watching them grow? Yesterday. The day before. And before that..."
+
+msgid "Che strano. Non me lo ricordo."
+msgstr "How strange. I don't remember."
+
+msgid "Il cartello della piazza l'ha scritto mio nonno. O l'ho scritto io? Che testa..."
+msgstr "My grandfather wrote the sign in the square. Or did I write it? What a head I have..."
+
+msgid "Senti, va' da mia nipote Lina, nella casa col tetto rosso. Nel baule di sua nonna c'è tutta la storia della famiglia."
+msgstr "Listen, go see my granddaughter Lina, in the house with the red roof. Her grandmother's chest holds the whole family history."
+
+msgid "Ragazzo! Ragazzo, guarda!"
+msgstr "Boy! Boy, look!"
+
+msgid "Gli alberi... stanotte sono cresciuti. Tutti quanti. Di un palmo!"
+msgstr "The trees... they grew last night. All of them. By a whole hand!"
+
+msgid "Non succedeva da... da quando? Non lo so. Ma me lo ricorderò, questo. Me lo ricorderò."
+msgstr "That hasn't happened since... since when? I don't know. But I'll remember this. I'll remember."
+
+msgid "Partite? Allora andate dal sentiero a sud, all'alba. È da lì che si va nel mondo."
+msgstr "You're leaving? Then take the south path, at dawn. That's the way out into the world."
+
+msgid "E tornate, eh. Voglio farvi vedere quanto sono cresciuti, i miei alberi."
+msgstr "And come back, eh. I want to show you how much my trees have grown."
+
+msgid "Il bosco a nord? Non ci va nessuno, ragazzo. Non ci è mai andato nessuno."
+msgstr "The woods to the north? Nobody goes there, boy. Nobody ever has."
+
+msgid "...Però, se ci vai, guarda se gli alberi lassù crescono. Io non li ho mai visti crescere."
+msgstr "...But if you go, see whether the trees up there grow. I've never seen them grow."
+
+msgid "Hai la faccia di chi ha letto qualcosa che non doveva."
+msgstr "You look like someone who's read something he shouldn't have."
+
+msgid "Non dirmelo. Se è una cosa triste, preferisco dimenticarla. Mi riesce bene."
+msgstr "Don't tell me. If it's something sad, I'd rather forget it. I'm good at that."
+
+msgid "Sei stato da Lina? Casa col tetto rosso, a nord-ovest. Non puoi sbagliare."
+msgstr "Have you been to Lina's? House with the red roof, to the northwest. You can't miss it."
+
+msgid "Io resto qui, con i miei alberi. Ci facciamo compagnia."
+msgstr "I'll stay here, with my trees. We keep each other company."
+
+msgid "Hai salutato tutti? ...Anch'io. Il Saggio mi ha regalato una ghianda. Dice che è di un albero nuovo."
+msgstr "Did you say goodbye to everyone? ...So did I. The Sage gave me an acorn. He says it's from a new tree."
+
+msgid "Allora andiamo, Subaru. Dal sentiero a sud, come quando siamo arrivati."
+msgstr "Then let's go, Subaru. By the south path, the way we came."
+
+msgid "Erbalta sembra la stessa... ma l'aria è diversa. Più leggera."
+msgstr "Erbalta looks the same... but the air is different. Lighter."
+
+msgid "Andiamo a vedere come stanno tutti. Il Saggio, Lina, l'Archivista."
+msgstr "Let's go see how everyone's doing. The Sage, Lina, the Archivist."
+
+msgid "Poi, quando sei pronto, partiamo. Dal sentiero a sud."
+msgstr "Then, when you're ready, we'll leave. By the south path."
+
+msgid "Uno Spettro a est della piazza? Stai attento, Subaru."
+msgstr "A Specter east of the square? Be careful, Subaru."
+
+msgid "Colpiscilo dove gli fa più male, e se sei ferito usa le pozioni di Lina."
+msgstr "Hit it where it hurts most, and if you get hurt, use Lina's potions."
+
+msgid "Una lacrima d'ombra... è fredda solo a guardarla."
+msgstr "A shadow tear... it feels cold just looking at it."
+
+msgid "Portala al libro nero, insieme alla pagina. Io ti aspetto qui."
+msgstr "Take it to the black book, together with the page. I'll wait for you here."
+
+msgid "Una pagina strappata? Fa' vedere... è scritta in una lingua antica."
+msgstr "A torn page? Let me see... it's written in an ancient language."
+
+msgid "Portala in biblioteca, la casa di pietra a nord-est. L'Archivista saprà leggerla."
+msgstr "Take it to the library, the stone house to the northeast. The Archivist will be able to read it."
+
+msgid "Il Saggio non si ricorda da quanto tempo è qui? ...Che strano."
+msgstr "The Sage doesn't remember how long he's been here? ...How strange."
+
+msgid "Prova a sentire Lina, come ti ha detto lui. Io tengo d'occhio la piazza."
+msgstr "Try talking to Lina, like he told you. I'll keep an eye on the square."
+
+msgid "Allora, Subaru? Hai già fatto un giro?"
+msgstr "So, Subaru? Have you looked around yet?"
+
+msgid "Comincerei dal Saggio: sta sempre vicino agli alberi, a est della piazza."
+msgstr "I'd start with the Sage: he's always by the trees, east of the square."
+
+msgid "Se qualcuno sa qualcosa delle voci su Erbalta, è lui."
+msgstr "If anyone knows anything about the rumors, it's him."
+
+msgid "Subaru! Sei corso fin qui. Cosa c'era scritto nel libro?"
+msgstr "Subaru! You ran all the way here. What did the book say?"
+
+msgid "Erbalta non invecchia, Emilia. Ricomincia."
+msgstr "Erbalta doesn't grow old, Emilia. It starts over."
+
+msgid "Ogni alba è la stessa alba. Gli abitanti la vivono per sempre e non se ne accorgono."
+msgstr "Every dawn is the same dawn. The villagers live it forever and never notice."
+
+msgid "C'è qualcosa che li tiene qui. Il libro lo chiama \"Colui che guarda\". Dorme nel bosco a nord."
+msgstr "Something is keeping them here. The book calls it \"He Who Watches\". It sleeps in the woods to the north."
+
+msgid "Un villaggio che ricomincia sempre lo stesso giorno..."
+msgstr "A village that keeps starting the same day over..."
+
+msgid "Allora è per questo che nessuno se ne va. Non è che non vogliono: non possono."
+msgstr "So that's why nobody leaves. It's not that they don't want to: they can't."
+
+msgid "...Ma tu come fai a ricordartelo, Subaru?"
+msgstr "...But how do you remember it, Subaru?"
+
+msgid "Diciamo che sono bravo a ricordare le cose. Anche quelle che non dovrei."
+msgstr "Let's just say I'm good at remembering things. Even the ones I shouldn't."
+
+msgid "Va bene. Non ti chiedo altro."
+msgstr "All right. I won't ask anything else."
+
+msgid "Andremo nel bosco a nord. Insieme."
+msgstr "We'll go to the woods to the north. Together."
+
+msgid "Ma non adesso: riposati, prima. Partiamo domani all'alba."
+msgstr "But not now: rest first. We'll leave tomorrow at dawn."
+
+msgid "...Sempre che domani arrivi davvero."
+msgstr "...If tomorrow really comes."
+
+msgid "Ci hai pensato bene? Una volta nel bosco, non so se potremo tornare indietro."
+msgstr "Have you thought it through? Once we're in the woods, I don't know if we can turn back."
+
+msgid "...Va bene. Anch'io sono pronta."
+msgstr "...All right. I'm ready too."
+
+msgid "Andiamo, Subaru. Prima che il sole sia alto."
+msgstr "Let's go, Subaru. Before the sun is high."
+
+msgid "Shh... ah, sei tu. Vieni, guarda. Ma piano."
+msgstr "Shh... oh, it's you. Come, look. But quietly."
+
+msgid "Il libro nero. Stanotte le pagine hanno ricominciato a scriversi da sole."
+msgstr "The black book. Last night its pages started writing themselves again."
+
+msgid "È una storia nuova. Parla di un ragazzo che tornava dalla morte, e di una ragazza dai capelli d'argento."
+msgstr "It's a new story. It tells of a boy who came back from death, and of a girl with silver hair."
+
+msgid "Non so ancora come finisce. Le ultime pagine sono bianche."
+msgstr "I don't know how it ends yet. The last pages are blank."
+
+msgid "...Credo che toccherà a voi scriverle. Andate. Io resto qui a leggere."
+msgstr "...I think it's up to you two to write them. Go. I'll stay here and read."
+
+msgid "Una pagina nuova, proprio adesso: \"All'alba, partirono dal sentiero a sud.\""
+msgstr "A new page, just now: \"At dawn, they left by the south path.\""
+
+msgid "Non fatemi aspettare troppo il capitolo dopo."
+msgstr "Don't keep me waiting too long for the next chapter."
+
+msgid "Il libro ti ha parlato, vero? L'ho sentito. Le pagine frusciavano come foglie."
+msgstr "The book spoke to you, didn't it? I heard it. The pages rustled like leaves."
+
+msgid "Io resto qui coi miei libri. Qualcuno deve ricordare, anche se nessuno legge."
+msgstr "I'll stay here with my books. Someone has to remember, even if nobody reads."
+
+msgid "La lacrima d'ombra... ce l'hai. Mettila sul libro nero, insieme alla pagina."
+msgstr "The shadow tear... you have it. Place it on the black book, together with the page."
+
+msgid "Lo Spettro vive a est della piazza, dove l'aria si fa fredda."
+msgstr "The Specter lives east of the square, where the air turns cold."
+
+msgid "Il calcio gli fa male, dicono i libri. E qualcosa di più scuro ancora."
+msgstr "Kicks hurt it, the books say. And something darker still."
+
+msgid "Shh! ...Oh. Cos'hai lì?"
+msgstr "Shh! ...Oh. What do you have there?"
+
+msgid "Questa pagina... viene dal libro nero. Ma è impossibile: quel libro è sempre stato vuoto."
+msgstr "This page... it's from the black book. But that's impossible: that book has always been empty."
+
+msgid "C'è scritto: \"Colui che guarda non dorme mai. Il suo occhio piange solo quando lo Spettro cade.\""
+msgstr "It says: \"He Who Watches never sleeps. Its eye weeps only when the Specter falls.\""
+
+msgid "Lo Spettro vive a est della piazza. Se lo sconfiggi, forse lascerà cadere quella lacrima."
+msgstr "The Specter lives east of the square. If you defeat it, maybe it will drop that tear."
+
+msgid "Pagina e lacrima, insieme, sul libro nero. Allora, forse, il libro parlerà."
+msgstr "Page and tear, together, on the black book. Then, maybe, the book will speak."
+
+msgid "...Aspetta. Quella che hai in tasca è già una lacrima d'ombra?"
+msgstr "...Wait. Is that already a shadow tear in your pocket?"
+
+msgid "L'inchiostro è nero e lucido, come appena steso. Le pagine sono piene."
+msgstr "The ink is black and glossy, as if freshly laid. The pages are full."
+
+msgid "L'ultima riga, con la tua calligrafia, è cambiata:"
+msgstr "The last line, in your handwriting, has changed:"
+
+msgid "\"Questa volta, ce l'hai fatta.\""
+msgstr "\"This time, you made it.\""
+
+msgid "Le pagine sono di nuovo vuote. Ma ora sai cosa c'era scritto."
+msgstr "The pages are empty again. But now you know what they said."
+
+msgid "\"Questa volta, portala via di qui.\""
+msgstr "\"This time, take her away from here.\""
+
+msgid "Rimetti la pagina al suo posto. Combacia perfettamente, strappo per strappo."
+msgstr "You put the page back in its place. It fits perfectly, tear for tear."
+
+msgid "La lacrima d'ombra scivola sulla carta... e l'inchiostro comincia a muoversi da solo."
+msgstr "The shadow tear slides across the paper... and the ink begins to move on its own."
+
+msgid "\"Erbalta non invecchia. Erbalta ricomincia.\""
+msgstr "\"Erbalta does not grow old. Erbalta starts over.\""
+
+msgid "\"Ogni alba è la stessa alba. Chi vive qui la vive per sempre, e non se ne accorge.\""
+msgstr "\"Every dawn is the same dawn. Whoever lives here lives it forever, and never notices.\""
+
+msgid "\"Solo chi torna dalla morte ricorda.\""
+msgstr "\"Only one who returns from death remembers.\""
+
+msgid "\"Colui che guarda dorme nel bosco a nord, dove gli alberi non crescono. Finché i suoi occhi resteranno aperti, nessuno lascerà il villaggio.\""
+msgstr "\"He Who Watches sleeps in the woods to the north, where the trees do not grow. As long as its eyes stay open, no one will leave the village.\""
+
+msgid "Sotto, l'ultima riga. Con la tua calligrafia:"
+msgstr "Below, the last line. In your handwriting:"
+
+msgid "...Questa è la mia calligrafia. Non c'è dubbio."
+msgstr "...This is my handwriting. No doubt about it."
+
+msgid "Devo dirlo a Emilia. Subito."
+msgstr "I have to tell Emilia. Right now."
+
+msgid "Pugno"
+msgstr "Punch"
+
+msgid "Un pugno veloce. Colpo di tipo pugno."
+msgstr "A quick punch. Punch-type hit."
+
+msgid "Calcio"
+msgstr "Kick"
+
+msgid "Un calcio alto, più forte di un pugno. Tipo calcio."
+msgstr "A high kick, stronger than a punch. Kick type."
+
+msgid "Una nebbia nera avvolge il nemico. Tipo ombra."
+msgstr "A black mist wraps around the enemy. Shadow type."
+
+msgid "Pugno caricato"
+msgstr "Charged Punch"
+
+msgid "Si concentra, poi colpisce con tutta la forza. Tipo pugno."
+msgstr "Focuses, then strikes with full force. Punch type."
+
+msgid "Scaglie di gelo"
+msgstr "Frost Shards"
+
+msgid "Una pioggia di scaglie di ghiaccio. Tipo ghiaccio."
+msgstr "A rain of ice shards. Ice type."
+
+msgid "Dardo di gelo"
+msgstr "Frost Dart"
+
+msgid "Emilia lancia una scheggia di ghiaccio. Tipo ghiaccio."
+msgstr "Emilia throws a shard of ice. Ice type."
+
+msgid "Cristallo infranto"
+msgstr "Shattered Crystal"
+
+msgid "Emilia chiude il nemico nel ghiaccio, Subaru lo manda in frantumi. 4 PT a testa. Tipo ghiaccio."
+msgstr "Emilia traps the enemy in ice, Subaru smashes it to pieces. 4 SP each. Ice type."
+
+msgid "%s appare!"
+msgstr "%s appears!"
+
+msgid "Emilia non ha abbastanza PT."
+msgstr "Emilia doesn't have enough SP."
+
+msgid "Emilia: %s"
+msgstr "Emilia: %s"
+
+msgid "Non hai abbastanza PT."
+msgstr "You don't have enough SP."
+
+msgid "Emilia: Barriera"
+msgstr "Emilia: Barrier"
+
+msgid "+%d PT"
+msgstr "+%d SP"
+
+msgid "Alba di cristallo"
+msgstr "Crystal Dawn"
+
+msgid "Non hai pozioni."
+msgstr "You have no potions."
+
+msgid "Sei già in piena forma."
+msgstr "You're already in perfect shape."
+
+msgid "Pozione"
+msgstr "Potion"
+
+msgid "Difesa"
+msgstr "Defense"
+
+msgid "Fuga"
+msgstr "Escape"
+
+msgid "Sei scappato!"
+msgstr "You got away!"
+
+msgid "Non riesci a scappare!"
+msgstr "You can't get away!"
+
+msgid "%s è stordito!"
+msgstr "%s is stunned!"
+
+msgid "%s si riprende."
+msgstr "%s recovers."
+
+msgid "Esperienza  +%d"
+msgstr "Experience  +%d"
+
+msgid "\nLivello %d!  Salute, PT, attacco e difesa aumentano."
+msgstr "\nLevel %d!  Health, SP, attack and defense go up."
+
+msgid "\nAl prossimo livello: %d"
+msgstr "\nTo next level: %d"
+
+msgid "Subaru crolla a terra..."
+msgstr "Subaru collapses..."
+
+msgid "Lv %d"
+msgstr "Lv %d"
+
+msgid "ROTTO!"
+msgstr "BREAK!"
+
+msgid "TURNO"
+msgstr "TURN"
+
+msgid "PS"
+msgstr "HP"
+
+msgid "PT"
+msgstr "SP"
+
+msgid "Emilia  PT"
+msgstr "Emilia  SP"
+
+msgid "In guardia"
+msgstr "On guard"
+
+msgid "Attacca"
+msgstr "Attack"
+
+msgid "Abilità"
+msgstr "Skills"
+
+msgid "Oggetti"
+msgstr "Items"
+
+msgid "Difendi"
+msgstr "Defend"
+
+msgid "Fuggi"
+msgstr "Flee"
+
+msgid "Vittoria!"
+msgstr "Victory!"
+
+msgid "Le tecniche di Subaru. Costano punti tecnica (PT)."
+msgstr "Subaru's techniques. They cost skill points (SP)."
+
+msgid "Usa un oggetto dello zaino."
+msgstr "Use an item from the backpack."
+
+msgid "Para: il prossimo colpo fa metà danno. Recuperi %d PT."
+msgstr "Block: the next hit deals half damage. You recover %d SP."
+
+msgid "Prova a scappare. Non sempre ci si riesce."
+msgstr "Try to run away. It doesn't always work."
+
+msgid "Subaru ed Emilia, insieme, con tutto quello che hanno. Una volta sola."
+msgstr "Subaru and Emilia, together, with everything they've got. Only once."
+
+msgid "Le magie di Emilia. Costano i suoi PT."
+msgstr "Emilia's spells. They cost her SP."
+
+msgid "Una barriera di ghiaccio: il prossimo colpo a Subaru fa metà danno. Emilia recupera %d PT."
+msgstr "An ice barrier: the next hit on Subaru deals half damage. Emilia recovers %d SP."
+
+msgid "Emilia dà un oggetto a Subaru."
+msgstr "Emilia gives Subaru an item."
+
+msgid "Pozione   x%d"
+msgstr "Potion   x%d"
+
+msgid "Rimette %d PS."
+msgstr "Restores %d HP."
+
+msgid "Non ne hai."
+msgstr "You don't have any."
+
+msgid "%d PT"
+msgstr "%d SP"
+
+msgid "%d+%d PT"
+msgstr "%d+%d SP"
+
+msgid "Un gioco di Biagio Scaglia"
+msgstr "A game by Biagio Scaglia"
+
+msgid "Ideato, scritto e diretto da"
+msgstr "Created, written and directed by"
+
+msgid "Programmazione"
+msgstr "Programming"
+
+msgid "Storia e dialoghi"
+msgstr "Story and dialogue"
+
+msgid "Musiche originali"
+msgstr "Original music"
+
+msgid "\"Un giorno nuovo\" - il tema di questi titoli"
+msgstr "\"A New Day\" - the theme of these credits"
+
+msgid "Personaggi"
+msgstr "Characters"
+
+msgid "Mostri"
+msgstr "Monsters"
+
+msgid "Grafica"
+msgstr "Graphics"
+
+msgid "Biblioteca, castello, bosco, nemici, effetti"
+msgstr "Library, castle, woods, enemies, effects"
+
+msgid "Suoni"
+msgstr "Sounds"
+
+msgid "Carattere"
+msgstr "Font"
+
+msgid "Fatto con"
+msgstr "Made with"
+
+msgid "Subaru ed Emilia"
+msgstr "Subaru and Emilia"
+
+msgid "da Re:Zero - Starting Life in Another World"
+msgstr "from Re:Zero - Starting Life in Another World"
+
+msgid "Usati per imparare, in un progetto personale e non commerciale."
+msgstr "Used for learning, in a personal, non-commercial project."
+
+msgid "Grazie per aver giocato!"
+msgstr "Thank you for playing!"
+
+msgid "Fine"
+msgstr "The End"
+
+msgid "Nel titolo si è aperta la Galleria."
+msgstr "The Gallery is now open on the title screen."
+
+msgid "Premi Invio per tornare al titolo"
+msgstr "Press Enter to return to the title"
+
+msgid "Tieni premuto Invio: più veloce"
+msgstr "Hold Enter: faster"
+
+msgid "Vuoi davvero uscire da Erbalta?"
+msgstr "Do you really want to leave Erbalta?"
+
+msgid "Scappi proprio adesso, %s?"
+msgstr "Running away right now, %s?"
+
+msgid "Sono le %d:%02d, %s. Dovresti dormire."
+msgstr "It's %d:%02d, %s. You should be asleep."
+
+msgid "Te ne vai già, %s?"
+msgstr "Leaving already, %s?"
+
+msgid "Sei morto una volta. Tornerai, %s."
+msgstr "You died once. You'll be back, %s."
+
+msgid "Sei morto %d volte. Tornerai, %s."
+msgstr "You died %d times. You'll be back, %s."
+
+msgid "Ci rivedremo, %s."
+msgstr "We'll meet again, %s."
+
+msgid "%s... sei sicuro?"
+msgstr "%s... are you sure?"
+
+msgid "Sì"
+msgstr "Yes"
+
+msgid "straniero"
+msgstr "stranger"
+
+msgid "...Bene. Resta con me, %s."
+msgstr "...Good. Stay with me, %s."
+
+msgid "Non rispondi? Allora decido io."
+msgstr "No answer? Then I'll decide."
+
+msgid "Hai trovato: %s"
+msgstr "You found: %s"
+
+msgid "Obiettivo"
+msgstr "Objective"
+
+msgid "Esplora il villaggio"
+msgstr "Explore the village"
+
+msgid "Lo zaino è vuoto."
+msgstr "The backpack is empty."
+
+msgid "Hai recuperato %d punti salute."
+msgstr "You recovered %d health points."
+
+msgid "Non si può usare qui."
+msgstr "It can't be used here."
+
+msgid "PS %d/%d  ·  Invio per usare  ·  Tab per chiudere"
+msgstr "HP %d/%d  ·  Enter to use  ·  Tab to close"
+
+msgid "Zaino"
+msgstr "Backpack"
+
+msgid "Descrizione"
+msgstr "Description"
+
+msgid "Tab per chiudere"
+msgstr "Tab to close"
+
+msgid "Una notte, due viaggiatori lasciarono la Rocca d'Argento."
+msgstr "One night, two travelers left the Silver Keep."
+
+msgid "Andavano a Erbalta: un villaggio tranquillo, dove nessuno invecchia."
+msgstr "They were headed for Erbalta: a quiet village where no one grows old."
+
+msgid "...e da cui nessuno se n'è mai andato."
+msgstr "...and which no one has ever left."
+
+msgid "Nel bosco a nord, qualcosa non chiude mai gli occhi."
+msgstr "In the woods to the north, something never closes its eyes."
+
+msgid "E guarda."
+msgstr "And it watches."
+
+msgid "Biagio Scaglia presenta"
+msgstr "Biagio Scaglia presents"
+
+msgid "Un tasto qualsiasi: salta"
+msgstr "Any key: skip"
+
+msgid "Opzioni"
+msgstr "Options"
+
+msgid "Volume"
+msgstr "Volume"
+
+msgid "Schermo intero"
+msgstr "Fullscreen"
+
+msgid "Lingua"
+msgstr "Language"
+
+msgid "Velocità testo"
+msgstr "Text speed"
+
+msgid "Lenta"
+msgstr "Slow"
+
+msgid "Normale"
+msgstr "Normal"
+
+msgid "Veloce"
+msgstr "Fast"
+
+msgid "Istantanea"
+msgstr "Instant"
+
+msgid "Accessibilità"
+msgstr "Accessibility"
+
+msgid "Scuotimento dello schermo"
+msgstr "Screen shake"
+
+msgid "Lampi attenuati"
+msgstr "Reduced flashing"
+
+msgid "Indietro"
+msgstr "Back"
+
+msgid "Partita salvata"
+msgstr "Game saved"
+
+msgid "Non è stato possibile salvare"
+msgstr "The game could not be saved"
+
+msgid "Pausa"
+msgstr "Paused"
+
+msgid "Riprendi"
+msgstr "Resume"
+
+msgid "Salva"
+msgstr "Save"
+
+msgid "Torna al titolo"
+msgstr "Back to title"
+
+msgid "Esci dal gioco"
+msgstr "Quit game"
+
+msgid "Esc per riprendere"
+msgstr "Esc to resume"
+
+msgid "...Eh?"
+msgstr "...Huh?"
+
+msgid "Ero... morto. Quell'oscurità mi ha preso."
+msgstr "I was... dead. That darkness took me."
+
+msgid "E invece sono qui, come se non fosse successo niente."
+msgstr "And yet here I am, as if nothing happened."
+
+msgid "Di nuovo qui..."
+msgstr "Here again..."
+
+msgid "Allora non era un sogno. Quando muoio, torno indietro."
+msgstr "So it wasn't a dream. When I die, I go back."
+
+msgid "Ancora..."
+msgstr "Again..."
+
+msgid "Non posso uscire da questo villaggio. Non ancora."
+msgstr "I can't leave this village. Not yet."
+
+msgid "Morte n. %d"
+msgstr "Death no. %d"
+
+msgid "Sei morto."
+msgstr "You died."
+
+msgid "Ritorna"
+msgstr "Return"
+
+msgid "Ti amo."
+msgstr "I love you."
+
+msgid "Ti amo... ti amo..."
+msgstr "I love you... I love you..."
+
+msgid "Non andartene."
+msgstr "Don't leave."
+
+msgid "Ti sto guardando."
+msgstr "I'm watching you."
+
+msgid "Livello %d"
+msgstr "Level %d"
+
+msgid "PS %d/%d"
+msgstr "HP %d/%d"
+
+msgid "PT %d/%d"
+msgstr "SP %d/%d"
+
+msgid "Attacco %d"
+msgstr "Attack %d"
+
+msgid "Difesa %d"
+msgstr "Defense %d"
+
+msgid "Esp. %d/%d"
+msgstr "XP %d/%d"
+
+msgid "Morti %d"
+msgstr "Deaths %d"
+
+msgid "Nuova!"
+msgstr "New!"
+
+msgid "Finisci la storia per aprire la Galleria"
+msgstr "Finish the story to open the Gallery"
+
+msgid "Un'alba ancora"
+msgstr "One more dawn"
+
+msgid "Premi Invio"
+msgstr "Press Enter"
+
+msgid "Continua"
+msgstr "Continue"
+
+msgid "Nuova partita"
+msgstr "New game"
+
+msgid "Galleria"
+msgstr "Gallery"
+
+msgid "Esci"
+msgstr "Quit"
+
+msgid "Frecce: scegli - Invio: conferma"
+msgstr "Arrows: choose - Enter: confirm"
+
+msgid "Nebbia viola"
+msgstr "Purple Mist"
+
+msgid "Una nebbia viola, fitta come un muro. Dentro, qualcosa respira."
+msgstr "A purple mist, thick as a wall. Inside, something is breathing."
+
+msgid "Ci sono dei bagliori, nella nebbia... tre. Come tre occhi aperti."
+msgstr "There are glimmers in the mist... three. Like three open eyes."
+
+msgid "Forse, se si chiudessero, la nebbia se ne andrebbe."
+msgstr "Maybe, if they closed, the mist would go away."
+
+msgid "La nebbia non si muove. I tre bagliori neanche."
+msgstr "The mist doesn't move. Neither do the three glimmers."
+
+msgid "Ti seguo, Subaru. Non preoccuparti per me."
+msgstr "I'm right behind you, Subaru. Don't worry about me."
+
+msgid "...Però cammina piano. Ho l'impressione che il bosco ci ascolti."
+msgstr "...But walk slowly. I have a feeling the woods are listening."
+
+msgid "Hai visto gli occhi tra i rovi? Quando ti avvicini, si chiudono."
+msgstr "Did you see the eyes in the brambles? When you get close, they shut."
+
+msgid "Gli occhi di pietra, invece, guardano avanti e indietro. Avvicinati quando guardano dall'altra parte."
+msgstr "The stone eyes, though, look back and forth. Get close when they're looking the other way."
+
+msgid "brilla un ultimo bagliore"
+msgstr "one last glimmer shines"
+
+msgid "brillano ancora %d bagliori"
+msgstr "%d glimmers still shine"
+
+msgid "La nebbia viola è ancora qui. Dentro, %s."
+msgstr "The purple mist is still here. Inside, %s."
+
+msgid "Uno in meno. Ne restano %d."
+msgstr "One down. %d to go."
+
+msgid "Hai visto? Quando l'occhio si è chiuso, si è irrigidito come pietra gelata..."
+msgstr "Did you see? When the eye closed, it went stiff like frozen stone..."
+
+msgid "Ho un'idea. Io chiudo un'ombra nel ghiaccio, e tu la colpisci con tutta la forza che hai."
+msgstr "I have an idea. I trap a shadow in ice, and you hit it with everything you've got."
+
+msgid "Il ghiaccio si spezza, e l'ombra con lui."
+msgstr "The ice shatters, and the shadow with it."
+
+msgid "Un attacco combinato con Emiliuccia?! ...Questo bosco comincia a piacermi."
+msgstr "A combo attack with Emiliuccia?! ...I'm starting to like these woods."
+
+msgid "Nuova abilità: Cristallo infranto"
+msgstr "New skill: Shattered Crystal"
+
+msgid "L'ultimo! Guarda, Subaru... la nebbia."
+msgstr "The last one! Look, Subaru... the mist."
+
+msgid "La radura è aperta."
+msgstr "The clearing is open."
+
+msgid "...E qualcosa, là in fondo, si è appena svegliato. Lo sento."
+msgstr "...And something, deep in there, has just woken up. I can feel it."
+
+msgid "Subaru! Ti ha visto."
+msgstr "Subaru! It saw you."
+
+msgid "Guarda la luce che fa: gira avanti e indietro. Avvicinati quando guarda dall'altra parte."
+msgstr "Look at its light: it sweeps back and forth. Get close when it's looking the other way."
+
+msgid "L'occhio è chiuso. La pietra è fredda, come se dormisse."
+msgstr "The eye is closed. The stone is cold, as if it were asleep."
+
+msgid "Occhio di pietra"
+msgstr "Stone Eye"
+
+msgid "...Ancora tu."
+msgstr "...You again."
+
+msgid "Di nuovo qui. Ma stavolta ricordo il tuo sguardo."
+msgstr "Here again. But this time I remember your gaze."
+
+msgid "Ogni volta torni. Ogni volta muori. E ogni volta, resti."
+msgstr "Every time, you return. Every time, you die. And every time, you stay."
+
+msgid "Erbalta dorme. Erbalta è al sicuro. Perché vuoi svegliarla?"
+msgstr "Erbalta sleeps. Erbalta is safe. Why do you want to wake it?"
+
+msgid "Al sicuro? È una gabbia. Gli alberi non crescono, il Saggio non ricorda, le stelle sono ferme."
+msgstr "Safe? It's a cage. The trees don't grow, the Sage doesn't remember, the stars stand still."
+
+msgid "Questa volta no. Questa volta la porto via di qui."
+msgstr "Not this time. This time I'm taking her away from here."
+
+msgid "Subaru. Insieme."
+msgstr "Subaru. Together."
+
+msgid "È... finita?"
+msgstr "Is it... over?"
+
+msgid "Senti, Subaru. Il vento. Prima non c'era."
+msgstr "Listen, Subaru. The wind. It wasn't there before."
+
+msgid "Gli occhi si sono chiusi. Tutti."
+msgstr "The eyes have closed. All of them."
+
+msgid "Torniamo a Erbalta. Voglio vedere se il villaggio si è svegliato."
+msgstr "Let's go back to Erbalta. I want to see if the village has woken up."
+
+msgid "Galleria di Erbalta"
+msgstr "Erbalta Gallery"
+
+msgid "Ogni libro racconta qualcuno"
+msgstr "Every book tells of someone"
+
+msgid "E: leggi - Esc: torna al titolo"
+msgstr "E: read - Esc: back to title"
+
+msgid "Frecce: sfoglia - E: chiudi"
+msgstr "Arrows: turn pages - E: close"
+
+msgid "Una galleria tutta per noi? ...Quella statua di Subaru è un po' troppo eroica, non trovi?"
+msgstr "A gallery all to ourselves? ...That statue of Subaru is a little too heroic, don't you think?"
+
+msgid "Leggi pure il libro qui accanto. Ma non credere a tutto quello che c'è scritto su di me!"
+msgstr "Go ahead and read the book next to me. But don't believe everything it says about me!"
+
+msgid "Anche qui ci sono degli alberi? No? Peccato. Li avrei guardati crescere."
+msgstr "Are there trees in here too? No? Pity. I'd have watched them grow."
+
+msgid "Il libro dice che non mi ricordo le cose? Mah. Non me lo ricordo."
+msgstr "The book says I don't remember things? Hmm. I don't remember that."
+
+msgid "Che bello! È come il baule della nonna, ma enorme!"
+msgstr "How lovely! It's like Grandma's chest, but huge!"
+
+msgid "Il mio libro dice che perdo sempre le chiavi. ...A proposito, hai visto la mia chiave?"
+msgstr "My book says I'm always losing my keys. ...Speaking of which, have you seen my key?"
+
+msgid "Shh. Una biblioteca di ricordi: il posto più bello del mondo."
+msgstr "Shh. A library of memories: the most beautiful place in the world."
+
+msgid "Questi libri si sono scritti da soli. Io li ho solo messi in ordine."
+msgstr "These books wrote themselves. I only put them in order."
+
+msgid "Statua"
+msgstr "Statue"
+
+msgid "Una statua di Subaru, in posa eroica. Sulla base: \"%s\"."
+msgstr "A statue of Subaru, in a heroic pose. On the base: \"%s\"."
+
+msgid "...Mi somiglia un sacco. Bel lavoro, chiunque sia stato."
+msgstr "...Looks a lot like me. Nice work, whoever made it."
+
+msgid "Lo sguardo di pietra fissa l'orizzonte. Quello vero non lo fa mai."
+msgstr "The stone gaze stares at the horizon. The real one never does."
+
+msgid "Libro"
+msgstr "Book"
+
+msgid "Colui che ritorna"
+msgstr "The One Who Returns"
+
+msgid "Un ragazzo arrivato da un altro mondo, con una tuta, tanta parlantina e nessuna intenzione di arrendersi."
+msgstr "A boy from another world, with a tracksuit, a big mouth and no intention of giving up."
+
+msgid "Ha un potere che non ha mai chiesto: quando muore torna indietro, all'ultimo punto di ritorno. Il mondo dimentica. Lui no."
+msgstr "He has a power he never asked for: when he dies, he goes back to the last point of return. The world forgets. He doesn't."
+
+msgid "In battaglia usa pugni, calci e un'ombra che non sa spiegare. Chiama Emilia \"Emiliuccia\": lei fa finta di arrabbiarsi."
+msgstr "In battle he uses punches, kicks and a shadow he can't explain. He calls Emilia \"Emiliuccia\": she pretends to be annoyed."
+
+msgid "La ragazza dai capelli d'argento"
+msgstr "The Silver-Haired Girl"
+
+msgid "Gentile e testarda. È lei che ha portato Subaru a Erbalta, per capire da dove arrivassero le voci strane."
+msgstr "Kind and stubborn. She's the one who brought Subaru to Erbalta, to find out where the strange rumors came from."
+
+msgid "Nel Bosco Senza Tempo combatte accanto a Subaru con la magia del gelo: le Scaglie di gelo e, insieme a lui, il Cristallo infranto."
+msgstr "In the Timeless Wood she fights beside Subaru with frost magic: Frost Shards and, together with him, Shattered Crystal."
+
+msgid "Non chiede mai a Subaru come faccia a ricordare certe cose. Si fida. A volte basta questo."
+msgstr "She never asks Subaru how he remembers certain things. She trusts him. Sometimes that's enough."
+
+msgid "Il Saggio"
+msgstr "The Sage"
+
+msgid "Il nonno di Erbalta"
+msgstr "Erbalta's Grandfather"
+
+msgid "Passa le giornate in piazza a guardare crescere gli alberi. Conosce tutti e ricorda tutto... o almeno così crede."
+msgstr "He spends his days in the square watching the trees grow. He knows everyone and remembers everything... or so he believes."
+
+msgid "Per anni gli alberi di Erbalta sono rimasti alti uguale, e lui non se n'era accorto. Dopo la caduta di Colui che guarda sono cresciuti di un palmo in una notte."
+msgstr "For years Erbalta's trees stayed exactly as tall, and he never noticed. After the fall of He Who Watches, they grew a hand's breadth in a single night."
+
+msgid "La nipote del Saggio"
+msgstr "The Sage's Granddaughter"
+
+msgid "Vive nella casa col tetto rosso. Vivace, distratta, perde sempre le chiavi."
+msgstr "She lives in the house with the red roof. Lively, scatterbrained, always losing her keys."
+
+msgid "Nel baule della nonna custodiva, senza saperlo, la pagina strappata del libro nero. La nonna diceva: \"I libri che nessuno legge sono quelli che ricordano di più.\""
+msgstr "Without knowing it, she kept the torn page of the black book in her grandmother's chest. Grandma used to say: \"The books nobody reads are the ones that remember the most.\""
+
+msgid "L'Archivista"
+msgstr "The Archivist"
+
+msgid "Custode della biblioteca"
+msgstr "Keeper of the Library"
+
+msgid "Parla piano, cammina piano e legge di tutto. La biblioteca di pietra, a nord-est della piazza, è casa sua."
+msgstr "She speaks softly, walks softly and reads everything. The stone library, northeast of the square, is her home."
+
+msgid "È stata la prima a leggere la pagina strappata e l'ultima a salutare Subaru ed Emilia. Ora legge la storia nuova che il libro nero scrive da solo."
+msgstr "She was the first to read the torn page and the last to say goodbye to Subaru and Emilia. Now she reads the new story the black book writes by itself."
+
+msgid "Una gelatina verde che rimbalza nell'erba a est della piazza. Non è cattiva: è solo affamata, e Subaru le sembra commestibile."
+msgstr "A green jelly bouncing through the grass east of the square. It isn't mean: it's just hungry, and Subaru looks edible."
+
+msgid "Villaggio, a est della piazza"
+msgstr "Village, east of the square"
+
+msgid "Un'ombra fredda con due occhi vuoti. Custodiva la lacrima d'ombra: l'inchiostro che ha fatto parlare il libro nero."
+msgstr "A cold shadow with two empty eyes. It guarded the shadow tear: the ink that made the black book speak."
+
+msgid "Mani nere che escono dal terreno del bosco e cercano qualcuno da afferrare. Qualcuno dice che sono le stesse che si muovono nel buio, dietro il menu del titolo..."
+msgstr "Black hands that rise from the forest floor, looking for someone to grab. Some say they're the same ones moving in the dark behind the title menu..."
+
+msgid "Un occhio che ha lasciato il suo padrone e vaga tra gli alberi. Vede tutto, ma da solo non può fare molto."
+msgstr "An eye that left its master and wanders among the trees. It sees everything, but on its own it can't do much."
+
+msgid "Un groviglio di rovi che ha preso forma e coscienza. Sorveglia i sentieri del bosco: non lascia passare nessuno, né dentro né fuori."
+msgstr "A tangle of brambles that took shape and gained a mind. It guards the forest paths: it lets no one through, in or out."
+
+msgid "Il cuore del bosco"
+msgstr "The Heart of the Woods"
+
+msgid "Dormiva nella radura in cima al Bosco Senza Tempo e non chiudeva mai gli occhi. Finché guardava, Erbalta ricominciava ogni alba lo stesso giorno."
+msgstr "It slept in the clearing atop the Timeless Wood and never closed its eyes. As long as it watched, every dawn Erbalta started the same day over."
+
+msgid "Il suo Sguardo pietrifica chi lo incrocia. Subaru l'ha capito nel modo peggiore: morendo. Poi è tornato indietro, ricordando."
+msgstr "Its Gaze petrifies whoever meets it. Subaru learned that the worst way: by dying. Then he came back, remembering."
+
+msgid "Lo hanno sconfitto insieme, con l'Alba di cristallo. Da quella notte, a Erbalta, gli alberi crescono."
+msgstr "They defeated it together, with Crystal Dawn. Since that night, the trees in Erbalta grow."
+
+msgid "Ombra"
+msgstr "Shadow"
+
+msgid "Ghiaccio"
+msgstr "Ice"
+
+msgid "Attacco"
+msgstr "Attack"
+
+msgid "Scudo"
+msgstr "Shield"
+
+msgid "Debole a"
+msgstr "Weak to"
+
+msgid "Oh! Ciao! Non ti avevo sentito entrare."
+msgstr "Oh! Hi! I didn't hear you come in."
+
+msgid "Io sono Lina. Il Saggio è mio nonno... sì, quello che guarda crescere gli alberi."
+msgstr "I'm Lina. The Sage is my grandpa... yes, the one who watches the trees grow."
+
+msgid "Ti manda il nonno? Allora vuoi vedere il baule della nonna, quello in fondo."
+msgstr "Grandpa sent you? Then you want to see Grandma's chest, the one at the back."
+
+msgid "Il guaio è che è chiuso a chiave, e la chiave l'ho persa..."
+msgstr "The trouble is, it's locked, and I lost the key..."
+
+msgid "Forse mi è caduta vicino alla staccionata, a ovest della piazza. Se la trovi, portamela!"
+msgstr "Maybe I dropped it near the fence, west of the square. If you find it, bring it to me!"
+
+msgid "Hai trovato la mia chiave? Credo di averla persa vicino alla staccionata, a ovest della piazza."
+msgstr "Did you find my key? I think I lost it near the fence, west of the square."
+
+msgid "Baule"
+msgstr "Chest"
+
+msgid "È chiuso a chiave."
+msgstr "It's locked."
+
+msgid "Ancora chiuso. Da qualche parte ci sarà una chiave..."
+msgstr "Still locked. There must be a key somewhere..."
+
+msgid "Libreria"
+msgstr "Bookcase"
+
+msgid "Tanti libri polverosi."
+msgstr "Lots of dusty books."
+
+msgid "Uno si intitola: \"Godot per principianti, volume 1\"."
+msgstr "One is titled: \"Godot for Beginners, Volume 1\"."
+
+msgid "Il volume 2 non c'è. Forse non l'hanno ancora scritto."
+msgstr "Volume 2 isn't here. Maybe they haven't written it yet."
+
+msgid "Archivista"
+msgstr "Archivist"
+
+msgid "Shh! Questa è una biblioteca."
+msgstr "Shh! This is a library."
+
+msgid "...Oh, un visitatore. Non ne arrivano da... be', da un bel po'."
+msgstr "...Oh, a visitor. We haven't had one in... well, quite a while."
+
+msgid "Io sono l'Archivista. Tengo in ordine i libri di Erbalta, anche quelli che nessuno legge."
+msgstr "I'm the Archivist. I keep Erbalta's books in order, even the ones nobody reads."
+
+msgid "Guarda pure in giro. Solo una cosa: il libro nero sul leggio non è in prestito."
+msgstr "Feel free to look around. Just one thing: the black book on the lectern can't be borrowed."
+
+msgid "Gli scaffali a sinistra parlano del villaggio, quelli a destra delle creature dei dintorni."
+msgstr "The shelves on the left are about the village, the ones on the right about the creatures nearby."
+
+msgid "Il libro nero? Non ricordo chi l'abbia portato qui. E non ricordo di averlo mai chiuso."
+msgstr "The black book? I don't remember who brought it here. And I don't remember ever closing it."
+
+msgid "Libro nero"
+msgstr "Black Book"
+
+msgid "Un libro rilegato in nero, senza titolo."
+msgstr "A book bound in black, with no title."
+
+msgid "Le pagine sono vuote..."
+msgstr "The pages are blank..."
+
+msgid "...no. Sull'ultima c'è una frase, scritta con una calligrafia che conosci bene: la tua."
+msgstr "...no. On the last one there's a sentence, in handwriting you know well: yours."
+
+msgid "\"Ci siamo già visti, vero?\""
+msgstr "\"We've met before, haven't we?\""
+
+msgid "Le pagine sono di nuovo vuote. Come se il libro aspettasse qualcosa."
+msgstr "The pages are blank again. As if the book were waiting for something."
+
+msgid "\"Storia di Erbalta, volume 3\". I volumi 1 e 2 non ci sono."
+msgstr "\"History of Erbalta, Volume 3\". Volumes 1 and 2 are missing."
+
+msgid "\"Il villaggio fu fondato da un uomo che sapeva guardare crescere gli alberi.\""
+msgstr "\"The village was founded by a man who knew how to watch the trees grow.\""
+
+msgid "...Sembra proprio il Saggio. Ma quanti anni avrà?"
+msgstr "...Sounds just like the Sage. But how old can he be?"
+
+msgid "\"Nessun abitante di Erbalta ha mai lasciato il villaggio.\" Lo scrive come se fosse un vanto."
+msgstr "\"No inhabitant of Erbalta has ever left the village.\" It's written as if it were something to be proud of."
+
+msgid "\"Cento zuppe di funghi\"."
+msgstr "\"One Hundred Mushroom Soups\"."
+
+msgid "I funghi rossi a puntini stanno tutti nel capitolo \"Da NON mettere nella zuppa\"."
+msgstr "The red spotted mushrooms are all in the chapter \"Do NOT put in the soup\"."
+
+msgid "A margine di una ricetta, a matita: \"Lina, non ci provare\"."
+msgstr "In the margin of a recipe, in pencil: \"Lina, don't even try\"."
+
+msgid "\"Bestiario dei dintorni\"."
+msgstr "\"Bestiary of the Surroundings\"."
+
+msgid "Melma verde: lenta e appiccicosa, vive a est della piazza."
+msgstr "Green Slime: slow and sticky, lives east of the square."
+
+msgid "Spettro: compare dove l'aria si fa fredda. Le pagine dopo sono strappate."
+msgstr "Specter: appears where the air turns cold. The following pages are torn out."
+
+msgid "In fondo al bestiario c'è una pagina bianca. Il titolo è solo \"???\"."
+msgstr "At the end of the bestiary there's a blank page. The title is just \"???\"."
+
+msgid "Un libro di poesie. Ne apri una a caso:"
+msgstr "A book of poems. You open one at random:"
+
+msgid "\"Se il tempo tornasse indietro, / sceglierei ancora te.\""
+msgstr "\"If time could turn back, / I would choose you again.\""
+
+msgid "...Chissà perché, ti si stringe un po' il petto."
+msgstr "...For some reason, your chest tightens a little."
+
+msgid "Le poesie parlano tutte di ritorni."
+msgstr "All the poems are about returning."
+
+msgid "Mappamondo"
+msgstr "Globe"
+
+msgid "Un mappamondo. Lo fai girare."
+msgstr "A globe. You give it a spin."
+
+msgid "Il villaggio di Erbalta non è segnato da nessuna parte."
+msgstr "The village of Erbalta isn't marked anywhere."
+
+msgid "Gira, gira... e si ferma sempre sullo stesso punto."
+msgstr "It spins and spins... and always stops on the same spot."
+
+msgid "Mappa"
+msgstr "Map"
+
+msgid "Una vecchia mappa di Erbalta. La biblioteca è segnata con una stellina."
+msgstr "An old map of Erbalta. The library is marked with a little star."
+
+msgid "Fuori dai confini del villaggio, il cartografo ha disegnato solo nebbia."
+msgstr "Beyond the village borders, the mapmaker drew nothing but fog."
+
+msgid "Finestra"
+msgstr "Window"
+
+msgid "Fuori è notte fonda."
+msgstr "Outside, it's the dead of night."
+
+msgid "...Strano. Quando sei entrato era pieno giorno."
+msgstr "...Strange. It was broad daylight when you came in."
+
+msgid "Le stelle sono ferme. Tutte quante."
+msgstr "The stars are still. Every single one."
+
+msgid "Scrivania"
+msgstr "Desk"
+
+msgid "Un registro aperto e una piuma ancora sporca d'inchiostro."
+msgstr "An open ledger and a quill still wet with ink."
+
+msgid "È il registro dei prestiti. L'ultimo prestito risale a cento anni fa."
+msgstr "It's the loan register. The last loan was a hundred years ago."
+
+msgid "La piuma è ancora umida. Chi scrive qui, se non entra mai nessuno?"
+msgstr "The quill is still damp. Who writes here, if no one ever comes in?"
+
+msgid "Oh, un volto nuovo! Benvenuto in questo piccolo villaggio."
+msgstr "Oh, a new face! Welcome to this little village."
+
+msgid "Io sono il Saggio. Passo le giornate a guardare crescere gli alberi."
+msgstr "I'm the Sage. I spend my days watching the trees grow."
+
+msgid "Torna a trovarmi quando vuoi. Avrò altre storie da raccontarti!"
+msgstr "Come and visit whenever you like. I'll have more stories to tell you!"
+
+msgid "Ancora qui? Gli alberi non crescono più in fretta se li guardiamo in due!"
+msgstr "Still here? The trees don't grow any faster with two of us watching!"
+
+msgid "Hai letto il cartello vicino alla piazza? Lo ha scritto mio nonno."
+msgstr "Have you read the sign near the square? My grandfather wrote it."
+
+msgid "E se passi dalla casa col tetto rosso, saluta mia nipote Lina."
+msgstr "And if you pass by the house with the red roof, say hello to my granddaughter Lina."
+
+msgid "La casa di pietra a nord-est è la biblioteca. Ci lavora una mia vecchia amica: parla piano, mi raccomando."
+msgstr "The stone house to the northeast is the library. An old friend of mine works there: speak softly, mind you."
+
+msgid "Se ti stanchi, riposiamo un po' qui in piazza. Non c'è nessuna fretta, no?"
+msgstr "If you get tired, we can rest here in the square for a bit. There's no hurry, right?"
+
+msgid "Cartello"
+msgstr "Sign"
+
+msgid "Villaggio di Erbalta."
+msgstr "Erbalta Village."
+
+msgid "A nord: il bosco. A est e a ovest: la strada maestra."
+msgstr "North: the woods. East and west: the main road."
+
+msgid "Più in basso qualcuno ha inciso, con mano tremante: \"Non lasciate il villaggio.\""
+msgstr "Further down, someone carved with a shaky hand: \"Do not leave the village.\""
+
+msgid "Sotto, piccolo piccolo: \"Il Saggio sa tutto. Chiedete a lui.\""
+msgstr "Below, in tiny letters: \"The Sage knows everything. Ask him.\""
+
