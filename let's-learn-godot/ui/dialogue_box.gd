@@ -4,9 +4,6 @@ extends CanvasLayer
 
 signal finished
 
-## Velocità della scrittura, in caratteri al secondo.
-@export var chars_per_second := 40.0
-
 @onready var box: Control = $Box
 @onready var name_label: Label = $Box/NameTag/Name
 @onready var text_label: Label = $Box/Panel/Text
@@ -35,7 +32,8 @@ func start(speaker: String, lines: PackedStringArray) -> void:
 	is_active = true
 	_lines = lines
 	_index = 0
-	name_label.text = speaker
+	# I testi arrivano in italiano: tr() li traduce nella lingua scelta (locale/en.po).
+	name_label.text = tr(speaker)
 
 	# Entrata: la finestra sale un poco e compare.
 	box.visible = true
@@ -49,12 +47,14 @@ func start(speaker: String, lines: PackedStringArray) -> void:
 
 func _show_line() -> void:
 	_stop_typing()
-	text_label.text = _lines[_index]
+	text_label.text = tr(_lines[_index])
 	text_label.visible_characters = 0
 	_stop_arrow()
 	var count := text_label.get_total_character_count()
+	# La velocità la sceglie il giocatore nelle opzioni (0 = tutta la frase subito).
+	var speed := Settings.chars_per_second() if Settings.chars_per_second() > 0.0 else 100000.0
 	_typing = create_tween()
-	_typing.tween_method(_type_to, 0, count, count / chars_per_second)
+	_typing.tween_method(_type_to, 0, count, count / speed)
 	_typing.finished.connect(_on_line_typed)
 
 
