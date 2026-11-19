@@ -30,6 +30,21 @@ var _clock := 0.0
 ## True quando il filmato è finito o è stato saltato: chi aspetta smette.
 var _done := false
 var _camera_tween: Tween
+## Sul web: true finché si aspetta il primo clic (vedi _ready).
+var _waiting_start := false
+var _start_label: Label
+
+## Sul web basta chiedere il clic una volta: poi l'audio resta sbloccato.
+static var _audio_unlocked := false
+
+## I tasti che non saltano il filmato: volume e multimedia (li premi per sentire meglio,
+## non per saltare), modificatori e simili.
+const IGNORED_KEYS := [
+	KEY_VOLUMEUP, KEY_VOLUMEDOWN, KEY_VOLUMEMUTE,
+	KEY_MEDIAPLAY, KEY_MEDIASTOP, KEY_MEDIAPREVIOUS, KEY_MEDIANEXT, KEY_MEDIARECORD,
+	KEY_SHIFT, KEY_CTRL, KEY_ALT, KEY_META, KEY_CAPSLOCK, KEY_NUMLOCK, KEY_SCROLLLOCK,
+	KEY_PRINT, KEY_UNKNOWN,
+]
 
 
 func _ready() -> void:
@@ -41,19 +56,58 @@ func _ready() -> void:
 	for label in [presents, narration]:
 		label.modulate.a = 0.0
 	skip_hint.modulate.a = 0.0
+	# Nel browser l'audio parte solo dopo un clic o un tasto sulla pagina: se il
+	# filmato partisse subito, la musica resterebbe muta. Allora prima si chiede.
+	if OS.has_feature("web") and not _audio_unlocked:
+		_ask_to_start()
+		return
+	_start()
+
+
+func _start() -> void:
 	create_tween().tween_property(skip_hint, "modulate:a", 1.0, 1.0).set_delay(1.0)
 	_play()
 
 
-## Qualsiasi tasto (o clic) salta il filmato.
+func _ask_to_start() -> void:
+	_waiting_start = true
+	_start_label = Label.new()
+	_start_label.text = "Clicca o premi un tasto per iniziare"
+	_start_label.theme_type_variation = &"SubtitleLabel"
+	_start_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_start_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	_start_label.set_anchors_preset(Control.PRESET_FULL_RECT)
+	narration.get_parent().add_child(_start_label)
+	var t := create_tween().set_loops()
+	t.tween_property(_start_label, "modulate:a", 0.35, 0.8).set_trans(Tween.TRANS_SINE)
+	t.tween_property(_start_label, "modulate:a", 1.0, 0.8).set_trans(Tween.TRANS_SINE)
+
+
+## Un tasto "vero" o un clic: salta il filmato (o, sul web, lo fa partire).
 func _unhandled_input(event: InputEvent) -> void:
-	if _done:
+	if _done or not is_skip_input(event):
 		return
-	var key: bool = event is InputEventKey and event.pressed and not event.echo
-	var click: bool = event is InputEventMouseButton and event.pressed
-	if key or click:
-		get_viewport().set_input_as_handled()
+	get_viewport().set_input_as_handled()
+	if _waiting_start:
+		_waiting_start = false
+		_audio_unlocked = true
+		_start_label.queue_free()
+		_start()
+	else:
 		_finish()
+
+
+## True per un tasto premuto (non volume, multimedia o modificatori), un clic o un
+## pulsante del joypad. Static: la usano anche i test.
+static func is_skip_input(event: InputEvent) -> bool:
+	if event is InputEventKey:
+		return event.pressed and not event.echo and event.keycode not in IGNORED_KEYS
+	if event is InputEventMouseButton:
+		# La rotella non conta: si muove anche senza volerlo.
+		return event.pressed and event.button_index in [MOUSE_BUTTON_LEFT, MOUSE_BUTTON_RIGHT, MOUSE_BUTTON_MIDDLE]
+	if event is InputEventJoypadButton:
+		return event.pressed
+	return false
 
 
 func _play() -> void:
