@@ -57,6 +57,14 @@ butler push build/windows   <utente>/erbalta:windows
 
 ### English
 
+> **An unofficial Re:Zero fan game.** Subaru and Emilia belong to *Re:Zero − Starting Life
+> in Another World* by Tappei Nagatsuki (Kadokawa). This is a free, non-commercial project
+> made by a fan, not affiliated with or endorsed by the original authors.
+>
+> ---
+>
+> **One more dawn.**
+>
 > A short pixel-art RPG about a village that starts the same day over, every dawn.
 >
 > Subaru and Emilia arrive in Erbalta, a quiet village where nobody grows old... and
@@ -65,17 +73,27 @@ butler push build/windows   <utente>/erbalta:windows
 >
 > When Subaru dies, he goes back. The world forgets. He doesn't.
 >
+> **Features**
 > - Turn-based battles with weaknesses, shields and a combo attack with Emilia
-> - A Return by Death mechanic: every death teaches you something
-> - Original music and a gallery to unlock after the ending
+> - Return by Death: every death teaches you something
+> - Original music, and a gallery to unlock after the ending
 > - English and Italian
-> - Accessibility: text speed, screen shake on/off, reduced flashing
+> - Accessibility options: text speed, screen shake on/off, reduced flashing
 >
-> Controls: WASD / arrows to move, E / Space / Enter to interact, Shift to run,
-> Tab for the backpack, Esc to pause.
+> **Controls**
+> WASD / arrows: move · E / Space / Enter: interact · Shift: run · Tab: backpack · Esc: pause
 >
-> A fan game made to learn Godot 4. Subaru and Emilia are from *Re:Zero - Starting Life
-> in Another World* (c) Tappei Nagatsuki, Kadokawa. Free and non-commercial.
+> **Windows note**
+> The game isn't digitally signed, so Windows may say "Windows protected your PC".
+> Click **More info → Run anyway**.
+>
+> **About this project**
+> Erbalta is a learning project: I made it to learn Godot 4, working with an AI assistant
+> (Claude) for code, writing, music and pixel art. I designed it, directed it, tested it
+> and played it. The full dev diary (in Italian) is on GitHub:
+> https://github.com/biagio-scaglia/let-s-learn-godot-
+>
+> Made with Godot 4.7. Tiles, font and some sounds by Kenney (CC0).
 
 ### Italiano
 
