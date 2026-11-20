@@ -4,6 +4,8 @@
 ::   build\Erbalta-windows.zip        da caricare come "Windows"
 ::   build\web\index.html + file      la versione da giocare nel browser
 ::   build\Erbalta-web.zip            da caricare come "HTML5 / gioca nel browser"
+::   build\linux\Erbalta.x86_64       la versione Linux (anche qui il .pck e' dentro)
+::   build\Erbalta-linux.zip          da caricare come "Linux" (con il permesso +x, serve Python)
 ::
 :: Serve il percorso di Godot: o la variabile GODOT_BIN, oppure
 ::     export.cmd C:\percorso\Godot.exe
@@ -19,6 +21,7 @@ if "%GODOT%"=="" (
 cd /d "%~dp0"
 if not exist "..\build\windows" mkdir "..\build\windows"
 if not exist "..\build\web" mkdir "..\build\web"
+if not exist "..\build\linux" mkdir "..\build\linux"
 
 :: Alla chiusura Godot puo' uscire con un codice d'errore per dei "leak" innocui anche
 :: quando l'esportazione e' riuscita: per questo si controlla che i file ci siano.
@@ -35,6 +38,15 @@ if not exist "..\build\web\index.pck" (
     exit /b 1
 )
 
+if exist "..\build\linux\Erbalta.x86_64" del "..\build\linux\Erbalta.x86_64"
+"%GODOT%" --headless --path . --export-release "Linux" "../build/linux/Erbalta.x86_64"
+if not exist "..\build\linux\Erbalta.x86_64" (
+    echo Esportazione Linux fallita.
+    exit /b 1
+)
+
 powershell -NoProfile -Command "Compress-Archive -Force -Path '..\build\windows\*' -DestinationPath '..\build\Erbalta-windows.zip'; Compress-Archive -Force -Path '..\build\web\*' -DestinationPath '..\build\Erbalta-web.zip'" || exit /b 1
+:: Lo zip Linux lo fa Python: Compress-Archive non salva il permesso di esecuzione.
+python export_zip_linux.py "..\build\linux" "..\build\Erbalta-linux.zip" || exit /b 1
 echo.
-echo Fatto: build\Erbalta-windows.zip e build\Erbalta-web.zip
+echo Fatto: build\Erbalta-windows.zip, build\Erbalta-web.zip e build\Erbalta-linux.zip

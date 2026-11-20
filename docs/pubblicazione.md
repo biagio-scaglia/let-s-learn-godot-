@@ -17,6 +17,7 @@ Escono, nella cartella `build/` (ignorata da git):
 |---|---|
 | `Erbalta-windows.zip` | il gioco per Windows (un solo `.exe`) |
 | `Erbalta-web.zip` | la versione da giocare nel browser |
+| `Erbalta-linux.zip` | il gioco per Linux (un solo eseguibile `Erbalta.x86_64`, già avviabile) |
 
 La versione web usa il renderer *Compatibility* (WebGL 2) e non usa i thread:
 funziona su itch.io e Game Jolt **senza** SharedArrayBuffer.
